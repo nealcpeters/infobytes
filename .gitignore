@@ -22,4 +22,3 @@
 .secret_devise
 .ruby-version
 bundler_stubs/
-config/database.yml

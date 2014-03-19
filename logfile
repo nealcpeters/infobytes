@@ -1,0 +1,4 @@
+LOG:  database system was shut down at 2014-03-18 22:04:54 CDT
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "InfoBytes_development" does not exist

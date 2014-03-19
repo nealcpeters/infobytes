@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 
+gem 'thread_safe', '0.2.0'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'

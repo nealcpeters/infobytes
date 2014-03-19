@@ -38,6 +38,7 @@ gem 'thread_safe', '0.2.0'
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'jasmine'
 end
 
 group :doc do

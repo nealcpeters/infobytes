@@ -53,6 +53,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
+    font-awesome-rails (4.0.3.1)
+      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     i18n (0.6.9)
     jasmine (2.0.0)
@@ -156,6 +158,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   devise
+  font-awesome-rails
   jasmine
   jbuilder (~> 1.2)
   jquery-rails

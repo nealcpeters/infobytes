@@ -37,6 +37,8 @@ gem 'devise'
 
 gem 'thread_safe', '0.2.0'
 
+gem 'coveralls', require: false
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'

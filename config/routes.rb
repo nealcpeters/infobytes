@@ -2,7 +2,7 @@ InfoBytes::Application.routes.draw do
 
   root to: "home#index"
 
-  
+  match '/pdf', to: "home#pdf", via: :get, as: "pdf"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

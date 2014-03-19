@@ -9,8 +9,8 @@ class HomeController < ApplicationController
       format.html
       format.pdf do
         pdf = Prawn::Document.new
-        pdf.text "Hello World!"
-        pdf.render
+				pdf.text "Hello World"
+				send_data pdf.render, filename: "pdf.pdf", type: "application/pdf"
       end
     end
   end

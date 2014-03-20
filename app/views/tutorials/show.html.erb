@@ -1,6 +1,19 @@
 <h1><%= @tutorial.title %></h1>
 
 <p><%= @tutorial.description %></p>
+<br>
+<% @tutorial.chapters.each do |chapter| %>
+  <h2><%=chapter.title%></h2>
+  
+  <% chapter.sub_chapters.each do |sub| %>
+    <h4>  <%= sub.title %> </h4>  
+    
+      <% sub.contents.each do |content| %>
+      <% end %>
+    <br>
+  <% end %>
+<br>
+<% end %>
 
 <%= link_to "Add Chapter", new_tutorial_chapter_path(@tutorial) %>
 <%= link_to "Delete Tutorial", @tutorial, method: :delete %> 

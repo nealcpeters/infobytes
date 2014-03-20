@@ -39,6 +39,8 @@ gem 'thread_safe', '0.2.0'
 
 gem 'prawn'
 
+gem "paperclip", "~> 4.1"
+
 gem 'coveralls', require: false
 
 group :development, :test do
@@ -58,6 +60,9 @@ end
 group :production do 
   gem "unicorn"
 end
+
+gem 'ace-rails-ap'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -42,9 +42,12 @@ gem 'prawn'
 gem 'coveralls', require: false
 
 group :development, :test do
+  gem 'pry'
+  gem 'pry-nav'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'jasmine'
+  gem 'database_cleaner'
 end
 
 group :doc do

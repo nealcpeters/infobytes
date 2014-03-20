@@ -13,8 +13,8 @@ class ParagraphsController < ApplicationController
   def update
     @paragraph = Paragraph.find(params[:id])
     @paragraph.update(paragraph_params)
+    @sub_chapter = @paragraph.content.sub_chapter
     if @paragraph.save
-      @paragraph.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
       flash[:notice]="Your paragraph has been updated!"
       redirect_to @sub_chapter
     else

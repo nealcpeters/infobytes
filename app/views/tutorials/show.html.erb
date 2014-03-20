@@ -2,4 +2,4 @@
 
 <h1><%= @tutorial.title %></h1>
 
-<%= link_to "Add Chapter", [@tutorial, @chapter] %> 
+<%= link_to "Add Chapter", new_tutorial_chapter_path(@tutorial) %> 

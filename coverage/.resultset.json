@@ -4,8 +4,16 @@
       "/Users/amaragetzell/Desktop/infobytes/app/models/chapter.rb": [
         1,
         1,
+        1,
         null,
         1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/subchapter_spec.rb": [
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/amaragetzell/Desktop/infobytes/spec/models/subtopic_spec.rb": [
@@ -18,12 +26,24 @@
         1,
         null,
         null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
         null,
         null
       ],
       "/Users/amaragetzell/Desktop/infobytes/app/models/subtopic.rb": [
         1,
         1,
+        1,
+        null,
         1,
         null
       ],
@@ -106,6 +126,6 @@
         null
       ]
     },
-    "timestamp": 1395346716
+    "timestamp": 1395348728
   }
 }

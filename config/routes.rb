@@ -8,14 +8,12 @@ InfoBytes::Application.routes.draw do
 
   resources :tutorials do
     resources :chapters, shallow: true do 
-      resources :sub_chapters
+      resources :sub_chapters do
+        resources :paragraphs 
+        resources :images
+        resources :code_snippets
+      end
     end
-  end
-
-  resources :contents do
-    resources :paragraphs 
-    resources :images
-    resources :code_snippets
   end
 
 

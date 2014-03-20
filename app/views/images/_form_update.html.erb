@@ -1,0 +1,14 @@
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
+<%= form_for [@image] do |f|%>
+  
+  <div><%= f.label :image_path %><br>
+  <%= f.file_field :image_path %></div>
+
+  <div><%= f.submit %></div>
+
+<% end %>

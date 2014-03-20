@@ -38,6 +38,10 @@ class ImagesController < ApplicationController
     end
   end
 
+  def show
+    @image = Image.find(params[:id])
+  end
+
   protected
 
   def code_snippit_params

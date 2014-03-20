@@ -38,6 +38,10 @@ class CodeSnippetsController < ApplicationController
     end
   end
 
+  def show
+    @code_snippet = CodeSnippet.find(params[:id])
+  end
+
   protected
 
   def code_snippit_params

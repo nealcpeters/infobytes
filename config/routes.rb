@@ -1,8 +1,9 @@
 InfoBytes::Application.routes.draw do
 
   devise_for :users
-  root to: "home#index"
 
+  root to: "home#index"
+  match "/users/:id", to: "users#show", via: :get, as: "user"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
 
   resources :tutorials do

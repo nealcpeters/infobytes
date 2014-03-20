@@ -1,5 +1,6 @@
-
-
 <h1><%= @tutorial.title %></h1>
 
-<%= link_to "Add Chapter", [@tutorial, @chapter] %> 
+<p><%= @tutorial.description %></p>
+
+<%= link_to "Add Chapter", new_tutorial_chapter_path(@tutorial) %>
+<%= link_to "Delete Tutorial", @tutorial, method: :delete %> 

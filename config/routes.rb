@@ -11,6 +11,14 @@ InfoBytes::Application.routes.draw do
       resources :subchapters
     end
   end
+
+  resources :contents do
+    resources :paragraphs 
+    resources :images
+    resources :code_snippets
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

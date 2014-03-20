@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Subtopic do
-  pending "add some examples to (or delete) #{__FILE__}"
+    context "when creating a subtopic" do
+    it "it creates a valid subtopic" do
+      expect{
+      	Topic.create(title: "Movies").subtopics.create(title: "Star Wars", description: "Tutorials Relating to the Epic Heptology")
+    	}.to change(Subtopic, :count).by(1)
+    end
+   end
 end

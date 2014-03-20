@@ -74,8 +74,8 @@
         null,
         null,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         null,
@@ -85,6 +85,8 @@
       "/Users/amaragetzell/Desktop/infobytes/app/models/sub_chapter.rb": [
         1,
         1,
+        1,
+        null,
         1,
         null
       ],
@@ -204,6 +206,6 @@
         null
       ]
     },
-    "timestamp": 1395357595
+    "timestamp": 1395358371
   }
 }

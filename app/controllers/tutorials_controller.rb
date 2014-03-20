@@ -12,7 +12,7 @@ class TutorialsController < ApplicationController
   end
 
   def create
-    @tutorial = current_user.tutorials.new(topic_params)
+    @tutorial = current_user.tutorials.new(tutorial_params)
     if @tutorial.save
       flash[:notice]="Your new tutorial has been created!"
       redirect_to @tutorial

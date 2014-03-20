@@ -24,9 +24,8 @@ ActiveRecord::Schema.define(version: 20140320175402) do
     t.datetime "updated_at"
   end
 
-  create_table "subchapters", force: true do |t|
+  create_table "sub_chapters", force: true do |t|
     t.string   "title"
-    t.text     "content"
     t.integer  "chapter_id"
     t.datetime "created_at"
     t.datetime "updated_at"

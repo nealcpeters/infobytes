@@ -8,7 +8,7 @@ InfoBytes::Application.routes.draw do
 
   resources :tutorials do
     resources :chapters, shallow: true do 
-      resources :subchapters
+      resources :sub_chapters
     end
   end
 

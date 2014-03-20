@@ -1,3 +1,0 @@
-class SubchaptersController < ApplicationController
-
-end

@@ -3,6 +3,8 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require "capybara/rails"
+require 'database_cleaner'
 
 require 'coveralls'
 Coveralls.wear!
@@ -42,4 +44,28 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Inserted later for capibara and DatabaseCleaner
+  config.include Capybara::DSL
+
+  config.mock_with :rspec
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+
 end

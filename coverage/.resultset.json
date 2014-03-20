@@ -9,24 +9,83 @@
         1,
         null
       ],
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/code_snippet_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/app/models/code_snippet.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/content_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/app/models/content.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/image_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/app/models/image.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/paragraph_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/app/models/paragraph.rb": [
+        1,
+        1,
+        null
+      ],
       "/Users/amaragetzell/Desktop/infobytes/spec/models/sub_chapter_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
         1,
         null,
         null,
         null,
+        1,
+        0,
+        0,
         null,
         null,
         null,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/app/models/sub_chapter.rb": [
+        1,
+        1,
+        1,
         null
       ],
       "/Users/amaragetzell/Desktop/infobytes/spec/models/subtopic_spec.rb": [
@@ -132,6 +191,12 @@
         1,
         1,
         1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
         1,
         null,
         null,
@@ -139,6 +204,6 @@
         null
       ]
     },
-    "timestamp": 1395350134
+    "timestamp": 1395357595
   }
 }

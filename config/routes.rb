@@ -8,9 +8,17 @@ InfoBytes::Application.routes.draw do
 
   resources :tutorials do
     resources :chapters, shallow: true do 
-      resources :subchapters
+      resources :sub_chapters
     end
   end
+
+  resources :contents do
+    resources :paragraphs 
+    resources :images
+    resources :code_snippets
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

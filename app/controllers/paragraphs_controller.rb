@@ -1,6 +1,7 @@
 class ParagraphsController < ApplicationController
   before_filter :authenticate_paragraph_owner_create, only: [:new, :create]
   before_filter :authenticate_paragraph_owner_update, only: [:edit, :update, :destroy]
+  
   def new
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
     @paragraph = Paragraph.new

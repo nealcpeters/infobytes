@@ -7,20 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "InfoByt.es", root_path %>
-<% if notice %>  
-  <p class="notice"><%= notice %></p>
-<% elsif alert %>  
-  <p class="alert"><%= alert %></p>
-<% end %>
-<% if current_user %>
-  <%= link_to "Sign out", destroy_user_session_path , method: :delete %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-  <%= link_to "Sign up", new_user_registration_path %>
-<% end %>
 
-<%= yield %>
-
+<%= render "layouts/nav" %>
+<div class="container">
+  <%= render "layouts/messages" %>
+  <%= yield %>
+</div>
 </body>
 </html>

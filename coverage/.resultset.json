@@ -1,36 +1,35 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/chapter.rb": [
+      "/Users/amaragetzell/Desktop/infobytes/app/models/chapter.rb": [
+        1,
+        1,
+        1,
+        null,
         1,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/subtopic_spec.rb": [
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/sub_chapter_spec.rb": [
         1,
         null,
-        1,
-        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/subtopic.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/topic_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        null
-      ],
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/topic.rb": [
-        1,
-        1,
-        null
-      ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/tutorial_spec.rb": [
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/subtopic_spec.rb": [
         1,
         null,
         1,
@@ -38,18 +37,13 @@
         1,
         1,
         1,
-        1,
-        null,
         null,
         null,
         1,
         1,
         1,
-        1,
         null,
         null,
-        null,
-        1,
         1,
         1,
         1,
@@ -58,16 +52,67 @@
         null,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/tutorial.rb": [
+      "/Users/amaragetzell/Desktop/infobytes/app/models/subtopic.rb": [
         1,
         1,
         1,
-        null,
         null,
         1,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/user_spec.rb": [
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/topic_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/app/models/topic.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/tutorial_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/app/models/tutorial.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/amaragetzell/Desktop/infobytes/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -94,6 +139,6 @@
         null
       ]
     },
-    "timestamp": 1395338083
+    "timestamp": 1395350134
   }
 }

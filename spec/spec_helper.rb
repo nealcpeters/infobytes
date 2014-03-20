@@ -45,7 +45,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  # Inserted later for capibara and DatabaseCleaner
+  # Inserted later for capybara and DatabaseCleaner
   config.include Capybara::DSL
 
   config.mock_with :rspec
@@ -66,6 +66,4 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-
-
 end

@@ -1,7 +1,7 @@
 class Tutorial < ActiveRecord::Base
   belongs_to :subtopic
   belongs_to :user
-  has_many :chapters
+  has_many :chapters, dependent: :destroy
 
-  validates :title, :description, presence: true
+  validates :title, :description, :user_id, presence: true
 end

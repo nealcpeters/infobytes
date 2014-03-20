@@ -22,3 +22,4 @@
 .secret_devise
 .ruby-version
 bundler_stubs/
+public/system/

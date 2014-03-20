@@ -1,36 +1,84 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/chapter.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/chapter.rb": [
         1,
-        null
-      ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/subtopic_spec.rb": [
+        1,
         1,
         null,
         1,
-        1,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/subtopic.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/topic_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/code_snippet_spec.rb": [
         1,
         null,
         1,
         1,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/topic.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/code_snippet.rb": [
         1,
         1,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/tutorial_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/content_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/content.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/image_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/image.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/paragraph_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/paragraph.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/sub_chapter_spec.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/subtopic_spec.rb": [
         1,
         null,
         1,
@@ -38,17 +86,33 @@
         1,
         1,
         1,
-        1,
-        null,
         null,
         null,
         1,
         1,
         1,
+        null,
+        null,
+        1,
+        1,
         1,
         null,
         null,
         null,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/subtopic.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/topic_spec.rb": [
+        1,
+        null,
+        1,
         1,
         1,
         1,
@@ -58,16 +122,46 @@
         null,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/app/models/tutorial.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/topic.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/tutorial_spec.rb": [
+        1,
+        null,
+        1,
+        1,
         1,
         1,
         1,
         null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/app/models/tutorial.rb": [
+        1,
+        1,
+        1,
+        1,
         null,
         1,
         null
       ],
-      "/Users/Neal/Dropbox/DBC/infobytes/spec/models/user_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/the_real_copy_holy_shit/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -94,6 +188,6 @@
         null
       ]
     },
-    "timestamp": 1395338083
+    "timestamp": 1395352861
   }
 }

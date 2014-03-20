@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Topic do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "when creating a topic" do
+    it "it creates a valid topic" do
+      expect{
+      	Topic.create(title: "Movies")
+    	}.to change(Topic, :count).by(1)
+    end
+   end
 end

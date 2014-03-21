@@ -47,6 +47,7 @@ class ChaptersController < ApplicationController
 
 	def show
     @chapter = Chapter.find(params[:id])
+    render partial: "chapters/sub_chapters" if request.xhr?
 	end
 
 	def destroy

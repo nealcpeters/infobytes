@@ -67,6 +67,12 @@ end
 
 gem 'ace-rails-ap'
 
+gem "factory_girl_rails", "~> 4.0"
+
+group :test do
+  gem 'shoulda-matchers'
+end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

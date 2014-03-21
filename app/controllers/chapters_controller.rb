@@ -5,6 +5,7 @@ class ChaptersController < ApplicationController
 	def new
     @tutorial = Tutorial.find(params[:tutorial_id])
     @chapter = Chapter.new
+    render partial: "chapters/form" if request.xhr?
 	end 
 
 	def create

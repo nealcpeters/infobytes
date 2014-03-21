@@ -2,8 +2,13 @@
 # FYI CODE SNIPPETS ARE JUST THE INTERNAL BITS, NO NEED TO SAVE ALL THE DIVS I WAS WRONG
 
 user = User.create(first_name: "Han", last_name: "Solo", user_name: "rebel_scum", email: "han@aliance.com", password: "password", password_confirmation: "password")
+Subtopic.create(title: "Team Neal", description: "yayyy", topic_id: 1)
+Subtopic.create(title: "Poodles", description: "all about the worst of dogs", topic_id: 2)
  
-tutorial = Tutorial.create(title: "How to Be Neal", description: "A detailed tutorial on how to be the most gnarly land lubber of a sailer", user_id: user.id)
+tutorial = Tutorial.create(title: "How to Be Neal", description: "A detailed tutorial on how to be the most gnarly land lubber of a sailer", user_id: 1, rating: 3, subtopic_id: 1)
+tutorial = Tutorial.create(title: "How to Be Eric", description: "A detailed tutorial on how to be the most gnarly land lubber of a historian", user_id: 1, rating: 3, subtopic_id: 1)
+tutorial = Tutorial.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", user_id: 1, rating: 3, subtopic_id: 2)
+tutorial = Tutorial.create(title: "How to Be Amara", description: "A detailed tutorial on how to be the most gnarly land lubber of a poodle", user_id: 1, rating: 3, subtopic_id: 2)
 intro = Chapter.create(title: "Introduction", number: 0, tutorial_id: tutorial.id)
  
 ch_one = Chapter.create(title: "Not Giving a Fuck", number: 1, tutorial_id: tutorial.id)

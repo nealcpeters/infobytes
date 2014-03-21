@@ -2,7 +2,7 @@
 
   <% @sub_chapter.contents.sort_by(&:order_number).each do |content| %>
     <% if content.attatchable_type == "Paragraph" %>
-      <%= content.attatchable.body %>
+      <p><%= raw(content.attatchable.body) %></p>
       <br>          
       <br>
       <p>
@@ -24,7 +24,6 @@
     <% end %>
   <% end %>
 <% end%>
-
 
 <script>
   for (var i=1;i<= <%=@count%>;i++){ 

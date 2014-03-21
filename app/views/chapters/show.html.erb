@@ -1,7 +1,7 @@
 <h1>Chapter <%= @chapter.number %>: <%= @chapter.title %></h1>
 <% @count = 0 %>
 <% @chapter.sub_chapters.each do |sub| %>
-  <h4> <%= sub.title %> </h4>  
+  <h4>  <%=link_to sub.title, sub_chapter_path(sub) %> </h4> 
   <br>
 <% end %>
 

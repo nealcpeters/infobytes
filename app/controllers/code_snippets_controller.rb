@@ -44,6 +44,10 @@ class CodeSnippetsController < ApplicationController
 
   protected
 
+  # def code_snippit_params
+  #   params.require(:code_snippet).permit(:body)
+  # end
+
   def code_snippit_params
     params.require(:code_snippet).permit(:body)
   end

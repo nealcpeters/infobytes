@@ -1,4 +1,32 @@
-<h1>Chapter <%= @chapter.title %></h1>
+<h1>Chapter <%= @chapter.number %>: <%= @chapter.title %></h1>
+<% count = 0 %>
+<% @chapter.sub_chapters.each do |sub| %>
+  <h4>  <%= sub.title %> </h4>  
+    <% sub.contents.sort_by(&:order_number).each do |content| %>
 
+      <% if content.attatchable_type == "Paragraph" %>
+        <%= content.attatchable.body %>
+        <br>          
+        <br>
+        <p>
+          <%= link_to "Edit", edit_paragraph_path(content.attatchable) %> 
+          <span> [UP] </span>
+          <span>[DOWN]</span>
+        </p>
+
+      <% elsif content.attatchable_type == "CodeSnippet" %>
+          <% count +=1 %>
+          <div id="editor <%=count%>" style="height: 200px; width: 500px; background-color:#eee"><%= content.attatchable.body %></div>
+          <br>
+          <p>
+            <%= link_to "[Edit]", edit_code_snippet_path(content.attatchable) %> 
+            <%= link_to "[UP]", content_up_path(content) %> 
+            <%= link_to "[DOWN]", content_down_path(content) %>             
+          </p>
+
+      <% end %>
+    <% end %>
+  <br>
+  <% end %>
 
 <%= link_to "Add subchapter", new_chapter_sub_chapter_path(@chapter) %>

@@ -2,13 +2,36 @@
 
 <p><%= @tutorial.description %></p>
 <br>
+      <% count = 0 %>
+
 <% @tutorial.chapters.each do |chapter| %>
   <h2><%=chapter.title%></h2>
   
   <% chapter.sub_chapters.each do |sub| %>
     <h4>  <%= sub.title %> </h4>  
-    
       <% sub.contents.each do |content| %>
+
+        <% if content.attatchable_type == "Paragraph" %>
+          <%= content.attatchable.body %>
+          <br>          
+          <br>
+          <p>
+            <%= link_to "Edit", edit_paragraph_path(content.attatchable) %> 
+            <span> [UP] </span>
+            <span>[DOWN]</span>
+          </p>
+
+        <% elsif content.attatchable_type == "CodeSnippet" %>
+            <% count +=1 %>
+            <div id="editor <%=count%>" style="height: 200px; width: 500px; background-color:#eee"><%= content.attatchable.body %></div>
+            <br>
+            <p>
+              <%= link_to "[Edit]", edit_code_snippet_path(content.attatchable) %> 
+              <%= link_to "[UP]", code_snippets_up_path(content.attatchable) %> 
+              <span>[DOWN]</span>
+            </p>
+
+        <% end %>
       <% end %>
     <br>
   <% end %>
@@ -17,3 +40,16 @@
 
 <%= link_to "Add Chapter", new_tutorial_chapter_path(@tutorial) %>
 <%= link_to "Delete Tutorial", @tutorial, method: :delete %> 
+
+<script>
+  for (var i=1;i<= <%= count %>;i++){ 
+    var editor = ace.edit("editor " + i);
+    editor.setTheme("ace/theme/textmate");
+    editor.session.setMode("ace/mode/ruby");
+    editor.getSession().setUseWrapMode(true);
+    editor.setReadOnly(true)
+    console.log(i)
+  }
+  
+  </script>
+

@@ -17,6 +17,10 @@ InfoBytes::Application.routes.draw do
   end
 
 
+  match "/code_snippets/:code_snippet_id/up", to: "code_snippets#up", via: :get, as: "code_snippets_up"
+  match "/code_snippets/:code_snippet_id/down", to: "code_snippets#up", via: :get, as: "code_snippets_down"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

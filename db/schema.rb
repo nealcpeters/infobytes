@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20140320224701) do
 
   create_table "code_snippets", force: true do |t|
     t.text     "body"
-    t.string   "language"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140320224701) do
   create_table "users", force: true do |t|
     t.string   "first_name",             default: "", null: false
     t.string   "last_name",              default: "", null: false
-    t.string   "user_name"
+    t.string   "user_name",              default: "", null: false
     t.integer  "karma",                  default: 0,  null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

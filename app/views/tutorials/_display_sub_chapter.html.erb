@@ -1,23 +1,23 @@
 <% if @sub_chapter%>
 
   <% @sub_chapter.contents.sort_by(&:order_number).each do |content| %>
-    <% if content.attatchable_type == "Paragraph" %>
-      <p><%= raw(add_hyper_links(content.attatchable.body)) %></p>
+    <% if content.attachable_type == "Paragraph" %>
+      <p><%= raw(add_hyper_links(content.attachable.body)) %></p>
       <br>          
       <br>
       <p>
-        <%= link_to "Edit", edit_paragraph_path(content.attatchable) %> 
+        <%= link_to "Edit", edit_paragraph_path(content.attachable) %> 
         <%= link_to "[UP]", content_up_path(content) %> 
         <%= link_to "[DOWN]", content_down_path(content) %>           
       </p>
 
-    <% elsif content.attatchable_type == "CodeSnippet" %>
+    <% elsif content.attachable_type == "CodeSnippet" %>
         <% @count +=1 %>
-        <p id="editor_language <%=@count%>"><%= content.attatchable.language %></p>
-        <div id="editor <%=@count%>" style="height: 200px; width: 500px; background-color:#eee"><%= content.attatchable.body %></div>
+        <p id="editor_language <%=@count%>"><%= content.attachable.language %></p>
+        <div id="editor <%=@count%>" style="height: 200px; width: 500px; background-color:#eee"><%= content.attachable.body %></div>
         <br>
         <p>
-          <%= link_to "[Edit]", edit_code_snippet_path(content.attatchable) %> 
+          <%= link_to "[Edit]", edit_code_snippet_path(content.attachable) %> 
           <%= link_to "[UP]", content_up_path(content) %> 
           <%= link_to "[DOWN]", content_down_path(content) %>             
         </p>

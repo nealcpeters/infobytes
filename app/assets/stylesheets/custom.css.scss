@@ -12,6 +12,15 @@ body {
   }
 }
 
+#error_explanation {
+  h2 {
+    font-size: 1em;
+  }
+  ul {
+    color: red;
+  }
+}
+
 #editor {
   width: 100%;
   .ace_scroller {

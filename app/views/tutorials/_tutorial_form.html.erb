@@ -1,17 +1,21 @@
-<% if @errors %>
-  <% @errors.each do |error| %>
-    <p><%= error %></p>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns">
+		<% if @errors %>
+		  <% @errors.each do |error| %>
+		    <p><%= error %></p>
+		  <% end %>
+		<% end %>
 
-<%= form_for @tutorial do |f|%>
-  
-  <div><%= f.label :title %><br>
-  <%= f.text_field :title %></div>
+		<%= form_for @tutorial do |f|%>
+		  
+		  <div><%= f.label :title %><br>
+		  <%= f.text_field :title %></div>
 
-  <div><%= f.label :description%><br>  
-  <%= f.text_area :description, rows: 10 %></div>
+		  <div><%= f.label :description%><br>  
+		  <%= f.text_area :description, rows: 10 %></div>
 
-  <div><%= f.submit %></div>
+		  <div><%= f.submit %></div>
 
-<% end %>
+		<% end %>
+	</div>
+</div>

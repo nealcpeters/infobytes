@@ -1,14 +1,18 @@
-<% if @errors %>
-  <% @errors.each do |error| %>
-    <p><%= error %></p>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="small-10 small-offset-1 medium-8 medium-offset-2 large-6 large-offset-3 columns">
+		<% if @errors %>
+		  <% @errors.each do |error| %>
+		    <p><%= error %></p>
+		  <% end %>
+		<% end %>
 
-<%= form_for @sub_chapter do |f|%>
-  
-  <div><%= f.label :title %><br>
-  <%= f.text_field :title %></div>
+		<%= form_for @sub_chapter do |f|%>
+		  
+		  <div><%= f.label :title %><br>
+		  <%= f.text_field :title %></div>
 
-  <div><%= f.submit %></div>
+		  <div><%= f.submit %></div>
 
-<% end %>
+		<% end %>
+	</div>
+</div>

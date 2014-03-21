@@ -1,3 +1,25 @@
-<h1>Show Code Snippet</h1>
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
 
-<p><%= @code_snippet.body %></p>
+<%= form_for @code_snippet do |f|%>
+  
+  <p>Code Block:</p>
+  <div id="editor" style="height: 200px; width: 500px; background-color:#eee"><%= @code_snippet.body %></div>
+  <input type="hidden" id="input_value" name="code_snippet[body]" value="bob">
+  <input type="submit" onclick="storeInfo()">
+
+<% end %>
+
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/textmate");
+  editor.session.setMode("ace/mode/ruby");
+  editor.setReadOnly(true)
+  editor.getSession().setUseWrapMode(true);
+  storeInfo = function() {  
+    document.getElementById('input_value').value = editor.getValue()
+  }
+</script>

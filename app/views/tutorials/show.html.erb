@@ -27,8 +27,8 @@
             <br>
             <p>
               <%= link_to "[Edit]", edit_code_snippet_path(content.attatchable) %> 
-              <%= link_to "[UP]", code_snippets_up_path(content.attatchable) %> 
-              <%= link_to "[DOWN]", code_snippets_down_path(content.attatchable) %>             
+              <%= link_to "[UP]", content_up_path(content) %> 
+              <%= link_to "[DOWN]", content_down_path(content) %>             
             </p>
 
         <% end %>

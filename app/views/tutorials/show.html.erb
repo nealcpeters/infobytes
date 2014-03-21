@@ -6,7 +6,7 @@
 		<% @tutorial.chapters.each do |chapter| %>
     	<div class="chapter" id="chapter-<%= chapter.id %>">
         <h2><%= chapter.title %></h2>
-        <span class="link" id="link-<%=chapter.id%>"><%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list" %></span>
+        <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
         <% if tutorial_creator? %>
           <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" } %> 
         <% end %>
@@ -37,29 +37,36 @@
   }
 
   // Pulls in sub chapters
+
   $(".sub-cpt-list").on("click", function(e){
     e.preventDefault();
-    
-    switchArrow(this);
-    var link = this
-    var url = $(this).attr("href")
+    var link = this;
+    if ($(this).attr('class').match("add-list") !== null){
+      bring_list(link);
+    } else {
+      console.log('fail')
+      take_list_off(link);
+    }
+  })
+
+  var bring_list = function(link){
+    switchArrow(link);
+    var url = $(link).attr("href")
     var id = url.match(/\d+/)[0];
-    
     $.get(url, function(serverResponse, status, request){
       $("#cpt-" + id).html(serverResponse).slideDown();
     }).done(function(){
-      $(link).attr("class", "remove-list")
+      $(link).removeClass("add-list").addClass('remove-list')
     })
-  })
+  }
 
-  $("body").on("click",".remove-list", function(e){
-    e.preventDefault();
+  var take_list_off = function(link){
     console.log("great success")
-    var id = $(this).attr('href').match(/\d+/)[0]
-    function(){switchArrow(this)}
-    $('#cpt-' + id).html("");
-    $(this).attr("class", "sub-cpt-list")
-  })
+    var id = $(link).attr('href').match(/\d+/)[0]
+    switchArrow(link);
+    $('#cpt-' + id).toggle("fade");
+    $(link).removeClass("remove-list").addClass('add-list')
+  }
 
 </script>
 

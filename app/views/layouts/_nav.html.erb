@@ -10,6 +10,7 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if current_user %>
+        <li><%= link_to "profile", user_path(current_user.id) %></li>
         <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "log in", new_user_session_path %></li>

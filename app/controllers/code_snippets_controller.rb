@@ -46,7 +46,7 @@ class CodeSnippetsController < ApplicationController
   protected
 
   def code_snippit_params
-    params.require(:code_snippet).permit(:body)
+    params.require(:code_snippet).permit(:body, :language)
   end
 
   def authenticate_code_snippet_owner_create

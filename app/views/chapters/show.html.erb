@@ -1,5 +1,5 @@
 <h1>Chapter <%= @chapter.number %>: <%= @chapter.title %></h1>
-<% count = 0 %>
+<% @count = 0 %>
 <% @chapter.sub_chapters.each do |sub| %>
  <% @sub_chapter = sub %>
   <h4>  <%= @sub_chapter.title %> </h4>  

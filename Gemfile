@@ -39,6 +39,8 @@ gem 'thread_safe', '0.2.0'
 
 gem 'prawn'
 
+gem 'aws-sdk'
+
 gem "paperclip", "~> 4.1"
 
 gem 'coveralls', require: false
@@ -59,6 +61,7 @@ end
 
 group :production do 
   gem "unicorn"
+  gem 'rails_12factor'
 end
 
 gem 'ace-rails-ap'

@@ -1,11 +1,43 @@
-<h1><%= @tutorial.title %></h1>
+<div class="row">
+	<h1><%= @tutorial.title %></h1>
+	<p><%= @tutorial.description %></p>
+  
+	<% @tutorial.chapters.each do |chapter| %>
+    <h2><%= chapter.title %></h2>
+	<% end %>
 
-<p><%= @tutorial.description %></p>
-<br>
+	<% if tutorial_creator? %>
+    <%= link_to "Add Chapter <i class='fa fa-plus-square fa-2x'></i>".html_safe, new_tutorial_chapter_path(@tutorial), id: "add-chapter" %>
+    <div id="chapter-form" style="display: none;"></div>
+	<% end %>
+ 
+</div>
 
-<%= render "layouts/display_tutorial" %>
 
-<%= link_to "Add Chapter", new_tutorial_chapter_path(@tutorial) %>
-<%= link_to "Delete Tutorial", @tutorial, method: :delete %> 
+<% if tutorial_creator? %>
+  // <script>
+  //   $('#add-chapter').on("click", function(e){
+  //   	e.preventDefault();
+  //     var url = $(this).attr("href");
+      
+  //   	$.get(url, function(serverResponse, status, request){
+  //       $("#chapter-form").html(serverResponse).slideDown(200);
+  //   	});
+
+  //   	$('#chapter-form').on("submit", "#new_chapter", function(e){
+  //       e.preventDefault();
+
+  //       var data = $(this).serialize();
+  //       var url = $(this).attr("action");
+        
+        
+  //   	})
+  //   })
+  // </script>
+<% end %>
+
+
+
+<%#= render "tutorials/display_tutorial" %>
 
 

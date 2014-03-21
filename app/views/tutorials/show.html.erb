@@ -44,7 +44,7 @@
       } else {
         $.post(url, data, function(serverResponse, status, request){
           var chapter = serverResponse; 
-          $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h2>" + chapter.title + "</h2><a data-confirm='Are you sure?' data-method='delete' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='fa fa-minus-square fa-2x del-chapter'></i></a> </div>");
+          $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h2><a href='/chapters/" + chapter.id + "'>" + chapter.title + "</a></h2><a data-confirm='Are you sure?' data-method='delete' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='fa fa-minus-square fa-2x del-chapter'></i></a> </div>");
           $("#chapter-form").slideUp();
         }, "json");
       };

@@ -6,9 +6,19 @@
 
 <%= form_for [@sub_chapter,@code_snippet] do |f|%>
   
-  <div><%= f.label :body %><br>
-  <%= f.text_area :body %></div>
-
-  <div><%= f.submit %></div>
+  <p>Code Block:</p>
+  <div id="editor" style="height: 200px; width: 500px; background-color:#eee">some text</div>
+  <input type="hidden" id="input_value" name="input_value" value="bob">
+  <input type="submit" onclick="storeInfo()">
 
 <% end %>
+
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/textmate");
+  editor.session.setMode("ace/mode/ruby");
+  editor.getSession().setUseWrapMode(true);
+  storeInfo = function() {  
+    document.getElementById('input_value').value = editor.getValue()
+  }
+</script>

@@ -1,7 +1,5 @@
-
 <% @chapter.sub_chapters.each do |sub| %>
   <h4>  <%= sub.title %> </h4>  
   <% @sub_chapter = sub %>
-<%= render "layouts/display_sub_chapter" %>
-
+  <%= render "layouts/display_sub_chapter" %>
 <% end %>

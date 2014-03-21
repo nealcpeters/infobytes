@@ -6,5 +6,7 @@
 <%= render "layouts/display_tutorial" %>
 
 <%= link_to "New Chapter", new_tutorial_chapter_path(@tutorial) %>
+<%= link_to "Add Chapter", new_tutorial_chapter_path(@tutorial) %>
+<%= link_to "Delete Tutorial", @tutorial, method: :delete %> 
 
 

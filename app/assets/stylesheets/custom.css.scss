@@ -1,30 +1,14 @@
-@import "bootstrap";
-
-.navbar {
-	height: 100px;
-	background-color: #F5F5F0;
-	margin-bottom: 0;
-	border: none;
-	border-radius: 0;
+body {
+  background-color: #FAFAF8
 }
 
-.navbar-brand {
-	margin-top: 20px;
-}
-
-.collapse.navbar-collapse {
-	margin-top: 20px;
-}
-
-.jumbotron {
-	background-color: #70E270;
-	height: 450px;
-	text-align: center;
-	margin-bottom: 0;
-}
-
-.homepage-content {
-	height: 800px;
+.flash-message {
 	background-color: #FAFAF8;
+  p {
+  	text-align: center;
+  	line-height: 60px;
+    height: 60px;
+    color: #70E270;
+  }
 }
 

@@ -29,8 +29,6 @@ GEM
     arel (4.0.2)
     atomic (1.1.16)
     bcrypt (3.1.7)
-    bootstrap-sass (3.1.1.0)
-      sass (~> 3.2)
     builder (3.1.4)
     capybara (2.2.1)
       mime-types (>= 1.16)
@@ -69,6 +67,9 @@ GEM
     execjs (2.0.2)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
+    foundation-rails (5.2.1.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     hike (1.2.3)
     i18n (0.6.9)
     jasmine (2.0.0)
@@ -203,13 +204,13 @@ PLATFORMS
 
 DEPENDENCIES
   ace-rails-ap
-  bootstrap-sass (~> 3.1.1)
   capybara
   coffee-rails (~> 4.0.0)
   coveralls
   database_cleaner
   devise
   font-awesome-rails
+  foundation-rails
   jasmine
   jbuilder (~> 1.2)
   jquery-rails

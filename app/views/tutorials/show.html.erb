@@ -9,7 +9,7 @@
   
   <% chapter.sub_chapters.each do |sub| %>
     <h4>  <%= sub.title %> </h4>  
-      <% sub.contents.each do |content| %>
+      <% sub.contents.sort_by(&:order_number).each do |content| %>
 
         <% if content.attatchable_type == "Paragraph" %>
           <%= content.attatchable.body %>

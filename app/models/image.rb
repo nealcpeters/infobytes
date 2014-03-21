@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-	has_one :content, as: :attatchable,  dependent: :destroy
+	has_one :content, as: :attachable,  dependent: :destroy
 
 	has_attached_file :image_path, :styles => { 
 																   original: '400x600>'

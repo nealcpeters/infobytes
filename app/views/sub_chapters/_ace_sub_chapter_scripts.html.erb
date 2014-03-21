@@ -1,0 +1,10 @@
+<script>
+  for (var i=1;i<= <%=@count%>;i++){ 
+    var editor = ace.edit("editor " + i);
+    var language = document.getElementById("editor_language " + i).innerHTML
+    editor.setTheme("ace/theme/textmate");
+    editor.session.setMode("ace/mode/" + language.toLowerCase());
+    editor.getSession().setUseWrapMode(true);
+    editor.setReadOnly(true)
+  }
+</script>

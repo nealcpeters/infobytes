@@ -1,7 +1,30 @@
 <h1><%= @sub_chapter.title %></h1>
 
 <% @count = 0 %>
-<%= render "layouts/display_sub_chapter" %>
+
+
+<% @contents.each do |content| %>
+  <% if content.attatchable_type == "Paragraph" %>
+    <p><%= raw(add_hyper_links(content.attatchable.body)) %></p>
+    <p>
+      <%= link_to "Edit", edit_paragraph_path(content.attatchable) %> 
+      <%= link_to "[UP]", content_up_path(content) %> 
+      <%= link_to "[DOWN]", content_down_path(content) %>           
+    </p>
+
+  <% elsif content.attatchable_type == "CodeSnippet" %>
+      <% @count +=1 %>
+      <p id="editor_language <%=@count%>"><%= content.attatchable.language %></p>
+      <div id="editor <%=@count%>" style="height: 200px; width: 500px; background-color:#eee"><%= content.attatchable.body %></div>
+      <p>
+        <%= link_to "[Edit]", edit_code_snippet_path(content.attatchable) %> 
+        <%= link_to "[UP]", content_up_path(content) %> 
+        <%= link_to "[DOWN]", content_down_path(content) %>             
+      </p>
+  <% end %>
+<% end %>
+
+<%= render "sub_chapters/ace_sub_chapter_scripts" %>
 
 
 <%= link_to "Add Paragraph", new_sub_chapter_paragraph_path(@sub_chapter) %>

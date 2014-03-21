@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140320224701) do
 
   create_table "code_snippets", force: true do |t|
     t.text     "body"
+    t.string   "language"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

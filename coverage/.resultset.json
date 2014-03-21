@@ -1,14 +1,14 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/amaragetzell/Desktop/infobytes/config/environment.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/application.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/application.rb": [
         1,
         null,
         null,
@@ -38,13 +38,13 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/boot.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/boot.rb": [
         null,
         1,
         null,
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/environments/test.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/environments/test.rb": [
         1,
         null,
         null,
@@ -82,7 +82,7 @@
         1,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/backtrace_silencers.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -91,7 +91,7 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/devise.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -363,13 +363,13 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/filter_parameter_logging.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/inflections.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -387,14 +387,14 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/mime_types.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/secret_token.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/secret_token.rb": [
         null,
         null,
         null,
@@ -424,12 +424,12 @@
         null,
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/session_store.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/initializers/wrap_parameters.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -445,7 +445,7 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/config/routes.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/config/routes.rb": [
         1,
         null,
         1,
@@ -472,7 +472,7 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/app/models/user.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/models/user.rb": [
         1,
         1,
         1,
@@ -484,18 +484,18 @@
         1,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/app/helpers/application_helper.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/app/helpers/chapters_helper.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/helpers/chapters_helper.rb": [
         1,
         1,
         null,
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/app/models/chapter.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/models/chapter.rb": [
         1,
         1,
         1,
@@ -503,19 +503,19 @@
         1,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/code_snippet_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/code_snippet_spec.rb": [
 
       ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/content_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/content_spec.rb": [
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/image_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/image_spec.rb": [
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/paragraph_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/paragraph_spec.rb": [
         1
       ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/sub_chapter_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/sub_chapter_spec.rb": [
         1,
         null,
         1,
@@ -535,7 +535,7 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/app/models/sub_chapter.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/models/sub_chapter.rb": [
         1,
         1,
         1,
@@ -543,7 +543,7 @@
         1,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/subtopic_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/subtopic_spec.rb": [
         1,
         null,
         1,
@@ -556,57 +556,6 @@
         1,
         1,
         1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/amaragetzell/Desktop/infobytes/app/models/subtopic.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null
-      ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/topic_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/amaragetzell/Desktop/infobytes/app/models/topic.rb": [
-        1,
-        1,
-        null
-      ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/tutorial_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
         null,
         null,
         1,
@@ -617,7 +566,58 @@
         null,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/app/models/tutorial.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/models/subtopic.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/topic_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/models/topic.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/tutorial_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/models/tutorial.rb": [
         1,
         1,
         1,
@@ -626,7 +626,7 @@
         1,
         null
       ],
-      "/Users/amaragetzell/Desktop/infobytes/spec/models/user_spec.rb": [
+      "/Users/Eric/coding/rails_projects/final_dir/test_branch/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -659,6 +659,6 @@
         null
       ]
     },
-    "timestamp": 1395411882
+    "timestamp": 1395414244
   }
 }

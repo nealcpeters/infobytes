@@ -1,38 +1,46 @@
-<h1><%= @sub_chapter.title %></h1>
+<div class="row">
+  <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns">
+    <h1><%= @sub_chapter.title %></h1>
 
-<% @count = 0 %>
+    <% @count = 0 %>
 
 
-<% @contents.each do |content| %>
-  <% if content.attachable_type == "Paragraph" %>
-    <p><%= raw(add_hyper_links(content.attachable.body)) %></p>
-    
-    <% if sub_chapter_owner?(@sub_chapter) %>
-      <p>
-        <%= link_to "Edit", edit_paragraph_path(content.attachable) %> 
-        <%= link_to "[UP]", content_up_path(content) %> 
-        <%= link_to "[DOWN]", content_down_path(content) %>           
-      </p>
+    <% @contents.each do |content| %>
+      <% if content.attachable_type == "Paragraph" %>
+        <p><%= raw(add_hyper_links(content.attachable.body)) %></p>
+        
+        <% if sub_chapter_owner?(@sub_chapter) %>
+          <p>
+            <%= link_to "Edit", edit_paragraph_path(content.attachable) %> 
+            <%= link_to "[UP]", content_up_path(content) %> 
+            <%= link_to "[DOWN]", content_down_path(content) %>           
+          </p>
+        <% end %>
+
+      <% elsif content.attachable_type == "CodeSnippet" %>
+        <% @count +=1 %>
+        <div id="editor <%=@count%>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
+        <input type="hidden" id ="editor_language <%=@count%>" value="<%= content.attachable.language %>">
+        <% if sub_chapter_owner?(@sub_chapter) %>
+          <p>
+            <%= link_to "[Edit]", edit_code_snippet_path(content.attachable) %> 
+            <%= link_to "[UP]", content_up_path(content) %> 
+            <%= link_to "[DOWN]", content_down_path(content) %>             
+          </p>
+        <% end %>
+
+      <% elsif content.attachable_type == "Image" %>
+        <div class="image-container"><%= image_tag content.attachable.image_path.url(:original) %></div>
+  
+      <% end %>
     <% end %>
 
-  <% elsif content.attachable_type == "CodeSnippet" %>
-    <% @count +=1 %>
-    <div id="editor <%=@count%>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
-    <input type="hidden" id ="editor_language <%=@count%>" value="<%= content.attachable.language %>">
-    <% if sub_chapter_owner?(@sub_chapter) %>
-      <p>
-        <%= link_to "[Edit]", edit_code_snippet_path(content.attachable) %> 
-        <%= link_to "[UP]", content_up_path(content) %> 
-        <%= link_to "[DOWN]", content_down_path(content) %>             
-      </p>
-    <% end %>
-
-  <% end %>
-<% end %>
-
-<%= render "sub_chapters/ace_sub_chapter_scripts" %>
+    <%= render "sub_chapters/ace_sub_chapter_scripts" %>
 
 
-<%= link_to "Add Paragraph", new_sub_chapter_paragraph_path(@sub_chapter) %>
-<%= link_to "Add Code Snippet", new_sub_chapter_code_snippet_path(@sub_chapter) %>
-<%= link_to "Add Image", new_sub_chapter_image_path(@sub_chapter) %>
+    <%= link_to "Add Paragraph", new_sub_chapter_paragraph_path(@sub_chapter) %>
+    <%= link_to "Add Code Snippet", new_sub_chapter_code_snippet_path(@sub_chapter) %>
+    <%= link_to "Add Image", new_sub_chapter_image_path(@sub_chapter) %>
+
+  </div>
+</div>

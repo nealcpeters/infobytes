@@ -6,9 +6,12 @@
 
 <%= form_for [@sub_chapter,@code_snippet] do |f|%>
   
-  <div><%= f.label :body %><br>
-  <%= f.text_area :body %></div>
-
-  <div><%= f.submit %></div>
+  <p>Code Block:</p>
+  <div id="editor" style="height: 200px; width: 500px; background-color:#eee">some text</div>
+  <input type="hidden" id="input_value" name="code_snippet[body]" value="bob">
+  <input type="submit" onclick="storeInfo()">
 
 <% end %>
+
+<%= render "code_snippets/ace_scripts" %>
+

@@ -1,4 +1,10 @@
-<h1>Chapter <%= @chapter.title %></h1>
-
+<h1>Chapter <%= @chapter.number %>: <%= @chapter.title %></h1>
+<% count = 0 %>
+<% @chapter.sub_chapters.each do |sub| %>
+ <% @sub_chapter = sub %>
+  <h4>  <%= @sub_chapter.title %> </h4>  
+  <%= render "layouts/display_sub_chapter" %>
+  <br>
+<% end %>
 
 <%= link_to "Add subchapter", new_chapter_sub_chapter_path(@chapter) %>

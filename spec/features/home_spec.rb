@@ -27,15 +27,15 @@ feature 'Home Page' do
       visit "/"    
       click_link "sign up"
 
-      fill_in 'user[first_name]', with: "Han"
+      fill_in 'user[first_name]', with: "Abed"
       fill_in 'user[last_name]', with: "Solo"
-      fill_in 'user[user_name]', with: "rebel_scum"
-      fill_in 'user[email]', with: "han@aliance.com"
+      fill_in 'user[user_name]', with: "rebel_meta_man"
+      fill_in 'user[email]', with: "abed@aliance.com"
       fill_in 'user[password]', with: "password"
       fill_in 'user[password_confirmation]', with: "password"
       click_button "Sign up"
 
-      @user = User.find_by_user_name("Han")
+      @user = User.find_by_user_name("rebel_meta_man")
     end
 
 

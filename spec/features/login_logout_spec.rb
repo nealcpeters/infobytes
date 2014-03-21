@@ -25,7 +25,7 @@ feature 'User Auth' do
       visit "/"    
       click_link "log in"
 
-      fill_in 'user[email]', with: "han@aliance.com"
+      fill_in 'user[email]', with: "1han@aliance.com"
       fill_in 'user[password]', with: "password"
       click_button "Sign in"
 
@@ -35,11 +35,12 @@ feature 'User Auth' do
 
   context "for a logged in user" do
     scenario "must give confirmation alert" do
+      user = User.create(first_name: "Leia", last_name: "Solo", user_name: "rebel_princess", email: "leia@aliance.com", password: "password", password_confirmation: "password")
 
       visit "/"    
       click_link "log in"
 
-      fill_in 'user[email]', with: "han@aliance.com"
+      fill_in 'user[email]', with: "leia@aliance.com"
       fill_in 'user[password]', with: "password"
       click_button "Sign in"
       click_link "logout"

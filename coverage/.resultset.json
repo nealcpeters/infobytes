@@ -534,12 +534,6 @@
         null,
         null,
         null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
         null
       ],
       "/Users/alextsveta2012/Desktop/final_project/infobytes/app/models/paragraph.rb": [
@@ -690,14 +684,8 @@
         null,
         null,
         null
-      ],
-      "/Users/alextsveta2012/Desktop/final_project/infobytes/app/models/content.rb": [
-        1,
-        1,
-        1,
-        null
       ]
     },
-    "timestamp": 1395420293
+    "timestamp": 1395420837
   }
 }

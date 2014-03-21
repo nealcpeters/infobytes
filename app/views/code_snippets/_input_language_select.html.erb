@@ -111,3 +111,12 @@
     </select>
 </label>
 <% end %>
+
+<script>
+  <% if @code_snippet.language %>
+    var selected = "<%= @code_snippet.language.downcase %>"
+  <% else %>    
+    var selected = "ruby"    
+  <% end %>
+  $('option[value='+ selected +']').attr("selected", "selected")
+</script>

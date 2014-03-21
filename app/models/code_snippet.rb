@@ -1,3 +1,3 @@
 class CodeSnippet < ActiveRecord::Base
-  belongs_to :content
+  has_one :content, as: :attatchable,  dependent: :destroy
 end

@@ -1,12 +1,15 @@
-<% if @errors %>
-  <% @errors.each do |error| %>
-    <p><%= error %></p>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="small-10 small-offset-1 columns">
 
-<%= form_for @code_snippet do |f|%>
-  <%= render "code_snippets/inner_form" %>
-<% end %>
+    <% if @errors %>
+      <% @errors.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    <% end %>
 
-<%= render "code_snippets/ace_scripts" %>
+    <%= form_for @code_snippet do |f|%>
+      <%= render "code_snippets/inner_form" %>
+    <% end %>
 
+  </div>
+</div>

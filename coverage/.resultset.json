@@ -486,6 +486,11 @@
       ],
       "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/helpers/application_helper.rb": [
         1,
+        1,
+        0,
+        0,
+        0,
+        null,
         null
       ],
       "/Users/Eric/coding/rails_projects/final_dir/test_branch/app/helpers/chapters_helper.rb": [
@@ -659,6 +664,6 @@
         null
       ]
     },
-    "timestamp": 1395414244
+    "timestamp": 1395419431
   }
 }

@@ -11,10 +11,15 @@ class ChaptersController < ApplicationController
 	def create
     @tutorial = Tutorial.find(params[:tutorial_id])
     @chapter = @tutorial.chapters.new(chapter_params)
-
+    
     if @chapter.save
-      flash[:notice] = "Chapter #{@chapter.number}: #{@chapter.title} added."
-      redirect_to @chapter
+     
+      if request.xhr?
+        render json: @chapter
+      else
+        flash[:notice] = "Chapter #{@chapter.number}: #{@chapter.title} added."
+        redirect_to @chapter
+      end
     else
       @errors = @chapter.errors.messages
       render 'new'

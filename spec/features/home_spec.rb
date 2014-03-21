@@ -23,7 +23,7 @@ feature 'Home Page' do
   end
 
   context "for a logged in user" do
-    before :all do
+    before :each do
       visit "/"    
       click_link "sign up"
 
@@ -42,6 +42,13 @@ feature 'Home Page' do
     scenario "must have a functional profile link" do
       click_link "profile"
       expect(page).to have_content(@user.first_name)
+    end
+
+    scenario "must have a functional create tutorial link" do
+      visit "/"    
+      find(:xpath, "//a[@href='/tutorials/new']").click
+      # expect(page).to have_content("babs")
+      expect(page).to have_content("Create")
     end
 
   end

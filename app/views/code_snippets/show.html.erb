@@ -13,13 +13,9 @@
 
 <% end %>
 
+<%= render "code_snippets/ace_scripts" %>
+
+
 <script>
-  var editor = ace.edit("editor");
-  editor.setTheme("ace/theme/textmate");
-  editor.session.setMode("ace/mode/ruby");
   editor.setReadOnly(true)
-  editor.getSession().setUseWrapMode(true);
-  storeInfo = function() {  
-    document.getElementById('input_value').value = editor.getValue()
-  }
 </script>

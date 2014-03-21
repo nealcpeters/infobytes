@@ -1,0 +1,45 @@
+<div id="sub-chapter-list">
+  <% @chapter.sub_chapters.each do |sub_chapter| %>
+    <div class="sub-chapter" id="sub-chapter-<%= sub_chapter.id %>">
+      <h2><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter) %></h2>
+      <% if chapter_creator? %>
+        <%= link_to '<i class="fa fa-trash-o fa-2x del-sub-chapter"></i>'.html_safe, sub_chapter_path(sub_chapter), method: :delete, data: { confirm: "Are you sure?" } %> 
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% if chapter_creator? %>
+  <%= link_to "<i class='fa fa-plus-square fa-2x'></i>".html_safe, new_chapter_sub_chapter_path(@chapter), id: "add-sub-chapter" %>
+  <div id="sub-chapter-form" style="display: none;"></div>
+<% end %>
+
+<% if chapter_creator? %>
+   <script>
+    $('#add-sub-chapter').on("click", function(e){
+      e.preventDefault();
+      var url = $(this).attr("href");
+      
+      $.get(url, function(serverResponse, status, request){
+        $("#sub-chapter-form").html(serverResponse).slideDown(200);
+      });
+    });
+
+    $('#sub-chapter-form').on("submit", "#new_sub_chapter", function(e){
+      e.preventDefault();
+      
+      var data = $(this).serialize();
+      var url = $(this).attr("action");
+
+      if ($('#sub_chapter_title').val() === "") {
+        $("#sub_chapter_title").css("border-color", "red")
+      } else {
+        $.post(url, data, function(serverResponse, status, request){
+          var subChapter = serverResponse; 
+          $("#sub-chapter-list").append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h2><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h2><a data-confirm='Are you sure?' data-method='delete' href='/sub_chapters/" + subChapter.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x del-sub-chapter'></i></a> </div>");
+          $("#sub-chapter-form").slideUp(200);
+        }, "json");
+      };
+    });
+  </script>
+<% end %>

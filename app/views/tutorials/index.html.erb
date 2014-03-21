@@ -1,5 +1,5 @@
 <% @tutorials.each do |x| %>
 	<ul>
-		<li><%= x.subtopic.title %></li>
+		<li><%= link_to "#{x.title}", tutorial_path(x.id) %></li>
 	</ul>
 <% end %>

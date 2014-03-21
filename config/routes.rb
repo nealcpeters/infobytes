@@ -6,6 +6,9 @@ InfoBytes::Application.routes.draw do
   match "/users/:id", to: "users#show", via: :get, as: "user"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
 
+  match '/topics/:id', to "topics#show", as "topic"
+
+
   resources :tutorials do
     resources :chapters, shallow: true do 
       resources :sub_chapters do

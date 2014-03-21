@@ -52,6 +52,7 @@ group :development, :test do
   gem 'capybara'
   gem 'jasmine'
   gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :doc do

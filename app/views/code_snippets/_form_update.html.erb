@@ -1,17 +1,15 @@
-<% if @errors %>
-  <% @errors.each do |error| %>
-    <p><%= error %></p>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="small-10 small-offset-1 columns">
 
-<%= form_for @code_snippet do |f|%>
-  
-  <p>Code Block:</p>
-  <div id="editor" style="height: 200px; width: 500px; background-color:#eee"><%= @code_snippet.body %></div>
-  <input type="hidden" id="input_value" name="code_snippet[body]" value="bob">
-  <input type="submit" onclick="storeInfo()">
+    <% if @errors %>
+      <% @errors.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    <% end %>
 
-<% end %>
+    <%= form_for @code_snippet do |f|%>
+      <%= render "code_snippets/inner_form" %>
+    <% end %>
 
-<%= render "code_snippets/ace_scripts" %>
-
+  </div>
+</div>

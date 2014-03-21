@@ -5,14 +5,23 @@ class SubChaptersController < ApplicationController
   def new
     @chapter = Chapter.find(params[:chapter_id])
     @sub_chapter = SubChapter.new
+
+    render partial: "sub_chapters/form_new" if request.xhr?
   end
 
   def create
     @chapter = Chapter.find(params[:chapter_id])
     @sub_chapter = @chapter.sub_chapters.new(sub_chapter_params)
+
     if @sub_chapter.save
-      flash[:notice]= "Subchapter created succesfully"
-      redirect_to @sub_chapter
+
+      if request.xhr?
+        render json: @sub_chapter
+      else     
+        flash[:notice]= "Subchapter created succesfully"
+        redirect_to @sub_chapter
+      end
+
     else
       @errors = @subchapter.errors.messages
       render 'new'

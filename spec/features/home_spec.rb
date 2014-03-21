@@ -23,19 +23,25 @@ feature 'Home Page' do
   end
 
   context "for a logged in user" do
-    
-    scenario "must have the title" do
-      expect(page).to have_content("infobytes")
-    end
-
-    scenario "must have a functional log in link" do
-      page.find("a[href='/tutorials/new']").click
-      expect(page).to have_content("Create")
-    end
-
-    xscenario "must have a functional sign up link" do
+    before :all do
+      visit "/"    
       click_link "sign up"
-      expect(page).to have_content("First name")
+
+      fill_in 'user[first_name]', with: "Han"
+      fill_in 'user[last_name]', with: "Solo"
+      fill_in 'user[user_name]', with: "rebel_scum"
+      fill_in 'user[email]', with: "han@aliance.com"
+      fill_in 'user[password]', with: "password"
+      fill_in 'user[password_confirmation]', with: "password"
+      click_button "Sign up"
+
+      @user = User.find_by_user_name("Han")
+    end
+
+
+    scenario "must have a functional profile link" do
+      click_link "profile"
+      expect(page).to have_content(@user.first_name)
     end
 
   end

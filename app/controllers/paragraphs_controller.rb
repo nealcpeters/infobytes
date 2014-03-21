@@ -26,7 +26,7 @@ class ParagraphsController < ApplicationController
 
   def create
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
-    @paragraph = Paragraph.new(body: proccess_body)
+    @paragraph = Paragraph.new(paragraph_params)
     if @paragraph.save
       @paragraph.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
       flash[:notice]="Your new paragraph has been added!"
@@ -41,12 +41,6 @@ class ParagraphsController < ApplicationController
 
   def paragraph_params
     params.require(:paragraph).permit(:body)
-  end
-
-  def proccess_body
-    regex = /(http:\/\/)?(www\.)?(\w{2}\w*)(\.\w{2}\w+)/
-    @body = paragraph_params[:body]
-    @body.gsub(regex, "<a href = 'http://\\2\\3\\4'>\\3</a>")
   end
 
   def authenticate_paragraph_owner_create

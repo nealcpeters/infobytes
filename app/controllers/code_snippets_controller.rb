@@ -49,6 +49,13 @@ class CodeSnippetsController < ApplicationController
     redirect_to (tutorial_path(@maker))
   end
 
+  def down
+    @code_snippet = CodeSnippet.find(params[:code_snippet_id])
+    @code_snippet.content.update(order_number: @code_snippet.content.order_number += 1)    
+    @maker = @code_snippet.content.sub_chapter.chapter.tutorial.user
+    redirect_to (tutorial_path(@maker))
+  end
+
   protected
 
   def code_snippit_params

@@ -18,7 +18,7 @@ InfoBytes::Application.routes.draw do
 
 
   match "/code_snippets/:code_snippet_id/up", to: "code_snippets#up", via: :get, as: "code_snippets_up"
-  match "/code_snippets/:code_snippet_id/down", to: "code_snippets#up", via: :get, as: "code_snippets_down"
+  match "/code_snippets/:code_snippet_id/down", to: "code_snippets#down", via: :get, as: "code_snippets_down"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

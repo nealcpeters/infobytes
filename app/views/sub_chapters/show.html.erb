@@ -75,7 +75,7 @@
     }, "json");
   });
   
-  $("#codePopup").on("submit", "#new_paragraph", function(e){
+  $("#codePopup").on("submit", "#new_code_snippet", function(e){
     e.preventDefault();
 
     var data = $(this).serialize();
@@ -83,26 +83,29 @@
 
     $.post(url, data, function(serverResponse, status, request){
       var snippet = serverResponse;
-      
-      $("#content-body").append("<p>" + paragraph.body + "</p>").slideDown();
-      $("#imagePopup").foundation("reveal", "close");
+      var count = 1;
+      console.log(this);
+      $("#content-body").append("<div id='editor-" + count + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div><input type='hidden' id ='editor_language-" + count + "' value='" + snippet.language + "'>").slideDown();
+      $("#codePopup").foundation("reveal", "close");
     }, "json");
   });
 
-  $("#imagePopup").on("submit", "#new_paragraph", function(e){
-    e.preventDefault();
+  // $("#imagePopup").on("submit", "#new_image", function(e){
+  //   e.preventDefault();
 
-    // var data = $(this).serialize();
-    // var url = $(this).attr("action");
+  //   var data = $(this).serialize();
+  //   var img = $("#image_image_path").val();
+  //   var url = $(this).attr("action");
 
-    // $.post(url, data, function(serverResponse, status, request){
-    //   var paragraph = serverResponse;
+  //   console.log(data+'&r='+encodeURIComponent(img))
+
+  //   $.post(url, data+'&r='+encodeURIComponent(img), function(serverResponse, status, request){
+  //     var image = serverResponse;
       
-    //   $("#content-body").append("<p>" + paragraph.body + "</p>").slideDown();
-    //   $("#textPopup").foundation("reveal", "close");
-    // }, "json");
-  });
-
+  //     $("#content-body").append("<div class='image-container>").slideDown();
+  //     $("#imagePopup").foundation("reveal", "close");
+  //   }, "json");
+  // });
 </script>
 
  <p>

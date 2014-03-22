@@ -8,8 +8,8 @@
 
   <% elsif content.attachable_type == "CodeSnippet" %>
     <% @count +=1 %>
-    <div id="editor <%=@count%>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
-    <input type="hidden" id ="editor_language <%=@count%>" value="<%= content.attachable.language %>">
+    <div id="editor-<%=@count%>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
+    <input type="hidden" id ="editor_language-<%=@count%>" value="<%= content.attachable.language %>">
     
     <% if sub_chapter_owner?(@sub_chapter) %>
       

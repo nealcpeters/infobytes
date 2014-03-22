@@ -32,6 +32,10 @@
 	margin: 4em auto;
   div {
 		text-align: center;
+
+		h4 {
+			color: #575757;
+		}
 		&:hover > *{
 			color: #42A362;
 			h4 {
@@ -39,10 +43,6 @@
 			}
 		}
   }
-}
-
-.spacing {
-	height: 200px;
 }
 
 // navbar F5F5F0

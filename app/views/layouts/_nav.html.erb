@@ -12,10 +12,10 @@
       <% if current_user %>
         <li><%= link_to "profile", user_path(current_user.id) %></li>
         <li><%= link_to '<i class="fa fa-plus-square fa-3x"></i>'.html_safe, new_tutorial_path %></li>
-        <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "#{fa_icon('sign-in', class: "fa-2x")}Sign Out".html_safe, destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <li><%= link_to "log in", new_user_session_path %></li>
-        <li><%= link_to "sign up", new_user_registration_path %></li>
+        <li><%= link_to "Sign In #{fa_icon('sign-in', class: "fa-2x")}".html_safe, new_user_session_path %></li>
+        <li><%= link_to "Sign Up #{fa_icon('level-up', class: "fa-2x")}".html_safe, new_user_registration_path %></li>
       <% end %>
     </ul>
 

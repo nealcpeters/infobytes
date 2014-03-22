@@ -7,5 +7,7 @@ class CreateContents < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :contents, :sub_chapter_id
   end
 end

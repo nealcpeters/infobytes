@@ -21,13 +21,13 @@ feature 'Code Snippet Creation' do
   
     scenario "hitting submit creates a new code snippet in the database" do
       expect{
-        click_button "Create Snippet"
+        click_button "Submit"
       }.to change(CodeSnippet, :count).by(1) 
     end
 
     scenario "selecting a language and submitting saves that language" do
       select("JavaScript", :from => "code_snippet[language]")
-      click_button "Create Snippet"
+      click_button "Submit"
       expect(CodeSnippet.last.language == "javascript").to be true
     end
 

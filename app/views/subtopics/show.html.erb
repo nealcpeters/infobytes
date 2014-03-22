@@ -1,3 +1,4 @@
 <% @tutorials.each do |tutorial| %>
 	<li><%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %></li>
+	<p><%= tutorial.description %></p>
 <% end %>

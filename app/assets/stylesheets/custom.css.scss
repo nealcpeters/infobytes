@@ -12,6 +12,15 @@ body {
   }
 }
 
+#error_explanation {
+  h2 {
+    font-size: 1em;
+  }
+  ul {
+    color: red;
+  }
+}
+
 #editor {
   width: 100%;
   .ace_scroller {
@@ -19,3 +28,17 @@ body {
   }
 }
 
+.tutorial-list {
+  background-color: pink;
+  padding: 29px 125px 29px 14px;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #e8e8e8;
+  list-style-type: none;
+
+  .author-date {
+    font-style: italic;
+color: #a2a2a2;
+font-size: 13px;
+  }
+}

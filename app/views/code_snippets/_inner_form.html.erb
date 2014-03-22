@@ -1,4 +1,4 @@
-<% @code_snippet.body = "code here" unless @code_snippet.body %>
+<% @code_snippet.body = "" unless @code_snippet.body %>
 
 
 <%= render "code_snippets/input_language_select" %>
@@ -6,7 +6,7 @@
 <p>Code Block:</p>
 
 <div id="editor" style="height: 200px; width: 100%; background-color:#eee"><%= @code_snippet.body %></div>
-<input type="hidden" id="input_value" name="code_snippet[body]" value="bob">
+<input type="hidden" id="input_value" name="code_snippet[body]" value="">
 <input type="submit" value="Create Snippet"onclick="storeInfo()">
 
 <%= render "code_snippets/ace_scripts" %>

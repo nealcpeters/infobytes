@@ -1,4 +1,15 @@
 <% @subtopics.each do |subtopic| %>
-	<li><%= link_to "#{subtopic.title}", subtopic_path(subtopic.id) %></li>
-	<p><%= subtopic.description %></p>
-<% end %>
+	<div class="tutorial-list medium-10 medium-offset columns">
+		<li>
+			<p class="tut-title">
+				<%= link_to "#{subtopic.title}", subtopic_path(subtopic.id) %></p>
+			<p class="tut-description">
+				<%= subtopic.description %>
+			</p>
+		</li>
+	</div>
+<% end %>	
+
+<div>
+
+</div>

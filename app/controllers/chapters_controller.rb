@@ -10,11 +10,17 @@ class ChaptersController < ApplicationController
 
 	def create
     @tutorial = Tutorial.find(params[:tutorial_id])
-    @chapter = @tutorial.chapters.new(chapter_params)
 
+    @chapter = @tutorial.chapters.new(chapter_params(@tutorial))
+    
     if @chapter.save
-      flash[:notice] = "Chapter #{@chapter.number}: #{@chapter.title} added."
-      redirect_to @chapter
+     
+      if request.xhr?
+        render json: @chapter
+      else
+        flash[:notice] = "Chapter #{@chapter.number}: #{@chapter.title} added."
+        redirect_to @chapter
+      end
     else
       @errors = @chapter.errors.messages
       render 'new'
@@ -41,6 +47,7 @@ class ChaptersController < ApplicationController
 
 	def show
     @chapter = Chapter.find(params[:id])
+    render partial: "chapters/sub_chapters" if request.xhr?
 	end
 
 	def destroy
@@ -53,8 +60,8 @@ class ChaptersController < ApplicationController
 
 	private
 
-	def chapter_params
-    params.require(:chapter).permit(:title, :number)
+	def chapter_params(tutorial)
+    params.require(:chapter).permit(:title).merge(number: tutorial.chapters.count + 1)
 	end
 
 	def authenticate_tutorial_owner_create

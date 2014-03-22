@@ -23,4 +23,5 @@
 .ruby-version
 bundler_stubs/
 public/system/
+coverage/
 

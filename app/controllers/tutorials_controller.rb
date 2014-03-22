@@ -43,6 +43,10 @@ class TutorialsController < ApplicationController
     redirect_to current_user
   end
 
+  def index
+    @tutorials = Tutorial.all
+  end
+
   protected
 
   def tutorial_params

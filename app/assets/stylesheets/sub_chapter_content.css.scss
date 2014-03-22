@@ -1,0 +1,24 @@
+
+.image-container {
+  width: 100%;
+  img {
+    margin: 0 auto;
+    display: block; 
+
+  }
+}
+
+.media-options {
+  width: 70%;
+  margin: 1em auto;
+  background-color: #70E270;
+  display: table;
+  div {
+    width:33%;
+    display: inline-table;
+    text-align: center;
+    padding: 2em;
+    a {
+    }
+  }
+}

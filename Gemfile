@@ -52,6 +52,7 @@ group :development, :test do
   gem 'capybara'
   gem 'jasmine'
   gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :doc do
@@ -65,6 +66,12 @@ group :production do
 end
 
 gem 'ace-rails-ap'
+
+gem "factory_girl_rails", "~> 4.0"
+
+group :test do
+  gem 'shoulda-matchers'
+end
 
 
 # Use ActiveModel has_secure_password

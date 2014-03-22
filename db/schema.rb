@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20140320224701) do
 
   create_table "contents", force: true do |t|
     t.integer  "order_number"
-    t.integer  "attatchable_id"
-    t.string   "attatchable_type"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
     t.integer  "sub_chapter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20140320224701) do
   create_table "users", force: true do |t|
     t.string   "first_name",             default: "", null: false
     t.string   "last_name",              default: "", null: false
-    t.string   "user_name",              default: "", null: false
+    t.string   "user_name"
     t.integer  "karma",                  default: 0,  null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

@@ -1,5 +1,19 @@
 body {
-  background-color: #FAFAF8
+  background-color: #FAFAF8;
+  // font-family: 'Noticia Text', serif;
+}
+
+a {
+  color: #575757;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #575757;
+}
+
+li {
+  list-style-type: none;
 }
 
 .flash-message {

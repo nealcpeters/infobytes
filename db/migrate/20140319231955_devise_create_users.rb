@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Added by us
       t.string :first_name,         null: false, default: "" 
       t.string :last_name,          null: false, default: ""
-      t.string :user_name,          
+      t.string :user_name          
       t.integer :karma,             null: false, default: 0
 
       ## Database authenticatable

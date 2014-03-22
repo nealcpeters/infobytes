@@ -60,6 +60,7 @@
       $("#cpt-" + id).html(serverResponse).slideDown();
     }).done(function(){
       $(link).removeClass("add-list").addClass('remove-list')
+      $(".delete-sub-chapter").removeAttr("data-confirm").removeAttr("data-method")
     })
   }
 
@@ -126,7 +127,7 @@
     // Appends subchapter to list
 
     var appendSubchapter = function(subChapter, chapter){
-      $("#sub-chapter-list-" + chapter.id).append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h2><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h2> <a data-confirm='Are you sure?' data-method='delete' href='/sub_chapters/" + subChapter.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x del-sub-chapter'></i></a> </div>");
+      $("#sub-chapter-list-" + chapter.id).append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h2><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h2> <a class='delete-sub-chapter' href='/sub_chapters/" + subChapter.id + "'><i class='fa fa-trash-o fa-2x del-sub-chapter'></i></a> </div>");
         $("#sub-chapter-form-" + chapter.id).slideUp(200);
         $("#popup-sub-chapter").foundation("reveal", "close");
     }
@@ -152,8 +153,7 @@
     //********************************
     // Deleting chapters 
     // *******************************
-    $(".delete").attr("data-confirm", "")
-    $(".delete").attr("data-method", "")
+    $(".delete").removeAttr("data-confirm").removeAttr("data-method")
   
 
     $("#chapter-list").on('click', ".delete-chapter", function(e){
@@ -172,6 +172,30 @@
         }, "json")
       }     
     })
+
+    //********************************
+    // Deleting sub-chapters 
+    // *******************************
+    $("#chapter-list").on('click', ".delete-sub-chapter", function(e){
+      e.preventDefault();
+      var result = window.confirm("Are you sure you want to delete this sub-chapter?")
+      if (result){
+        var subChpUrl = $(this).attr("href")
+        var id = subChpUrl.match(/\d+/)[0]
+        console.log(subChpUrl)
+        console.log(id)
+
+        $('#sub-chapter-' + id).toggle('fade',function(){
+          $('#sub-chapter-' + id).remove();
+        });
+        $.ajax({
+          url: subChpUrl,
+          type: "DELETE",
+          success: "great:success"
+        }, "json")
+      }     
+    })
+
 
   </script>
 <% end %>

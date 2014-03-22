@@ -1,3 +1,4 @@
 <% @subtopics.each do |subtopic| %>
 	<li><%= link_to "#{subtopic.title}", subtopic_path(subtopic.id) %></li>
+	<p><%= subtopic.description %></p>
 <% end %>

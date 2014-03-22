@@ -54,7 +54,7 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @tutorial = @chapter.tutorial
     flash[:notice] = "Chapter Removed"
-    @chapter.delete
+    @chapter.destroy
     redirect_to @tutorial
 	end
 

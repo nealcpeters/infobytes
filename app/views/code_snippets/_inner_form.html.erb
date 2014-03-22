@@ -6,13 +6,14 @@
 
 <div id="editor" style="height: 200px; width: 100%; background-color:#eee"><%= @code_snippet.body %></div>
 <input type="hidden" id="input_value" name="code_snippet[body]" value="">
-<input type="submit" value="Create Snippet" onclick="storeInfo()">
+<input type="submit" onclick="storeInfo()">
 
 <script>
 	var editor = ace.edit("editor");
   editor.setTheme("ace/theme/textmate");
   editor.session.setMode("ace/mode/ruby");
   editor.getSession().setUseWrapMode(true);
+  editor.focus();
 
   updateLanguage = function() {  
     var newLanguage = document.getElementById('language').value

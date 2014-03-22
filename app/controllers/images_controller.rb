@@ -55,6 +55,13 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end
 
+  def destroy
+    @image = Image.find(params[:id])
+    flash[:notice] = "Image has been removed"
+    @image.destroy
+    redirect_to @image.content.sub_chapter
+  end
+
   protected
 
   def image_params

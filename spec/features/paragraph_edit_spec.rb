@@ -21,6 +21,12 @@ feature 'Paragraph Editting' do
     end
 
     scenario "must after updating body redirect to a page with that body present" do
+      fill_in 'paragraph[body]', with: "Dajayj"
+      click_button "Update Paragraph"
+      expect(page).to have_content("Dajayj")
+    end
+
+    scenario "must after updating body redirect to a page with that body present" do
         fill_in 'paragraph[body]', with: "Dajayj"
         click_button "Update Paragraph"
         expect(page).to have_content("Dajayj")

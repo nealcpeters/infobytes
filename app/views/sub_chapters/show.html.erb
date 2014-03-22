@@ -4,44 +4,133 @@
 
     <% @count = 0 %>
 
-
-    <% @contents.each do |content| %>
-      <% if content.attachable_type == "Paragraph" %>
-        <p><%= raw(add_hyper_links(content.attachable.body)) %></p>
-        
-        <% if sub_chapter_owner?(@sub_chapter) %>
-          <p>
-            <%= link_to "Edit", edit_paragraph_path(content.attachable) %> 
-            <%= link_to "[UP]", content_up_path(content) %> 
-            <%= link_to "[DOWN]", content_down_path(content) %>           
-          </p>
-        <% end %>
-
-      <% elsif content.attachable_type == "CodeSnippet" %>
-        <% @count +=1 %>
-        <div id="editor <%=@count%>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
-        <input type="hidden" id ="editor_language <%=@count%>" value="<%= content.attachable.language %>">
-        <% if sub_chapter_owner?(@sub_chapter) %>
-          <p>
-            <%= link_to "[Edit]", edit_code_snippet_path(content.attachable) %> 
-            <%= link_to "[UP]", content_up_path(content) %> 
-            <%= link_to "[DOWN]", content_down_path(content) %>             
-          </p>
-        <% end %>
-
-      <% elsif content.attachable_type == "Image" %>
-        <div class="image-container"><%= image_tag content.attachable.image_path.url(:original) %></div>
-  
-      <% end %>
-    <% end %>
+    <div id="content-body">
+      <%= render "sub_chapters/content_body" %>
+    </div>
 
     <%= render "sub_chapters/ace_sub_chapter_scripts" %>
 
 
     <div class="media-options">
-      <%= link_to "#{fa_icon('font', class: "fa-2x")} text".html_safe, new_sub_chapter_paragraph_path(@sub_chapter) %>
-      <%= link_to "#{fa_icon('code', class: "fa-2x")} code".html_safe,new_sub_chapter_code_snippet_path(@sub_chapter) %>
-      <%= link_to "#{fa_icon('camera', class: "fa-2x")} image".html_safe, new_sub_chapter_image_path(@sub_chapter) %>
+      <div id="add-text"><%= link_to "#{fa_icon('font', class: "fa-2x")}<br>text".html_safe, new_sub_chapter_paragraph_path(@sub_chapter), data: {"reveal-id" => "textPopup"} %></div>
+      <div id="add-code"><%= link_to "#{fa_icon('code', class: "fa-2x")}<br>code".html_safe,new_sub_chapter_code_snippet_path(@sub_chapter), data: {"reveal-id" => "codePopup"} %></div>
+      <div id="add-image"><%= link_to "#{fa_icon('camera', class: "fa-2x")}<br>image".html_safe, new_sub_chapter_image_path(@sub_chapter), data: {"reveal-id" => "imagePopup"} %></div>
     </div>
+
+    <div id="media-containers">
+      <div id="textPopup" class="reveal-modal" data-reveal></div>
+      <div id="codePopup" class="reveal-modal" data-reveal></div>
+      <div id="imagePopup" class="reveal-modal" data-reveal></div>
+    </div>
+
   </div>
 </div>
+
+
+<script>
+  /* ***************************************
+  *  Get requests for media
+  ** ***************************************/
+  $("#add-text a").on("click", function(e){
+    e.preventDefault();
+    
+    var url = $(this).attr("href");
+    $.get(url, function(serverResponse, status, request){
+      $("#textPopup").html(serverResponse)
+    });
+  });
+
+  $("#add-code a").on("click", function(e){
+    e.preventDefault();
+    
+    var url = $(this).attr("href");
+    $.get(url, function(serverResponse, status, request){
+      $("#codePopup").html(serverResponse)
+    });
+  });
+
+  $("#add-image a").on("click", function(e){
+    e.preventDefault();
+    
+    var url = $(this).attr("href");
+    $.get(url, function(serverResponse, status, request){
+      $("#imagePopup").html(serverResponse)
+    });
+  });
+
+  /* ***************************************
+  *  Post requests for media
+  ** ***************************************/
+  $("#textPopup").on("submit", "#new_paragraph", function(e){
+    e.preventDefault();
+
+    var data = $(this).serialize();
+    var url = $(this).attr("action");
+
+    $.post(url, data, function(serverResponse, status, request){
+      var paragraph = serverResponse;
+      
+      $("#content-body").append("<p>" + paragraph.body + "</p>").slideDown();
+      $("#textPopup").foundation("reveal", "close");
+    }, "json");
+  });
+  
+  $("#codePopup").on("submit", "#new_paragraph", function(e){
+    e.preventDefault();
+
+    var data = $(this).serialize();
+    var url = $(this).attr("action");
+
+    $.post(url, data, function(serverResponse, status, request){
+      var snippet = serverResponse;
+      
+      $("#content-body").append("<p>" + paragraph.body + "</p>").slideDown();
+      $("#imagePopup").foundation("reveal", "close");
+    }, "json");
+  });
+
+  $("#imagePopup").on("submit", "#new_paragraph", function(e){
+    e.preventDefault();
+
+    // var data = $(this).serialize();
+    // var url = $(this).attr("action");
+
+    // $.post(url, data, function(serverResponse, status, request){
+    //   var paragraph = serverResponse;
+      
+    //   $("#content-body").append("<p>" + paragraph.body + "</p>").slideDown();
+    //   $("#textPopup").foundation("reveal", "close");
+    // }, "json");
+  });
+
+</script>
+
+ <p>
+  <%#= link_to "Edit", edit_paragraph_path(content.attachable) %> 
+  <%#= link_to "[UP]", content_up_path(content) %> 
+  <%#= link_to "[DOWN]", content_down_path(content) %>           
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

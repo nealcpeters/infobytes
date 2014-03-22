@@ -3,9 +3,9 @@ class ImagesController < ApplicationController
   before_filter :authenticate_image_owner_update, only: [:edit, :update, :destroy]
   
   def new
-  	p params
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
     @image = Image.new
+    render partial: "images/form_new" if request.xhr?
   end
 
   def edit

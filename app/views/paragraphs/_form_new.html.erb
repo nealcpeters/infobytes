@@ -5,8 +5,9 @@
         <p><%= error %></p>
       <% end %>
     <% end %>
-    <button id="href-display" class="href-buttons" onmousedown="showAnchorTagInputs()">Add Link</button>
-    <button id="href-adder" class="href-buttons" onmousedown="addAnchorTag()">Insert Tag</button>
+    <a id="href-display" class="href-buttons button tiny" onmousedown="showInputs()">Add Link</a>
+    <!-- <button </button> -->
+    <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
     <%= form_for [@sub_chapter,@paragraph] do |f|%>
       <div id="fields">
         <label for="link" class="href-button-inputs">Link:<input type="text" id="link"></label>
@@ -24,22 +25,20 @@
 <a class="close-reveal-modal">&#215;</a>
 
 <script>
-  var display = document.getElementById('href-display')
-  var adder = document.getElementById('href-adder')
-  var link = document.getElementById('link')
-  var alt = document.getElementById('alt')
-  
+
 
   resetVisibility = function() {
-    link.style.visibility = 'hidden'
-    link.style.visibility = 'hidden'
-    alt.style.visibility = 'hidden'
-
+    display.style.visibility = 'visible'
+    adder.style.visibility = 'hidden'
+    link.parentNode.style.visibility = 'hidden'
+    alt.parentNode.style.visibility = 'hidden'
   }
 
-  
-  showAnchorTagInputs = function() {
-
+  showInputs = function() {
+    display.style.visibility = 'hidden'
+    adder.style.visibility = 'visible'
+    link.parentNode.style.visibility = 'visible'
+    alt.parentNode.style.visibility = 'visible'
   }
 
   addAnchorTag = function() {
@@ -55,6 +54,13 @@
     else {
       textArea.value += aTag
     }
+    resetVisibility()
   }
+
+  var display = document.getElementById('href-display')
+  var adder = document.getElementById('href-adder')
+  var link = document.getElementById('link')
+  var alt = document.getElementById('alt')
+  resetVisibility()
 </script>
 

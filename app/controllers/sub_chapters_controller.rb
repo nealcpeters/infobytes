@@ -53,8 +53,12 @@ class SubChaptersController < ApplicationController
   def destroy
     @sub_chapter = SubChapter.find(params[:id])
     @sub_chapter.destroy
-    flash[:notice] = "Subchapter removed" 
-    redirect_to @sub_chapter.chapter
+    flash[:notice] = "Subchapter removed"
+    if request.xhr?
+      render json: {result: "success", chapter: @sub_chapter} 
+    else
+      redirect_to @sub_chapter.chapter
+    end
   end
 
   protected

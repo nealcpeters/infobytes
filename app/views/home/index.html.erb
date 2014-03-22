@@ -1,11 +1,13 @@
 <div class="welcome-banner">
-	<h1 class="tagline">Information for the technological age.</h1>	
-  <h3 class="site-description">Experience more.  Contribute to an expanding knowledge-base.</h3>
+  <div>
+    <h1 class="tagline">Information for the technological age.</h1>	
+    <h3 class="site-description">Experience more.  Contribute to an expanding knowledge-base.</h3>
+  </div>
 </div>
 
 <!-- <div class="home-navigation">
-	<%= link_to "#{fa_icon('compass', class: "fa-5x")}".html_safe, tutorials_path %>
-	<%= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
+	<%#= link_to "#{fa_icon('compass', class: "fa-5x")}".html_safe, tutorials_path %>
+	<%#= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
 </div>
 
 <div class="home-navigation-text">
@@ -13,25 +15,22 @@
 	<h3>Read Tutorials</h3>
 </div> -->
 
-<div class="row">
-  <div class="large-3 columns">
-		<%= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
-    <h4>Read Tutorials</h4>
-    <p>Follow and read our comprehensive tutorials.</p>
-  </div>
-  
-  <div class="large-3 columns">
-  	<%= link_to "#{fa_icon('compass', class: "fa-5x")}".html_safe, tutorials_path %>
-    <h4>Explore</h4>
-    <p>Find tutorials by category, including programming, computer hardware, networking, and more.</p>
-  </div>
+<div class="icon-banner">
+  <div class="row home-icons">
+    <div class="large-4 columns">
+  		<%= link_to "#{fa_icon('file-text', class: "fa-5x")}<h4>Read Tutorials</h4><p>Follow and read our comprehensive tutorials.</p>".html_safe, tutorials_path %>
+    </div>
+    
+    <div class="large-4 columns">
+    	<%= link_to "#{fa_icon('compass', class: "fa-5x")}<h4>Explore</h4><p>Find tutorials by category, including programming, computer hardware, networking, and more.</p>".html_safe, topics_path %>
+    </div>
 
-  <div class="large-3 columns">
-		<%= link_to "#{fa_icon('globe', class: "fa-5x")}".html_safe, topics_path %>
-    <h4>Communities</h4>
-    <p>Organized tutorials by and for communities.</p>
+    <div class="large-4 columns">
+  		<%= link_to "#{fa_icon('globe', class: "fa-5x")}<h4>Communities</h4><p>Organized tutorials by and for communities.</p>".html_safe, topics_path %>
+    </div>
   </div>
 </div>
+
 
 <div class="spacing">
 

@@ -66,6 +66,7 @@
       var paragraph = serverResponse;
       
       $("#content-body").append("<p>" + paragraph.body + "</p>").slideDown();
+      $("#content-body").append("<div class='edit-links'><div><a href='/paragraphs/" + paragraph.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
       $("#textPopup").foundation("reveal", "close");
     }, "json");
   });
@@ -80,6 +81,7 @@
       var snippet = serverResponse;
 
       $("#content-body").append("<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div><input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>").slideDown();
+      $("#content-body").append("<div class='edit-links'><div><a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
       $("#content-body").append("<script>var editor = ace.edit('editor-" + snippet.id + "');var language = document.getElementById('editor_language-" + snippet.id + "').value;editor.setTheme('ace/theme/textmate');editor.session.setMode('ace/mode/" + snippet.language + "');editor.getSession().setUseWrapMode(true);editor.setReadOnly(true);<\/script>");
       $("#codePopup").foundation("reveal", "close");
     }, "json");

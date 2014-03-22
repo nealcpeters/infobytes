@@ -9,7 +9,7 @@
 		<%= form_for @tutorial do |f|%>
 		  
 		  <div><%= f.label :title %><br>
-		  <%= f.text_field :title %></div>
+		  <%= f.text_field :title, autofocus: true %></div>
 
 		  <div><%= f.label :description%><br>  
 		  <%= f.text_area :description, rows: 10 %></div>

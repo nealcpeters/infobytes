@@ -67,16 +67,14 @@ li {
 }
 
 .tutorial-list {  
-  padding: 29px 125px 29px 14px;
-  width: 1100px;
+  margin: 1em auto;
+  width: 100%;
   position: relative;
   border-bottom: 1px solid #e8e8e8;
   list-style-type: none;
-  height: 110px;
 
   li {
     vertical-align: middle;
-
   }
 
   .tut-title {
@@ -85,6 +83,12 @@ li {
     font-weight: 500;
     letter-spacing: -.5px;
   }
+
+  .tut-description {
+    font-size: 14px;
+    margin-bottom: 1px;
+  }
+
   .author-date {
     font-style: italic;
     color: #a2a2a2;

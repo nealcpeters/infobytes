@@ -1,13 +1,17 @@
 
 <% @tutorials.each do |tutorial| %>
-	<div class="tutorial-list medium-10 medium-offset-1 columns">
+	<div class="tutorial-list medium-10 columns">
 		<li>
 			<p class="tut-title">
 				<%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %>
+			</p>
+			<p class="tut-description">
+				<%= tutorial.description %>
 			</p>
 			<p class="author-date">
 				<%= authorship(tutorial) %>
 			</p>
 		</li>
 	</div>
-<% end %>	
+	<div class="medium-2 columns"></div>
+<% end %>

@@ -48,6 +48,13 @@ class CodeSnippetsController < ApplicationController
     @code_snippet = CodeSnippet.find(params[:id])
   end
 
+  def destroy
+    @code_snippet = CodeSnippet.find(params[:id])
+    flash[:notice] = "Code Snippet has been removed"
+    @code_snippet.destroy
+    redirect_to @code_snippet.content.sub_chapter
+  end
+
 
   protected
 

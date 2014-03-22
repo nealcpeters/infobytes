@@ -2,7 +2,7 @@ class Image < ActiveRecord::Base
 	has_one :content, as: :attachable,  dependent: :destroy
 
 	has_attached_file :image_path, :styles => { 
-																   original: '400x600>'
+																   original: '600x800>'
 																 }, 
 																 :default_url => "/images/:style/missing.png"
 

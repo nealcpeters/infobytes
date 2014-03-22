@@ -52,7 +52,11 @@ class CodeSnippetsController < ApplicationController
     @code_snippet = CodeSnippet.find(params[:id])
     flash[:notice] = "Code Snippet has been removed"
     @code_snippet.destroy
-    redirect_to @code_snippet.content.sub_chapter
+    if request.xhr?
+      render json: {result: "success"}
+    else
+      redirect_to @code_snippet.content.sub_chapter
+    end
   end
 
 

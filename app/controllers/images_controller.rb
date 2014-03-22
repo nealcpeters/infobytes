@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
 
   def update
     @image = Image.find(params[:id])
-    @image.update(code_snippit_params)
+    @image.update(image_params)
     @sub_chapter = @image.content.sub_chapter
     if @image.save
       flash[:notice]="Your image has been updated!"
@@ -27,7 +27,7 @@ class ImagesController < ApplicationController
 
   def create
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
-    @image = Image.new(code_snippit_params)
+    @image = Image.new(image_params)
     if @image.save
       @image.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
       flash[:notice]="Your new image has been added!"
@@ -44,7 +44,7 @@ class ImagesController < ApplicationController
 
   protected
 
-  def code_snippit_params
+  def image_params
     params.require(:image).permit(:image_path)
   end
 

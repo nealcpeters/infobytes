@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Chapter Creation' do
+feature 'Sub chapter Creation' do
   context "with a logged in user" do 
     before :each do
       @user = User.create(first_name: "Han", last_name: "Solo", user_name: "tutorial_tester", email: "tutorial_tester@aliance.com", password: "password", password_confirmation: "password")
@@ -17,8 +17,26 @@ feature 'Chapter Creation' do
 
     end
   
-    scenario "must have a functional create tutorial link" do
+    scenario "must be called with create sub chapter link on chapter show" do
       expect(page).to have_content("Title")
     end
+
+    scenario "must create a sub chapter if title is given" do
+      fill_in 'sub_chapter[title]', with: "polyglot"
+      click_button "Create Sub chapter"
+      expect(page).to have_content("polyglot") 
+    end
+
+    scenario "must create a sub chapter in the database" do
+      expect{
+        fill_in 'sub_chapter[title]', with: "polyglot"
+        click_button "Create Sub chapter"
+      }.to change(SubChapter, :count).by(1) 
+    end
+
+
+    # Can't get a test to work on checking if submitted with an empty title space, claims an error method
+    
   end
+
 end

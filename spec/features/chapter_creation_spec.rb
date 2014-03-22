@@ -38,5 +38,4 @@ feature 'Chapter Creation' do
   
   end
   
-
 end

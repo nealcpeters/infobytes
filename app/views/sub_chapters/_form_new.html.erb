@@ -9,7 +9,7 @@
 		<%= form_for [@chapter,@sub_chapter] do |f|%>
 		  
 		  <div><%= f.label :title %><br>
-		  <%= f.text_field :title %></div>
+		  <%= f.text_field :title, autofocus: true %></div>
 
 		  <div><%= f.submit %></div>
 

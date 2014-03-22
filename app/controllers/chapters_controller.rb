@@ -54,8 +54,13 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @tutorial = @chapter.tutorial
     flash[:notice] = "Chapter Removed"
-    @chapter.delete
-    redirect_to @tutorial
+    @chapter.destroy
+
+    if request.xhr?
+      render json: {result: "success", chapter: @chapter} 
+    else
+      redirect_to @tutorial
+    end
 	end
 
 	private

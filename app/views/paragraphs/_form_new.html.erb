@@ -5,7 +5,7 @@
         <p><%= error %></p>
       <% end %>
     <% end %>
-
+    <button id="href-adder" onmousedown="addAnchorTag()"></button>
     <%= form_for [@sub_chapter,@paragraph] do |f|%>
       
       <div><%= f.label :body %><br>
@@ -17,3 +17,11 @@
   </div>
 </div>
 <a class="close-reveal-modal">&#215;</a>
+
+<script>
+  addAnchorTag = function() {
+    var aTag = "<a href=''></a>"
+    document.getElementById('paragraph_body').value = aTag
+  }
+</script>
+

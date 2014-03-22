@@ -16,7 +16,7 @@ class SubChaptersController < ApplicationController
     if @sub_chapter.save
 
       if request.xhr?
-        render json: @sub_chapter
+        render json: {sub_chapter: @sub_chapter, chapter: @sub_chapter.chapter}
       else     
         flash[:notice]= "Subchapter created succesfully"
         redirect_to @sub_chapter

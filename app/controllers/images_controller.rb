@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
 
   def update
     @image = Image.find(params[:id])
-    @image.update(code_snippit_params)
+    @image.update(image_params)
     @sub_chapter = @image.content.sub_chapter
 
     if @image.save
@@ -28,31 +28,37 @@ class ImagesController < ApplicationController
 
   def create
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
-    @image = Image.new(code_snippit_params)
+    if params[:image]
+      @image = Image.new(image_params)
 
-    if @image.save
-      @image.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
+      if @image.save
+        @image.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
 
-      if request.xhr?
-        render json: @image
+        if request.xhr?
+          render json: @image
+        else
+          flash[:notice]="Your new image has been added!"
+          redirect_to @sub_chapter
+        end
       else
-        flash[:notice]="Your new image has been added!"
-        redirect_to @sub_chapter
+        @errors = @image.errors.messages
+        render "new"
       end
-    else
-      @errors = @image.errors.messages
+    else 
+      flash[:notice]="You must upload an image"
+      @image = Image.new
       render "new"
     end
   end
-
+  
   def show
     @image = Image.find(params[:id])
   end
 
   protected
 
-  def code_snippit_params
-    params.require(:image).permit(:image_path)
+  def image_params
+      params.require(:image).permit(:image_path)
   end
 
   def authenticate_image_owner_create

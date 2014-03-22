@@ -7,10 +7,18 @@
     <% end %>
 
   <% elsif content.attachable_type == "CodeSnippet" %>
-    <% @count +=1 %>
-    <div id="editor-<%=@count%>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
-    <input type="hidden" id ="editor_language-<%=@count%>" value="<%= content.attachable.language %>">
+    <div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
+    <input type="hidden" id ="editor_language-<%= content.id %>" value="<%= content.attachable.language %>">
     
+    <script>
+      var editor = ace.edit("editor-<%= content.id %>");
+      var language = document.getElementById("editor_language-<%= content.id %>").value
+      editor.setTheme("ace/theme/textmate");
+      editor.session.setMode("ace/mode/" + language.toLowerCase());
+      editor.getSession().setUseWrapMode(true);
+      editor.setReadOnly(true)
+    </script>
+
     <% if sub_chapter_owner?(@sub_chapter) %>
       
     <% end %>

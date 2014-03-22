@@ -66,16 +66,23 @@ li {
   }
 }
 
+a.tut-block:hover {
+  background-color: blue;
+}
+
+.tutorial-list:hover{
+  background-color: pink;
+  padding: 2em auto;
+}
+  
 .tutorial-list {  
-  margin: 1em auto;
+  margin: 2em auto;
   width: 100%;
   position: relative;
   border-bottom: 1px solid #e8e8e8;
   list-style-type: none;
+  height: 5em;
 
-  li {
-    vertical-align: middle;
-  }
 
   .tut-title {
     font-size: 22px;

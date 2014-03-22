@@ -49,7 +49,11 @@ class ParagraphsController < ApplicationController
     @paragraph = Paragraph.find(params[:id])
     flash[:notice] = "Paragraph has been removed"
     @paragraph.destroy
-    redirect_to @paragraph.content.sub_chapter
+    if request.xhr?
+      render json: {result: "success"}
+    else
+      redirect_to @paragraph.content.sub_chapter
+    end
   end
 
   protected

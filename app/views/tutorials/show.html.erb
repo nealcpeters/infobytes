@@ -10,8 +10,8 @@
         <% if tutorial_creator? %>
           <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
         <% end %>
-		  </div>
       <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
+      </div>
 		<% end %>
   </div>
 
@@ -91,7 +91,7 @@
     // Append new chapter to the list
 
     var appendChapter = function(chapter){
-      $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h2>" + chapter.title + "</h2> <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='del-chapter fa fa-trash-o fa-2x'></i></a> </div><div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;''></div>");
+      $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h2>" + chapter.title + "</h2> <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='del-chapter fa fa-trash-o fa-2x'></i></a> <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div></div>");
        $("#popup-chapter").foundation("reveal", "close");
     }
 
@@ -176,6 +176,7 @@
     //********************************
     // Deleting sub-chapters 
     // *******************************
+
     $("#chapter-list").on('click', ".delete-sub-chapter", function(e){
       e.preventDefault();
       var result = window.confirm("Are you sure you want to delete this sub-chapter?")
@@ -185,14 +186,14 @@
         console.log(subChpUrl)
         console.log(id)
 
-        $('#sub-chapter-' + id).toggle('fade',function(){
-          $('#sub-chapter-' + id).remove();
-        });
         $.ajax({
           url: subChpUrl,
           type: "DELETE",
           success: "great:success"
-        }, "json")
+        }, "json").done(function(){
+          $('#sub-chapter-' + id).toggle('fade',function(){ $('#sub-chapter-' + id).remove(); });
+
+        })
       }     
     })
 

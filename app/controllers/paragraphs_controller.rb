@@ -5,6 +5,7 @@ class ParagraphsController < ApplicationController
   def new
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
     @paragraph = Paragraph.new
+    render partial: "paragraphs/form_new" if request.xhr?
   end
 
   def edit
@@ -15,6 +16,7 @@ class ParagraphsController < ApplicationController
     @paragraph = Paragraph.find(params[:id])
     @paragraph.update(paragraph_params)
     @sub_chapter = @paragraph.content.sub_chapter
+    
     if @paragraph.save
       flash[:notice]="Your paragraph has been updated!"
       redirect_to @sub_chapter
@@ -27,10 +29,16 @@ class ParagraphsController < ApplicationController
   def create
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
     @paragraph = Paragraph.new(paragraph_params)
+
     if @paragraph.save
       @paragraph.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
-      flash[:notice]="Your new paragraph has been added!"
-      redirect_to @sub_chapter
+      
+      if request.xhr?
+        render json: @paragraph
+      else
+        flash[:notice]="Your new paragraph has been added!"
+        redirect_to @sub_chapter
+      end
     else
       @errors = @paragraph.errors.messages
       render "new"

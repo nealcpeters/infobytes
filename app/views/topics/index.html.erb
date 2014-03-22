@@ -1,3 +1,11 @@
-<% @topics.each do |topic| %>
-	<li><%= link_to "#{topic.title}", topic_path(topic.id) %></li>
-<% end %>
+<div class="smaller-container">
+	<div class="row topics-deck">
+		<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 topics-grid">
+			<% @topics.each do |topic| %>
+				<li>
+					<%= link_to "#{topic.title}", topic_path(topic.id) %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

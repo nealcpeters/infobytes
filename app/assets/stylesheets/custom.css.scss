@@ -41,6 +41,30 @@ li {
     width: 100%;
   }
 }
+ 
+.smaller-container {
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
+
+.topics-deck{
+  margin: 2em auto;
+}
+
+.topics-grid {
+  li {
+    a {
+      background-color: pink;
+      width: 100%;
+      display: block;
+      text-align: center;
+      min-height: 6em;
+      line-height: 6em;
+      font-size: 2em;
+    }
+  }
+}
 
 .tutorial-list {  
   padding: 29px 125px 29px 14px;
@@ -55,16 +79,15 @@ li {
 
   }
 
-
   .tut-title {
     font-size: 22px;
     line-height: 5px;
     font-weight: 500;
-letter-spacing: -.5px;
+    letter-spacing: -.5px;
   }
   .author-date {
     font-style: italic;
-  color: #a2a2a2;
-  font-size: 13px;
+    color: #a2a2a2;
+    font-size: 13px;
   }
 }

@@ -1,3 +1,4 @@
+
 <% @tutorials.each do |tutorial| %>
 	<div class="tutorial-list medium-10 medium-offset-1 columns">
 		<li>
@@ -5,7 +6,7 @@
 				<%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %>
 			</p>
 			<p class="author-date">
-				<%= "by #{tutorial.user.user_name} · updated at #{tutorial.created_at}" %>
+				<%= authorship(tutorial) %>
 			</p>
 		</li>
 	</div>

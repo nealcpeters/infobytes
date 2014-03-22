@@ -4,9 +4,35 @@
 	</h1>	
 </div>
 
-<div class="home-navigation">
+<!-- <div class="home-navigation">
 	<%= link_to "#{fa_icon('compass', class: "fa-5x")}".html_safe, tutorials_path %>
 	<%= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
+</div>
+
+<div class="home-navigation-text">
+	<h3>Explore</h3>
+	<h3>Read Tutorials</h3>
+</div> -->
+
+<div class="row">
+  <div class="large-3 columns">
+		<%= link_to "#{fa_icon('compass', class: "fa-5x")}".html_safe, tutorials_path %>
+    <h4>Explore.</h4>
+    <p>Find tutorials by category, including programming, computer hardware, networking, and more.</p>
+  </div>
+  
+  <div class="large-3 columns">
+		<%= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
+    <h4>Read Tutorials.</h4>
+    <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+  </div>
+
+  <div class="large-3 columns">
+		<%= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
+    <h4>Communities.</h4>
+    <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+  </div>
+
 </div>
 
 

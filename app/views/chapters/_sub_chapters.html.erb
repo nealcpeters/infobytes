@@ -1,4 +1,4 @@
-<div id="sub-chapter-list">
+<div id="sub-chapter-list-<%= @chapter.id %>">
   <% @chapter.sub_chapters.each do |sub_chapter| %>
     <div class="sub-chapter" id="sub-chapter-<%= sub_chapter.id %>">
       <h2><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter) %></h2>

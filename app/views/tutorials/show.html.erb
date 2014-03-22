@@ -112,7 +112,7 @@
       e.preventDefault();
       var url = $(this).attr("href");
       var id = url.match(/\d+/)[0]
-      console.log(id)
+      
       $.get(url, function(serverResponse, status, request){
         $("#sub-chapter-form-" + id).html(serverResponse).slideDown(200);
       });
@@ -120,6 +120,13 @@
 
 
     // Appends subchapter to list
+
+    var appendSubchapter = function(subChapter, chapter){
+      $("#sub-chapter-list-" + chapter.id).append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h2><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h2> <a data-confirm='Are you sure?' data-method='delete' href='/sub_chapters/" + subChapter.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x del-sub-chapter'></i></a> </div>");
+          $("#sub-chapter-form-" + chapter.id).slideUp(200);
+    }
+
+
     $('#chapter-list').on("submit", "#new_sub_chapter", function(e){
       e.preventDefault();
       
@@ -132,11 +139,7 @@
         $.post(url, data, function(serverResponse, status, request){
           var subChapter = serverResponse.sub_chapter;
           var chapter = serverResponse.chapter;
-          console.log(subChapter) 
-          console.log(chapter)
-          console.log
-          // $("#sub-chapter-list").append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h2><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h2> <a data-confirm='Are you sure?' data-method='delete' href='/sub_chapters/" + subChapter.id + "' rel='nofollow'><i class='fa fa-minus-square fa-2x del-sub-chapter'></i></a> </div>");
-          $("#sub-chapter-form").slideUp(200);
+          appendSubchapter(subChapter, chapter);
         }, "json");
       };
     });

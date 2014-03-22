@@ -5,25 +5,53 @@
         <p><%= error %></p>
       <% end %>
     <% end %>
-    <button id="href-adder" onmousedown="addAnchorTag()"></button>
+    <button id="href-display" class="href-buttons" onmousedown="showAnchorTagInputs()">Add Link</button>
+    <button id="href-adder" class="href-buttons" onmousedown="addAnchorTag()">Insert Tag</button>
     <%= form_for [@sub_chapter,@paragraph] do |f|%>
-      
+      <div id="fields">
+        <label for="link" class="href-button-inputs">Link:<input type="text" id="link"></label>
+        <label for="link" class="href-button-inputs">Link Text:<input type="text" id="alt" ></label>
+      </div>
       <div><%= f.label :body %><br>
       <%= f.text_area :body, rows: 20, autofocus: true %></div>
 
       <div><%= f.submit %></div>
 
     <% end %>
+
   </div>
 </div>
 <a class="close-reveal-modal">&#215;</a>
 
 <script>
-  addAnchorTag = function() {
-    var aTag = "<a href=''></a>"
-    var textArea = document.getElementById('paragraph_body')
-    if 
+  var display = document.getElementById('href-display')
+  var adder = document.getElementById('href-adder')
+  var link = document.getElementById('link')
+  var alt = document.getElementById('alt')
+  
 
+  resetVisibility = function() {
+    link.style.visibility = 'hidden'
+    link.style.visibility = 'hidden'
+    alt.style.visibility = 'hidden'
+
+  }
+
+  
+  showAnchorTagInputs = function() {
+
+  }
+
+  addAnchorTag = function() {
+    var textArea = document.getElementById('paragraph_body')
+    var alt = document.getElementById('alt').value
+    var aTag = " <a href='" + link.value + "'>" + alt.value +"</a> "
+
+    if (textArea.selectionEnd || textArea.selectionStart == '0') {
+      textArea.value = textArea.value.substring(0, textArea.selectionEnd)
+        + aTag
+        + textArea.value.substring(textArea.selectionEnd, textArea.value.length);
+    }
     else {
       textArea.value += aTag
     }

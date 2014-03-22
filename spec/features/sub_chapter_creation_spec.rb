@@ -57,11 +57,10 @@ feature 'Sub chapter Creation' do
       expect(page).to have_content("code")
     end
     
-    scenario "must have an add text link" do
+    scenario "must have an add code link" do
       click_link("code")
       expect(page).to have_content("Code Language")
       expect(page).to have_content("Code Block")
-      expect(page).to have_content("code here")
     end
 
     scenario "must have an add image link" do

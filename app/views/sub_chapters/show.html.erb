@@ -5,18 +5,20 @@
     <div id="content-body">
       <%= render "sub_chapters/content_body" %>
     </div>
+    
+    <% if sub_chapter_owner?(@sub_chapter) %>
+      <div class="media-options">
+        <div id="add-text"><%= link_to "#{fa_icon('font', class: "fa-2x")}<br>text".html_safe, new_sub_chapter_paragraph_path(@sub_chapter), data: {"reveal-id" => "textPopup"} %></div>
+        <div id="add-code"><%= link_to "#{fa_icon('code', class: "fa-2x")}<br>code".html_safe,new_sub_chapter_code_snippet_path(@sub_chapter), data: {"reveal-id" => "codePopup"} %></div>
+        <div id="add-image"><%= link_to "#{fa_icon('camera', class: "fa-2x")}<br>image".html_safe, new_sub_chapter_image_path(@sub_chapter), data: {"reveal-id" => "imagePopup"} %></div>
+      </div>
 
-    <div class="media-options">
-      <div id="add-text"><%= link_to "#{fa_icon('font', class: "fa-2x")}<br>text".html_safe, new_sub_chapter_paragraph_path(@sub_chapter), data: {"reveal-id" => "textPopup"} %></div>
-      <div id="add-code"><%= link_to "#{fa_icon('code', class: "fa-2x")}<br>code".html_safe,new_sub_chapter_code_snippet_path(@sub_chapter), data: {"reveal-id" => "codePopup"} %></div>
-      <div id="add-image"><%= link_to "#{fa_icon('camera', class: "fa-2x")}<br>image".html_safe, new_sub_chapter_image_path(@sub_chapter), data: {"reveal-id" => "imagePopup"} %></div>
-    </div>
-
-    <div id="media-containers">
-      <div id="textPopup" class="reveal-modal" data-reveal></div>
-      <div id="codePopup" class="reveal-modal" data-reveal></div>
-      <div id="imagePopup" class="reveal-modal" data-reveal></div>
-    </div>
+      <div id="media-containers">
+        <div id="textPopup" class="reveal-modal" data-reveal></div>
+        <div id="codePopup" class="reveal-modal" data-reveal></div>
+        <div id="imagePopup" class="reveal-modal" data-reveal></div>
+      </div>
+    <% end %>
 
   </div>
 </div>

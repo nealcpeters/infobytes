@@ -45,6 +45,22 @@
   }
 }
 
+.lg-sign-up-btn {
+	text-align: center;
+	display: table;
+	width: 100%;
+	background-color: #42A362;
+	padding: 1.2em auto;
+	height: 3em;
+	line-height: 3em;
+	font-size: 2em;
+	color: #F5F5F0;
+	&:hover {
+		background-color: #2C6E42;
+		color: #F5F5F0;
+	}
+}
+
 // navbar F5F5F0
 // site-background FAFAF8 
 // 

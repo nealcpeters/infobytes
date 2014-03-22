@@ -3,9 +3,9 @@ class CodeSnippetsController < ApplicationController
   before_filter :authenticate_code_snippet_owner_update, only: [:edit, :update, :destroy]
   
   def new
-  	p params
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
     @code_snippet = CodeSnippet.new
+    render partial: "code_snippets/form_new" if request.xhr?
   end
 
   def edit
@@ -28,10 +28,16 @@ class CodeSnippetsController < ApplicationController
   def create
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
     @code_snippet = CodeSnippet.new(code_snippit_params)
+
     if @code_snippet.save
       @code_snippet.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
-      flash[:notice]="Your new code_snippit has been added!"
-      redirect_to @sub_chapter
+
+      if request.xhr?
+        render json: @code_snippet
+      else
+        flash[:notice]="Your new code_snippit has been added!"
+        redirect_to @sub_chapter
+      end
     else
       @errors = @code_snippet.errors.messages
       render "new"

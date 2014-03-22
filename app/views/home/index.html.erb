@@ -4,5 +4,9 @@
 	</h1>	
 </div>
 
-<%= link_to "Tutorials", tutorials_path %>
-<%= link_to "Topics", topics_path %>
+<div class="home-navigation">
+	<%= link_to "#{fa_icon('compass', class: "fa-5x")}".html_safe, tutorials_path %>
+	<%= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
+</div>
+
+

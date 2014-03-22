@@ -38,13 +38,12 @@
 
   // Pulls in sub chapters
 
-  $(".sub-cpt-list").on("click", function(e){
+  $("#chapter-list").on("click", ".sub-cpt-list",  function(e){
     e.preventDefault();
     var link = this;
     if ($(this).attr('class').match("add-list") !== null){
       bring_list(link);
     } else {
-      console.log('fail')
       take_list_off(link);
     }
   })
@@ -53,6 +52,8 @@
     switchArrow(link);
     var url = $(link).attr("href")
     var id = url.match(/\d+/)[0];
+
+    console.log(url)
     $.get(url, function(serverResponse, status, request){
       $("#cpt-" + id).html(serverResponse).slideDown();
     }).done(function(){
@@ -96,14 +97,14 @@
       } else {
         $.post(url, data, function(serverResponse, status, request){
           var chapter = serverResponse; 
-          $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h2>" + chapter.title + "</h2> <a class='sub-cpt-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a data-confirm='Are you sure?' data-method='delete' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x del-chapter'></i></a> </div>");
+          $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h2>" + chapter.title + "</h2> <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a data-confirm='Are you sure?' data-method='delete' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x del-chapter'></i></a> </div>");
           $("#chapter-form").slideUp();
         }, "json");
       };
   	});
 
     // Pulls in form to create sub chapter
-    $('#add-sub-chapter').on("click", function(e){
+    $('.add-sub-chapter').on("click", function(e){
       e.preventDefault();
       var url = $(this).attr("href");
       

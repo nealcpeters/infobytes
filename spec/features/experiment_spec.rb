@@ -15,7 +15,7 @@ feature 'Tutorial Reader' do
       expect(page).to have_content(@chapter.title)
     end
 
-    scenario "must have linking icon next to chapter names that takes shows sub chapters", :js => true  do
+    scenario "must have linking icon next to chapter names that takes shows sub chapters" do
       find(:xpath, "//a[contains(@href, \"chapters/#{@chapter.id.to_s}\")]").click
       expect(page).to have_content(@sub_chapter.title)
       expect(page).to have_content(@tutorial.title)

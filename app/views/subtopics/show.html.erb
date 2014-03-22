@@ -1,10 +1,10 @@
 
 <% @tutorials.each do |tutorial| %>
-	    <%= link_to %>
-		    <div class="tutorial-list medium-10 columns">
+		  <%= link_to tutorial_path(tutorial) do %>  
+		    <div class="tutorial-list medium-10-offs columns">
 				<li>
 					<p class="tut-title">
-						
+						<%= tutorial.title %>
 					</p>
 					<p class="tut-description">
 						<%= tutorial.description %>
@@ -14,11 +14,7 @@
 					</p>
 				</li>
 		    </div>
-	    <% end %>
+	      <% end %>
 	    <div class="medium-2 columns"></div>
 <% end %>
 
-
-<%= link_to root_path do %>
-  <div>Hey!</div>
-<% end %>

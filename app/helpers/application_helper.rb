@@ -10,10 +10,12 @@ module ApplicationHelper
     body.gsub!(/(href\s*=\s*)(\\*?")([^"]*)(\\*")/, "\\1'\\3'")
     body.gsub!(/\\r\\n/, '<br>')
     body.gsub!(/\\s/, '&nbsp')    
+    body.gsub!(/\\t/, '&nbsp &nbsp &nbsp')
     # body.chop!
     # body[0] = ""
     body = body[1...-1]
   end
 end
+
 
 

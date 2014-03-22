@@ -3,6 +3,15 @@ body {
   font-family: 'Noticia Text', serif;
 }
 
+a {
+  color: #575757;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #575757;
+}
+
 .flash-message {
 	background-color: #FAFAF8;
   p {

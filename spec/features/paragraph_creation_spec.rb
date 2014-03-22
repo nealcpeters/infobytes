@@ -2,7 +2,7 @@ require 'spec_helper'
 
 # rspec spec --format documentation
 
-feature 'Code Snippet Creation' do
+feature 'Paragraph Creation' do
   context "with a logged in user" do 
     before :each do
       @user = User.create(first_name: "Han", last_name: "Solo", user_name: "tutorial_tester", email: "tutorial_tester@aliance.com", password: "password", password_confirmation: "password")
@@ -16,29 +16,32 @@ feature 'Code Snippet Creation' do
       fill_in 'user[password]', with: "password"
       click_button "Sign in"
       visit "/sub_chapters/#{@sub_chapter.id}"
-      click_link("code")
+      click_link("text")
     end
   
-    scenario "hitting submit creates a new code snippet in the database" do
+    scenario "hitting Create Paragraph creates a new paragraph in the database" do
       expect{
-        click_button "Create Snippet"
-      }.to change(CodeSnippet, :count).by(1) 
+        fill_in 'paragraph[body]', with: "Dajayj"
+        click_button "Create Paragraph"
+      }.to change(Paragraph, :count).by(1) 
     end
 
-    scenario "selecting a language and submitting saves that language" do
-      select("JavaScript", :from => "code_snippet[language]")
-      click_button "Create Snippet"
-      expect(CodeSnippet.last.language == "javascript").to be true
+    scenario "hitting Create Paragraph directs to new page with paragraph shown" do
+      fill_in 'paragraph[body]', with: "Dajayj"
+      click_button "Create Paragraph"
+      expect(page).to have_content("Dajayj")
     end
 
-    scenario "typing in the editor saves that code" do
+    scenario "submitting Create Paragraph with no body does not create a new paragraph" do
+      expect{
+        click_button "Create Paragraph"
+      }.to change(Paragraph, :count).by(0) 
+    end
 
-      find(:xpath, "//div[@id='editor']").set "bob"      
-      
-      click_button "Create Snippet"
-      expect(CodeSnippet.last.body == "bob").to be true
+    scenario "submitting Create Paragraph with no body gives error alert" do
+      click_button "Create Paragraph"
+      expect(page).to have_content("can't be blank")
     end
 
   end
-
 end

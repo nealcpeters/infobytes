@@ -102,3 +102,22 @@ a.tut-block:hover {
     font-size: 13px;
   }
 }
+
+/* ******* Footer ******** */
+
+.footer-bottom {
+  background-color: #575757;
+  color: #FAFAF8;
+  height: 10em;
+  ul {
+    display: inline;
+  }
+  a {
+    color: #FAFAF8;
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+

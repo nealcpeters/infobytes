@@ -9,5 +9,8 @@ class CreateTutorials < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :tutorials, :user_id
+    add_index :tutorials, :subtopic_id
   end
 end

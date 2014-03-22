@@ -36,13 +36,13 @@ subchapter = SubChapter.create(title: Faker::Lorem.words(2).join(" "), chapter_i
  
 paragraph = Paragraph.create(body: Faker::Lorem.paragraph(200))
 Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: "Paragraph", attachable_id: paragraph.id)
-#code_snippet = CodeSnippet.create(language: "Javascript", body: "Neal = {\r\n    careLevel: undefined\r\n}")
+#code_snippet = CodeSnippet.create(language: "javascript", body: "Neal = {\r\n    careLevel: undefined\r\n}")
 #Content.create(sub_chapter_id: subchapter.id, order_number: 2, attachable_type: "CodeSnippet", attachable_id: code_snippet.id)
  
 subchapter = SubChapter.create(title: Faker::Lorem.words(3).join(" "), chapter_id: chapter_one.id)
 paragraph = Paragraph.create(body: Faker::Lorem.paragraph(200))
 Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: "Paragraph", attachable_id: paragraph.id)
-#code_snippet = CodeSnippet.create(language: "Ruby", body: "class Neal \r\n    @billyJoelRating = 9000\r\n end\r\n")
+#code_snippet = CodeSnippet.create(language: "ruby", body: "class Neal \r\n    @billyJoelRating = 9000\r\n end\r\n")
 #Content.create(sub_chapter_id: subchapter.id, order_number: 2, attachable_type: "CodeSnippet", attachable_id: code_snippet.id)
  
 chapter_two = Chapter.create(title: Faker::Lorem.word, number: 2, tutorial_id: tutorial.id)
@@ -50,13 +50,13 @@ subchapter = SubChapter.create(title: Faker::Lorem.words(4).join(" "), chapter_i
   
 paragraph = Paragraph.create(body: Faker::Lorem.paragraph(150))
 Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: "Paragraph", attachable_id: paragraph.id)
-#code_snippet = CodeSnippet.create(language: "Javascript", body: "Neal = {\r\n    underwearStatus: 'Big Person'\r\n}")
+#code_snippet = CodeSnippet.create(language: "javascript", body: "Neal = {\r\n    underwearStatus: 'Big Person'\r\n}")
 #Content.create(sub_chapter_id: subchapter.id, order_number: 2, attachable_type: "CodeSnippet", attachable_id: code_snippet.id)
  
 subchapter = SubChapter.create(title: Faker::Lorem.words(3).join(" "), chapter_id: chapter_two.id)
 paragraph = Paragraph.create(body: Faker::Lorem.sentence(400))
 Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: "Paragraph", attachable_id: paragraph.id)
-#code_snippet = CodeSnippet.create(language: "Javascript", body: "Neal = {\r\n    toughnessLevel: 'Ice and Blood in Beard'\r\n}")
+#code_snippet = CodeSnippet.create(language: "javascript", body: "Neal = {\r\n    toughnessLevel: 'Ice and Blood in Beard'\r\n}")
 #Content.create(sub_chapter_id: subchapter.id, order_number: 2, attachable_type: "CodeSnippet", attachable_id: code_snippet.id)
 
 chapter_three = Chapter.create(title: Faker::Lorem.word, number: 2, tutorial_id: tutorial.id)
@@ -64,7 +64,7 @@ subchapter = SubChapter.create(title: Faker::Lorem.words(4).join(" "), chapter_i
   
 paragraph = Paragraph.create(body: Faker::Lorem.paragraph(150))
 Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: "Paragraph", attachable_id: paragraph.id)
-#code_snippet = CodeSnippet.create(language: "Javascript", body: "Neal = {\r\n    underwearStatus: 'Big Person'\r\n}")
+#code_snippet = CodeSnippet.create(language: "javascript", body: "Neal = {\r\n    underwearStatus: 'Big Person'\r\n}")
 #Content.create(sub_chapter_id: subchapter.id, order_number: 2, attachable_type: "CodeSnippet", attachable_id: code_snippet.id)
  
 subchapter = SubChapter.create(title: Faker::Lorem.words(3).join(" "), chapter_id: chapter_three.id)

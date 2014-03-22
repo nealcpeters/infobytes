@@ -19,7 +19,7 @@ feature 'Image Creation' do
       click_link("image")
     end
   
-    scenario "uploading an image persists an image in the databae" do
+    scenario "uploading an image persists an image in the database" do
       expect{
         attach_file("image[image_path]", File.expand_path('spec/fixtures/files/test_image.jpg'))
         click_button "Create Image"
@@ -32,15 +32,23 @@ feature 'Image Creation' do
       page.find('img')['alt'].should have_content 'Test image'
     end
 
-    xscenario "submitting Create Paragraph with no body does not create a new paragraph" do
+    scenario "with no image will not save an image to the database" do
       expect{
-        click_button "Create Paragraph"
-      }.to change(Paragraph, :count).by(0) 
+        click_button "Create Image"
+        }.to change(Image, :count).by(0) 
     end
 
-    xscenario "submitting Create Paragraph with no body gives error alert" do
-      click_button "Create Paragraph"
-      expect(page).to have_content("can't be blank")
+    scenario "with no image redirects to image#new view with an error message" do
+      click_button "Create Image"
+      expect(page).should have_content 'You must upload an image'
+      expect(page).should have_content 'Image path'
+    end
+
+    scenario "with a non-image file redirects to image#new view with an error message" do
+      attach_file("image[image_path]", File.expand_path('db/seeds.rb'))
+      click_button "Create Image"
+      expect(page).should have_content 'is invalid'
+      expect(page).should have_content 'Image path'
     end
 
   end

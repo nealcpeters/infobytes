@@ -32,15 +32,16 @@ feature 'Image Creation' do
       page.find('img')['alt'].should have_content 'Test image'
     end
 
-    scenario "a blank upload will not save an image to the database" do
+    scenario "with no image will not save an image to the database" do
       expect{
         click_button "Create Image"
         }.to change(Image, :count).by(0) 
     end
 
-    xscenario "submitting Create Paragraph with no body gives error alert" do
-      click_button "Create Paragraph"
-      expect(page).to have_content("can't be blank")
+    scenario "with no image redirects to image#new view with an error message" do
+      click_button "Create Image"
+      expect(page).should have_content 'You must upload an image'
+      expect(page).should have_content 'Image path'
     end
 
   end

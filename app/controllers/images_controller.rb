@@ -27,15 +27,22 @@ class ImagesController < ApplicationController
 
   def create
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
-    @image = Image.new(image_params)
-    if @image.save
-      @image.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
-      flash[:notice]="Your new image has been added!"
-      redirect_to @sub_chapter
+    if params[:image]
+      @image = Image.new(image_params)
+      if @image.save
+        @image.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
+        flash[:notice]="Your new image has been added!"
+        redirect_to @sub_chapter
+      else
+        @errors = @image.errors.messages
+        render "new"
+      end
     else
-      @errors = @image.errors.messages
+      @errors = ["You must upload an image"]
+      @image = Image.new
       render "new"
     end
+
   end
 
   def show
@@ -45,7 +52,7 @@ class ImagesController < ApplicationController
   protected
 
   def image_params
-    params.require(:image).permit(:image_path)
+      params.require(:image).permit(:image_path)
   end
 
   def authenticate_image_owner_create

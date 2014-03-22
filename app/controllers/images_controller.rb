@@ -59,7 +59,11 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     flash[:notice] = "Image has been removed"
     @image.destroy
-    redirect_to @image.content.sub_chapter
+    if request.xhr?
+      render json: {result: "success"}
+    else
+      redirect_to @image.content.sub_chapter
+    end
   end
 
   protected

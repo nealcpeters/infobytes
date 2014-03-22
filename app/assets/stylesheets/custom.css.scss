@@ -74,10 +74,17 @@ li {
 
 /* ******* Footer ******** */
 
+#layout {
+  clear: both;
+  min-height: 100%;
+}
+
 .footer-bottom {
   background-color: #575757;
   color: #FAFAF8;
   height: 10em;
+  clear: both;
+  position: relative;
   ul {
     display: inline;
   }

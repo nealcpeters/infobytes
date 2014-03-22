@@ -7,5 +7,7 @@ class CreateSubtopics < ActiveRecord::Migration
       
       t.timestamps
     end
+
+    add_index :subtopics, :topic_id
   end
 end

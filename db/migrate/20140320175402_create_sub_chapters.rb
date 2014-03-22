@@ -6,5 +6,7 @@ class CreateSubChapters < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :sub_chapters, :chapter_id
   end
 end

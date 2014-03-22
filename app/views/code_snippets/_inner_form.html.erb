@@ -6,7 +6,7 @@
 
 <div id="editor" style="height: 200px; width: 100%; background-color:#eee"><%= @code_snippet.body %></div>
 <input type="hidden" id="input_value" name="code_snippet[body]" value="">
-<input type="submit" onclick="storeInfo()">
+<input type="submit" value="Submit" onclick="storeInfo()">
 
 <script>
 	var editor = ace.edit("editor");

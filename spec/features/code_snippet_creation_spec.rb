@@ -31,12 +31,12 @@ feature 'Code Snippet Creation' do
       expect(CodeSnippet.last.language == "javascript").to be true
     end
 
-    scenario "typing in the editor saves that code" do
+    xscenario "typing in the editor saves that code" do
 
-      find(:xpath, "//div[@id='editor']").set "bob"      
+      find(:xpath, "//div[@id='editor']").fill_in "no"      
       
       click_button "Create Snippet"
-      expect(CodeSnippet.last.body == "bob").to be true
+      expect(CodeSnippet.last.body).to be "no"
     end
 
   end

@@ -45,6 +45,13 @@ class ParagraphsController < ApplicationController
     end
   end
 
+  def destroy
+    @paragraph = Paragraph.find(params[:id])
+    flash[:notice] = "Paragraph has been removed"
+    @paragraph.destroy
+    redirect_to @paragraph.content.sub_chapter
+  end
+
   protected
 
   def paragraph_params

@@ -6,7 +6,6 @@ module ApplicationHelper
 
     body = string.inspect
     body.gsub!(/(<(?=[^a][^(\/a)]))/, '&lt;')
-    p body
     body.gsub!(/(href\s*=\s*)(\\*?")([^"]*)(\\*")/, "\\1'\\3'")
     body.gsub!(/\\r\\n/, '<br>')
     body.gsub!(/\\s/, '&nbsp')    

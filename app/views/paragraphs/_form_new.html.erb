@@ -42,15 +42,27 @@
   }
 
   addAnchorTag = function() {
-    var range = window.getSelection().getRangeAt(0);
-    if (range.toString() !== ""){
-      var selectionContents = range.extractContents();
-      var aTag = document.createElement("a");
-      aTag.href = link.value
-      aTag.appendChild(selectionContents)
-      range.insertNode(aTag);
+    if (containerNodeCheck(window.getSelection().getRangeAt(0).startContainer, "editable-div")) {
+      var range = window.getSelection().getRangeAt(0);
+      if (range.toString() !== ""){
+        var selectionContents = range.extractContents();
+        var aTag = document.createElement("a");
+        aTag.href = link.value
+        aTag.appendChild(selectionContents)
+        range.insertNode(aTag);
+      }
+      resetVisibility()
     }
-    resetVisibility()
+  }
+
+  containerNodeCheck = function(node, containerId) {
+    while (node) {
+        if (node.id === containerId) {
+            return true;
+        }
+        node = node.parentNode;
+    }
+    return false;
   }
 
   grabInput = function() {

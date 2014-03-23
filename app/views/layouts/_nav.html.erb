@@ -14,8 +14,8 @@
         <li><%= link_to "New Tutorial #{fa_icon('plus-square', class: "fa-2x")}".html_safe, new_tutorial_path %></li>
         <li><%= link_to "Sign Out #{fa_icon('sign-out', class: "fa-2x")}".html_safe, destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <li><%= link_to "Sign In #{fa_icon('sign-in', class: "fa-2x")}".html_safe, new_user_session_path %></li>
-        <li><%= link_to "Sign Up #{fa_icon('level-up', class: "fa-2x")}".html_safe, new_user_registration_path %></li>
+        <li><%= link_to "Sign In #{fa_icon('sign-in', class: "fa-2x")}".html_safe, new_user_session_path, id: "sign-in-link" %></li>
+        <li><%= link_to "Sign Up #{fa_icon('level-up', class: "fa-2x")}".html_safe, new_user_registration_path, class: "sign-up-link" %></li>
       <% end %>
     </ul>
 
@@ -25,3 +25,9 @@
     </ul>
   </section>
 </nav>
+
+<script>
+  $("#sign-in-link").on("click", function(e){
+
+  });
+</script>

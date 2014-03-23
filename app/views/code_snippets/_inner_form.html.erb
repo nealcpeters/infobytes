@@ -13,8 +13,13 @@
   editor.setTheme("ace/theme/textmate");
   editor.session.setMode("ace/mode/ruby");
   editor.getSession().setUseWrapMode(true);
+  
   editor.focus();
 
+  editor.setOptions({
+    maxLines: 40
+  });
+  
   updateLanguage = function() {  
     var newLanguage = document.getElementById('language').value
     editor.session.setMode("ace/mode/" + newLanguage);

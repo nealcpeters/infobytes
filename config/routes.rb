@@ -5,11 +5,13 @@ InfoBytes::Application.routes.draw do
   root to: "home#index"
   match "/users/:id", to: "users#show", via: :get, as: "user"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
+  match '/about', to: "home#about", via: :get, as: "about"
 
   get '/topics', to: "topics#index", as: "topics"
   get '/topics/:id', to: "topics#show", as: "topic"
   get '/subtopics', to: "subtopics#index", as: "subtopics"
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
+
 
   resources :tutorials do
     member do

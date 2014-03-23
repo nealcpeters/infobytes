@@ -10,7 +10,7 @@
     <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
     <%= form_for [@sub_chapter,@paragraph] do |f|%>
       <div id="fields">
-        <label for="link" class="href-button-inputs">Link:<input type="text" id="link"></label>
+        <label for="link" class="href-button-inputs">Link:<input type="text" id="link" value="http://"></label>
         <label for="link" class="href-button-inputs">Link Text:<input type="text" id="alt" ></label>
       </div>
       <div><%= f.label :body %><br>
@@ -26,30 +26,28 @@
 
 <script>
 
-
   resetVisibility = function() {
-    display.style.visibility = 'visible'
-    adder.style.visibility = 'hidden'
-    link.parentNode.style.visibility = 'hidden'
-    alt.parentNode.style.visibility = 'hidden'
+    display.style.display = 'inline-block'
+    adder.style.display = 'none'
+    link.parentNode.style.display = 'none'
+    alt.parentNode.style.display = 'none'
   }
 
   showInputs = function() {
-    display.style.visibility = 'hidden'
-    adder.style.visibility = 'visible'
-    link.parentNode.style.visibility = 'visible'
-    alt.parentNode.style.visibility = 'visible'
+    display.style.display = 'none'
+    adder.style.display = 'inline-block'
+    link.parentNode.style.display = 'inline-block'
+    alt.parentNode.style.display = 'inline-block'
   }
 
   addAnchorTag = function() {
-    var textArea = document.getElementById('paragraph_body')
-    var alt = document.getElementById('alt').value
-    var aTag = " <a href='" + link.value + "'>" + alt.value +"</a> "
-
+    var aTag = "<a href=" + link.value + ">" + alt.value + "</a>"
     if (textArea.selectionEnd || textArea.selectionStart == '0') {
       textArea.value = textArea.value.substring(0, textArea.selectionEnd)
         + aTag
-        + textArea.value.substring(textArea.selectionEnd, textArea.value.length);
+        + textArea.value.substring(
+          textArea.selectionEnd, textArea.value.length
+          );
     }
     else {
       textArea.value += aTag
@@ -61,6 +59,7 @@
   var adder = document.getElementById('href-adder')
   var link = document.getElementById('link')
   var alt = document.getElementById('alt')
+  var textArea = document.getElementById('paragraph_body')
   resetVisibility()
 </script>
 

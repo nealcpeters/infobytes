@@ -1,5 +1,6 @@
 class TutorialPdf < Prawn::Document
-  
+  require "open-uri"
+   
   def initialize(tutorial)
     super()
     chapters = tutorial.chapters
@@ -44,15 +45,21 @@ class TutorialPdf < Prawn::Document
 
         sub_chapter.contents.each_with_index do |content, index| 
           attachment = content.attachable
+
           case content.attachable_type
           when "Paragraph"
-            text attachment.body
+            font_size(30) {text "Paragraph"}
             move_down(8)
           when "CodeSnippet"
             font_size(30) {text "Snippet"}
             move_down(8)
           when "Image"
           	font_size(30) {text "Image"}
+          	if env_production?
+	          	image open attachment.image_path.url(:original, false), scale: 0.9
+	          else
+	          	image "#{Rails.root}/public/#{attachment.image_path.url(:original, false)}", scale: 0.9
+	          end
             move_down(8)
           end
         end
@@ -60,6 +67,12 @@ class TutorialPdf < Prawn::Document
         move_down(10)
       end
     end
+  end
+
+  private
+
+  def env_production?
+    Rails.env.production?
   end
 end
 

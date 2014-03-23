@@ -12,6 +12,10 @@ InfoBytes::Application.routes.draw do
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
 
   resources :tutorials do
+    member do
+      get :pdf_view
+    end
+
     resources :chapters, shallow: true do 
       resources :sub_chapters do
         resources :paragraphs 

@@ -1,7 +1,9 @@
 <div class="row">
-	<h1><%= @tutorial.title %></h1>
-	<p>Description: <%= @tutorial.description %></p>
-  
+  <div class="tutorial-header">
+  	<h1><%= @tutorial.title %></h1>
+  	<p>Description: <%= @tutorial.description %></p>
+    <%= link_to "View as PDF", pdf_view_tutorial_path(@tutorial, "pdf") %>
+  </div>  
   <h2 class="tut-index">Index:</h2>
   <div class="row">
     <div id="chapter-list" class="small-10 small-offset-1">

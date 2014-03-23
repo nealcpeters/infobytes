@@ -47,6 +47,18 @@ class TutorialsController < ApplicationController
     @tutorials = Tutorial.all
   end
 
+  def pdf_view
+    @tutorial = Tutorial.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = TutorialPdf.new(@tutorial)
+        send_data pdf.render, filename: "pdf.pdf", type: "application/pdf"
+      end
+    end
+  end
+
   protected
 
   def tutorial_params

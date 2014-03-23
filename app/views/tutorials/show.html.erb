@@ -24,10 +24,9 @@
               </div>
             <% end %>
           </div>
-
           <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
         </div>
-  		<% end %>
+      <% end %>
     </div>
   </div>
 
@@ -147,7 +146,7 @@
     $('#add-chapter').on("click", function(e){
     	e.preventDefault();
       var url = $(this).attr("href");
-            
+      console.log("new chapter")
     	$.get(url, function(serverResponse, status, request){
         $("#modal-popup").html(serverResponse);
       })
@@ -158,11 +157,29 @@
     ********************************************************************/
 
     var appendChapter = function(chapter){
-      $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h3>" + chapter.title + "</h3> <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='del-chapter fa fa-trash-o fa-2x'></i></a> <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div></div>");
+      $("#chapter-list").append(
+        "<div class='chapter' id='chapter-" + chapter.id + "'>\
+          <div class='chapter-icons'>\
+            <h3>" + chapter.title + "</h3> \
+            <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'>\
+              <i class='fa fa-arrow-circle-o-down fa-2x'></i>\
+            </a>\
+            <div class='right-aligned-icons'>\
+              <a class='edit-chapter-link' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/edit'>\
+                <i class='fa fa-edit fa-2x'></i>\
+              </a>\
+              <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'>\
+                <i class='del-chapter fa fa-trash-o fa-2x'></i>\
+              </a>\
+            </div>\
+          </div>\
+          <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div>\
+        </div>");
+
        $("#popup-chapter").foundation("reveal", "close");
     };
 
-  	$('#popup-chapter').on("submit", "#new_chapter", function(e){
+  	$('body').on("submit", "#modal-popup #new_chapter", function(e){
       e.preventDefault();
       
       var data = $(this).serialize();

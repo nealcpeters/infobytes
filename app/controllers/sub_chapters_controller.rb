@@ -31,6 +31,8 @@ class SubChaptersController < ApplicationController
   def show
     @sub_chapter = SubChapter.find(params[:id])
     @contents = @sub_chapter.contents.order(:order_number)
+
+    render "sub_chapters/show", layout: false if request.xhr?
   end
 
   def edit 

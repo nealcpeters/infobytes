@@ -62,13 +62,11 @@ li {
       min-height: 6em;
       line-height: 6em;
       font-size: 2em;
+      border-radius: 5px;
     }
   }
 }
 
-a.tut-block:hover {
-  background-color: blue;
-}
 
 .tutorial-list:hover{
   background-color: #e8e8e8;

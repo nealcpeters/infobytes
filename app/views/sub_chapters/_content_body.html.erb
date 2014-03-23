@@ -6,7 +6,7 @@
       <% if sub_chapter_owner?(@sub_chapter) %>
         <div class="edit-links">
           <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_paragraph_path(content.attachable) %></div>
-          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, paragraph_path(content.attachable), method: :delete, data: {confirm: "Are you sure you want to remove this paragraph?"} %></div>
+          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, paragraph_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this paragraph?"} %></div>
         </div>
       <% end %>
 
@@ -26,7 +26,7 @@
       <% if sub_chapter_owner?(@sub_chapter) %>
         <div class="edit-links">
           <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_code_snippet_path(content.attachable) %></div>
-          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, code_snippet_path(content.attachable), method: :delete, data: {confirm: "Are you sure you want to remove this code snippet?"} %></div>
+          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, code_snippet_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this code snippet?"} %></div>
         </div>
       <% end %>
     <% elsif content.attachable_type == "Image" %>
@@ -35,12 +35,9 @@
       <% if sub_chapter_owner?(@sub_chapter) %>
         <div class="edit-links">
           <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_image_path(content.attachable) %></div>
-          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, image_path(content.attachable), method: :delete, data: {confirm: "Are you sure you want to remove this image?"} %></div>
+          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, image_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this image?"} %></div>
         </div>
       <% end %>
     <% end %>
   </div>
 <% end %>
-
-<a href=""></a>
-

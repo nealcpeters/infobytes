@@ -1,19 +1,18 @@
-<% @tutorials.each do |tutorial| %>
-	<div class="tutorial-list medium-10 medium-offset columns">
-		<li>
-			<p class="tut-title">
-				<%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %>
-			</p>
-			<p class="tut-description">
-				<%= tutorial.description %>
-			</p>
-			<p class="author-date">
-				<%= "by #{tutorial.user.user_name} · updated at #{tutorial.created_at}" %>
-			</p>
-		</li>
-	</div>
-<% end %>	
-
 <div>
-
-</div>
+	<% @tutorials.each do |tutorial| %>
+		<div class="tutorial-list medium-10 medium-offset columns">
+			<li>
+				<p class="tut-title">
+					<%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %>
+				</p>
+				<p class="tut-description">
+					<%= tutorial.description %>
+				</p>
+				<p class="author-date">
+					<%= authorship(tutorial) %>
+				
+				</p>
+			</li>
+		</div>
+	<% end %>
+</div>	

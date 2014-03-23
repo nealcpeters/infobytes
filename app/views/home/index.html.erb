@@ -5,16 +5,6 @@
   </div>
 </div>
 
-<!-- <div class="home-navigation">
-	<%#= link_to "#{fa_icon('compass', class: "fa-5x")}".html_safe, tutorials_path %>
-	<%#= link_to "#{fa_icon('file-text', class: "fa-5x")}".html_safe, topics_path %>
-</div>
-
-<div class="home-navigation-text">
-	<h3>Explore</h3>
-	<h3>Read Tutorials</h3>
-</div> -->
-
 <div class="icon-banner">
   <div class="row home-icons">
     <div class="large-4 columns">
@@ -30,3 +20,12 @@
     </div>
   </div>
 </div>
+
+<% if !user_signed_in? %>
+  <div class="row">
+    <div class="small-6 small-offset-3 medium-4 medium-offset-4">
+      <%= link_to "Sign Up", new_user_registration_path, class: "lg-sign-up-btn" %>
+    </div>
+  </div>
+<% end %>  
+

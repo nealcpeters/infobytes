@@ -22,7 +22,8 @@ li {
   	text-align: center;
   	line-height: 60px;
     height: 60px;
-    color: #70E270;
+    color: #42A362;
+    font-size: 1em;
   }
 }
 
@@ -41,16 +42,49 @@ li {
     width: 100%;
   }
 }
+ 
+.smaller-container {
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
 
+.topics-deck{
+  margin: 2em auto;
+}
+
+.topics-grid {
+  li {
+    a {
+      background-color:  #e8e8e8;
+      width: 100%;
+      display: block;
+      text-align: center;
+      min-height: 6em;
+      line-height: 6em;
+      font-size: 2em;
+      border-radius: 5px;
+    }
+  }
+}
+
+
+.tutorial-list:hover{
+  background-color: #e8e8e8;
+  padding: 2em auto;
+}
+  
 .tutorial-list {  
-  margin: 1em auto;
+  margin: .8em auto;
   width: 100%;
   position: relative;
   border-bottom: 1px solid #e8e8e8;
   list-style-type: none;
+  height: 5em;
 
   li {
-    vertical-align: middle;
+    // background-color: pink;
+    padding-top:10px;
   }
 
   .tut-title {
@@ -65,7 +99,7 @@ li {
     margin-bottom: 1px;
   }
 
-  .author-date {
+  .author-date{
     font-style: italic;
     color: #a2a2a2;
     font-size: 13px;
@@ -74,10 +108,17 @@ li {
 
 /* ******* Footer ******** */
 
+#layout {
+  clear: both;
+  min-height: 100%;
+}
+
 .footer-bottom {
   background-color: #575757;
   color: #FAFAF8;
   height: 10em;
+  clear: both;
+  position: relative;
   ul {
     display: inline;
   }

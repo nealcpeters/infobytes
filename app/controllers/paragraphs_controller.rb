@@ -31,7 +31,7 @@ class ParagraphsController < ApplicationController
     @paragraph = Paragraph.new(paragraph_params)
 
     if @paragraph.save
-      @paragraph.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
+      Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1),attachable_id: @paragraph.id, attachable_type: "Paragraph")
       
       if request.xhr?
         render json: @paragraph
@@ -49,7 +49,11 @@ class ParagraphsController < ApplicationController
     @paragraph = Paragraph.find(params[:id])
     flash[:notice] = "Paragraph has been removed"
     @paragraph.destroy
-    redirect_to @paragraph.content.sub_chapter
+    if request.xhr?
+      render json: {result: "success"}
+    else
+      redirect_to @paragraph.content.sub_chapter
+    end
   end
 
   protected

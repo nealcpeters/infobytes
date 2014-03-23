@@ -3,7 +3,7 @@
   	<h1><%= @tutorial.title %></h1>
   	<p>Description: <%= @tutorial.description %></p>
     <% if tutorial_creator? %>
-      <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "modal-popup"} %> <br>
+      <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "modal-popup"} %>
     <% end %>
     <%= link_to "View As Single Page", html_view_tutorial_path(@tutorial) %>
     <%= link_to "Download Tutorial", html_view_tutorial_path(@tutorial, download: true) %>

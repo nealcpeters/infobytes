@@ -71,7 +71,7 @@ class TutorialsController < ApplicationController
     @author = @tutorial.user
     @chapters = @tutorial.chapters
 
-    send_data(render_to_string, :filename => "#{@tutorial.title}.html", :type => "html") if params[:download]
+    send_data(render_to_string, :filename => "#{@tutorial.title}.html", :type => "text/html") if params[:download]
   end
 
   protected

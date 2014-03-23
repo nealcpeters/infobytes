@@ -1,7 +1,9 @@
 <% @contents.each do |content| %>
   <div class="content-item"> 
     <% if content.attachable_type == "Paragraph" %>
-      <p><%= raw(paragraph_formater(content.attachable.body)) %></p>
+      <div id="paragraph-<%= content.attachable_id %>">
+        <p><%= raw(paragraph_formater(content.attachable.body)) %></p>
+      </div>
       
       <% if sub_chapter_owner?(@sub_chapter) %>
         <div class="edit-links">
@@ -33,7 +35,7 @@
         </div>
       <% end %>
     <% elsif content.attachable_type == "Image" %>
-      <div class="image-container"><%= image_tag content.attachable.image_path.url(:original) %></div>
+      <div class="image-container" id="image-<%= content.attachable_id %>"><%= image_tag content.attachable.image_path.url(:original) %></div>
       
       <% if sub_chapter_owner?(@sub_chapter) %>
         <div class="edit-links">

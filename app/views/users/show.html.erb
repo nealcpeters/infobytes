@@ -1,8 +1,16 @@
-<h1><%= "#{@user.first_name} #{@user.last_name}"%> </h1>
+<h1 class="user-profile">Hi, <%= "#{@user.first_name}" %>! </h1>
 
-<h3>Your Tutorials</h3>
-<% @tutorials.each do |tutorial| %>
-	<li><%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %></li>
-<% end %>
+<h2 class="user-profile">Manage your tutorials:</h2>
 
-
+<div class="smaller-container">
+	<div class="row topics-deck">
+		<ul class="small-block-grid-1 medium-block-grid-2 medium-block-grid-4 topics-grid">
+			<li id="user-new-tutorial"><%= link_to "New Tutorial", new_tutorial_path %></li>
+			<% @tutorials.each do |tutorial| %>
+				<li>
+					<%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

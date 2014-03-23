@@ -66,6 +66,12 @@ class TutorialsController < ApplicationController
     end
   end
 
+  def html_view
+    @tutorial = Tutorial.find(params[:id])
+    @author = @tutorial.user
+    @chapters = @tutorial.chapters
+  end
+
   protected
 
   def tutorial_params

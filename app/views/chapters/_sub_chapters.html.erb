@@ -3,8 +3,8 @@
     <div class="sub-chapter" id="sub-chapter-<%= sub_chapter.id %>">
       <% if chapter_creator? %>
         <h4><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter) %></h4>
-        <%= link_to fa_icon('edit', class: "fa-2x").html_safe, "#" %>
-        <%= link_to '<i class="fa fa-trash-o fa-2x del-sub-chapter"></i>'.html_safe, sub_chapter_path(sub_chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-sub-chapter" %>
+        <%= link_to fa_icon('edit', class: "fa-2x sub-chapter-icon").html_safe, "#" %>
+        <%= link_to '<i class="fa fa-trash-o fa-2x sub-chapter-icon"></i>'.html_safe, sub_chapter_path(sub_chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-sub-chapter" %>
         
 
       <% else %>

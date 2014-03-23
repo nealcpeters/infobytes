@@ -12,7 +12,7 @@ feature 'Paragraph Editting' do
       @paragraph = Paragraph.create(body: "garbage")
       @sub_chapter.contents.create(order_number: 1, attachable_type: "Paragraph", attachable_id: @paragraph.id)    
       visit "/"    
-      click_link "log in"
+      find(:xpath, "//a[@href='/users/sign_in']").click
 
       fill_in 'user[email]', with: @user.email
       fill_in 'user[password]', with: "password"

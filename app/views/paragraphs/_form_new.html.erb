@@ -5,15 +5,61 @@
         <p><%= error %></p>
       <% end %>
     <% end %>
-
-    <%= form_for [@sub_chapter,@paragraph] do |f|%>
+    <a id="href-display" class="href-buttons button tiny" onmousedown="showInputs()">Add Link</a>
+      <div id="fields">
+        <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
+        <label for="link" class="href-button-inputs">Link:<input type="text" id="link" value="http://"></label>
+      </div>    
       
-      <div><%= f.label :body %><br>
-      <%= f.text_area :body, rows: 20, autofocus: true %></div>
+    <%= form_for [@sub_chapter,@paragraph] do |f|%>
 
-      <div><%= f.submit %></div>
+      <div><%= f.label :body %><br>
+        <input type="hidden" name="paragraph[body]" value="" id="paragraph_body">
+      </div>
+      <div contenteditable="true" id="editable-div" class="editable"></div>
+
+      <div><%= f.submit :onclick => "grabInput()"%></div>
 
     <% end %>
+
   </div>
 </div>
+
 <a class="close-reveal-modal">&#215;</a>
+
+<script>
+  resetVisibility = function() {
+    display.style.display = 'inline-block'
+    adder.style.display = 'none'
+    link.parentNode.style.display = 'none'
+    link.innerHTML = "http://"
+  }
+
+  showInputs = function() {
+    display.style.display = 'none'
+    adder.style.display = 'inline-block'
+    link.parentNode.style.display = 'inline-block'
+  }
+
+  addAnchorTag = function() {
+    var range = window.getSelection().getRangeAt(0);
+    if (range.toString() !== ""){
+      var selectionContents = range.extractContents();
+      var aTag = document.createElement("a");
+      aTag.href = link.value
+      aTag.appendChild(selectionContents)
+      range.insertNode(aTag);
+    }
+    resetVisibility()
+  }
+
+  grabInput = function() {
+     document.getElementById('paragraph_body').value = editableDiv.innerHTML
+   }
+  
+  var display = document.getElementById('href-display')
+  var adder = document.getElementById('href-adder')
+  var link = document.getElementById('link')
+  var editableDiv = document.getElementById('editable-div')
+  resetVisibility()
+</script>

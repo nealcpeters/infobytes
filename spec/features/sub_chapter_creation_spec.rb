@@ -6,7 +6,7 @@ feature 'Sub chapter Creation' do
     @tutorial = @user.tutorials.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", rating: 3, subtopic_id: 2)
     @chapter = @tutorial.chapters.create(title: "blah", number: 1, tutorial_id: @tutorial.id)
     visit "/"    
-    click_link "log in"
+    find(:xpath, "//a[@href='/users/sign_in']").click
 
     fill_in 'user[email]', with: @user.email
     fill_in 'user[password]', with: "password"

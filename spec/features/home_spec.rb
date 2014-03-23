@@ -11,13 +11,13 @@ feature 'Home Page' do
     end
 
     scenario "must have a functional log in link" do
-      click_link "log in"
+      find(:xpath, "//a[@href='/users/sign_in']").click
       expect(page).to have_content("Password")
     end
 
     scenario "must have a functional sign up link" do
-      click_link "sign up"
-      expect(page).to have_content("First name")
+      all(:xpath, "//a[@href='/users/sign_up']").first.click
+      expect(page).to have_content("Email")
     end
 
   end
@@ -25,10 +25,8 @@ feature 'Home Page' do
   context "for a logged in user" do
     before :each do
       visit "/"    
-      click_link "sign up"
+      all(:xpath, "//a[@href='/users/sign_up']").first.click
 
-      fill_in 'user[first_name]', with: "Abed"
-      fill_in 'user[last_name]', with: "Solo"
       fill_in 'user[user_name]', with: "rebel_meta_man"
       fill_in 'user[email]', with: "abed@aliance.com"
       fill_in 'user[password]', with: "password"
@@ -40,7 +38,7 @@ feature 'Home Page' do
 
 
     scenario "must have a functional profile link" do
-      click_link "profile"
+      click_link "Profile"
       expect(page).to have_content(@user.first_name)
     end
 

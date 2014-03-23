@@ -10,7 +10,7 @@ feature 'Image Creation' do
       @chapter = @tutorial.chapters.create(title: "blah", number: 1, tutorial_id: @tutorial.id)
       @sub_chapter = @chapter.sub_chapters.create(title: "subbie", chapter_id: @chapter.id)
       visit "/"    
-      click_link "log in"
+      find(:xpath, "//a[@href='/users/sign_in']").click
 
       fill_in 'user[email]', with: @user.email
       fill_in 'user[password]', with: "password"

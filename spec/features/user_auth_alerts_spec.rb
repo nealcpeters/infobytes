@@ -4,10 +4,8 @@ feature 'User Auth Alerts' do
   context "for a new user upon sign up" do
     scenario "must give confirmation alert" do
       visit "/"    
-      click_link "sign up"
-
-      fill_in 'user[first_name]', with: "Han"
-      fill_in 'user[last_name]', with: "Solo"
+      all(:xpath, "//a[@href='/users/sign_up']").first.click
+          
       fill_in 'user[user_name]', with: "rebel_scum_test"
       fill_in 'user[email]', with: "han@aliance_rocks.com"
       fill_in 'user[password]', with: "password"
@@ -23,7 +21,7 @@ feature 'User Auth Alerts' do
       user = User.create(first_name: "Han", last_name: "Solo", user_name: "rebel_scum1", email: "1han@aliance.com", password: "password", password_confirmation: "password")
 
       visit "/"    
-      click_link "log in"
+      find(:xpath, "//a[@href='/users/sign_in']").click
 
       fill_in 'user[email]', with: "1han@aliance.com"
       fill_in 'user[password]', with: "password"
@@ -38,12 +36,12 @@ feature 'User Auth Alerts' do
       user = User.create(first_name: "Leia", last_name: "Solo", user_name: "rebel_princess", email: "leia@aliance.com", password: "password", password_confirmation: "password")
 
       visit "/"    
-      click_link "log in"
+      find(:xpath, "//a[@href='/users/sign_in']").click
 
       fill_in 'user[email]', with: "leia@aliance.com"
       fill_in 'user[password]', with: "password"
       click_button "Sign in"
-      click_link "logout"
+      find(:xpath, "//a[@href='/users/sign_out']").click
 
       expect(page).to have_content("Signed out successfully.")
     end

@@ -19,7 +19,7 @@
   </div>
 
 	<% if tutorial_creator? %>
-    <%= link_to "Add Chapter <i class='fa fa-plus-square fa-2x'></i>".html_safe, new_tutorial_chapter_path(@tutorial), id: "add-chapter", data: {"reveal-id" => "popup-chapter"}%>
+    <%= link_to "Add Chapter <i class='fa fa-plus-square fa-2x'></i>".html_safe, new_tutorial_chapter_path(@tutorial), id: "add-chapter", data: {"reveal-id" => "modal-popup"}%>
     <div id="chapter-form" style="display: none;"></div>
 	<% end %>
  
@@ -33,7 +33,7 @@
 
 <script>
   $(document).foundation();
-
+  
   /************************************************************************
   * Pull in full sub chapter for reading the contents if user not creator
   *************************************************************************/
@@ -43,8 +43,8 @@
     var url = $(this).attr("href");
 
     $.get(url, function(serverResponse, status, request){
-      $("#popup-sub-chapter-full").html(serverResponse);
-      $("#popup-sub-chapter-full").append("<a class='close-reveal-modal'>&#215;</a>")
+      $("#modal-popup").html(serverResponse);
+      $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>")
     });
   });
 

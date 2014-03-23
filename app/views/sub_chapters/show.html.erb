@@ -12,16 +12,11 @@
     
     <% if sub_chapter_owner?(@sub_chapter) %>
       <div class="media-options">
-        <div id="add-text"><%= link_to "#{fa_icon('font', class: "fa-2x")}<br>text".html_safe, new_sub_chapter_paragraph_path(@sub_chapter), data: {"reveal-id" => "textPopup"} %></div>
-        <div id="add-code"><%= link_to "#{fa_icon('code', class: "fa-2x")}<br>code".html_safe,new_sub_chapter_code_snippet_path(@sub_chapter), data: {"reveal-id" => "codePopup"} %></div>
-        <div id="add-image"><%= link_to "#{fa_icon('camera', class: "fa-2x")}<br>image".html_safe, new_sub_chapter_image_path(@sub_chapter), data: {"reveal-id" => "imagePopup"} %></div>
+        <div id="add-text"><%= link_to "#{fa_icon('font', class: "fa-2x")}<br>text".html_safe, new_sub_chapter_paragraph_path(@sub_chapter), data: {"reveal-id" => "modal-popup"} %></div>
+        <div id="add-code"><%= link_to "#{fa_icon('code', class: "fa-2x")}<br>code".html_safe,new_sub_chapter_code_snippet_path(@sub_chapter), data: {"reveal-id" => "modal-popup"} %></div>
+        <div id="add-image"><%= link_to "#{fa_icon('camera', class: "fa-2x")}<br>image".html_safe, new_sub_chapter_image_path(@sub_chapter), data: {"reveal-id" => "modal-popup"} %></div>
       </div>
 
-      <div id="media-containers">
-        <div id="textPopup" class="reveal-modal" data-reveal></div>
-        <div id="codePopup" class="reveal-modal" data-reveal></div>
-        <div id="imagePopup" class="reveal-modal" data-reveal></div>
-      </div>
     <% end %>
 
   </div>
@@ -30,6 +25,17 @@
 
 <script>
   $(document).foundation();
+  /*************************************************
+  * testing stuff
+  **************************************************/
+
+  $('.content-item').on("dblclick", function(e){
+    var currentDiv = e.currentTarget;
+    console.log(currentDiv)
+    console.log(currentDiv.firstChild())
+
+  })
+
   /* ***************************************
   *  Get requests for media
   ** ***************************************/
@@ -38,7 +44,7 @@
     
     var url = $(this).attr("href");
     $.get(url, function(serverResponse, status, request){
-      $("#textPopup").html(serverResponse)
+      $("#modal-popup").html(serverResponse)
     });
   });
 
@@ -47,7 +53,7 @@
     
     var url = $(this).attr("href");
     $.get(url, function(serverResponse, status, request){
-      $("#codePopup").html(serverResponse)
+      $("#modal-popup").html(serverResponse)
     });
   });
 
@@ -56,7 +62,7 @@
     
     var url = $(this).attr("href");
     $.get(url, function(serverResponse, status, request){
-      $("#imagePopup").html(serverResponse)
+      $("#modal-popup").html(serverResponse)
     });
   });
 
@@ -74,7 +80,7 @@
     $("#content-body").append("<div class='edit-links'><div><a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
     $("#content-body").append("<script>var editor = ace.edit('editor-" + snippet.id + "');var language = document.getElementById('editor_language-" + snippet.id + "').value;editor.setTheme('ace/theme/textmate');editor.session.setMode('ace/mode/" + snippet.language + "');editor.getSession().setUseWrapMode(true);editor.setReadOnly(true);  editor.setOptions({maxLines: 40 });<\/script>"); }
 
-  $("#textPopup").on("submit", "#new_paragraph", function(e){
+  $("#modal-popup").on("submit", "#new_paragraph", function(e){
     e.preventDefault();
 
     var data = $(this).serialize();
@@ -83,11 +89,11 @@
     $.post(url, data, function(serverResponse, status, request){
       appendParagraph(serverResponse)
 
-      $("#textPopup").foundation("reveal", "close");
+      $("#modal-popup").foundation("reveal", "close");
     }, "json");
   });
   
-  $("#codePopup").on("submit", "#new_code_snippet", function(e){
+  $("#modal-popup").on("submit", "#new_code_snippet", function(e){
     e.preventDefault();
 
     var data = $(this).serialize();
@@ -96,7 +102,7 @@
     $.post(url, data, function(serverResponse, status, request){
       appendSnippet(serverResponse)
 
-      $("#codePopup").foundation("reveal", "close");
+      $("#modal-popup").foundation("reveal", "close");
     }, "json");
   });
 

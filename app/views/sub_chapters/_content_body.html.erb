@@ -22,8 +22,9 @@
         editor.getSession().setUseWrapMode(true);
         editor.setReadOnly(true)
         editor.setOptions({
-          maxLines: 30
-          });
+          maxLines: 25,
+          minLines: 4.75,
+        });
       </script>
 
       <% if sub_chapter_owner?(@sub_chapter) %>

@@ -12,7 +12,7 @@
   <h2 class="tut-index">Table of Contents:</h2>
   <div class="row">
     <div id="chapter-list" class="small-10 small-offset-1">
-  		<% @tutorial.chapters.each do |chapter| %>
+  		<% @chapters.each do |chapter| %>
       	<div class="chapter" id="chapter-<%= chapter.id %>">
        
           <div class="chapter-icons">
@@ -409,8 +409,6 @@
         removePopup();
       })
     }
-    
-
     
   </script>
 <% end %>

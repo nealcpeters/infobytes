@@ -46,7 +46,7 @@ feature 'Tutorial Creation' do
       expect(page).to have_content("Your new tutorial has been created!")
     end
 
-    scenario "clicking on the add chapter bring add chapter form up" do
+    xscenario "clicking on the add chapter bring add chapter form up" do
       click_link "Add Chapter"
       expect(page).to have_content("Title")      
     end

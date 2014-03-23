@@ -5,6 +5,7 @@ class TutorialsController < ApplicationController
   def show
     @tutorial = Tutorial.find(params[:id])
     @chapter = Chapter.new
+    @chapters = @tutorial.chapters.order(:number)
   end
 
   def new
@@ -64,6 +65,12 @@ class TutorialsController < ApplicationController
         send_data pdf.render, filename: "#{@tutorial.title}.pdf", type: "application/pdf"
       end
     end
+  end
+
+  def html_view
+    @tutorial = Tutorial.find(params[:id])
+    @author = @tutorial.user
+    @chapters = @tutorial.chapters
   end
 
   protected

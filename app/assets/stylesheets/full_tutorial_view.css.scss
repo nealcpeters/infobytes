@@ -1,0 +1,49 @@
+.one-page-view {
+	h1 {
+	}
+
+	.table-of-contents {
+    .toc {
+    	font-size: 1.6em;
+    }
+    h2 {
+    	font-size: 1.4em;
+    }
+
+    h3 {
+    	font-size: 1.4em;
+    }
+
+    h4 {
+    	font-size: 1em;
+    }
+	}
+
+	.tutorial-body {
+	  .section-title {
+
+	  }
+
+	  .sub-section-title {
+	  	font-size: 1em;
+	  	font-weight: bolder;
+	  }
+    
+    .paragraph {
+    	div {
+    		margin: 0.3em auto;
+    	}
+    }
+
+    .image {
+    	img {
+    		margin: 1em auto;
+    		display: block;
+    	}
+    }
+
+    .code-snippet {
+        margin: 1em auto;
+    }
+  }
+}

@@ -11,7 +11,7 @@ class SubChaptersController < ApplicationController
 
   def create
     @chapter = Chapter.find(params[:chapter_id])
-    @sub_chapter = @chapter.sub_chapters.new(sub_chapter_params)
+    @sub_chapter = @chapter.sub_chapters.new(sub_chapter_params.merge(number: (@chapter.sub_chapters.count + 1)))
 
     if @sub_chapter.save
 

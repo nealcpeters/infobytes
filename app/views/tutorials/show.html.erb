@@ -1,7 +1,12 @@
 <div class="row">
-	<h1><%= @tutorial.title %></h1>
-	<p>Description: <%= @tutorial.description %></p>
-  
+  <div class="tutorial-header">
+  	<h1><%= @tutorial.title %></h1>
+  	<p>Description: <%= @tutorial.description %></p>
+    <% if tutorial_creator? %>
+      <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "popup-chapter"} %> <br>
+    <% end %>
+    <%= link_to "Download as PDF", pdf_view_tutorial_path(@tutorial, "pdf") %>
+  </div>  
   <h2 class="tut-index">Index:</h2>
   <div class="row">
     <div id="chapter-list" class="small-10 small-offset-1">
@@ -233,7 +238,31 @@
       }     
     })
 
+    /********************************
+    * Editing Tutorial Link
+    *********************************/
+    
+    $("#edit-tutorial-header").on("click", function(e){
+      e.preventDefault();
+      
+      var url = $(this).attr("href");
 
+      $.get(url, function(serverResponse, status, request){
+        $("#popup-chapter").html(serverResponse);
+        $("#popup-chapter").append("<a class='close-reveal-modal'>&#215;</a>");
+      });
+    });
+
+    $("#popup-chapter").on("submit", "#tut-form", function(e){
+      e.preventDefault();
+      consol.log("pass")
+      var url = $(this).attr("action");
+      var data = $(this).serialize();
+      // $.post(url, data, function(serverResponse, status, request){
+      //   console.log(serverResponse);
+      // }, "json");
+    });
+    
   </script>
 <% end %>
 

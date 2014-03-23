@@ -108,6 +108,10 @@ li {
   text-align: center;
 }
 
+#user-new-tutorial {
+  // background-color: #42A362;  
+}
+
 /* ******* Footer ******** */
 
 #layout {
@@ -121,28 +125,31 @@ li {
   height: 10em;
   clear: both;
   position: relative;
+  text-align: center;
   #github-footer {
     display: inline;
     text-align: right;
   }
-  #about-content {
-    align: bottom; 
+  #footer-content {
+    margin-top: 60px; 
+    margin-bottom: 0px;
+    font-size: 10px;
   }
   a {
     color: #FAFAF8;
+    font-size: 10px;
+    text-decoration: underline;
     &:hover {
       color: black;
     }
   }
-  p {
-    margin-top: 50px;
-    margin-bottom: 0px;
-  }
   #copyright {
     margin-top: 0px;
   }
+  #built {
+    font-size: 10px;
+  }
   
-
 
 
 

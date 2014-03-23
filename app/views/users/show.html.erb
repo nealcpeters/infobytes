@@ -5,7 +5,7 @@
 <div class="smaller-container">
 	<div class="row topics-deck">
 		<ul class="small-block-grid-1 medium-block-grid-2 medium-block-grid-4 topics-grid">
-			<li><%= link_to "New Tutorial", new_tutorial_path %></li>
+			<li id="user-new-tutorial"><%= link_to "New Tutorial", new_tutorial_path %></li>
 			<% @tutorials.each do |tutorial| %>
 				<li>
 					<%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %>

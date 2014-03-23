@@ -1,21 +1,7 @@
 <div class="footer-bottom">
   <div class="row">
-    <div class="medium-4 medium-4 columns">
-
-    </div> 
-    <div class="medium-4 medium-4 columns">
-    </div>  
-    <div class="medium-4 medium-4 columns">
-    	<ul id="about-content">
-    		<li>Proudly built at Dev Bootcamp</li>
-    		<li>Copyright 2014</li>
-    		<li><%= link_to "About", about_path %></li>
-    	</ul>
-    </div> 
-    <div class="medium-4 medium-4 columns">
-      <ul id="github-footer">
-        <li><%= link_to "#{fa_icon('github', class: "fa-4x")}".html_safe, "https://github.com/nealcpeters/infobytes", target: "_blank" %></li>
-      </ul>    	
+  	<p id="footer-content">Created by Alex Codreanu, Amara Getzell, Eric Stensland, Matt O'Connell, and Neal Peters</p>
+  	<p id="built">Built at Dev Bootcamp</p>
+    <%= link_to "Github Project", "https://github.com/nealcpeters/infobytes", target: "_blank" %> · <%= link_to "About", about_path %>
     </div>        
-  </div>
 </div>

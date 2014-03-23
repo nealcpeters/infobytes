@@ -10,7 +10,7 @@
   <h2 class="tut-index">Table of Contents:</h2>
   <div class="row">
     <div id="chapter-list" class="small-10 small-offset-1">
-  		<% @tutorial.chapters.each do |chapter| %>
+  		<% @chapters.each do |chapter| %>
       	<div class="chapter" id="chapter-<%= chapter.id %>">
        
           <div class="chapter-icons">
@@ -244,6 +244,7 @@
 
       $.get(url, function(serverResponse, status, request){
         $("#modal-popup").html(serverResponse);
+        appendX();
       });
     });
 
@@ -293,7 +294,6 @@
     $("#chapter-list").on('click', ".edit-sub-chapter", function(e){
       e.preventDefault()
       var url = $(this).attr('href')
-      console.log(url)
 
       $.get(url, function(serverResponse, status, request){
         $("#modal-popup").html(serverResponse);
@@ -316,7 +316,6 @@
     var updateSubChapter = function(url, data){
       var id = getId(url); 
       $.post(url, data, function(serverResponse, status, request){
-        console.log(serverResponse)
         $("#sub-chapter-" + id + " h4 a").text(serverResponse.title)
       }).done(function(){
         removePopup();
@@ -407,8 +406,6 @@
         removePopup();
       })
     }
-    
-
     
   </script>
 <% end %>

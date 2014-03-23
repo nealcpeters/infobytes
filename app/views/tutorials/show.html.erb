@@ -19,7 +19,7 @@
             <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
             <% if tutorial_creator? %>
               <div class="right-aligned-icons">
-                <%= link_to fa_icon('edit', class: "fa-2x").html_safe, edit_chapter_path(chapter), class: "edit-chapter-link", data: { "reveal-id" => "modal-popup" }%>
+                <%= link_to fa_icon('edit', class: "fa-2x").html_safe, edit_chapter_path(chapter), class: "edit-chapter", data: { "reveal-id" => "modal-popup" }%>
                 <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
               </div>
             <% end %>
@@ -63,6 +63,10 @@
     // Return id from url
     var getId = function(url){
       return url.match(/\d+/)[0]
+    }
+
+    var removePopup = function(){
+      $("#modal-popup").foundation("reveal", "close");
     }
 
 
@@ -146,7 +150,6 @@
     $('#add-chapter').on("click", function(e){
     	e.preventDefault();
       var url = $(this).attr("href");
-      console.log("new chapter")
     	$.get(url, function(serverResponse, status, request){
         $("#modal-popup").html(serverResponse);
       })
@@ -165,7 +168,7 @@
               <i class='fa fa-arrow-circle-o-down fa-2x'></i>\
             </a>\
             <div class='right-aligned-icons'>\
-              <a class='edit-chapter-link' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/edit'>\
+              <a class='edit-chapter' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/edit'>\
                 <i class='fa fa-edit fa-2x'></i>\
               </a>\
               <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'>\
@@ -199,16 +202,18 @@
     * Edit chapter
     *****************************************************************/
 
-    $("#chapter-list").on('click', ".edit-chapter-link", function(e){
+    // get for to popup on click
+    $("#chapter-list").on('click', ".edit-chapter", function(e){
       e.preventDefault()
       var url = $(this).attr('href')
-      var chpId = getId(url);
+
       $.get(url, function(serverResponse, status, request){
         $("#modal-popup").html(serverResponse);
         appendX();
       }) 
     })
 
+    // on submit proccess data
     $("body").on('submit',"#modal-popup .edit_chapter", function(e){
       e.preventDefault();
       var url = $(this).attr("action")
@@ -221,11 +226,12 @@
       };
     });
 
+    // method that updates html on page for updated Chapter
     var updateChapter = function(url, data){
       $.post(url, data, function(serverResponse, status, request){
         $('#chapter-' + serverResponse.id + " h3").text(serverResponse.title);
       }).done(function(){
-        $("#modal-popup").foundation("reveal", "close");
+        removePopup();
       })
     };
 
@@ -247,12 +253,23 @@
     * Appends subchapter to coresponding list
     *********************************************************************/
 
+    //appending subchapter method
     var appendSubchapter = function(subChapter, chapter){
-      $("#sub-chapter-list-" + chapter.id).append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h4><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h4><a class='delete-sub-chapter' href='/sub_chapters/" + subChapter.id + "'><i class='fa fa-trash-o fa-2x del-sub-chapter'></i></a> </div>");
-        $("#sub-chapter-form-" + chapter.id).slideUp(200);
-        $("#popup-sub-chapter").foundation("reveal", "close");
+      $("#sub-chapter-list-" + chapter.id).append(
+        "<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'>\
+          <h4><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h4>\
+          <a class='edit-sub-chapter' data-reveal-id='modal-popup' href='/sub_chapters/" + subChapter.id + "/edit'>\
+            <i class='fa fa-edit fa-2x sub-chapter-icon'></i>\
+          </a>\
+          <a class='delete-sub-chapter' href='/sub_chapters/" + subChapter.id + "'>\
+            <i class='fa fa-trash-o fa-2x sub-chapter-icon'></i>\
+          </a>\
+        </div>"); 
+
+      $("#popup-sub-chapter").foundation("reveal", "close");
     }
 
+    // process data and append subchapter
     $('#popup-sub-chapter').on("submit", "#new_sub_chapter", function(e){
       e.preventDefault();
       
@@ -269,6 +286,49 @@
         }, "json");
       };
     });
+
+    /**********************************************************************
+    * Edit sub chapter 
+    ***********************************************************************/
+
+
+    $("#chapter-list").on('click', ".edit-sub-chapter", function(e){
+      e.preventDefault()
+      var url = $(this).attr('href')
+      console.log(url)
+
+      $.get(url, function(serverResponse, status, request){
+        $("#modal-popup").html(serverResponse);
+        appendX();
+      }); 
+    })
+
+    $("body").on('submit',"#modal-popup .edit_sub_chapter", function(e){
+      e.preventDefault();
+      var url = $(this).attr("action")
+      var data = $(this).serialize()
+      
+      if ($('#sub_chapter_title').val() === "") {
+        invalidInput("#sub_chapter_title");
+      } else {
+        updateSubChapter(url, data);
+      };
+    });
+
+    var updateSubChapter = function(url, data){
+      var id = getId(url); 
+      $.post(url, data, function(serverResponse, status, request){
+        console.log(serverResponse)
+        $("#sub-chapter-" + id + " h4 a").text(serverResponse.title)
+      }).done(function(){
+        removePopup();
+      })
+    }
+
+
+
+
+
 
     //********************************
     // Deleting chapters 

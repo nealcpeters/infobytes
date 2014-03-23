@@ -15,7 +15,7 @@
 </div>
 
 <% if chapter_creator? %>
-  <%= link_to "<i class='fa fa-plus-square fa-2x'></i>".html_safe, new_chapter_sub_chapter_path(@chapter), class: "add-sub-chapter", data: {"reveal-id" => "popup-sub-chapter"} %>
+  <%= link_to "Add Sub-section #{fa_icon('plus-square', class: 'fa-2x', id: 'fa-plus-square')}".html_safe, new_chapter_sub_chapter_path(@chapter), class: "add-sub-chapter", data: {"reveal-id" => "popup-sub-chapter"} %>
   <div id="sub-chapter-form-<%= @chapter.id %>" style="display: none;"></div>
 <% end %>
 

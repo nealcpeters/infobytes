@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ace/ace
+//= require ace
 //= require foundation
 //= require turbolinks
 //= require_tree .

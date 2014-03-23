@@ -7,7 +7,7 @@ feature 'Chapter Creation' do
       @tutorial = @user.tutorials.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", rating: 3, subtopic_id: 2)
 
       visit "/"    
-      click_link "log in"
+      find(:xpath, "//a[@href='/users/sign_in']").click
 
       fill_in 'user[email]', with: "tutorial_tester@aliance.com"
       fill_in 'user[password]', with: "password"

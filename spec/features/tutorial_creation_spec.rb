@@ -6,7 +6,7 @@ feature 'Tutorial Creation' do
     
 
     visit "/"    
-    click_link "log in"
+    find(:xpath, "//a[@href='/users/sign_in']").click
 
     fill_in 'user[email]', with: "tutorial_tester@aliance.com"
     fill_in 'user[password]', with: "password"
@@ -16,7 +16,7 @@ feature 'Tutorial Creation' do
 
   context "for a non-logged in user accessing the route" do
     scenario "must be given confirmation alert" do
-      click_link "logout"
+      find(:xpath, "//a[@href='/users/sign_out']").click
       visit "/tutorials/new"
       expect(page).to have_content("You need to sign in or sign up before continuing.")
     end

@@ -1,6 +1,5 @@
 body {
   background-color: #FAFAF8;
-  // font-family: 'Noticia Text', serif;
 }
 
 a {
@@ -82,8 +81,7 @@ li {
   list-style-type: none;
   height: 5em;
 
-  li {
-    // background-color: pink;
+  li { 
     padding-top:10px;
   }
 
@@ -104,6 +102,10 @@ li {
     color: #a2a2a2;
     font-size: 13px;
   }
+}
+
+.user-profile {
+  text-align: center;
 }
 
 /* ******* Footer ******** */

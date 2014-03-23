@@ -28,7 +28,9 @@
 <a class="close-reveal-modal">&#215;</a>
 
 <script>
-  resetVisibility = function() {
+  // These toggle the visibility of the adding A tag buttons and input
+  // (These are necessary for non-JQuery, with JQuery a partial could be brought in)
+  hideInputs = function() {
     display.style.display = 'inline-block'
     adder.style.display = 'none'
     link.parentNode.style.display = 'none'
@@ -41,8 +43,11 @@
     link.parentNode.style.display = 'inline-block'
   }
 
+  // Adds an anchor tag inside the html code (so it is rendered as 
+  // linked text in the editable div)
   addAnchorTag = function() {
-    if (containerNodeCheck(window.getSelection().getRangeAt(0).startContainer, "editable-div")) {
+    var selectedNode = containerNodeCheck(window.getSelection().getRangeAt(0).startContainer
+    if (selectedNode, editableDiv)) {
       var range = window.getSelection().getRangeAt(0);
       if (range.toString() !== ""){
         var selectionContents = range.extractContents();
@@ -51,27 +56,36 @@
         aTag.appendChild(selectionContents)
         range.insertNode(aTag);
       }
-      resetVisibility()
+      hideInputs()
     }
   }
 
-  containerNodeCheck = function(node, containerId) {
+  // Checks if selected text is inside of a container
+  containerNodeCheck = function(node, container) {
     while (node) {
-        if (node.id === containerId) {
-            return true;
-        }
-        node = node.parentNode;
+      if (node.id === container) {
+        return true;
+      }
+      node = node.parentNode;
     }
     return false;
   }
 
+  // Transfers the contents of the div to the hidden input upon hitting submit so that
+  // the form will pass the editable div content as a param
   grabInput = function() {
      document.getElementById('paragraph_body').value = editableDiv.innerHTML
    }
   
+  // Stores needed elements inside varaibles:
   var display = document.getElementById('href-display')
   var adder = document.getElementById('href-adder')
   var link = document.getElementById('link')
   var editableDiv = document.getElementById('editable-div')
-  resetVisibility()
+  
+  // Sets href input and insert button to hidden at the start
+  hideInputs()
 </script>
+
+<!-- For JQuery, bind the button Add Link on mousedown (on click removes the selection)
+and popup the form with AJAX-->

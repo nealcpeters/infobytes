@@ -16,6 +16,7 @@ InfoBytes::Application.routes.draw do
   resources :tutorials do
     member do
       get :pdf_view
+      get :html_view
     end
 
     resources :chapters, shallow: true do 

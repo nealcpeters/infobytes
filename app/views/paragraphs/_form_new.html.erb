@@ -51,7 +51,7 @@
 
   // Adds an anchor tag inside the html code (so it is rendered as 
   // linked text in the editable div)
-  // If there is a span, it finds it, fills it with the anchor tag, then
+  // If there is a span (created by below storePlaceHolder) it finds it, fills it with the anchor tag, then
   // deletes the span.
   addAnchorTag = function() {
     if (document.getElementsByClassName("storageHTMLForAnchorTag").length > 0){
@@ -69,8 +69,8 @@
       } 
     }
     else{
-     editableDiv.innerHTML += ("<a href='" + link.value + "'>" + linkText.value +"</a>")
-     // document.execCommand("InsertHTML", false, "<a href='" + link.value + "'>" + linkText.value +"</a>")
+      // If user cursor was not previously in the editable div, it simply appends at the end
+      editableDiv.innerHTML += ("<a href='" + link.value + "'>" + linkText.value +"</a>")
     }
     hideInputs()
   }
@@ -91,7 +91,12 @@
   grabInput = function() {
      document.getElementById('paragraph_body').value = editableDiv.innerHTML
    }
-  
+
+  // Creates a span to keep track of where the cursor was:
+  storePlaceHolder = function() {
+    document.execCommand("InsertHTML", false, "<span class='storageHTMLForAnchorTag'></span>")
+  }
+
   // Stores needed elements inside varaibles:
   var display = document.getElementById('href-display')
   var adder = document.getElementById('href-adder')
@@ -100,11 +105,6 @@
   var editableDiv = document.getElementById('editable-div')
   // Sets href input and insert button to hidden at the start
   hideInputs()
-
-  // Creates a span to keep track of where the cursor was:
-  storePlaceHolder = function() {
-    document.execCommand("InsertHTML", false, "<span class='storageHTMLForAnchorTag'></span>")
-  }
 </script>
 
 <!-- For JQuery, bind the button Add Link on mousedown (on click removes the selection)

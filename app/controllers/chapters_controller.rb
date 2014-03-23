@@ -52,6 +52,7 @@ class ChaptersController < ApplicationController
 
 	def show
     @chapter = Chapter.find(params[:id])
+    @sub_chapters = @chapter.sub_chapters.order(:number)
     render partial: "chapters/sub_chapters" if request.xhr?
 	end
 

@@ -30,7 +30,7 @@ class CodeSnippetsController < ApplicationController
     @code_snippet = CodeSnippet.new(code_snippit_params)
 
     if @code_snippet.save
-      @code_snippet.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
+      Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1), attachable_id: @code_snippet.id, attachable_type: "CodeSnippet")
 
       if request.xhr?
         render json: @code_snippet

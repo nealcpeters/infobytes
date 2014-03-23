@@ -1,6 +1,6 @@
 class TutorialPdf < Prawn::Document
   require "open-uri"
-
+   
   def initialize(tutorial)
     super()
     chapters = tutorial.chapters
@@ -48,7 +48,7 @@ class TutorialPdf < Prawn::Document
 
           case content.attachable_type
           when "Paragraph"
-            text attachment.body
+            font_size(30) {text "Paragraph"}
             move_down(8)
           when "CodeSnippet"
             font_size(30) {text "Snippet"}

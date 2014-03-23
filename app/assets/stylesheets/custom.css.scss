@@ -22,7 +22,8 @@ li {
   	text-align: center;
   	line-height: 60px;
     height: 60px;
-    color: #70E270;
+    color: #42A362;
+    font-size: 1em;
   }
 }
 
@@ -107,10 +108,17 @@ li {
 
 /* ******* Footer ******** */
 
+#layout {
+  clear: both;
+  min-height: 100%;
+}
+
 .footer-bottom {
   background-color: #575757;
   color: #FAFAF8;
   height: 10em;
+  clear: both;
+  position: relative;
   ul {
     display: inline;
   }

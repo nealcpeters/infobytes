@@ -2,17 +2,20 @@
 	<h1><%= @tutorial.title %></h1>
 	<p>Description: <%= @tutorial.description %></p>
   
-  <div id="chapter-list">
-		<% @tutorial.chapters.each do |chapter| %>
-    	<div class="chapter" id="chapter-<%= chapter.id %>">
-        <h2><%= chapter.title %></h2>
-        <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
-        <% if tutorial_creator? %>
-          <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
-        <% end %>
-      <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
-      </div>
-		<% end %>
+  <h2 class="tut-index">Index:</h2>
+  <div class="row">
+    <div id="chapter-list" class="small-10 small-offset-1">
+  		<% @tutorial.chapters.each do |chapter| %>
+      	<div class="chapter" id="chapter-<%= chapter.id %>">
+          <h3><%= chapter.title %></h3>
+          <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
+          <% if tutorial_creator? %>
+            <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
+          <% end %>
+        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
+        </div>
+  		<% end %>
+    </div>
   </div>
 
 	<% if tutorial_creator? %>
@@ -24,9 +27,24 @@
 
 <div id="popup-chapter" class="reveal-modal" data-reveal></div>
 <div id="popup-sub-chapter" class="reveal-modal" data-reveal></div>
+<div id="popup-sub-chapter-full" class="reveal-modal" data-reveal></div>
 
 <script>
+  $(document).foundation();
 
+  // Pull in full sub chapter
+
+  $("#chapter-list").on("click", ".sub-chapter-link", function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+
+    $.get(url, function(serverResponse, status, request){
+      $("#popup-sub-chapter-full").html(serverResponse);
+      $("#popup-sub-chapter-full").append("<a class='close-reveal-modal'>&#215;</a>")
+    });
+  });
+
+  // *********************************
   var switchArrow = function(link){
     var icon = $(link).children()[0]
     if ($(icon).attr("class").match("down") !== null) {
@@ -44,6 +62,7 @@
   $("#chapter-list").on("click", ".sub-cpt-list",  function(e){
     e.preventDefault();
     var link = this;
+
     if ($(this).attr('class').match("add-list") !== null){
       bring_list(link);
     } else {
@@ -82,16 +101,20 @@
     	e.preventDefault();
       var url = $(this).attr("href");
       
+      // $("#popup-chapter").foundation('reveal', 'open', url);
+      
     	$.get(url, function(serverResponse, status, request){
         $("#popup-chapter").html(serverResponse);
-    	});
+      }).done(function(){
+        $(document).foundation('reflow');
+      });
     });
     
 
     // Append new chapter to the list
 
     var appendChapter = function(chapter){
-      $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h2>" + chapter.title + "</h2> <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='del-chapter fa fa-trash-o fa-2x'></i></a> <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div></div>");
+      $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h3>" + chapter.title + "</h3> <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='del-chapter fa fa-trash-o fa-2x'></i></a> <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div></div>");
        $("#popup-chapter").foundation("reveal", "close");
     }
 
@@ -127,7 +150,7 @@
     // Appends subchapter to list
 
     var appendSubchapter = function(subChapter, chapter){
-      $("#sub-chapter-list-" + chapter.id).append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h2><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h2> <a class='delete-sub-chapter' href='/sub_chapters/" + subChapter.id + "'><i class='fa fa-trash-o fa-2x del-sub-chapter'></i></a> </div>");
+      $("#sub-chapter-list-" + chapter.id).append("<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'><h4><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h4><a class='delete-sub-chapter' href='/sub_chapters/" + subChapter.id + "'><i class='fa fa-trash-o fa-2x del-sub-chapter'></i></a> </div>");
         $("#sub-chapter-form-" + chapter.id).slideUp(200);
         $("#popup-sub-chapter").foundation("reveal", "close");
     }

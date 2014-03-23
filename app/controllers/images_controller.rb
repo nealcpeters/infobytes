@@ -32,7 +32,7 @@ class ImagesController < ApplicationController
       @image = Image.new(image_params)
 
       if @image.save
-        @image.content = Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1))
+        Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1), attachable_id: @image.id, attachable_type: "Image")
 
         if request.xhr?
           render json: @image

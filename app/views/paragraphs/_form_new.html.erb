@@ -6,13 +6,12 @@
       <% end %>
     <% end %>
     <a id="href-display" class="href-buttons button tiny" onmousedown="showInputs()">Add Link</a>
-    <!-- <button </button> -->
-    <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
-    <%= form_for [@sub_chapter,@paragraph] do |f|%>
       <div id="fields">
         <label for="link" class="href-button-inputs">Link:<input type="text" id="link" value="http://"></label>
         <label for="link" class="href-button-inputs">Link Text:<input type="text" id="alt" ></label>
-      </div>
+      </div>    <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
+    <%= form_for [@sub_chapter,@paragraph] do |f|%>
+
       <div><%= f.label :body %><br>
       <%= f.text_area :body, rows: 20, autofocus: true %></div>
 

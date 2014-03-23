@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140320224701) do
     t.datetime "updated_at"
   end
 
+  add_index "contents", ["sub_chapter_id"], name: "index_contents_on_sub_chapter_id", using: :btree
+
   create_table "images", force: true do |t|
     t.string   "image_path_file_name"
     t.string   "image_path_content_type"
@@ -62,6 +64,8 @@ ActiveRecord::Schema.define(version: 20140320224701) do
     t.datetime "updated_at"
   end
 
+  add_index "sub_chapters", ["chapter_id"], name: "index_sub_chapters_on_chapter_id", using: :btree
+
   create_table "subtopics", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -69,6 +73,8 @@ ActiveRecord::Schema.define(version: 20140320224701) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "subtopics", ["topic_id"], name: "index_subtopics_on_topic_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.string   "title"
@@ -85,6 +91,9 @@ ActiveRecord::Schema.define(version: 20140320224701) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tutorials", ["subtopic_id"], name: "index_tutorials_on_subtopic_id", using: :btree
+  add_index "tutorials", ["user_id"], name: "index_tutorials_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",             default: "", null: false

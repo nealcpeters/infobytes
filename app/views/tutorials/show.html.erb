@@ -3,7 +3,7 @@
   	<h1><%= @tutorial.title %></h1>
   	<p>Description: <%= @tutorial.description %></p>
     <% if tutorial_creator? %>
-      <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "popup-chapter"} %> <br>
+      <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "modal-popup"} %> <br>
     <% end %>
     <%= link_to "Download as PDF", pdf_view_tutorial_path(@tutorial, "pdf") %>
   </div>  
@@ -12,19 +12,27 @@
     <div id="chapter-list" class="small-10 small-offset-1">
   		<% @tutorial.chapters.each do |chapter| %>
       	<div class="chapter" id="chapter-<%= chapter.id %>">
-          <h3><%= chapter.title %></h3>
-          <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
-          <% if tutorial_creator? %>
-            <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
-          <% end %>
-        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
+       
+          <div class="chapter-icons">
+            <h3 class="chapter-title"><%= chapter.title %></h3>
+
+            <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
+            <% if tutorial_creator? %>
+              <div class="right-aligned-icons">
+                <%= link_to fa_icon('edit', class: "fa-2x").html_safe, "#" %>
+                <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
+              </div>
+            <% end %>
+          </div>
+
+          <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
         </div>
   		<% end %>
     </div>
   </div>
 
 	<% if tutorial_creator? %>
-    <%= link_to "Add Chapter <i class='fa fa-plus-square fa-2x'></i>".html_safe, new_tutorial_chapter_path(@tutorial), id: "add-chapter", data: {"reveal-id" => "popup-chapter"}%>
+    <%= link_to "Add Section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>".html_safe, new_tutorial_chapter_path(@tutorial), id: "add-chapter", data: {"reveal-id" => "modal-popup"}%>
     <div id="chapter-form" style="display: none;"></div>
 	<% end %>
  
@@ -38,7 +46,7 @@
 
 <script>
   $(document).foundation();
-
+  
   /************************************************************************
   * Pull in full sub chapter for reading the contents if user not creator
   *************************************************************************/
@@ -48,8 +56,8 @@
     var url = $(this).attr("href");
 
     $.get(url, function(serverResponse, status, request){
-      $("#popup-sub-chapter-full").html(serverResponse);
-      $("#popup-sub-chapter-full").append("<a class='close-reveal-modal'>&#215;</a>")
+      $("#modal-popup").html(serverResponse);
+      $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>")
     });
   });
 
@@ -111,6 +119,16 @@
   <script>
 
     /*******************************************************************
+    * Helper methods
+    ********************************************************************/
+
+    // Makes border of element red
+
+    var invalidInput = function(field){
+      $(field).css("border-color", "red")
+    }
+
+    /*******************************************************************
     * Pulls in the form to create a chapter 
     ********************************************************************/
 
@@ -119,7 +137,7 @@
       var url = $(this).attr("href");
             
     	$.get(url, function(serverResponse, status, request){
-        $("#popup-chapter").html(serverResponse);
+        $("#modal-popup").html(serverResponse);
       })
     });
     
@@ -130,7 +148,7 @@
     var appendChapter = function(chapter){
       $("#chapter-list").append("<div class='chapter' id='chapter-" + chapter.id + "'><h3>" + chapter.title + "</h3> <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'><i class='fa fa-arrow-circle-o-down fa-2x'></i></a> <a class='delete-chapter' href='/chapters/" + chapter.id + "' rel='nofollow'><i class='del-chapter fa fa-trash-o fa-2x'></i></a> <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div></div>");
        $("#popup-chapter").foundation("reveal", "close");
-    }
+    };
 
   	$('#popup-chapter').on("submit", "#new_chapter", function(e){
       e.preventDefault();
@@ -139,11 +157,11 @@
       var url = $(this).attr("action");
 
       if ($('#chapter_title').val() === "") {
-        $("#chapter_title").css("border-color", "red")
+        invalidInput("#chapter_title")
       } else {
         $.post(url, data, function(serverResponse, status, request){
           var chapter = serverResponse; 
-          appendChapter(chapter)
+          appendChapter(chapter);
         }, "json");
       };
   	});
@@ -155,7 +173,7 @@
     $("#chapter-list").on("click", '.add-sub-chapter', function(e){
       e.preventDefault();
       var url = $(this).attr("href");
-      var id = url.match(/\d+/)[0]
+      var id = url.match(/\d+/)[0];
 
       $.get(url, function(serverResponse, status, request){
         $("#popup-sub-chapter").html(serverResponse);
@@ -172,7 +190,6 @@
         $("#popup-sub-chapter").foundation("reveal", "close");
     }
 
-
     $('#popup-sub-chapter').on("submit", "#new_sub_chapter", function(e){
       e.preventDefault();
       
@@ -180,7 +197,7 @@
       var url = $(this).attr("action");
 
       if ($('#sub_chapter_title').val() === "") {
-        $("#sub_chapter_title").css("border-color", "red")
+        invalidInput("#sub_chapter_title")
       } else {
         $.post(url, data, function(serverResponse, status, request){
           var subChapter = serverResponse.sub_chapter;
@@ -224,8 +241,6 @@
       if (result){
         var subChpUrl = $(this).attr("href")
         var id = subChpUrl.match(/\d+/)[0]
-        console.log(subChpUrl)
-        console.log(id)
 
         $.ajax({
           url: subChpUrl,
@@ -248,20 +263,33 @@
       var url = $(this).attr("href");
 
       $.get(url, function(serverResponse, status, request){
-        $("#popup-chapter").html(serverResponse);
-        $("#popup-chapter").append("<a class='close-reveal-modal'>&#215;</a>");
+        $("#modal-popup").html(serverResponse);
+        $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>");
       });
     });
 
-    $("#popup-chapter").on("submit", "#tut-form", function(e){
+    $("body").on("submit", "#modal-popup .tut-form", function(e){
       e.preventDefault();
-      consol.log("pass")
       var url = $(this).attr("action");
       var data = $(this).serialize();
-      // $.post(url, data, function(serverResponse, status, request){
-      //   console.log(serverResponse);
-      // }, "json");
+
+      if ($('#tutorial_title').val() === ""){        
+        invalidInput("#tutorial_title")
+      }else if ($('#tutorial_description').val() === ""){
+        invalidInput("#tutorial_description")
+      }else{
+        updateTutorial(url, data)
+      }
     });
+
+    var updateTutorial = function(url, data){
+      $.post(url, data, function(serverResponse, status, request){
+        $(".tutorial-header h1").text(serverResponse.title);
+        $(".tutorial-header p").text("Description: " + serverResponse.description)
+      }, "json").done(function(){
+        $("#modal-popup").foundation("reveal", "close");
+      })
+    }
     
   </script>
 <% end %>

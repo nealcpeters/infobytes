@@ -61,7 +61,7 @@ class TutorialsController < ApplicationController
       format.html
       format.pdf do
         pdf = TutorialPdf.new(@tutorial)
-        send_data pdf.render, filename: "pdf.pdf", type: "application/pdf"
+        send_data pdf.render, filename: "#{@tutorial.title}.pdf", type: "application/pdf"
       end
     end
   end

@@ -23,10 +23,9 @@ InfoBytes::Application.routes.draw do
     end
   end
 
-
+  match "/users/ajax/sign_in", to: "users#sign_in", via: :get
+  match "/users/ajax/sign_up", to: "users#sign_up", via: :get
   match "/up/:content_id/up", to: "contents#up", via: :get, as: "content_up"
   match "/down/:content_id/down", to: "contents#down", via: :get, as: "content_down"
-
-
   
 end

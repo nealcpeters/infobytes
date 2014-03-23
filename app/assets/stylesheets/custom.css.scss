@@ -121,8 +121,12 @@ li {
   height: 10em;
   clear: both;
   position: relative;
-  ul {
+  #github-footer {
     display: inline;
+    text-align: right;
+  }
+  #about-content {
+    align: bottom; 
   }
   a {
     color: #FAFAF8;
@@ -130,6 +134,18 @@ li {
       color: black;
     }
   }
+  p {
+    margin-top: 50px;
+    margin-bottom: 0px;
+  }
+  #copyright {
+    margin-top: 0px;
+  }
+  
+
+
+
+
 }
 
 

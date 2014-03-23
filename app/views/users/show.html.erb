@@ -1,10 +1,10 @@
 <h1 class="user-profile">Hi, <%= "#{@user.first_name}" %>! </h1>
 
-<h3>Manage your tutorials:</h3>
+<h2 class="user-profile">Manage your tutorials:</h2>
 
 <div class="smaller-container">
 	<div class="row topics-deck">
-		<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 topics-grid">
+		<ul class="small-block-grid-1 medium-block-grid-2 medium-block-grid-4 topics-grid">
 			<li><%= link_to "New Tutorial", new_tutorial_path %></li>
 			<% @tutorials.each do |tutorial| %>
 				<li>

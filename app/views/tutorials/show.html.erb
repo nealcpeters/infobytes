@@ -37,9 +37,6 @@
  
 </div>
 
-<div id="popup-chapter" class="reveal-modal" data-reveal></div>
-<div id="popup-sub-chapter" class="reveal-modal" data-reveal></div>
-<div id="popup-sub-chapter-full" class="reveal-modal" data-reveal></div>
 
 
 
@@ -47,8 +44,8 @@
   $(document).foundation();
   
   /*******************************************************************
-    * Helper methods
-    ********************************************************************/
+  * Helper methods
+  ********************************************************************/
 
     // Makes border of element red
     var invalidInput = function(field){
@@ -65,6 +62,7 @@
       return url.match(/\d+/)[0]
     }
 
+    // Removes modal popup of the screen
     var removePopup = function(){
       $("#modal-popup").foundation("reveal", "close");
     }
@@ -179,7 +177,7 @@
           <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div>\
         </div>");
 
-       $("#popup-chapter").foundation("reveal", "close");
+       removePopup();
     };
 
   	$('body').on("submit", "#modal-popup #new_chapter", function(e){
@@ -245,7 +243,7 @@
       var id = getId(url);
 
       $.get(url, function(serverResponse, status, request){
-        $("#popup-sub-chapter").html(serverResponse);
+        $("#modal-popup").html(serverResponse);
       });
     });
 
@@ -266,11 +264,11 @@
           </a>\
         </div>"); 
 
-      $("#popup-sub-chapter").foundation("reveal", "close");
+      removePopup();
     }
 
     // process data and append subchapter
-    $('#popup-sub-chapter').on("submit", "#new_sub_chapter", function(e){
+    $('body').on("submit", "#modal-popup #new_sub_chapter", function(e){
       e.preventDefault();
       
       var data = $(this).serialize();
@@ -324,10 +322,6 @@
         removePopup();
       })
     }
-
-
-
-
 
 
     //********************************
@@ -387,7 +381,7 @@
 
       $.get(url, function(serverResponse, status, request){
         $("#modal-popup").html(serverResponse);
-        $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>");
+        appendX();
       });
     });
 
@@ -410,13 +404,9 @@
         $(".tutorial-header h1").text(serverResponse.title);
         $(".tutorial-header p").text("Description: " + serverResponse.description)
       }, "json").done(function(){
-        $("#modal-popup").foundation("reveal", "close");
+        removePopup();
       })
     }
-
-    
-
-    
     
 
     

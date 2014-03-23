@@ -6,7 +6,6 @@ class Image < ActiveRecord::Base
 																 }, 
 																 :default_url => "/images/:style/missing.png"
 
-  validates_attachment_content_type :image_path, :content_type => /\Aimage\/.*\Z/
-  
+  validates_attachment_content_type :image_path, :content_type => /\Aimage\/(jpg|jpeg|pjpeg|png|x-png)\Z/, :message => 'This file type is not allowed (only jpg/png images).'  
   validates :image_path, :attachment_presence => true
 end

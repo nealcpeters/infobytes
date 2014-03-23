@@ -66,6 +66,14 @@ class TutorialsController < ApplicationController
     end
   end
 
+  def html_view
+    @tutorial = Tutorial.find(params[:id])
+    @author = @tutorial.user
+    @chapters = @tutorial.chapters
+
+    send_data(render_to_string, :filename => "#{@tutorial.title}.html", :type => "text/html") if params[:download]
+  end
+
   protected
 
   def tutorial_params

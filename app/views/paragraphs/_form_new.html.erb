@@ -9,6 +9,7 @@
       <div id="fields">
         <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
         <label for="link" class="href-button-inputs">Link:<input type="text" id="link" value="http://"></label>
+        <label for="link" class="href-button-inputs">Link:<input type="text" id="link" value="http://"></label>
       </div>    
       
     <%= form_for [@sub_chapter,@paragraph] do |f|%>
@@ -46,8 +47,8 @@
   // Adds an anchor tag inside the html code (so it is rendered as 
   // linked text in the editable div)
   addAnchorTag = function() {
-    var selectedNode = containerNodeCheck(window.getSelection().getRangeAt(0).startContainer
-    if (selectedNode, editableDiv)) {
+    var selectedNode = containerNodeCheck(window.getSelection().getRangeAt(0).startContainer);
+    if (selectedNode, editableDiv) {
       var range = window.getSelection().getRangeAt(0);
       if (range.toString() !== ""){
         var selectionContents = range.extractContents();

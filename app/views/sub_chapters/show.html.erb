@@ -72,7 +72,7 @@
   var appendSnippet = function(snippet){
     $("#content-body").append("<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div><input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>").slideDown();
     $("#content-body").append("<div class='edit-links'><div><a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
-    $("#content-body").append("<script>var editor = ace.edit('editor-" + snippet.id + "');var language = document.getElementById('editor_language-" + snippet.id + "').value;editor.setTheme('ace/theme/textmate');editor.session.setMode('ace/mode/" + snippet.language + "');editor.getSession().setUseWrapMode(true);editor.setReadOnly(true);  editor.setOptions({maxLines: 30 });<\/script>"); }
+    $("#content-body").append("<script>var editor = ace.edit('editor-" + snippet.id + "');var language = document.getElementById('editor_language-" + snippet.id + "').value;editor.setTheme('ace/theme/textmate');editor.session.setMode('ace/mode/" + snippet.language + "');editor.getSession().setUseWrapMode(true);editor.setReadOnly(true);  editor.setOptions({maxLines: 40 });<\/script>"); }
 
   $("#textPopup").on("submit", "#new_paragraph", function(e){
     e.preventDefault();

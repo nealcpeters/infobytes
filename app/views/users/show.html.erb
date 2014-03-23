@@ -1,16 +1,20 @@
-<h1 class="user-profile">Hi, <%= "#{@user.first_name}" %>! </h1>
+<h1 class="user-profile">Hi, <%= "#{@user.user_name}" %>! </h1>
 
 <h2 class="user-profile">Manage your tutorials:</h2>
 
-<div class="smaller-container">
-	<div class="row topics-deck">
-		<ul class="small-block-grid-1 medium-block-grid-2 medium-block-grid-4 topics-grid">
-			<li id="user-new-tutorial"><%= link_to "New Tutorial", new_tutorial_path %></li>
-			<% @tutorials.each do |tutorial| %>
+<div>
+	<% @tutorials.each do |tutorial| %>
+		<%= link_to tutorial_path(tutorial) do %>
+			<div class="tutorial-list medium-10 medium-offset columns">
 				<li>
-					<%= link_to "#{tutorial.title}", tutorial_path(tutorial.id) %>
+					<p class="tut-title">
+						<%= tutorial.title %>
+					</p>
+					<p class="tut-description">
+						<%= tutorial.description %>
+					</p>
 				</li>
-			<% end %>
-		</ul>
-	</div>
-</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>	

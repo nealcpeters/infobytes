@@ -104,13 +104,32 @@ li {
   }
 }
 
+.button {
+  border-radius: 7px;
+  height: 10px;
+  margin-top: 10px;
+  line-height: 0;
+}
+
 .user-profile {
   text-align: center;
 }
 
-#user-new-tutorial {
-  // background-color: #42A362;  
-}
+// .button {
+//   margin: 5px;
+// text-decoration: none;
+// font: bold 1.5em 'Trebuchet MS',Arial, Helvetica;
+// display: inline-block;
+// text-align: center;
+// color: #fff;
+// border: 1px solid #9c9c9c;
+// border: 1px solid rgba(0, 0, 0, 0.3);
+// text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+// box-shadow: 0 0 .05em rgba(0,0,0,0.4);
+// -moz-box-shadow: 0 0 .05em rgba(0,0,0,0.4);
+// -webkit-box-shadow: 0 0 .05em rgba(0,0,0,0.4);
+
+// }
 
 /* ******* Footer ******** */
 

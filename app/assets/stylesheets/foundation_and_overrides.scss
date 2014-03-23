@@ -55,7 +55,7 @@ $body-font-family: "Noticia Text", "Helvetica", Helvetica, Arial, sans-serif;
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
+$primary-color: #575757;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -328,7 +328,7 @@ $body-font-family: "Noticia Text", "Helvetica", Helvetica, Arial, sans-serif;
 
 // We use these to control button text styles.
 // $button-font-family: $body-font-family;
-// $button-font-color: #fff;
+$button-font-color: white;
 // $button-font-color-alt: #333;
 // $button-font-tny: rem-calc(11);
 // $button-font-sml: rem-calc(13);
@@ -338,7 +338,7 @@ $body-font-family: "Noticia Text", "Helvetica", Helvetica, Arial, sans-serif;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
-// $button-function-factor: 5%;
+$button-function-factor: 25%;
 
 // We use these to control button border styles.
 // $button-border-width: 1px;
@@ -490,9 +490,9 @@ $body-font-family: "Noticia Text", "Helvetica", Helvetica, Arial, sans-serif;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: rem-calc(14);
 // $input-bg-color: #fff;
-// $input-focus-bg-color: scale-color(#fff, $lightness: -2%);
-// $input-border-color: scale-color(#fff, $lightness: -20%);
-// $input-focus-border-color: scale-color(#fff, $lightness: -40%);
+$input-focus-bg-color: scale-color(#42A362, $lightness: -2%);
+$input-border-color: scale-color(#42A362, $lightness: -20%);
+$input-focus-border-color: scale-color(#42A362, $lightness: -40%);
 // $input-border-style: solid;
 // $input-border-width: 1px;
 // $input-border-radius: $global-radius;
@@ -1159,7 +1159,7 @@ $topbar-link-color: #575757;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 $topbar-link-bg-hover: #575757;
-// $topbar-link-bg-active: $primary-color;
+// $topbar-link-bg-active: $;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 $topbar-link-font-family: 'Noticia Text', serif;;
 // $topbar-link-text-transform: none;

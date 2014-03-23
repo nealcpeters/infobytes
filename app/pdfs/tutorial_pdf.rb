@@ -43,16 +43,21 @@ class TutorialPdf < Prawn::Document
         move_down(10)
 
         sub_chapter.contents.each_with_index do |content, index| 
-          
+          attachment = content.attachable
           case content.attachable_type
           when "Paragraph"
-
-          when "Code_Snippet"
-
+            text attachment.body
+            move_down(8)
+          when "CodeSnippet"
+            font_size(30) {text "Snippet"}
+            move_down(8)
           when "Image"
+          	font_size(30) {text "Image"}
+            move_down(8)
           end
-
         end
+
+        move_down(10)
       end
     end
   end

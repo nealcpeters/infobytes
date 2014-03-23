@@ -24,13 +24,20 @@ class TutorialsController < ApplicationController
 
   def edit
     @tutorial = Tutorial.find(params[:id])
+    render partial: "tutorials/tutorial_form" if request.xhr?
   end
 
   def update  
     @tutorial = Tutorial.find(params[:id])
     @tutorial.update(tutorial_params)
     if @tutorial.save
-      redirect_to @tutorial
+      
+      if request.xhr?
+        render json: @tutorial
+      else
+        flash[:notice] = "Tutorial updated."
+        redirect_to @tutorial
+      end
     else
       @errors = @tutorial.errors.messages
       render "edit"

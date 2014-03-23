@@ -1,6 +1,11 @@
 .chapter {
   width: 100%;
   display: block;
+  &:hover {
+    .right-aligned-icons{
+      display: block !important;
+    }
+  }
 
   .chapter-title {
     display: inline-block;
@@ -11,8 +16,8 @@
     width: 100%;
 
     .right-aligned-icons {
-      text-align: right;
-      float: right;
+      float: left;
+      display: none;
     }  
   }
 

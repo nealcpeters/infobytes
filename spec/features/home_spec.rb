@@ -44,7 +44,7 @@ feature 'Home Page' do
 
     scenario "must have a functional create tutorial link" do
       visit "/"    
-      find(:xpath, "//a[@href='/tutorials/new']").click
+      all(:xpath, "//a[@href='/tutorials/new']").first.click
       expect(page).to have_content("Create")
     end
 

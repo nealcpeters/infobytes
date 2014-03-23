@@ -7,15 +7,18 @@
     <% end %>
     <a id="href-display" class="href-buttons button tiny" onmousedown="showInputs()">Add Link</a>
       <div id="fields">
+      <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
         <label for="link" class="href-button-inputs">Link:<input type="text" id="link" value="http://"></label>
-        <label for="link" class="href-button-inputs">Link Text:<input type="text" id="alt" ></label>
-      </div>    <a id="href-adder" class="href-buttons button tiny" onmousedown="addAnchorTag()">Insert Tag</a>
+      </div>    
+      
     <%= form_for [@sub_chapter,@paragraph] do |f|%>
 
       <div><%= f.label :body %><br>
-      <%= f.text_area :body, rows: 20, autofocus: true %></div>
+        <input type="hidden" name="paragraph[body]" value="bob" id="paragraph_body">
+      </div>
+      <div contenteditable="true" id="editable-div" class="editable"></div>
 
-      <div><%= f.submit %></div>
+      <div><%= f.submit :onclick => "grabInput()"%></div>
 
     <% end %>
 
@@ -29,36 +32,37 @@
     display.style.display = 'inline-block'
     adder.style.display = 'none'
     link.parentNode.style.display = 'none'
-    alt.parentNode.style.display = 'none'
   }
 
   showInputs = function() {
     display.style.display = 'none'
     adder.style.display = 'inline-block'
     link.parentNode.style.display = 'inline-block'
-    alt.parentNode.style.display = 'inline-block'
   }
 
   addAnchorTag = function() {
-    var aTag = "<a href=" + link.value + ">" + alt.value + "</a>"
-    if (textArea.selectionEnd || textArea.selectionStart == '0') {
-      textArea.value = textArea.value.substring(0, textArea.selectionEnd)
-        + aTag
-        + textArea.value.substring(
-          textArea.selectionEnd, textArea.value.length
-          );
-    }
-    else {
-      textArea.value += aTag
+    
+    var range = window.getSelection().getRangeAt(0);
+    if (range.toString() !== ""){
+      var selectionContents = range.extractContents();
+      var aTag = document.createElement("a");
+      aTag.href = link.value
+      aTag.appendChild(selectionContents)
+      range.insertNode(aTag);
     }
     resetVisibility()
   }
 
+  grabInput = function() {
+     document.getElementById('paragraph_body').value = editableDiv.innerHTML
+     console.log()
+   }
+  
   var display = document.getElementById('href-display')
   var adder = document.getElementById('href-adder')
   var link = document.getElementById('link')
-  var alt = document.getElementById('alt')
-  var textArea = document.getElementById('paragraph_body')
+  var editableDiv = document.getElementById('editable-div')
+  link.innerHTML = "http://"
   resetVisibility()
 </script>
 

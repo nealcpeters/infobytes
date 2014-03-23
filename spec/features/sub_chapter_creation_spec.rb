@@ -17,20 +17,20 @@ feature 'Sub chapter Creation' do
 
   context "with a logged in user" do 
 
-    scenario "must be called with create sub chapter link on chapter show" do
+    scenario "must be called with Create Subchapter link on chapter show" do
       expect(page).to have_content("Title")
     end
 
     scenario "must create a sub chapter if title is given" do
       fill_in 'sub_chapter[title]', with: "polyglot"
-      click_button "Create Sub chapter"
+      click_button "Create Subchapter"
       expect(page).to have_content("polyglot") 
     end
 
     scenario "must create a sub chapter in the database" do
       expect{
         fill_in 'sub_chapter[title]', with: "polyglot"
-        click_button "Create Sub chapter"
+        click_button "Create Subchapter"
       }.to change(SubChapter, :count).by(1) 
     end
 
@@ -41,7 +41,7 @@ feature 'Sub chapter Creation' do
   context "after created" do
     before :each do
       fill_in 'sub_chapter[title]', with: "polyglot"
-      click_button "Create Sub chapter"
+      click_button "Create Subchapter"
     end
 
     scenario "must have an add text link" do

@@ -6,6 +6,9 @@
     editor.session.setMode("ace/mode/" + language.toLowerCase());
     editor.getSession().setUseWrapMode(true);
     editor.setReadOnly(true)
-
+    editor.setOptions({
+      maxLines: 25,
+      minLines: 4.75,
+    });
   }
 </script>

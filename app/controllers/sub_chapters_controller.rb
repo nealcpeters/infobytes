@@ -38,14 +38,21 @@ class SubChaptersController < ApplicationController
   def edit 
     @sub_chapter = SubChapter.find(params[:id])
     @chapter = @sub_chapter.chapter
+    render partial: "sub_chapters/form_edit" if request.xhr?
   end
+
 
   def update
     @sub_chapter = SubChapter.find(params[:id])
     @sub_chapter.update(sub_chapter_params)
     if @sub_chapter.save
       flash[:notice] = "Subchapter updated succesfully"
-      redirect_to @sub_chapter
+      
+      if request.xhr?
+        render json: @sub_chapter
+      else    
+        redirect_to @sub_chapter
+      end
     else
       @errors = @subchapter.errors.messages
       render 'edit'

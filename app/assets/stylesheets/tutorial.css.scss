@@ -1,6 +1,11 @@
 .chapter {
   width: 100%;
   display: block;
+  &:hover {
+    .right-aligned-icons{
+      display: block !important;
+    }
+  }
 
   .chapter-title {
     display: inline-block;
@@ -11,17 +16,13 @@
     width: 100%;
 
     .right-aligned-icons {
-      text-align: right;
-      float: right;
+      float: left;
+      display: none;
     }  
   }
 
   .chapter-icons > *{
     display: inline-block;
-  }
-
-  .del-chapter {
-    color: red;
   }
 }
 
@@ -30,13 +31,7 @@
   h2 {
     display: inline-block;
   }
-  .del-sub-chapter {
-    color: red;
-  }
 }
 
-.fa-arrow-circle-o-down {
-  color: green;
-}
 
 

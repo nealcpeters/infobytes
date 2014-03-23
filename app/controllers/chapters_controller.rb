@@ -30,15 +30,20 @@ class ChaptersController < ApplicationController
 	def edit
     @chapter = Chapter.find(params[:id])
     @tutorial = @chapter.tutorial
+    render partial: "chapters/edit_form" if request.xhr?
 	end
 
 	def update
 		@chapter = Chapter.find(params[:id])
-    @chapter.update_attributes(chapter_params)
+    @chapter.update_attributes(chapter_params(@chapter.tutorial))
 
     if @chapter.save
       flash[:notice] = "Chapter Updated"
-      redirect_to @chapter
+      if request.xhr?
+        render json: @chapter 
+      else
+        redirect_to @chapter
+      end
     else
       @errors = @chapter.errors.messages
       render 'edit'

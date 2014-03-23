@@ -26,3 +26,16 @@
 .content-item {
   margin: 3em auto;
 }
+.sub-chapter {
+  &:hover {
+    .sub-chapter-icon {
+      display: block;
+    }
+  }
+  .sub-chapter-icon {
+    display: none;
+  }
+}
+.sub-chapter > * {
+  display: inline-block;  
+}

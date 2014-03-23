@@ -21,6 +21,9 @@
         editor.session.setMode("ace/mode/" + language.toLowerCase());
         editor.getSession().setUseWrapMode(true);
         editor.setReadOnly(true)
+        editor.setOptions({
+          maxLines: Infinity
+          });
       </script>
 
       <% if sub_chapter_owner?(@sub_chapter) %>

@@ -16,6 +16,10 @@
   
   editor.focus();
 
+  editor.setOptions({
+    maxLines: Infinity
+  });
+  
   updateLanguage = function() {  
     var newLanguage = document.getElementById('language').value
     editor.session.setMode("ace/mode/" + newLanguage);

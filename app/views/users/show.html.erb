@@ -1,20 +1,38 @@
-<h1 class="user-profile">Hi, <%= "#{@user.user_name}" %>! </h1>
-
-<h2 class="user-profile">Manage your tutorials:</h2>
-
-<div>
-	<% @tutorials.each do |tutorial| %>
-		<%= link_to tutorial_path(tutorial) do %>
-			<div class="tutorial-list medium-10 medium-offset columns">
-				<li>
-					<p class="tut-title">
-						<%= tutorial.title %>
-					</p>
-					<p class="tut-description">
-						<%= tutorial.description %>
-					</p>
-				</li>
-			</div>
+<% if current_user %>
+	<h1 class="user-profile">Hi, <%= "#{@user.user_name}" %>! </h1>
+	<h2 class="user-profile">Manage your tutorials:</h2>
+	<div>
+		<% @tutorials.each do |tutorial| %>
+			<%= link_to tutorial_path(tutorial) do %>
+				<div class="tutorial-list medium-10 medium-offset columns">
+					<li>
+						<p class="tut-title">
+							<%= tutorial.title %>
+						</p>
+						<p class="tut-description">
+							<%= tutorial.description %>
+						</p>
+					</li>
+				</div>
+			<% end %>
 		<% end %>
-	<% end %>
-</div>	
+	</div>	
+<% else %>
+	<h1 class="user-profile"><%= "#{@user.user_name}" %>'s Tutorials</h1>
+	<div>
+		<% @tutorials.each do |tutorial| %>
+			<%= link_to tutorial_path(tutorial) do %>
+				<div class="tutorial-list medium-10 medium-offset columns">
+					<li>
+						<p class="tut-title">
+							<%= tutorial.title %>
+						</p>
+						<p class="tut-description">
+							<%= tutorial.description %>
+						</p>
+					</li>
+				</div>
+			<% end %>
+		<% end %>
+	</div>	
+<% end %>

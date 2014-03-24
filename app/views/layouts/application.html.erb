@@ -23,7 +23,8 @@
   
   <%= render "layouts/footer" %>
 <script type="text/javascript">
- /*******************************************************************
+ 
+/*******************************************************************
   * Helper methods
   ********************************************************************/
 
@@ -47,7 +48,10 @@
       $("#modal-popup").foundation("reveal", "close");
     }
 
-
+    var populatePopup = function(content){
+      $("#modal-popup").html(content);
+      appendX();
+    }
 
 </script>
 

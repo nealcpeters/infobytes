@@ -33,5 +33,9 @@ InfoBytes::Application.routes.draw do
   match "/users/ajax/sign_up", to: "users#sign_up", via: :get
   match "/up/:content_id/up", to: "contents#up", via: :get, as: "content_up"
   match "/down/:content_id/down", to: "contents#down", via: :get, as: "content_down"
-  
+
+  get "/contents/:content_id/comments", to: "comments#index", as: "content_comments"
+  get "/contents/:content_id/comments/new", to: "comments#new", as: "new_comment"
+  post "/contents/:content_id/comments", to: "comments#create", as: "create_comment"
+  delete "/comment/:id", to: "comments#destroy", as: "delete_comment"
 end

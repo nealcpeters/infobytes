@@ -6,7 +6,7 @@ infobytes is inspired by those who have benefited from online instruction on tec
 
 Created by:
 
-* Alex Codreanu - [alexcodreanu86@yahoo.com](mailto:alexcodreanu86@yahoo.com)
+* Alex Codreanu - [alexcodreanu86@gmail.com](mailto:alexcodreanu86@gmail.com)
 * Amara Getzell - [agetzell@gmail.com](mailto:agetzell@gmail.com)
 * Eric Stensland - [estensland88@gmail.com](mailto:estensland88@gmail.com)
 * Matt O'Connell - [matthew.j.oconnell1@gmail.com](mailto:matthew.j.oconnell1@gmail.com)

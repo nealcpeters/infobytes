@@ -1,5 +1,5 @@
 class TutorialsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :new]
+  before_filter :authenticate_user!, only: [:create, :new, :update_rating]
   before_filter :authenticate_tutorial_owner, only: [:edit, :delete, :update]
 
   def show
@@ -76,7 +76,7 @@ class TutorialsController < ApplicationController
   end
 
   protected
-
+  
   def tutorial_params
     params.require(:tutorial).permit(:title, :description)
   end

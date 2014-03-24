@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324190121) do
+ActiveRecord::Schema.define(version: 20140324211323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 20140324190121) do
     t.datetime "updated_at"
   end
 
+  create_table "ratings", force: true do |t|
+    t.integer "user_id"
+    t.integer "tutorial_id"
+    t.integer "score"
+  end
+
+  add_index "ratings", ["tutorial_id"], name: "index_ratings_on_tutorial_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
+
   create_table "sub_chapters", force: true do |t|
     t.string   "title"
     t.integer  "chapter_id"
@@ -100,7 +109,6 @@ ActiveRecord::Schema.define(version: 20140324190121) do
   create_table "tutorials", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "rating"
     t.integer  "user_id"
     t.integer  "subtopic_id"
     t.datetime "created_at"

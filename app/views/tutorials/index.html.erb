@@ -5,15 +5,16 @@
 				<h2 class="tut-title"><%= tutorial.title %></h2>
 				<% if user_signed_in? %>
 					<ul class="rating">
-						<li class="1"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
-						<li class="2"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
-						<li class="3"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
-						<li class="4"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
-						<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
+						<li class="1"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
+						<li class="2"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
+						<li class="3"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
+						<li class="4"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
+						<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
 					</ul>
 				<% end %>
 			  <p class="tut-description"><%= tutorial.description %></p>
 				<p class="author-date"><%= link_to authorship(tutorial), user_path(tutorial.user) %></p>
+				<p><%= rating(tutorial) %></p>
 			</div>
 		<% end %>
 	<% end %>
@@ -23,17 +24,18 @@
 	var colorStars = function(number){
 
 	  $.each($('.rating'), function(index, value){
-	    if ( index >= number) {
-	    	console.log(this)
-	    	$(this).css("color", "gold")
+	    if ( index <= number - 1) {
+	      $(this).css("color", "gold")
 	    }
 	  })
 	}
 
-	$(".rating li").mouseenter(function(){
-    $(this).fadeOut(100)
+	$(".rating li a").hover(
+		function(){
+    var starNum = parseInt($(this).parent().attr("class"));
+    colorStars(starNum);
 	}, function(){
-		$(this).fadeIn(500)
+		$(this).css("color", "#586570")
 	});
   
 

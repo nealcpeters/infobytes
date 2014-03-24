@@ -30,7 +30,7 @@
     position: fixed;
     display: none;
     background-color: #575757;
-    z-index: 100 !important; 
+    z-index: 1;
   }
 
   #toc-link {
@@ -38,9 +38,20 @@
     margin: 0 2em;
     color: white;
   }
+
+  #close-toc {
+    color: #42A362;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    margin: 0;
+    padding: 0;
+    z-index: 3 !important;
+  }
   
   .side-bar-toc { 
-
+    position: relative;
+  
     .chapter-list {
       margin: 0;
       background-color: #575757;
@@ -48,12 +59,11 @@
       top: 0;
       left: 0;
       display: none;
-      padding-right: 2em;
+      padding-right: 4em 2em 0 0;
       max-width: 100%;
       overflow-y: scroll;
       height: 100%;
-      padding-bottom: 75px;
-      z-index: 1 !important;
+      z-index: 2 !important;
 
       li {
         margin: 1em auto 1em 1em;

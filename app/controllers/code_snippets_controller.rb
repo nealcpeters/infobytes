@@ -10,6 +10,7 @@ class CodeSnippetsController < ApplicationController
 
   def edit
     @code_snippet = CodeSnippet.find(params[:id])
+    render partial: "code_snippets/form_update" if request.xhr?
   end
 
   def update
@@ -17,8 +18,12 @@ class CodeSnippetsController < ApplicationController
     @code_snippet.update(code_snippit_params)
     @sub_chapter = @code_snippet.content.sub_chapter
     if @code_snippet.save
-      flash[:notice]="Your code_snippit has been updated!"
-      redirect_to @sub_chapter
+      if request.xhr?
+        render json: {snippet: @code_snippet, content: @code_snippet.content}
+      else
+        flash[:notice]="Your code_snippit has been updated!"
+        redirect_to @sub_chapter
+      end
     else
       @errors = @code_snippet.errors.messages
       render "new"

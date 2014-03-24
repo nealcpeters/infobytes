@@ -1,9 +1,23 @@
-<%= form_for @community do |f|%>	  
-	<div>
-		<%= f.label :name %><br>
-		<%= f.text_field :name, autofocus: true %>
-	</div>
-	<div>
-		<%= f.submit class: "button" %>
-	</div>
-<% end %>
+
+<div class="row">
+	<div class="small-6 small-offset-3 columns">
+		<%= form_for @community do |f|%>
+			<% if @errors %>
+				<% @errors.each do |error| %>
+					<p><%= error %></p>
+				<% end %>
+			<% end %>	  
+			<p>
+				<%= f.label :name %>
+				<%= f.text_field :name, autofocus: true %>
+			</p>
+			<p>
+				<%= f.label :description %>
+				<%= f.text_field :description %>
+			</p>
+			<div>
+				<%= f.submit class: "button" %>
+			</div>
+		<% end %>
+</div>
+</div>

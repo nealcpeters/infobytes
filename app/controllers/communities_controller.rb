@@ -15,15 +15,20 @@ class CommunitiesController < ApplicationController
 	end
 
 	def create
+
 		@community = Community.new(community_params)
 		if @community.save
-			redirect_to communities_path
+			flash[:notice]="Your community has been created"
+			redirect_to @community
+		else
+			@errors = @community.errors.messages
+			render "new"
 		end
 	end
 
 	def create_user_membership
 		current_user.communities << Community.find(params[:id])
-		redirect_to community_path(params[:id])
+		redirect_to communities_path(params[:id])
 	end
 
 	def delete_user_membership
@@ -35,7 +40,7 @@ class CommunitiesController < ApplicationController
 	protected
 
 	def community_params
-		params.require(:community).permit(:name)
+		params.require(:community).permit(:name, :description)
 	end
 
 end

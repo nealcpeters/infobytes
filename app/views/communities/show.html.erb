@@ -6,7 +6,7 @@
      	</p>
      	<%= link_to "Create Community Tutorial", new_tutorial_path, class: "sm-btn-community" %>
      <% else %>
-	     <%= link_to "Join Community", create_user_membership_community_path, class: "sm-btn-community", :method => :post%><br>
+	     <%= link_to "Join Community", create_user_membership_community_path, class: "sm-btn-community", :method => :post %><br>
 	 <% end %>
       
 	<% @tutorials.each do |tutorial| %>

@@ -17,13 +17,16 @@ class CommunitiesController < ApplicationController
 	def create
 		@community = Community.new(community_params)
 		if @community.save
-			redirect_to communities_path
+			redirect_to community_path(params[:id])
+		else
+			@errors = @community.errors.messages
+			render "new"
 		end
 	end
 
 	def create_user_membership
 		current_user.communities << Community.find(params[:id])
-		redirect_to community_path(params[:id])
+		redirect_to communities_path(params[:id])
 	end
 
 	def delete_user_membership

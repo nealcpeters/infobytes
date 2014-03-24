@@ -5,6 +5,7 @@ class TutorialsController < ApplicationController
   def show
     @tutorial = Tutorial.find(params[:id])
     @chapter = Chapter.new
+    @author = @tutorial.user
     @chapters = @tutorial.chapters.order(:number)
   end
 

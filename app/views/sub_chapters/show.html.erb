@@ -32,7 +32,7 @@
   /*****************************************************************
   * Edit paragraph
   ******************************************************************/
-  $("#content-body").on('click', '.edit-paragraph', function(e){
+  $("body").on('click', '.edit-paragraph', function(e){
     e.preventDefault();
     var url = $(this).attr("href");
     console.log(url)
@@ -47,8 +47,7 @@
     var string = $("#editable-div").html();
     var url = $(this).attr("action")
     var data = {paragraph: {body: string}}
-    console.log(url)
-    // updateParagraph(url, data)
+    updateParagraph(url, data)
   })
 
   var updateParagraph = function(url, data){
@@ -139,6 +138,7 @@
     var url = $(this).attr("href");
     console.log(url)
     $.get(url, function(serverResponse, status, request){
+      console.log("shit")
       $("#modal-popup").html(serverResponse)
     });
   });
@@ -166,11 +166,25 @@
   ** ***************************************/
 
   var appendParagraph = function(paragraph, content){
-    $("#content-body").append("<div class='content-item' id='content-item-'" + content.id + "'>\
-      <div id='paragraph-" + paragraph.id + "''>
-            
-      <p>" + paragraph.body + "</p></div>").slideDown();
-    $("#content-body").append("<div class='edit-links'><div><a class='.edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
+    $("#content-body").append(
+      "<div class='content-item' id='content-item-" + content.id + "'>\
+        <div id='paragraph-" + paragraph.id + "'>\
+          <p>" + paragraph.body + "</p>\
+        </div>\
+        <div class='edit-links'>\
+          <div>\
+            <a class='edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'>\
+              <i class='fa fa-edit fa-2x'></i><br>edit\
+            </a>\
+          </div>\
+          <div>\
+          <a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'>\
+            <i class='fa fa-trash-o fa-2x'></i><br>delete\
+            </a>\
+          </div>\
+        </div>\
+      </div>").slideDown()
+
   }
 
   var appendSnippet = function(snippet){

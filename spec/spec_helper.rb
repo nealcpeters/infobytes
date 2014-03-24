@@ -76,7 +76,7 @@ RSpec.configure do |config|
   end
 
   def tutorial_create
-    @tutorial = @user.tutorials.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", rating: 3, subtopic_id: 2)
+    @tutorial = @user.tutorials.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", subtopic_id: 2)
   end
 
   def chapter_create

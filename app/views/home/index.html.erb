@@ -24,7 +24,7 @@
 <% if !user_signed_in? %>
   <div class="row">
     <div class="small-6 small-offset-3 medium-4 medium-offset-4">
-      <%= link_to "Sign Up", new_user_registration_path, class: "lg-sign-up-btn", id: "sign-up-link-index", data: {"reveal-id" => "modal-popup"} %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "lg-sign-up-btn sign-up-link", data: {"reveal-id" => "modal-popup"} %>
     </div>
   </div>
 <% else %>
@@ -36,7 +36,5 @@
 <% end %> 
 
 
-<script type="text/javascript">
 
-</script> 
 

@@ -54,7 +54,7 @@ class TutorialsController < ApplicationController
   end
 
   def index
-    @tutorials = Tutorial.all
+    @tutorials = Tutorial.paginate(page: params[:page], per_page: 10)
   end
 
   def pdf_view

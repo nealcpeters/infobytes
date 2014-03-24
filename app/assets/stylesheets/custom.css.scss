@@ -146,4 +146,12 @@ li {
   }
 }
 
+.pagination {
+  display: table;
+  margin: 0 auto;
+  a, em{
+    margin: 0 0.5em;
+  }
+}
+
 

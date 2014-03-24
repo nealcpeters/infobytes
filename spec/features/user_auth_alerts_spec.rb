@@ -18,14 +18,9 @@ feature 'User Auth Alerts' do
 
   context "for a returning user upon sign in" do
     scenario "must give confirmation alert" do
-      user = User.create(first_name: "Han", last_name: "Solo", user_name: "rebel_scum1", email: "1han@aliance.com", password: "password", password_confirmation: "password")
+      user_create
 
-      visit "/"    
-      find(:xpath, "//a[@href='/users/sign_in']").click
-
-      fill_in 'user[email]', with: "1han@aliance.com"
-      fill_in 'user[password]', with: "password"
-      click_button "Sign in"
+      log_user_in
 
       expect(page).to have_content("Signed in successfully.")
     end
@@ -33,14 +28,10 @@ feature 'User Auth Alerts' do
 
   context "for a logged in user" do
     scenario "must give confirmation alert" do
-      user = User.create(first_name: "Leia", last_name: "Solo", user_name: "rebel_princess", email: "leia@aliance.com", password: "password", password_confirmation: "password")
+      user_create
 
-      visit "/"    
-      find(:xpath, "//a[@href='/users/sign_in']").click
+      log_user_in
 
-      fill_in 'user[email]', with: "leia@aliance.com"
-      fill_in 'user[password]', with: "password"
-      click_button "Sign in"
       find(:xpath, "//a[@href='/users/sign_out']").click
 
       expect(page).to have_content("Signed out successfully.")

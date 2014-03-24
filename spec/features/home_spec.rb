@@ -24,22 +24,15 @@ feature 'Home Page' do
 
   context "for a logged in user" do
     before :each do
-      visit "/"    
-      all(:xpath, "//a[@href='/users/sign_up']").first.click
+      user_create
 
-      fill_in 'user[user_name]', with: "rebel_meta_man"
-      fill_in 'user[email]', with: "abed@aliance.com"
-      fill_in 'user[password]', with: "password"
-      fill_in 'user[password_confirmation]', with: "password"
-      click_button "Sign up"
-
-      @user = User.find_by_user_name("rebel_meta_man")
+      log_user_in
     end
 
 
     scenario "must have a functional profile link" do
       click_link "Profile"
-      expect(page).to have_content(@user.first_name)
+      expect(page).to have_content(@user.user_name)
     end
 
     scenario "must have a functional create tutorial link" do

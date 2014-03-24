@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :tutorials
   has_many :chapters, through: :tutorials
+  has_and_belongs_to_many :communities
   has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

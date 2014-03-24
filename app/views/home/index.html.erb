@@ -30,7 +30,7 @@
 <% else %>
   <div class="row">
     <div class="small-6 small-offset-3 medium-4 medium-offset-4">
-      <%= link_to "Create Tutorial", new_tutorial_path, class: "lg-sign-up-btn" %>
+      <%= link_to "Create Tutorial", new_tutorial_path, class: "lg-sign-up-btn create-tutorial-link", data: { "reveal-id" => "modal-popup" } %>
     </div>
   </div>
 <% end %> 
@@ -40,9 +40,9 @@
 $("#sign-up-link-index").on("click", function(e){
     e.preventDefault()
     $.get("/users/ajax/sign_up", function(serverResponse, status, request){
-      $("#modal-popup").html(serverResponse);
-      $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>")
-    })
+    $("#modal-popup").html(serverResponse);
+    appendX();
+  })
   });
 </script> 
 

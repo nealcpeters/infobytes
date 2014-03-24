@@ -11,6 +11,7 @@ class TutorialsController < ApplicationController
 
   def new
     @tutorial = Tutorial.new
+    render partial: "tutorials/tutorial_form" if request.xhr?
   end
 
   def create

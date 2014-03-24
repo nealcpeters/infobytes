@@ -39,3 +39,15 @@
 .sub-chapter > * {
   display: inline-block;  
 }
+
+.comments-container {
+  display: inline-block;
+  background-color: #555;
+  border-radius: 3px;
+  a {
+    padding: 4px;
+    color:white;
+    line-height: 20px;
+    text-align: center;
+  }
+}

@@ -44,7 +44,7 @@
       <% end %>
     <% end %>
     <div class="comments-container">
-      <%= link_to "#{content.comments.count}", content_comments_path(content) %>
+      <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content) %>
     </div>
   </div>
 <% end %>

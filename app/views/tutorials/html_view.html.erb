@@ -17,7 +17,71 @@
     	<% end %>
 	  </div>
 
-    
+
+    <div id="marker"></div>
+    <div class="side-bar-toc">
+      <ul class="chapter-list">	
+    	  <li><%= link_to "Close #{fa_icon('arrow-circle-up')}".html_safe, "#", id: "close-toc" %></li>
+      	<% @chapters.each do |chapter| %>
+          <li><%= link_to chapter.title, "#Section_#{under_score(chapter.title)}", class: "sidebar-link" %>
+            <ul class="sub-chapter-list">
+            	<% chapter.sub_chapters.each do |sub_chapter| %>
+                <li><%= link_to sub_chapter.title, "#Sub_Section_#{under_score(sub_chapter.title)}", class: "sidebar-link" %></li>
+            	<% end %>
+            </ul>
+          </li>
+      	<% end %>
+      </ul>
+	  </div>
+
+    <div id="toc-bar">
+    	<li id="toc-fixed-bar"><%= link_to "TOC #{fa_icon('bars', class: "fa-2x")}".html_safe, "#", id: "toc-link", data: {status: "hidden"} %></li>
+		</div>
+
+		<script>
+      
+			$(window).scroll(function() {
+			  var $bar = $("#marker")
+			  var window_offset = $bar.offset().top - $(window).scrollTop();
+			  
+			  if (window_offset < 0) {
+
+			  	$("#toc-bar").slideDown(200);
+			  } else {
+			  	$("#toc-bar").slideUp(200);
+			  	$(".chapter-list").slideUp(200);
+			  	$("#toc-link").data("status", "hidden")
+			  }
+			});
+      
+      $("#toc-link").on("click", function(e){
+        e.preventDefault();
+        
+        console.log($(this).data("status"))
+        if ($(this).data("status") === "hidden") {
+        	$(this).data("status", "shown")
+          $(".chapter-list").slideDown(200);
+        } else if ($(this).data("status") === "shown") {
+        	$(this).data("status", "hidden")
+          $(".chapter-list").slideUp(200);
+        }
+      });
+
+      $(".sidebar-link").on("click", function(){
+      	$("#toc-link").data("status", "hidden")
+        $(".chapter-list").slideUp(200);
+      })
+
+      $("#close-toc").on("click", function(e){
+        e.preventDefault();
+        
+        $("#toc-link").data("status", "hidden")
+        $(".chapter-list").slideUp(200);
+      });
+
+     
+		</script>
+
 	  <div class="tutorial-body">
       <% @chapters.each_with_index do |chapter, index| %>
 	      <h3 class="section-title" id="Section_<%= under_score(chapter.title) %>"><%= chapter.title %></h3>

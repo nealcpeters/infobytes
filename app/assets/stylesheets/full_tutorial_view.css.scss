@@ -1,45 +1,121 @@
 .one-page-view {
-	h1 {
-	}
+  h1 {
+  }
 
-	.table-of-contents {
+  // TOC
+
+  .table-of-contents {
     .toc {
-    	font-size: 1.6em;
+      font-size: 1.6em;
     }
     h2 {
-    	font-size: 1.4em;
+      font-size: 1.4em;
     }
 
     h3 {
-    	font-size: 1.4em;
+      font-size: 1.4em;
     }
 
     h4 {
-    	font-size: 1em;
+      font-size: 1em;
     }
-	}
+  }
+  
+  // Floating bar
 
-	.tutorial-body {
-	  .section-title {
+  #toc-bar {
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    display: none;
+    background-color: #575757;
+    z-index: 1;
+  }
 
-	  }
+  #toc-link {
+    line-height: 50px;
+    margin: 0 2em;
+    color: white;
+  }
 
-	  .sub-section-title {
-	  	font-size: 1em;
-	  	font-weight: bolder;
-	  }
+  #close-toc {
+    color: #42A362;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    margin: 0;
+    padding: 0;
+    z-index: 3 !important;
+  }
+  
+  .side-bar-toc { 
+    position: relative;
+  
+    .chapter-list {
+      margin: 0;
+      background-color: #575757;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      padding-right: 4em 2em 0 0;
+      max-width: 100%;
+      overflow-y: scroll;
+      height: 100%;
+      z-index: 2 !important;
+
+      li {
+        margin: 1em auto 1em 1em;
+
+        a {
+          color: white;
+          margin-left: 2em;
+          margin: 2em auto;
+          font-size: 1.2em;
+        }
+
+        ul {
+
+          li {
+
+            a {
+              font-size: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  #marker {
+    display: block;
+    margin-bottom: 4em;
+  }
+
+  // Body
+
+
+  .tutorial-body {
+    .section-title {
+    }
+
+    .sub-section-title {
+      font-size: 1em;
+      font-weight: bolder;
+    }
     
     .paragraph {
-    	div {
-    		margin: 0.3em auto;
-    	}
+      div {
+        margin: 0.3em auto;
+      }
     }
 
     .image {
-    	img {
-    		margin: 1em auto;
-    		display: block;
-    	}
+      img {
+        margin: 1em auto;
+        display: block;
+      }
     }
 
     .code-snippet {
@@ -47,3 +123,5 @@
     }
   }
 }
+
+

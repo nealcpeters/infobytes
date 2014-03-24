@@ -37,6 +37,48 @@
   display: inline-table;
 }
 
+// .rating-list {
+//   p {
+//     display: inline;
+//   }
+
+//   .stars {
+//     display: inline-block;
+//   }
+// }
+
+.tutorial-list:hover{
+  background-color: #e8e8e8;
+  padding: 2em auto;
+}
+  
+.tutorial-list {  
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+  
+  .rating {
+
+    li {
+      display: inline;
+      a {
+        &:hover {
+          color: gold;
+        }
+      }
+    }
+  }
+
+  .tut-description {
+    font-size: 14px;
+    margin-bottom: 1px;
+  }
+
+  .author-date{
+    font-style: italic;
+    color: #a2a2a2;
+    font-size: 13px;
+  }
+}
 
 
 

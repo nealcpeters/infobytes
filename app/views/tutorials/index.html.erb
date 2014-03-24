@@ -2,18 +2,39 @@
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>
 			<div class="tutorial-list medium-10 medium-offset columns">
-				<li>
-					<p class="tut-title">
-						<%= tutorial.title %>
-					</p>
-					<p class="tut-description">
-						<%= tutorial.description %>
-					</p>
-					<p class="author-date">
-						<%= authorship(tutorial) %>
-					</p>
-				</li>
+				<h2 class="tut-title"><%= tutorial.title %></h2>
+				<% if user_signed_in? %>
+					<ul class="rating">
+						<li class="1"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
+						<li class="2"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
+						<li class="3"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
+						<li class="4"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
+						<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, "#" %></li>
+					</ul>
+				<% end %>
+			  <p class="tut-description"><%= tutorial.description %></p>
+				<p class="author-date"><%= link_to authorship(tutorial), user_path(tutorial.user) %></p>
 			</div>
 		<% end %>
 	<% end %>
 </div>	
+
+<script>
+	var colorStars = function(number){
+
+	  $.each($('.rating'), function(index, value){
+	    if ( index >= number) {
+	    	console.log(this)
+	    	$(this).css("color", "gold")
+	    }
+	  })
+	}
+
+	$(".rating li").mouseenter(function(){
+    $(this).fadeOut(100)
+	}, function(){
+		$(this).fadeIn(500)
+	});
+  
+
+</script>

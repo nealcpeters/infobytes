@@ -1,11 +1,18 @@
 <div>
 	<h2><%= @community.name %> Community Tutorials</h2>
+      <%= link_to "Create Community Tutorial", new_tutorial_path, class: "sm-btn-community" %>
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>
 			<div class ="tutorial-list medium-10 medium-offset columns">
 				<li> 
 					<p class="tut-title">
 						<%= tutorial.title %> 
+					</p>
+					<p class="tut-description">
+						<%= tutorial.description %>
+					</p>
+					<p class="author-date">
+						<%= authorship(tutorial) %>
 					</p>
 				</li>
 			</div>

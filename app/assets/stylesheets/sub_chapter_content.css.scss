@@ -64,4 +64,16 @@
   background: #eee;
   width: 300px;
   word-wrap:break-word;
+  max-height: 600px;
+  overflow-x: scroll;
+  .comment-div {
+    padding: .5em;
+    border-bottom: 1px solid #666;
+  }
+}
+
+.html-view {
+  left: 50px;
+
+
 }

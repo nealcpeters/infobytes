@@ -1,7 +1,7 @@
 <%= render "comments/form_new" %>
 <div id="comments-for-content-<%= @content.id %>">
   <% @comments.each do |comment| %>
-    <div class="comment-<%= comment.id%>">
+    <div class="comment-div" id="comment-<%= comment.id%>">
       <p><%= comment.body %></p>
       <% if comment.user %>
         <p>By: <%= link_to comment.user.user_name, user_path(comment.user) %> At: <%= comment.updated_at.to_s[0..-4] %></p>

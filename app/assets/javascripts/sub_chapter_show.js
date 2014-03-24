@@ -237,6 +237,8 @@ $(function(){
     e.preventDefault();
     var url = $(this).attr("href")
     var contentId = getId(url);
+    console.log(url)
+    console.log($("#content-item-" + contentId + " .comments-container"))
 
     $.get(url, function(serverResponse, status, request){
       $("#content-item-" + contentId + " .comments-container").html(serverResponse)

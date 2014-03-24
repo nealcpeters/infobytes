@@ -17,6 +17,14 @@
 			<% end %>
 		<% end %>
 	</div>	
+	<h2 class="user-profile">Mange our community memberships:</h2>
+	<div>
+		<% @user.communities.each do |community| %>
+			<li>
+				<%= link_to "#{community.name}", community_path(community) %>
+			</li>
+		<% end %>
+	</div>
 <% else %>
 	<h1 class="user-profile"><%= "#{@user.user_name}" %>'s Tutorials</h1>
 	<div>

@@ -61,7 +61,9 @@
     li {
       display: inline;
       a {
-        
+        &:hover {
+          color: gold;
+        }
       }
     }
   }
@@ -78,5 +80,10 @@
   }
 }
 
+.star {
+  a {
+    color: gold;
+  }
+}
 
 

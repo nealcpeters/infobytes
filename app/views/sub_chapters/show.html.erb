@@ -35,7 +35,6 @@
   $("body").on('click', '.edit-paragraph', function(e){
     e.preventDefault();
     var url = $(this).attr("href");
-    console.log(url)
     $.get(url, function(serverResponse, status, request){
       $("#modal-popup").html(serverResponse);
       appendX();
@@ -72,7 +71,6 @@
   $("#content-body").on('click', '.edit-snippet', function(e){
     e.preventDefault();
     var url = $(this).attr("href");
-    console.log(url)
     $.get(url, function(serverResponse, status, request){
       $("#modal-popup").html(serverResponse);
       appendX();
@@ -101,7 +99,7 @@
       <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
       <div class='edit-links'>\
         <div>\
-          <a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
+          <a class='edit-snippet' data-reveal-id='modal-popup' href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
         </div>\
         <div>\
           <a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a>\
@@ -142,9 +140,7 @@
     e.preventDefault();
     
     var url = $(this).attr("href");
-    console.log(url)
     $.get(url, function(serverResponse, status, request){
-      console.log("shit")
       $("#modal-popup").html(serverResponse)
     });
   });
@@ -200,7 +196,7 @@
         <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
         <div class='edit-links'>\
           <div>\
-            <a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
+            <a class='edit-snippet' data-reveal-id='modal-popup' href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
           </div>\
           <div>\
             <a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a>\
@@ -272,7 +268,7 @@
   //   var img = $("#image_image_path").val();
   //   var url = $(this).attr("action");
 
-  //   console.log(data+'&r='+encodeURIComponent(img))
+  //   consol.log(data+'&r='+encodeURIComponent(img))
 
   //   $.post(url, data+'&r='+encodeURIComponent(img), function(serverResponse, status, request){
   //     var image = serverResponse;

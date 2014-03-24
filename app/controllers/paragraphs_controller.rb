@@ -41,7 +41,7 @@ class ParagraphsController < ApplicationController
       Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1),attachable_id: @paragraph.id, attachable_type: "Paragraph")
       
       if request.xhr?
-        render json: @paragraph
+        render json: {paragraph: @paragraph, content: @paragraph.content}
       else
         flash[:notice]="Your new paragraph has been added!"
         redirect_to @sub_chapter

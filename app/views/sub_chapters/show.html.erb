@@ -35,19 +35,20 @@
   $("#content-body").on('click', '.edit-paragraph', function(e){
     e.preventDefault();
     var url = $(this).attr("href");
-
+    console.log(url)
     $.get(url, function(serverResponse, status, request){
       $("#modal-popup").html(serverResponse);
       appendX();
     })
   })
 
-  $("body").on('click', "#modal-popup .button", function(e){
+  $("body").on('submit', "#modal-popup .edit_paragraph", function(e){
     e.preventDefault();
     var string = $("#editable-div").html();
-    var url = $(".edit_paragraph").attr("action")
+    var url = $(this).attr("action")
     var data = {paragraph: {body: string}}
-    updateParagraph(url, data)
+    console.log(url)
+    // updateParagraph(url, data)
   })
 
   var updateParagraph = function(url, data){
@@ -64,10 +65,54 @@
     })
   }
   
+  /*****************************************************************
+  * Edit snippet
+  ******************************************************************/
 
 
+  $("#content-body").on('click', '.edit-snippet', function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    console.log(url)
+    $.get(url, function(serverResponse, status, request){
+      $("#modal-popup").html(serverResponse);
+      appendX();
+    })
+  })
 
 
+  $("body").on('submit', "#modal-popup .edit_code_snippet", function(e){
+    e.preventDefault();
+    var url = $(this).attr("action")
+    var data = $(this).serialize()
+
+    updateCodeSnippet(url, data)
+    removePopup();
+  })
+
+  var updateCodeSnippet = function(url, data){
+      
+    $.post(url, data, function(serverResponse, status, request){
+      var contentId = serverResponse.content.id;
+      var snippetBody = serverResponse.snippet.body;
+      var language = serverResponse.snippet.language;
+      var snippet = serverResponse.snippet;
+      console.log(snippet)
+      // $("#editor-" + contentId).html(snippetBody)
+    }, "json")
+
+    // $.ajax({
+    //   url: url,
+    //   data: data,
+    //   method: "PATCH", 
+    //   success: function(serverResponse, status, request){
+    //     var id = serverResponse.id
+    //     var body = serverResponse.body
+    //     $('#paragraph-' + id ).replaceWith("<div id='paragraph-" + id+ "'<p>" + body + "</p></div>");
+    //     removePopup();
+    //   }
+    // })
+  }
 
 
 
@@ -92,6 +137,7 @@
     e.preventDefault();
     
     var url = $(this).attr("href");
+    console.log(url)
     $.get(url, function(serverResponse, status, request){
       $("#modal-popup").html(serverResponse)
     });
@@ -116,12 +162,15 @@
   });
 
   /* ***************************************
-  *  Post requests for media
+  *  Post requests for media   <a class="edit-paragraph"  href="/paragraphs/10/edit"><i class="fa fa-edit fa-2x"></i><br>edit</a>
   ** ***************************************/
 
-  var appendParagraph = function(paragraph){
-    $("#content-body").append("<p>" + paragraph.body + "</p>").slideDown();
-    $("#content-body").append("<div class='edit-links'><div><a href='/paragraphs/" + paragraph.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
+  var appendParagraph = function(paragraph, content){
+    $("#content-body").append("<div class='content-item' id='content-item-'" + content.id + "'>\
+      <div id='paragraph-" + paragraph.id + "''>
+            
+      <p>" + paragraph.body + "</p></div>").slideDown();
+    $("#content-body").append("<div class='edit-links'><div><a class='.edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
   }
 
   var appendSnippet = function(snippet){
@@ -129,20 +178,20 @@
     $("#content-body").append("<div class='edit-links'><div><a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
     $("#content-body").append("<script>var editor = ace.edit('editor-" + snippet.id + "');var language = document.getElementById('editor_language-" + snippet.id + "').value;editor.setTheme('ace/theme/textmate');editor.session.setMode('ace/mode/" + snippet.language + "');editor.getSession().setUseWrapMode(true);editor.setReadOnly(true);  editor.setOptions({maxLines: 40 });<\/script>"); }
 
-  $("#modal-popup").on("submit", "#new_paragraph", function(e){
+  $("body").on("submit", "#modal-popup #new_paragraph", function(e){
     e.preventDefault();
 
     var data = $(this).serialize();
     var url = $(this).attr("action");
 
     $.post(url, data, function(serverResponse, status, request){
-      appendParagraph(serverResponse)
+      appendParagraph(serverResponse.paragraph, serverResponse.content)
 
       $("#modal-popup").foundation("reveal", "close");
     }, "json");
   });
   
-  $("#modal-popup").on("submit", "#new_code_snippet", function(e){
+  $("body").on("submit", "#modal-popup #new_code_snippet", function(e){
     e.preventDefault();
 
     var data = $(this).serialize();

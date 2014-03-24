@@ -5,6 +5,7 @@ class TutorialsController < ApplicationController
   def show
     @tutorial = Tutorial.find(params[:id])
     @chapter = Chapter.new
+    @chapters = @tutorial.chapters.order(:number)
   end
 
   def new
@@ -70,8 +71,6 @@ class TutorialsController < ApplicationController
     @tutorial = Tutorial.find(params[:id])
     @author = @tutorial.user
     @chapters = @tutorial.chapters
-
-    send_data(render_to_string, :filename => "#{@tutorial.title}.html", :type => "text/html") if params[:download]
   end
 
   protected

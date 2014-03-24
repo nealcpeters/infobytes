@@ -11,7 +11,7 @@ class ChaptersController < ApplicationController
 	def create
     @tutorial = Tutorial.find(params[:tutorial_id])
 
-    @chapter = @tutorial.chapters.new(chapter_params(@tutorial))
+    @chapter = @tutorial.chapters.new(chapter_params.merge(number: @tutorial.chapters.count + 1))
     
     if @chapter.save
      
@@ -35,7 +35,7 @@ class ChaptersController < ApplicationController
 
 	def update
 		@chapter = Chapter.find(params[:id])
-    @chapter.update_attributes(chapter_params(@chapter.tutorial))
+    @chapter.update_attributes(chapter_params)
 
     if @chapter.save
       flash[:notice] = "Chapter Updated"
@@ -52,6 +52,7 @@ class ChaptersController < ApplicationController
 
 	def show
     @chapter = Chapter.find(params[:id])
+    @sub_chapters = @chapter.sub_chapters.order(:number)
     render partial: "chapters/sub_chapters" if request.xhr?
 	end
 
@@ -70,8 +71,8 @@ class ChaptersController < ApplicationController
 
 	private
 
-	def chapter_params(tutorial)
-    params.require(:chapter).permit(:title).merge(number: tutorial.chapters.count + 1)
+	def chapter_params
+    params.require(:chapter).permit(:title)
 	end
 
 	def authenticate_tutorial_owner_create

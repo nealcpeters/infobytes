@@ -38,7 +38,7 @@ class CodeSnippetsController < ApplicationController
       Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1), attachable_id: @code_snippet.id, attachable_type: "CodeSnippet")
 
       if request.xhr?
-        render json: @code_snippet
+        render json: {snippet: @code_snippet, content: @code_snippet.content}
       else
         flash[:notice]="Your new code_snippit has been added!"
         redirect_to @sub_chapter

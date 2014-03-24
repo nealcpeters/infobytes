@@ -165,9 +165,22 @@ li {
     font-size: 10px;
   }
   
+}
 
-
-
+.sm-btn-community {
+  text-align: center;
+  margin-left: 1em;
+  display: table;
+  width: 15em;
+  background-color: #42A362;
+  height: 1em;
+  line-height: 3em;
+  font-size: 14px;
+  color: #F5F5F0;
+  &:hover {
+    background-color: #2C6E42;
+    color: #F5F5F0;
+  }
 }
 
 

@@ -15,7 +15,7 @@
         <li><%= link_to "Sign Out #{fa_icon('sign-out', class: 'fa-2x')}".html_safe, destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign In #{fa_icon('sign-in', class: 'fa-2x')}".html_safe, new_user_session_path, id: "sign-in-link", data: {"reveal-id" => "modal-popup"} %></li>
-        <li><%= link_to "Sign Up #{fa_icon('level-up', class: 'fa-2x')}".html_safe, new_user_registration_path, id: "sign-up-link-nav", data: {"reveal-id" => "modal-popup"} %></li>
+        <li><%= link_to "Sign Up #{fa_icon('level-up', class: 'fa-2x')}".html_safe, new_user_registration_path, class: "sign-up-link", data: {"reveal-id" => "modal-popup"} %></li>
       <% end %>
     </ul>
 
@@ -28,21 +28,6 @@
 
 <script>
   $(document).foundation()
-  $("#sign-in-link").on("click", function(e){
-    e.preventDefault()
-    $.get("/users/ajax/sign_in", function(serverResponse, status, request){
-      $("#modal-popup").html(serverResponse);
-      $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>")
-    })
-  });
-
-  $("#sign-up-link-nav").on("click", function(e){
-    e.preventDefault()
-    $.get("/users/ajax/sign_up", function(serverResponse, status, request){
-      $("#modal-popup").html(serverResponse);
-      $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>")
-    })
-  });
 </script>
 
 

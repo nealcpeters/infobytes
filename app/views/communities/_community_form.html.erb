@@ -1,0 +1,9 @@
+<%= form_for @community do |f|%>	  
+	<div>
+		<%= f.label :name %><br>
+		<%= f.text_field :name, autofocus: true %>
+	</div>
+	<div>
+		<%= f.submit class: "button" %>
+	</div>
+<% end %>

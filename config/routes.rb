@@ -3,8 +3,13 @@ InfoBytes::Application.routes.draw do
   devise_for :users
 
   root to: "home#index"
+  # CODE REVIEW: Rails convention now is to use `get "route"` instead of
+  # `match "route", via: :get` unless you're specifying a route that matches
+  # multiple verbs
   match "/users/:id", to: "users#show", via: :get, as: "user"
+  # CODE REVIEW: Where does this go to?
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
+  # CODE REVIEW: Where does this go to?
   match '/about', to: "home#about", via: :get, as: "about"
 
   get '/topics', to: "topics#index", as: "topics"

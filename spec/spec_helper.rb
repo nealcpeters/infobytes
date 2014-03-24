@@ -1,6 +1,10 @@
+# CODE REVIEW: I don't know how much this matters, but I'd (personally) put
+# the following 3 lines after the the require's that rspec:install generated
 require 'coveralls'
 require "factory_girl_rails"
 
+# CODE REVIEW: I think if you use `Coveralls.wear!('rails')` here it will
+# ignore all the odd files that are showing up in your coverage report
 Coveralls.wear!
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -69,6 +73,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  # CODE REVIEW: Why not use FactoryGirl for this?
   def user_create
     @user = User.create(first_name: "Han", last_name: "Solo", user_name: "tutorial_tester", email: "tutorial_tester@aliance.com", password: "password", password_confirmation: "password")
   end

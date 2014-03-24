@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
 
 	def show
 		@topic = Topic.find(params[:id])
+    # CODE REVIEW: why not @topic.subtopics?
 		@subtopics = Subtopic.where(topic_id: @topic)
 	end
 

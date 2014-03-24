@@ -16,6 +16,8 @@ feature 'Tutorial Creation' do
   end
 
   context "for a logged user" do
+    # CODE REVIEW: This test is doing the same thing as the before below it
+    # so these steps are run twice. Did you intend that?
     scenario "the form must direct to must direct to page with created fields present" do
       visit "/tutorials/new"
       fill_in 'tutorial[description]', with: "ghijk"

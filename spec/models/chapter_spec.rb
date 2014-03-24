@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Chapter do
+  # CODE REVIEW: I recommened shoulda-matchers for tests that verify validations
 context "when creating a chapter" do
 	it "it creates a valid chapter" do
 		expect{

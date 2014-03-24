@@ -43,7 +43,6 @@ gem 'aws-sdk'
 
 gem "paperclip", "~> 4.1"
 
-gem 'coveralls', require: false
 
 group :development, :test do
   gem 'pry'
@@ -53,6 +52,8 @@ group :development, :test do
   gem 'jasmine'
   gem 'database_cleaner'
   gem 'faker'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'coveralls', require: false
 end
 
 group :doc do
@@ -67,7 +68,6 @@ end
 
 gem 'ace-rails-ap'
 
-gem "factory_girl_rails", "~> 4.0"
 
 group :test do
   gem 'shoulda-matchers'

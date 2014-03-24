@@ -115,7 +115,6 @@ ActiveRecord::Schema.define(version: 20140324215418) do
   create_table "tutorials", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "rating"
     t.integer  "user_id"
     t.integer  "subtopic_id"
     t.datetime "created_at"
@@ -147,10 +146,5 @@ ActiveRecord::Schema.define(version: 20140324215418) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "users_communities", force: true do |t|
-    t.integer "user_id"
-    t.integer "community_id"
-  end
 
 end

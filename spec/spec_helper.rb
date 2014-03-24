@@ -1,7 +1,4 @@
-require 'coveralls'
-require "factory_girl_rails"
 
-Coveralls.wear!
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
@@ -10,6 +7,11 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require "capybara/rails"
 require 'database_cleaner'
+
+require 'coveralls'
+require "factory_girl_rails"
+
+Coveralls.wear!('rails')
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -74,7 +76,7 @@ RSpec.configure do |config|
   end
 
   def tutorial_create
-    @tutorial = @user.tutorials.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", rating: 3, subtopic_id: 2)
+    @tutorial = @user.tutorials.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", subtopic_id: 2)
   end
 
   def chapter_create

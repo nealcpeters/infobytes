@@ -12,7 +12,13 @@ class CommentsController < ApplicationController
       @comment = Comment.new(comment_params.merge(content_id: @content.id))
     end
     if @comment.save
-      redirect_to @content.sub_chapter
+      if request.xhr?
+        @comment = Comment.new
+        @comments = @content.comments.order(updated_at: :desc)
+        render partial: "comments/comments_display"
+      else
+        redirect_to @content.sub_chapter
+      end
     else
       render "new"
     end
@@ -26,7 +32,9 @@ class CommentsController < ApplicationController
 
   def index
     @content = Content.find(params[:content_id])
-    @comments = @content.comments
+    @comments = @content.comments.order(updated_at: :desc)
+    @comment = Comment.new
+    render partial: "comments/comments_display" if request.xhr?
   end
 
   protected

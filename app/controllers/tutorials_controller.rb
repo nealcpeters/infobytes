@@ -11,7 +11,7 @@ class TutorialsController < ApplicationController
 
   def new
     @tutorial = Tutorial.new
-    render partial: "tutorials/tutorial_form" if request.xhr?
+    render partial: "tutorials/tutorial_new" if request.xhr?
   end
 
   def create
@@ -27,7 +27,7 @@ class TutorialsController < ApplicationController
 
   def edit
     @tutorial = Tutorial.find(params[:id])
-    render partial: "tutorials/tutorial_form" if request.xhr?
+    render partial: "tutorials/tutorial_edit" if request.xhr?
   end
 
   def update  

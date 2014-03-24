@@ -25,6 +25,12 @@
 
 .content-item {
   margin: 3em auto;
+  &:hover {
+    .comments-container {
+      display: inline-block;
+      margin-left: 2em;
+    }
+  }
 }
 .sub-chapter {
   &:hover {
@@ -41,7 +47,7 @@
 }
 
 .comments-container {
-  display: inline-block;
+  display: none;
   background-color: #555;
   border-radius: 3px;
   a {

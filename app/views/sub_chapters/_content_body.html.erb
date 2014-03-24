@@ -1,5 +1,5 @@
 <% @contents.each do |content| %>
-  <div class="content-item"> 
+  <div class="content-item" id="content-item-<%= content.id %>"> 
     <% if content.attachable_type == "Paragraph" %>
       <div id="paragraph-<%= content.attachable_id %>">
         <p><%= raw(paragraph_formater(content.attachable.body)) %></p>
@@ -29,7 +29,7 @@
 
       <% if sub_chapter_owner?(@sub_chapter) %>
         <div class="edit-links">
-          <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_code_snippet_path(content.attachable), class: "edit-snippet" %></div>
+          <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_code_snippet_path(content.attachable), class: "edit-snippet" ,   data: { "reveal-id" => "modal-popup" }%></div>
           <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, code_snippet_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this code snippet?"} %></div>
         </div>
       <% end %>

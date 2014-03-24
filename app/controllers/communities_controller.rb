@@ -26,6 +26,12 @@ class CommunitiesController < ApplicationController
 		redirect_to community_path(params[:id])
 	end
 
+	def delete_user_membership
+		current_user.communities.destroy(params[:id])
+		redirect_to user_path(current_user)
+
+	end
+
 	protected
 
 	def community_params

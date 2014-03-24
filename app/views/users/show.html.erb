@@ -17,12 +17,21 @@
 			<% end %>
 		<% end %>
 	</div>	
-	<h2 class="user-profile">Mange our community memberships:</h2>
+	<h2 class="user-profile">Manage your community memberships:</h2>
 	<div>
 		<% @user.communities.each do |community| %>
-			<li>
-				<%= link_to "#{community.name}", community_path(community) %>
-			</li>
+			<%= link_to community_path(community) do %>
+				<div class="tutorial-list medium-10 medium-offset columns">
+					<li>
+						<p>
+							<%= community.name %>
+						</p>
+						<p>
+							<%= link_to "Delete Membership", delete_user_membership_community_path(community), :method => :post %>
+						</p>
+					</li>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 <% else %>

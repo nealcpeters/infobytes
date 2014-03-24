@@ -15,6 +15,7 @@ InfoBytes::Application.routes.draw do
   resources :communities do
     member do
       post :create_user_membership
+      post :delete_user_membership
     end
   end
 

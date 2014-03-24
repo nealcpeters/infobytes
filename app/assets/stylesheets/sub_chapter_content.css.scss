@@ -26,7 +26,7 @@
 .content-item {
   margin: 3em auto;
   &:hover {
-    .comments-container {
+    .comments-links {
       display: inline-block;
       margin-left: 2em;
     }
@@ -46,7 +46,7 @@
   display: inline-block;  
 }
 
-.comments-container {
+.comments-links {
   display: none;
   background-color: #555;
   border-radius: 3px;
@@ -56,4 +56,11 @@
     line-height: 20px;
     text-align: center;
   }
+}
+
+.comments-container {
+  position: absolute;
+  left: -300px;
+  background: #eee;
+  width: 300px;
 }

@@ -1,13 +1,2 @@
 <h1>Comments: </h1>
-<div id="comments-for-content-<%= @content.id %>">
-  <% @comments.each do |comment| %>
-    <div class="comment-<%= comment.id%>">
-      <p><%= comment.body %></p>
-      <% if comment.user %>
-        <p>By: <%= link_to comment.user.user_name, user_path(comment.user) %></p>
-      <% else %>
-        <p>By: Guest</p>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<%= render "comments/comments_display" %>

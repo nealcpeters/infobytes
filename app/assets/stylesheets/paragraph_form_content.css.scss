@@ -11,7 +11,8 @@
   }
   .editable {
     width: 100%;
-    height: 200px;
+    height: auto;
+    min-height: 150px;
     border: 1px solid #ccc;
     padding: 5px;
   }      

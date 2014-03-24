@@ -11,7 +11,7 @@
     <ul class="right">
       <% if current_user %>
         <li><%= link_to "Profile #{fa_icon('user', class: 'fa-2x')}".html_safe, user_path(current_user.id) %></li>
-        <li><%= link_to "New Tutorial #{fa_icon('plus-square', class: 'fa-2x', id: 'nav-plus-icon')}".html_safe, new_tutorial_path %></li>
+        <li><%= link_to "New Tutorial #{fa_icon('plus-square', class: 'fa-2x', id: 'nav-plus-icon')}".html_safe, new_tutorial_path, data: { "reveal-id" => "modal-popup" }, class: "create-tutorial-link" %></li>
         <li><%= link_to "Sign Out #{fa_icon('sign-out', class: 'fa-2x')}".html_safe, destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign In #{fa_icon('sign-in', class: 'fa-2x')}".html_safe, new_user_session_path, id: "sign-in-link", data: {"reveal-id" => "modal-popup"} %></li>

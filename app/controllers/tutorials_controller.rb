@@ -5,11 +5,13 @@ class TutorialsController < ApplicationController
   def show
     @tutorial = Tutorial.find(params[:id])
     @chapter = Chapter.new
+    @author = @tutorial.user
     @chapters = @tutorial.chapters.order(:number)
   end
 
   def new
     @tutorial = Tutorial.new
+    render partial: "tutorials/tutorial_form" if request.xhr?
   end
 
   def create

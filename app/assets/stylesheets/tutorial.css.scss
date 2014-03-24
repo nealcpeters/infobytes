@@ -13,9 +13,30 @@
   }
 }
 
+
+
+.sub-chapter {
+  h2 {
+    display: inline-block;
+  }
+}
+
+.tutorial-header {
+  a {
+    display: block;
+    margin: 1em auto;
+  }
+
+  p.inline a.inline{
+    display: inline-block;
+  }
+
+}
+
 .chapter > * {
   display: inline-table;
 }
+
 
 
 

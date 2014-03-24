@@ -4,6 +4,8 @@
   	<p>Description: <%= @tutorial.description %></p>
     <% if tutorial_creator? %>
       <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "modal-popup"} %>
+    <% else %>
+      <p class="inline"> Written by: <%= link_to "#{@author.user_name}", user_path(@author), class: "inline" %></p>
     <% end %>
     <%= link_to "View As Single Page", html_view_tutorial_path(@tutorial) %>
   </div>  

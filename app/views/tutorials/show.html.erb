@@ -11,21 +11,25 @@
   <div class="row">
     <div id="chapter-list" class="small-10 small-offset-1">
   		<% @chapters.each do |chapter| %>
-      	<div class="chapter" id="chapter-<%= chapter.id %>">
-       
-          <div class="chapter-icons">
+      	<div class="chapter row" id="chapter-<%= chapter.id %>">
+      
+          <% if tutorial_creator? %>
             <h3 class="chapter-title"><%= chapter.title %></h3>
+            <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>  
+            <div class="chapter-edit-icons">
+              <%= link_to fa_icon('edit', class: "fa-2x").html_safe, edit_chapter_path(chapter), class: "edit-chapter", data: { "reveal-id" => "modal-popup" }%>
+              <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
+            </div>
+          <% else %>
 
+            <h3 class="chapter-title"><%= chapter.title %></h3>
             <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
-            <% if tutorial_creator? %>
-              <div class="right-aligned-icons">
-                <%= link_to fa_icon('edit', class: "fa-2x").html_safe, edit_chapter_path(chapter), class: "edit-chapter", data: { "reveal-id" => "modal-popup" }%>
-                <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
-              </div>
-            <% end %>
-          </div>
-          <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
+          
+          <% end %>
+
+
         </div>
+        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
       <% end %>
     </div>
   </div>

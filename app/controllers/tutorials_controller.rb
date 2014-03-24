@@ -75,6 +75,11 @@ class TutorialsController < ApplicationController
     @chapters = @tutorial.chapters
   end
 
+  def search 
+    @search_content = params[:search_data]
+    @tutorials = Tutorial.where("title ILIKE ? OR description ILIKE ?", "%#{@search_content}%", "%#{@search_content}%")
+  end
+
   protected
 
   def tutorial_params

@@ -2,16 +2,9 @@ require 'spec_helper'
 
 feature 'Tutorial Creation' do
   before :each do
-    @user = User.create(first_name: "Han", last_name: "Solo", user_name: "tutorial_tester", email: "tutorial_tester@aliance.com", password: "password", password_confirmation: "password")
-    
+    user_create    
 
-    visit "/"    
-    find(:xpath, "//a[@href='/users/sign_in']").click
-
-    fill_in 'user[email]', with: "tutorial_tester@aliance.com"
-    fill_in 'user[password]', with: "password"
-    click_button "Sign in"
-    
+    log_user_in    
   end  
 
   context "for a non-logged in user accessing the route" do

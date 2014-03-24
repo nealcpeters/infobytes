@@ -26,10 +26,44 @@
 <script>
   $(document).foundation();
 
+
+
+
   /*****************************************************************
   * Edit paragraph
   ******************************************************************/
-  $('')
+  $("#content-body").on('click', '.edit-paragraph', function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+
+    $.get(url, function(serverResponse, status, request){
+      $("#modal-popup").html(serverResponse);
+      appendX();
+    })
+  })
+
+  $("body").on('click', "#modal-popup .button", function(e){
+    e.preventDefault();
+    var string = $("#editable-div").html();
+    var url = $(".edit_paragraph").attr("action")
+    var data = {paragraph: {body: string}}
+    updateParagraph(url, data)
+  })
+
+  var updateParagraph = function(url, data){
+    $.ajax({
+      url: url,
+      data: data,
+      method: "PATCH", 
+      success: function(serverResponse, status, request){
+        var id = serverResponse.id
+        var body = serverResponse.body
+        $('#paragraph-' + id ).replaceWith("<div id='paragraph-" + id+ "'<p>" + body + "</p></div>");
+        removePopup();
+      }
+    })
+  }
+  
 
 
 

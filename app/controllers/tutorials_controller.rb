@@ -1,5 +1,5 @@
 class TutorialsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :new]
+  before_filter :authenticate_user!, only: [:create, :new, :update_rating]
   before_filter :authenticate_tutorial_owner, only: [:edit, :delete, :update]
 
   def show
@@ -75,8 +75,13 @@ class TutorialsController < ApplicationController
     @chapters = @tutorial.chapters
   end
 
-  protected
+  def search 
+    @search_content = params[:search_data]
+    @tutorials = Tutorial.where("title ILIKE ? OR description ILIKE ?", "%#{@search_content}%", "%#{@search_content}%")
+  end
 
+  protected
+  
   def tutorial_params
     params.require(:tutorial).permit(:title, :description)
   end

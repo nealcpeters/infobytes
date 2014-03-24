@@ -34,7 +34,7 @@ Community.create(name: "Chicago Area Developers")
 Community.create(name: "I <3 Rspec")
 Community.create(name: "Chicago HS Intro to CS")
 
-tutorial = Tutorial.create(title: "OOP in Ruby", description: "Everything in Ruby is an object, which makes object oriented programming in Ruby very intuitive and simple.", user_id: user.id, rating: 3, subtopic_id: 1, community_id: 1)
+tutorial = Tutorial.create(title: "OOP in Ruby", description: "Everything in Ruby is an object, which makes object oriented programming in Ruby very intuitive and simple.", user_id: user.id, subtopic_id: 1, community_id: 1)
 intro = Chapter.create(title: "Introduction", number: 0, tutorial_id: tutorial.id)
  
 chapter_one = Chapter.create(title: Faker::Lorem.word, number: 1, tutorial_id: tutorial.id)
@@ -83,7 +83,7 @@ Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: 
 
 
 
-tutorial = Tutorial.create(title: Faker::Lorem.word, description: Faker::Lorem.paragraph(1), user_id: user.id, rating: 3, subtopic_id: 1, community_id: 1)
+tutorial = Tutorial.create(title: Faker::Lorem.word, description: Faker::Lorem.paragraph(1), user_id: user.id, subtopic_id: 1, community_id: 1)
 intro = Chapter.create(title: Faker::Lorem.word, number: 0, tutorial_id: tutorial.id)
  
 chapter_one = Chapter.create(title: Faker::Lorem.word, number: 1, tutorial_id: tutorial.id)
@@ -131,7 +131,7 @@ Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: 
 
 
 
-tutorial = Tutorial.create(title: Faker::Lorem.word, description: Faker::Lorem.paragraph(1), user_id: user.id, rating: 3, subtopic_id: 1, community_id: 1)
+tutorial = Tutorial.create(title: Faker::Lorem.word, description: Faker::Lorem.paragraph(1), user_id: user.id, subtopic_id: 1, community_id: 1)
 intro = Chapter.create(title: Faker::Lorem.word, number: 0, tutorial_id: tutorial.id)
  
 chapter_one = Chapter.create(title: Faker::Lorem.word, number: 1, tutorial_id: tutorial.id)
@@ -179,7 +179,7 @@ Content.create(sub_chapter_id: subchapter.id, order_number: 1, attachable_type: 
 
 
 
-tutorial = Tutorial.create(title: Faker::Lorem.word, description: Faker::Lorem.paragraph(1), user_id: user.id, rating: 3, subtopic_id: 1, community_id: 1)
+tutorial = Tutorial.create(title: Faker::Lorem.word, description: Faker::Lorem.paragraph(1), user_id: user.id, subtopic_id: 1, community_id: 1)
 intro = Chapter.create(title: Faker::Lorem.word, number: 0, tutorial_id: tutorial.id)
  
 chapter_one = Chapter.create(title: Faker::Lorem.word, number: 1, tutorial_id: tutorial.id)

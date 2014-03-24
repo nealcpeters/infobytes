@@ -6,13 +6,19 @@ InfoBytes::Application.routes.draw do
   match "/users/:id", to: "users#show", via: :get, as: "user"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
   match '/about', to: "home#about", via: :get, as: "about"
+  match "search", to: "tutorials#search", via: :post, as: "search"
 
   get '/topics', to: "topics#index", as: "topics"
   get '/topics/:id', to: "topics#show", as: "topic"
   get '/subtopics', to: "subtopics#index", as: "subtopics"
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
 
-  resources :communities
+  resources :communities do
+    member do
+      post :create_user_membership
+      post :delete_user_membership
+    end
+  end
 
   resources :tutorials do
     member do
@@ -33,6 +39,8 @@ InfoBytes::Application.routes.draw do
   match "/users/ajax/sign_up", to: "users#sign_up", via: :get
   match "/up/:content_id/up", to: "contents#up", via: :get, as: "content_up"
   match "/down/:content_id/down", to: "contents#down", via: :get, as: "content_down"
+
+  match "/ratings/:tutorial_id/:rating", to: "ratings#update_rating", via: :get, as: "update_rating"
 
   get "/contents/:content_id/comments", to: "comments#index", as: "content_comments"
   get "/contents/:content_id/comments/new", to: "comments#new", as: "new_comment"

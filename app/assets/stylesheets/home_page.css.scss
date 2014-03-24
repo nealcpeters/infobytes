@@ -7,6 +7,23 @@
 		vertical-align: middle;	
 		display: table-cell;
 	}
+	.form-group {
+		display: table;
+		margin: 0 auto;
+	}
+	.form-group > * {
+		display: inline;
+		margin-left: 1em;
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-top: 1em;
+	}
+	.button {
+		margin-left: 1em;
+	}
+	#search_search {
+		width: 20em;
+	}
 }
 
 .tagline {

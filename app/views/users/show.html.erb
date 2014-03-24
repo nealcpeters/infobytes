@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if (current_user && current_user.id == @user.id) %>
 	<h1 class="user-profile">Hi, <%= "#{@user.user_name}" %>! </h1>
 	<h2 class="user-profile">Manage your tutorials:</h2>
 	<div>
@@ -53,3 +53,8 @@
 		<% end %>
 	</div>	
 <% end %>
+
+<script type="text/javascript">
+	$(document).foundation();
+</script>
+

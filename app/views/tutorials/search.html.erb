@@ -1,0 +1,22 @@
+<h1>Results</h1>
+<% if @tutorials.empty? %>
+	<h1>No tutorials found for :"<%= @search_content %>"</h1>
+<% else %>
+	<% @tutorials.each do |tutorial| %>
+		<%= link_to tutorial_path(tutorial) do %>
+			<div class="tutorial-list medium-10 medium-offset columns">
+				<li>
+					<p class="tut-title">
+						<%= tutorial.title %>
+					</p>
+					<p class="tut-description">
+						<%= tutorial.description %>
+					</p>
+					<p class="author-date">
+						<%= authorship(tutorial) %>
+					</p>
+				</li>
+			</div>
+		<% end %>
+	<% end %>
+<% end %>

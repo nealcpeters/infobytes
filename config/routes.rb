@@ -12,6 +12,7 @@ InfoBytes::Application.routes.draw do
   get '/subtopics', to: "subtopics#index", as: "subtopics"
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
 
+  resources :communities
 
   resources :tutorials do
     member do

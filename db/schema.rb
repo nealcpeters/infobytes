@@ -39,6 +39,12 @@ ActiveRecord::Schema.define(version: 20140324190121) do
     t.datetime "updated_at"
   end
 
+  create_table "communities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contents", force: true do |t|
     t.integer  "order_number"
     t.integer  "attachable_id"
@@ -99,6 +105,7 @@ ActiveRecord::Schema.define(version: 20140324190121) do
     t.integer  "subtopic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "community_id"
   end
 
   add_index "tutorials", ["subtopic_id"], name: "index_tutorials_on_subtopic_id", using: :btree

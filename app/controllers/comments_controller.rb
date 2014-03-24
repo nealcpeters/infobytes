@@ -24,6 +24,11 @@ class CommentsController < ApplicationController
     redirect_to @comment.content.sub_chapter
   end
 
+  def index
+    @content = Content.find(params[:content_id])
+    @comments = @content.comments
+  end
+
   protected
 
   def comment_params

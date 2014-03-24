@@ -63,67 +63,7 @@
     })
   }
   
-  /*****************************************************************
-  * Edit snippet
-  ******************************************************************/
-
-
-  $("#content-body").on('click', '.edit-snippet', function(e){
-    e.preventDefault();
-    var url = $(this).attr("href");
-    $.get(url, function(serverResponse, status, request){
-      $("#modal-popup").html(serverResponse);
-      appendX();
-    })
-  })
-
-
-  $("body").on('submit', "#modal-popup .edit_code_snippet", function(e){
-    e.preventDefault();
-    var url = $(this).attr("action")
-    var data = $(this).serialize()
-
-    updateCodeSnippet(url, data)
-    $.post(url, data, function(serverResponse, status, request){
-      var content = serverResponse.content;
-      var snippet = serverResponse.snippet;
-      updateCodeSnippet(snippet,content);
-      }, "json").done(function(){
-        removePopup();
-      })
-  })
-
-  var updateCodeSnippet = function(snippet, content){
-    $("#content-item-" + content.id).html(    
-      "<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
-      <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
-      <div class='edit-links'>\
-        <div>\
-          <a class='edit-snippet' data-reveal-id='modal-popup' href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
-        </div>\
-        <div>\
-          <a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a>\
-        </div>\
-      </div>\
-      <script>\
-        var editor = ace.edit('editor-" + snippet.id + "');\
-        var language = document.getElementById('editor_language-" + snippet.id + "').value;\
-        editor.setTheme('ace/theme/textmate');\
-        editor.session.setMode('ace/mode/" + snippet.language + "');\
-        editor.getSession().setUseWrapMode(true);\
-        editor.setReadOnly(true);\
-        editor.setOptions({maxLines: 40 });\
-      <\/script>"
-    )
-  }
-
-
-
-
-
-
-
-
+  
 
   /*************************************************
   * testing stuff
@@ -164,7 +104,7 @@
   });
 
   /* ***************************************
-  *  Post requests for media   <a class="edit-paragraph"  href="/paragraphs/10/edit"><i class="fa fa-edit fa-2x"></i><br>edit</a>
+  *  Post requests for media   
   ** ***************************************/
 
   var appendParagraph = function(paragraph, content){
@@ -190,28 +130,27 @@
   }
 
   var appendSnippet = function(snippet, content){
-    $("#content-body").append(
-      "<div class='content-item' id='content-item-" + content.id + "'>\
-        <div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
-        <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
-        <div class='edit-links'>\
-          <div>\
-            <a class='edit-snippet' data-reveal-id='modal-popup' href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
-          </div>\
-          <div>\
-            <a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a>\
-          </div>\
+    $("#content-item-" + content.id).html(
+      "<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
+      <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
+      <div class='edit-links'>\
+        <div>\
+          <a class='edit-snippet' data-reveal-id='modal-popup' href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
         </div>\
-        <script>\
-          var editor = ace.edit('editor-" + snippet.id + "');\
-          var language = document.getElementById('editor_language-" + snippet.id + "').value;\
-          editor.setTheme('ace/theme/textmate');\
-          editor.session.setMode('ace/mode/" + snippet.language + "');\
-          editor.getSession().setUseWrapMode(true);\
-          editor.setReadOnly(true);\
-          editor.setOptions({maxLines: 40 });\
-        <\/script>\
-      </div>")}
+        <div>\
+          <a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a>\
+        </div>\
+      </div>\
+      <script>\
+        var editor = ace.edit('editor-" + snippet.id + "');\
+        var language = document.getElementById('editor_language-" + snippet.id + "').value;\
+        editor.setTheme('ace/theme/textmate');\
+        editor.session.setMode('ace/mode/" + snippet.language + "');\
+        editor.getSession().setUseWrapMode(true);\
+        editor.setReadOnly(true);\
+        editor.setOptions({maxLines: 40 });\
+      <\/script>"
+  )}
 
   $("body").on("submit", "#modal-popup #new_paragraph", function(e){
     e.preventDefault();
@@ -233,12 +172,40 @@
     var url = $(this).attr("action");
 
     $.post(url, data, function(serverResponse, status, request){
+      $("#content-body").append("<div class='content-item' id='content-item-" + serverResponse.content.id + "'></div>")
       appendSnippet(serverResponse.snippet, serverResponse.content)
 
       $("#modal-popup").foundation("reveal", "close");
     }, "json");
   });
 
+
+  /*****************************************************************
+  * Edit snippet
+  ******************************************************************/
+  $("#content-body").on('click', '.edit-snippet', function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    $.get(url, function(serverResponse, status, request){
+      $("#modal-popup").html(serverResponse);
+      appendX();
+    })
+  })
+
+
+  $("body").on('submit', "#modal-popup .edit_code_snippet", function(e){
+    e.preventDefault();
+    var url = $(this).attr("action")
+    var data = $(this).serialize()
+
+    $.post(url, data, function(serverResponse, status, request){
+      var content = serverResponse.content;
+      var snippet = serverResponse.snippet;
+      appendSnippet(snippet,content); //function defined 
+    }, "json").done(function(){
+      removePopup();
+    })
+  })
 
   /*****************************************************
    * Deleting contents

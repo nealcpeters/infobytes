@@ -247,26 +247,29 @@ $(function(){
   $(document).on("submit", "#new_comment", function(e){
     e.preventDefault();
     var url = $(this).attr("action");
+    var contentId = getId(url);
     var data = $(this).serialize();
     $.post(url, data, function(serverResponse, status, request){
       var user = serverResponse.user;
       var comment = serverResponse.comment;
       var content = serverResponse.content;
-      postComment(comment, content, user)
+      $("#content-item-" + contentId + " .comments-container").html(serverResponse)
+      // postComment(comment, content, user)
+
     })
   })
 
-  var postComment = function(comment,content,user){
-    var userLink;
-    if(user){
-      userLink = "<p>By: <a href='/users/" + user.id + "'>" + user.user_name + "</a></p>"
-    }else{
-      userLink = "<p>By: Guest</p>";
-    }
-    $("#comments-for-content-" + content.id).prepend(
-      "<div class='comment-" + comment.id + "'><p>" + comment.body + "</p>" + userLink + "</div>"
-      )
-  }
+  // var postComment = function(comment,content,user){
+  //   var userLink;
+  //   if(user){
+  //     userLink = "<p>By: <a href='/users/" + user.id + "'>" + user.user_name + "</a></p>"
+  //   }else{
+  //     userLink = "<p>By: Guest At: " +comment.created_at.substring(0, ) + "</p>";
+  //   }
+  //   $("#comments-for-content-" + content.id).prepend(
+  //     "<div class='comment-" + comment.id + "'><p>" + comment.body + "</p>" + userLink + "</div>"
+  //     )
+  // }
 
 
 

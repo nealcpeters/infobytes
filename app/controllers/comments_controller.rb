@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
     end
     if @comment.save
       if request.xhr?
-        render json: {comment: @comment, content: @content, user: @comment.user}
+        @comments = @content.comments
+        render partial: "comments/comments_display"
       else
         redirect_to @content.sub_chapter
       end

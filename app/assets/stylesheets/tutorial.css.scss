@@ -2,42 +2,19 @@
   width: 100%;
   display: block;
   &:hover {
-    .right-aligned-icons{
-      display: block !important;
+    .chapter-edit-icons {
+      display: inline;
+      margin-left: 2em;
     }
   }
 
-  .chapter-title {
-    display: inline-block;
-  }
-
-  .chapter-icons {
-    display: inline-block;
-    width: 100%;
-
-    .right-aligned-icons {
-      float: left;
-      display: none;
-    }  
-  }
-
-  .chapter-icons > *{
-    display: inline-block;
+  .chapter-edit-icons {
+    display: none;
   }
 }
 
-
-.sub-chapter {
-  h2 {
-    display: inline-block;
-  }
-}
-
-.tutorial-header {
-  a {
-    display: block;
-    margin: 1em auto;
-  }
+.chapter > * {
+  display: inline-table;
 }
 
 

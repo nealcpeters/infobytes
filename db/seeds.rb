@@ -29,10 +29,10 @@ Subtopic.create(title: "Javascript", description: "JavaScript is a client and se
 Subtopic.create(title: "SQL", description: "Structured Query Language (SQL) is a special-purpose language for managing data in relational database management systems.", topic_id: 1)
 
 #Communities...
-Community.create(name: "Dev BootCamp")
-Community.create(name: "Chicago Area Developers")
-Community.create(name: "I <3 Rspec")
-Community.create(name: "Chicago HS Intro to CS")
+Community.create(name: "Dev BootCamp", description: "Tutorials created by people in the DBC network for DBC students")
+Community.create(name: "Chicago Area Developers", description: "Tutorials specific to technologies developed in the Chicago area")
+Community.create(name: "I <3 Rspec", description: "Tutorials for all things Rspec!")
+Community.create(name: "Chicago HS Intro to CS", description: "Create tutorials to better master the material, to aid in the learning of your peers, or both!")
 
 tutorial = Tutorial.create(title: "OOP in Ruby", description: "Everything in Ruby is an object, which makes object oriented programming in Ruby very intuitive and simple.", user_id: user.id, rating: 3, subtopic_id: 1, community_id: 1)
 intro = Chapter.create(title: "Introduction", number: 0, tutorial_id: tutorial.id)

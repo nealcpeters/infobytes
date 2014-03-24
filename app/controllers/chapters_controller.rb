@@ -14,7 +14,8 @@ class ChaptersController < ApplicationController
     @chapter = @tutorial.chapters.new(chapter_params.merge(number: @tutorial.chapters.count + 1))
     
     if @chapter.save
-     
+      # CODE REVIEW: Idiomatically, prefer `respond_to` over `request.xhr?`
+      # http://guides.rubyonrails.org/action_controller_overview.html#rendering-xml-and-json-data
       if request.xhr?
         render json: @chapter
       else

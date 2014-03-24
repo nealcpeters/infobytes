@@ -43,6 +43,8 @@ gem 'aws-sdk'
 
 gem "paperclip", "~> 4.1"
 
+# CODE REVIEW: I'd probably put this in [:development, :test]. No reason for
+# this gem to be installed in production
 gem 'coveralls', require: false
 
 group :development, :test do
@@ -67,6 +69,7 @@ end
 
 gem 'ace-rails-ap'
 
+# CODE REVIEW: I recommend this is in [:development, :test] or only :test
 gem "factory_girl_rails", "~> 4.0"
 
 group :test do

@@ -1,5 +1,6 @@
 <div>
 	<h2><%= @community.name %> Community Tutorials</h2>
+      <%= link_to "Join Community", "#", class: "sm-btn-community" %><br>
       <%= link_to "Create Community Tutorial", new_tutorial_path, class: "sm-btn-community" %>
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>

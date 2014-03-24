@@ -68,4 +68,31 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  def user_create
+    @user = User.create(first_name: "Han", last_name: "Solo", user_name: "tutorial_tester", email: "tutorial_tester@aliance.com", password: "password", password_confirmation: "password")
+  end
+
+  def tutorial_create
+    @tutorial = @user.tutorials.create(title: "How to Be Matt", description: "A detailed tutorial on how to be the most gnarly land lubber of a freight train", rating: 3, subtopic_id: 2)
+  end
+
+  def chapter_create
+    @chapter = @tutorial.chapters.create(title: "blah", number: 1, tutorial_id: @tutorial.id)
+  end
+
+  def sub_chapter_create
+    @sub_chapter = @chapter.sub_chapters.create(title: "subbie", chapter_id: @chapter.id)
+  end
+
+   
+  def log_user_in 
+    visit "/"    
+    find(:xpath, "//a[@href='/users/sign_in']").click
+
+    fill_in 'user[email]', with: @user.email
+    fill_in 'user[password]', with: "password"
+    click_button "Sign in"
+  end
+  
 end

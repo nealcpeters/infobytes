@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
     end
     if @comment.save
       if request.xhr?
-        @comments = @content.comments
+        @comment = Comment.new
+        @comments = @content.comments.order(updated_at: :desc)
         render partial: "comments/comments_display"
       else
         redirect_to @content.sub_chapter

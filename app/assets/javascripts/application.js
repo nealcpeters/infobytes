@@ -56,9 +56,23 @@ $(function(){
     e.preventDefault();
     var url = $(this).attr("href")
     $.get(url, function(serverResponse, status, request){
-      populatePopup(serverResponse)
+      populatePopup(serverResponse);
     })
   })
+
+  /**************************************************
+  *  ajax
+  ***************************************************/
+
+  $("#sign-up-link-index").on("click", function(e){
+    e.preventDefault()
+    $.get("/users/ajax/sign_up", function(serverResponse, status, request){
+    $("#modal-popup").html(serverResponse);
+    appendX();
+  })
+  });
+
+
 });
 
 

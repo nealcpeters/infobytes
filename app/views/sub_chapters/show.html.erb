@@ -86,31 +86,37 @@
     var data = $(this).serialize()
 
     updateCodeSnippet(url, data)
-    removePopup();
+    $.post(url, data, function(serverResponse, status, request){
+      var content = serverResponse.content;
+      var snippet = serverResponse.snippet;
+      updateCodeSnippet(snippet,content);
+      }, "json").done(function(){
+        removePopup();
+      })
   })
 
-  var updateCodeSnippet = function(url, data){
-      
-    $.post(url, data, function(serverResponse, status, request){
-      var contentId = serverResponse.content.id;
-      var snippetBody = serverResponse.snippet.body;
-      var language = serverResponse.snippet.language;
-      var snippet = serverResponse.snippet;
-      console.log(snippet)
-      // $("#editor-" + contentId).html(snippetBody)
-    }, "json")
-
-    // $.ajax({
-    //   url: url,
-    //   data: data,
-    //   method: "PATCH", 
-    //   success: function(serverResponse, status, request){
-    //     var id = serverResponse.id
-    //     var body = serverResponse.body
-    //     $('#paragraph-' + id ).replaceWith("<div id='paragraph-" + id+ "'<p>" + body + "</p></div>");
-    //     removePopup();
-    //   }
-    // })
+  var updateCodeSnippet = function(snippet, content){
+    $("#content-item-" + content.id).html(    
+      "<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
+      <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
+      <div class='edit-links'>\
+        <div>\
+          <a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
+        </div>\
+        <div>\
+          <a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a>\
+        </div>\
+      </div>\
+      <script>\
+        var editor = ace.edit('editor-" + snippet.id + "');\
+        var language = document.getElementById('editor_language-" + snippet.id + "').value;\
+        editor.setTheme('ace/theme/textmate');\
+        editor.session.setMode('ace/mode/" + snippet.language + "');\
+        editor.getSession().setUseWrapMode(true);\
+        editor.setReadOnly(true);\
+        editor.setOptions({maxLines: 40 });\
+      <\/script>"
+    )
   }
 
 
@@ -183,14 +189,33 @@
             </a>\
           </div>\
         </div>\
-      </div>").slideDown()
+      </div>")
 
   }
 
-  var appendSnippet = function(snippet){
-    $("#content-body").append("<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div><input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>").slideDown();
-    $("#content-body").append("<div class='edit-links'><div><a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a></div><div><a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a></div></div>")
-    $("#content-body").append("<script>var editor = ace.edit('editor-" + snippet.id + "');var language = document.getElementById('editor_language-" + snippet.id + "').value;editor.setTheme('ace/theme/textmate');editor.session.setMode('ace/mode/" + snippet.language + "');editor.getSession().setUseWrapMode(true);editor.setReadOnly(true);  editor.setOptions({maxLines: 40 });<\/script>"); }
+  var appendSnippet = function(snippet, content){
+    $("#content-body").append(
+      "<div class='content-item' id='content-item-" + content.id + "'>\
+        <div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
+        <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
+        <div class='edit-links'>\
+          <div>\
+            <a href='/code_snippets/" + snippet.id + "/edit'><i class='fa fa-edit fa-2x'></i><br>edit</a>\
+          </div>\
+          <div>\
+            <a data-confirm='Are you sure you want to remove this code snippet?' data-method='delete' href='/code_snippets/" + snippet.id + "' rel='nofollow'><i class='fa fa-trash-o fa-2x'></i><br>delete</a>\
+          </div>\
+        </div>\
+        <script>\
+          var editor = ace.edit('editor-" + snippet.id + "');\
+          var language = document.getElementById('editor_language-" + snippet.id + "').value;\
+          editor.setTheme('ace/theme/textmate');\
+          editor.session.setMode('ace/mode/" + snippet.language + "');\
+          editor.getSession().setUseWrapMode(true);\
+          editor.setReadOnly(true);\
+          editor.setOptions({maxLines: 40 });\
+        <\/script>\
+      </div>")}
 
   $("body").on("submit", "#modal-popup #new_paragraph", function(e){
     e.preventDefault();
@@ -212,7 +237,7 @@
     var url = $(this).attr("action");
 
     $.post(url, data, function(serverResponse, status, request){
-      appendSnippet(serverResponse)
+      appendSnippet(serverResponse.snippet, serverResponse.content)
 
       $("#modal-popup").foundation("reveal", "close");
     }, "json");

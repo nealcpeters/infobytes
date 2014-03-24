@@ -6,13 +6,19 @@ InfoBytes::Application.routes.draw do
   match "/users/:id", to: "users#show", via: :get, as: "user"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
   match '/about', to: "home#about", via: :get, as: "about"
+  match "search", to: "tutorials#search", via: :post, as: "search"
 
   get '/topics', to: "topics#index", as: "topics"
   get '/topics/:id', to: "topics#show", as: "topic"
   get '/subtopics', to: "subtopics#index", as: "subtopics"
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
 
-  resources :communities
+  resources :communities do
+    member do
+      post :create_user_membership
+      post :delete_user_membership
+    end
+  end
 
   resources :tutorials do
     member do

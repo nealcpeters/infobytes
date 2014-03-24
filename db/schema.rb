@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 20140324211323) do
     t.datetime "updated_at"
   end
 
+  create_table "communities_users", force: true do |t|
+    t.integer "user_id"
+    t.integer "community_id"
+  end
+
   create_table "contents", force: true do |t|
     t.integer  "order_number"
     t.integer  "attachable_id"

@@ -38,50 +38,6 @@
     	<li id="toc-fixed-bar"><%= link_to "TOC #{fa_icon('bars', class: "fa-2x")}".html_safe, "#", id: "toc-link", data: {status: "hidden"} %></li>
 		</div>
 
-		<script>
-      
-			$(window).scroll(function() {
-			  var $bar = $("#marker")
-			  var window_offset = $bar.offset().top - $(window).scrollTop();
-			  
-			  if (window_offset < 0) {
-
-			  	$("#toc-bar").slideDown(200);
-			  } else {
-			  	$("#toc-bar").slideUp(200);
-			  	$(".chapter-list").slideUp(200);
-			  	$("#toc-link").data("status", "hidden")
-			  }
-			});
-      
-      $("#toc-link").on("click", function(e){
-        e.preventDefault();
-        
-        console.log($(this).data("status"))
-        if ($(this).data("status") === "hidden") {
-        	$(this).data("status", "shown")
-          $(".chapter-list").slideDown(200);
-        } else if ($(this).data("status") === "shown") {
-        	$(this).data("status", "hidden")
-          $(".chapter-list").slideUp(200);
-        }
-      });
-
-      $(".sidebar-link").on("click", function(){
-      	$("#toc-link").data("status", "hidden")
-        $(".chapter-list").slideUp(200);
-      })
-
-      $("#close-toc").on("click", function(e){
-        e.preventDefault();
-        
-        $("#toc-link").data("status", "hidden")
-        $(".chapter-list").slideUp(200);
-      });
-
-     
-		</script>
-
 	  <div class="tutorial-body">
       <% @chapters.each_with_index do |chapter, index| %>
 	      <h3 class="section-title" id="Section_<%= under_score(chapter.title) %>"><%= chapter.title %></h3>
@@ -90,32 +46,36 @@
 		          <% chapter.sub_chapters.each_with_index do |sub_chapter, index| %>
 				        <h4 class="sub-section-title" id="Sub_Section_<%= under_score(sub_chapter.title) %>"><%= sub_chapter.title %></h4>
 				        <% sub_chapter.contents.each do |content| %>
-                  
-                  <% if content.attachable_type == "Paragraph" %>
-                    <div class="paragraph">
-                    	<%= content.attachable.body.html_safe %>
+                  <div class="content-item" id="content-item-<%= content.id %>"> 
+                    <div class="comments-container html-view"></div>
+                    <% if content.attachable_type == "Paragraph" %>
+                      <div class="paragraph">
+                      	<%= content.attachable.body.html_safe %>
+                      </div>
+                    <% elsif content.attachable_type == "CodeSnippet" %>
+  	      						<div class="code-snippet">	
+  	      							<div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
+  								      
+  								      <script>
+  								        var editor = ace.edit("editor-<%= content.id %>");
+  								        editor.setTheme("ace/theme/textmate");
+  								        editor.session.setMode("ace/mode/" + "<%= content.attachable.language %>");
+  								        editor.getSession().setUseWrapMode(true);
+  								        editor.setReadOnly(true)
+  								        editor.setOptions({
+  								          maxLines: 30
+  								          });
+  								      </script>
+  								    </div>
+                    <% else %>
+                      <div class="image">
+                      	<%= image_tag content.attachable.image_path.url(:original) %>
+                      </div>
+                    <% end %>
+                    <div class="comments-links">
+                      <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
                     </div>
-                  <% elsif content.attachable_type == "CodeSnippet" %>
-	      						<div class="code-snippet">	
-	      							<div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
-								      
-								      <script>
-								        var editor = ace.edit("editor-<%= content.id %>");
-								        editor.setTheme("ace/theme/textmate");
-								        editor.session.setMode("ace/mode/" + "<%= content.attachable.language %>");
-								        editor.getSession().setUseWrapMode(true);
-								        editor.setReadOnly(true)
-								        editor.setOptions({
-								          maxLines: 30
-								          });
-								      </script>
-								    </div>
-                  <% else %>
-                    <div class="image">
-                    	<%= image_tag content.attachable.image_path.url(:original) %>
-                    </div>
-                  <% end %>
-
+                  </div>
 				        <% end %>
 				      <% end %>
 						</div>
@@ -124,3 +84,44 @@
 	  </div>
 	</div>
 </div>
+
+<script>
+	$(window).scroll(function() {
+	  var $bar = $("#marker")
+	  var window_offset = $bar.offset().top - $(window).scrollTop();
+	  
+	  if (window_offset < 0) {
+
+	  	$("#toc-bar").slideDown(200);
+	  } else {
+	  	$("#toc-bar").slideUp(200);
+	  	$(".chapter-list").slideUp(200);
+	  	$("#toc-link").data("status", "hidden")
+	  }
+	});
+
+	$("#toc-link").on("click", function(e){
+	  e.preventDefault();
+	  
+	  console.log($(this).data("status"))
+	  if ($(this).data("status") === "hidden") {
+	  	$(this).data("status", "shown")
+	    $(".chapter-list").slideDown(200);
+	  } else if ($(this).data("status") === "shown") {
+	  	$(this).data("status", "hidden")
+	    $(".chapter-list").slideUp(200);
+	  }
+	});
+
+	$(".sidebar-link").on("click", function(){
+		$("#toc-link").data("status", "hidden")
+	  $(".chapter-list").slideUp(200);
+	})
+
+	$("#close-toc").on("click", function(e){
+	  e.preventDefault();
+	  
+	  $("#toc-link").data("status", "hidden")
+	  $(".chapter-list").slideUp(200);
+	});
+</script>

@@ -1,0 +1,14 @@
+<div>
+	<h2><%= @community.name %> Community Tutorials</h2>
+	<% @tutorials.each do |tutorial| %>
+		<%= link_to tutorial_path(tutorial) do %>
+			<div class ="tutorial-list medium-10 medium-offset columns">
+				<li> 
+					<p class="tut-title">
+						<%= tutorial.title %> 
+					</p>
+				</li>
+			</div>
+		<% end %>	
+	<% end %>
+</div>

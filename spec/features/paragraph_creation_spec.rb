@@ -21,18 +21,18 @@ feature 'Paragraph Creation' do
   
 
     # CANT TEST IN THE DIV
-    xscenario "hitting Create Paragraph creates a new paragraph in the database" do
-      expect{
-        fill_in 'paragraph[body]', with: "Dajayj"
-        click_button "Create Paragraph"
-      }.to change(Paragraph, :count).by(1) 
-    end
+    # xscenario "hitting Create Paragraph creates a new paragraph in the database" do
+    #   expect{
+    #     fill_in 'paragraph[body]', with: "Dajayj"
+    #     click_button "Create Paragraph"
+    #   }.to change(Paragraph, :count).by(1) 
+    # end
 
-    xscenario "hitting Create Paragraph directs to new page with paragraph shown" do
-      fill_in 'paragraph[body]', with: "Dajayj"
-      click_button "Create Paragraph"
-      expect(page).to have_content("Dajayj")
-    end
+    # xscenario "hitting Create Paragraph directs to new page with paragraph shown" do
+    #   fill_in 'paragraph[body]', with: "Dajayj"
+    #   click_button "Create Paragraph"
+    #   expect(page).to have_content("Dajayj")
+    # end
 
     scenario "submitting Create Paragraph with no body does not create a new paragraph" do
       expect{

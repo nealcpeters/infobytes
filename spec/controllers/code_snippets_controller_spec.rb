@@ -25,6 +25,18 @@ describe CodeSnippetsController do
     end
   end
 
+  describe "update route" do
+    it "must redirect to sub chapter if saved" do
+      post 'update', id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}
+      expect(response).to render_template(@subchapter)
+    end
+
+    # it "must render new view if save not successful" do
+    #   post 'update', id: @image.id, image: {image_path_content_type: "image/jpeg", image_path_file_size: 6853}
+    #   expect(response).to render_template(nil)
+    # end
+  end
+
   describe "show route" do
     it "should render show form" do
       get 'show', id: @code_snippet.id

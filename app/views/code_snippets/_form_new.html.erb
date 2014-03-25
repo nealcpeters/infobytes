@@ -21,6 +21,7 @@
 
       <script>
         var editor = ace.edit("editor");
+        require("ace/config").set("modePath", 'assets/ace/mode/')
         editor.setTheme("ace/theme/textmate");
         editor.session.setMode("ace/mode/ruby");
         editor.getSession().setUseWrapMode(true);

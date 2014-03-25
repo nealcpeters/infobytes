@@ -88,7 +88,7 @@
 <script>
 	$(window).scroll(function() {
 	  var $bar = $("#marker")
-	  var window_offset = $bar.offset().top - $(window).scrollTop();
+	  var window_offset = $bar.offset().top - $(this).scrollTop();
 	  
 	  if (window_offset < 0) {
 
@@ -103,7 +103,6 @@
 	$("#toc-link").on("click", function(e){
 	  e.preventDefault();
 	  
-	  console.log($(this).data("status"))
 	  if ($(this).data("status") === "hidden") {
 	  	$(this).data("status", "shown")
 	    $(".chapter-list").slideDown(200);

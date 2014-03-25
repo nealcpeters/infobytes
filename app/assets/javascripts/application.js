@@ -16,10 +16,3 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-
-
-
-
-
-
-

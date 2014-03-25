@@ -7,4 +7,11 @@ class Tutorial < ActiveRecord::Base
 
   validates :title, :description, :user_id, presence: true
   
+  def update_chapter_order
+    self.chapters.order(:number).each_with_index do |chap, index|
+      chap.number = index + 1
+      chap.save
+    end
+  end
+
 end

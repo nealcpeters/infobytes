@@ -11,7 +11,7 @@
         <h2><%= link_to chapter.title, "#Section_#{under_score(chapter.title)}" %></h2>
         <div class="row">
         	<div class="small-11 small-offset-1">
-        		<% chapter.sub_chapters.each_with_index do |sub_chapter, sub_index| %>
+        		<% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, sub_index| %>
         	    <h4><%= link_to "- #{sub_chapter.title}", "#Sub_Section_#{under_score(sub_chapter.title)}" %></h4>
             <% end %>
         	</div>
@@ -47,7 +47,7 @@
           	<div class="small-10 small-offset-1">
 		          <% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, index| %>
 				        <h4 class="sub-section-title" id="Sub_Section_<%= under_score(sub_chapter.title) %>"><%= sub_chapter.title %></h4>
-				        <% sub_chapter.contents.each do |content| %>
+				        <% sub_chapter.contents.order(:order_number).each do |content| %>
                   <div class="content-item" id="content-item-<%= content.id %>"> 
                     <% if content.attachable_type == "Paragraph" %>
                       <div class="paragraph">

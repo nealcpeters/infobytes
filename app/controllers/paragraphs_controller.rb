@@ -68,9 +68,7 @@ class ParagraphsController < ApplicationController
   protected
 
   def paragraph_params
-    puts "\n\n\n\n=======\n\n\n\n"
     params[:paragraph][:body] = link_formater(params[:paragraph][:body])
-    puts "\n\n\n\n=======\n\n\n\n"
     params.require(:paragraph).permit(:body)
   end
 

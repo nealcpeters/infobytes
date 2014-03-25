@@ -3,7 +3,7 @@
     <div class="comments-container"></div>
     <% if content.attachable_type == "Paragraph" %>
       <div id="paragraph-<%= content.attachable_id %>">
-        <p><%= raw(link_formater(content.attachable.body)) %></p>
+        <p><%= raw(content.attachable.body) %></p>
       </div>
       
       <% if sub_chapter_owner?(@sub_chapter) %>

@@ -19,7 +19,6 @@ class CommunitiesController < ApplicationController
 		@community = Community.new(community_params)
 		current_user.communities << @community
 		if @community.save
-
 			if request.xhr?
 				render json: @community
 			else
@@ -27,6 +26,8 @@ class CommunitiesController < ApplicationController
 				redirect_to communities_path
 			end
 		else
+			# it makes it into here, but still appends the unsaved object instead of displaying form with errors
+
 			@errors = @community.errors.messages
 			render "new"
 		end

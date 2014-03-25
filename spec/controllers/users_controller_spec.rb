@@ -26,21 +26,4 @@ describe UsersController do
   		expect(response).to render_template("devise/registrations/_form_new")
   	end
   end
-
-  # describe "Create route" do
-  #   it "must render new view if without a save'" do
-  #     post :create, tutorial: {id: @tutorial.id, description: @tutorial.description, user_id: @user.id}
-  #     expect(response).to render_template("new")
-  #   end
-
-  #   it "must redirects if save'" do
-  #     post :create, tutorial: {title: "tuttut", description: "basd", user_id: @user.id}
-  #     expect(response).to render_template(nil)
-  #   end
-
-  #   it "must create a tutorial if saved" do
-  #     expect{
-  #       post 'create', tutorial: {id: @tutorial.id, title: "tuttttorial", description: "woohoo"}
-  #     }.to change(Tutorial, :count).by(1) 
-  #   end
 end  

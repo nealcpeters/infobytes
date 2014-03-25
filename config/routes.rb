@@ -6,13 +6,13 @@ InfoBytes::Application.routes.draw do
   match "/users/:id", to: "users#show", via: :get, as: "user"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
   match '/about', to: "home#about", via: :get, as: "about"
-  match "search", to: "tutorials#search", via: :post, as: "search"
+  match "/search", to: "tutorials#search", via: :post, as: "search"
 
   get '/topics', to: "topics#index", as: "topics"
   get '/topics/:id', to: "topics#show", as: "topic"
   get '/subtopics', to: "subtopics#index", as: "subtopics"
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
-
+  post '/tutorials/:tutorial_id/generate_chapter', to: "chapters#generate", as: "generate_chapter"
   resources :communities do
     member do
       post :create_user_membership
@@ -24,6 +24,7 @@ InfoBytes::Application.routes.draw do
     member do
       get :pdf_view
       get :html_view
+      patch :add_community
     end
 
     resources :chapters, shallow: true do 
@@ -34,6 +35,7 @@ InfoBytes::Application.routes.draw do
       end
     end
   end
+
 
   match "/users/ajax/sign_in", to: "users#sign_in", via: :get
   match "/users/ajax/sign_up", to: "users#sign_up", via: :get

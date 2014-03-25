@@ -69,6 +69,18 @@ class ChaptersController < ApplicationController
     end
 	end
 
+  def generate
+    @tutorial = Tutorial.find(params[:tutorial_id])
+    @chapter = @tutorial.chapters.new(number: @tutorial.chapters.count + 1)
+    @chapter.save
+    if request.xhr?
+      render json: @chapter
+    else
+      redirect_to @tutorial
+    end
+
+  end
+
 	private
 
 	def chapter_params

@@ -109,8 +109,10 @@ $(function(){
   $(document).on("click", '#add-chapter', function(e){
     e.preventDefault();
     var url = $(this).attr("href");
-    $.get(url, function(serverResponse, status, request){
-      $("#modal-popup").html(serverResponse);
+    $.post(url, function(serverResponse, status, request){
+      // $("#modal-popup").html(serverResponse);
+      // console.log(serverResponse)
+      appendChapter(serverResponse)
     })
   });
   
@@ -121,9 +123,9 @@ $(function(){
   var appendChapter = function(chapter){
     $("#chapter-list").append(
       "<div class='chapter row' id='chapter-" + chapter.id + "'>\
-        <h3 class='chapter-title'>" + chapter.title + "</h3> \
-        <a class='sub-cpt-list add-list' href='/chapters/" + chapter.id + "'>\
-          <i class='fa fa-arrow-circle-o-down fa-2x'></i>\
+        <h3 class='chapter-title'>Section "+ chapter.number+":</h3> \
+        <a class='sub-cpt-list remove-list' href='/chapters/" + chapter.id + "'>\
+          <i class='fa fa-arrow-circle-o-up fa-2x'></i>\
         </a>\
         <div class='chapter-edit-icons'>\
           <a class='edit-chapter' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/edit'>\
@@ -186,7 +188,7 @@ $(function(){
   // method that updates html on page for updated Chapter
   var updateChapter = function(url, data){
     $.post(url, data, function(serverResponse, status, request){
-      $('#chapter-' + serverResponse.id + " h3").text(serverResponse.title);
+      $('#chapter-' + serverResponse.id + " h3").text("Section " + serverResponse.number+ ": " +serverResponse.title);
     }).done(function(){
       removePopup();
     })

@@ -32,6 +32,12 @@ describe SubChaptersController do
       expect(response).to redirect_to(@chapter.sub_chapters.last)
     end
 
+    it "must redirect if save and json request" do      
+      json = {chapter_id: @chapter.id, sub_chapter: {title: "tuttut", number: 42} }
+      post :create, json
+      response.status.should eq(302)
+    end
+
     it "must create a sub_chapter if saved" do
       expect{
         post :create, chapter_id: @chapter.id, sub_chapter: {title: "tuttut", number: 42} 

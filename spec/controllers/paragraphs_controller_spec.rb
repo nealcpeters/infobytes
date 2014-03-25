@@ -20,23 +20,49 @@ describe ParagraphsController do
 
   describe "edit route" do
   	it "must render edit route" do
-  		get 'edit', id: @paragraph.id
+  		post 'edit', id: @paragraph.id
   		expect(response).to render_template("edit")
   	end
   end
 
   describe "update route" do
   	it "must redirect to sub chapter if creation successful" do
-  		get 'update', id: @paragraph.id, paragraph: {body: "test paragraph"}
+  		post 'update', id: @paragraph.id, paragraph: {body: "test paragraph"}
   		expect(response).to render_template(@subchapter)
   	end
+
+    it "must render new if save failed" do
+      post 'update', id: @paragraph.id, paragraph: {body: 1}
+      expect(response).to render_template(nil)
+    end
   end
 
-  # describe "Show route" do
-  #   it "must render show view" do
-  #     get 'show', :id => @tutorial.id
-  #     expect(response).to render_template("show")
-  #   end
-  # end
+  describe "create route" do
+    it "must redirect to sub chapter if save successful" do
+      post 'create', sub_chapter_id: @sub_chapter.id, paragraph: {body: "test paragraph"}
+      expect(response).to render_template(@subchapter)
+    end
+
+    it "must render new if save unsuccessful" do
+      post 'create', sub_chapter_id: @sub_chapter.id, paragraph: {body: 1}
+      expect(response).to render_template(nil)
+    end
+  end
+
+  describe "destroy route" do
+    it "must route to destroy" do
+      {delete: "/paragraphs/#{@paragraph.id}"}.should route_to(
+        action: 'destroy',
+        controller: "paragraphs",
+        id: (@paragraph.id.to_s)
+      )
+    end
+
+    it "must destroy a record given proper params" do
+      expect{
+        delete :destroy, id: @paragraph.id
+      }.to change(Paragraph, :count).by(-1)
+    end
+  end
 
 end

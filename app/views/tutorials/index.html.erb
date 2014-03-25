@@ -1,59 +1,62 @@
+<%= javascript_include_tag "rating" %>
+
 <div>
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>
 			<div class="tutorial-list medium-10 medium-offset columns">
 				<h2 class="tut-title"><%= tutorial.title %></h2>
-				<% if user_signed_in? %>
-				  <% if rating(tutorial) == 0 %>
-            <ul class="rating">
-							<li class="1"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
-							<li class="2"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
-							<li class="3"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
-							<li class="4"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
-							<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
-						</ul>
-				  <% elsif rating(tutorial) == 1 %>
-            <ul class="rating">
-							<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
-							<li class="2"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
-							<li class="3"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
-							<li class="4"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
-							<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
-						</ul>
-				  <% elsif rating(tutorial) == 2 %>
-            <ul class="rating">
-							<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
-							<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
-							<li class="3"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
-							<li class="4"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
-							<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
-						</ul>
-					<% elsif rating(tutorial) == 3 %>
-            <ul class="rating">
-							<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
-							<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
-							<li class="3 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
-							<li class="4"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
-							<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
-						</ul>
-          <% elsif rating(tutorial) == 4 %>
-            <ul class="rating">
-							<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
-							<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
-							<li class="3 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
-							<li class="4 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
-							<li class="5"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
-						</ul>
-					<% elsif rating(tutorial) == 5 %>
-            <ul class="rating">
-							<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
-							<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
-							<li class="3 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
-							<li class="4 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
-							<li class="5 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
-						</ul>
-					<% end %>
+
+			  <% if rating(tutorial) == 0 %>
+          <ul class="rating" id="star-list-<%= tutorial.id %>">
+						<li class="1 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
+						<li class="2 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
+						<li class="3 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
+						<li class="4 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
+						<li class="5 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
+					</ul>
+			  <% elsif rating(tutorial) == 1 %>
+          <ul class="rating" id="star-list-<%= tutorial.id %>">
+						<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
+						<li class="2 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
+						<li class="3 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
+						<li class="4 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
+						<li class="5 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
+					</ul>
+			  <% elsif rating(tutorial) == 2 %>
+          <ul class="rating" id="star-list-<%= tutorial.id %>">
+						<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
+						<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
+						<li class="3 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
+						<li class="4 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
+						<li class="5 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
+					</ul>
+				<% elsif rating(tutorial) == 3 %>
+          <ul class="rating" id="star-list-<%= tutorial.id %>">
+						<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
+						<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
+						<li class="3 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
+						<li class="4 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
+						<li class="5 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
+					</ul>
+        <% elsif rating(tutorial) == 4 %>
+          <ul class="rating" id="star-list-<%= tutorial.id %>">
+						<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
+						<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
+						<li class="3 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
+						<li class="4 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
+						<li class="5 empty-star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
+					</ul>
+				<% elsif rating(tutorial) == 5 %>
+          <ul class="rating" id="star-list-<%= tutorial.id %>">
+						<li class="1 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 1) %></li>
+						<li class="2 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 2) %></li>
+						<li class="3 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 3) %></li>
+						<li class="4 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 4) %></li>
+						<li class="5 star"><%= link_to fa_icon('star', class: "fa-1x").html_safe, update_rating_path(tutorial.id, 5) %></li>
+					</ul>
 				<% end %>
+				<div class="star-message"><p id="message-<%= tutorial.id %>"></p></div>
+
 			  <p class="tut-description"><%= tutorial.description %></p>
 				<p class="author-date"><%= link_to authorship(tutorial), user_path(tutorial.user) %></p>
 			</div>
@@ -61,24 +64,3 @@
 	<% end %>
 	<%= will_paginate @tutorials %>
 </div>	
-
-<script>
-	  // var colorStars = function(number){
-
-	  // $.each($('.rating'), function(index, value){
-	  //   if ( index <= number - 1) {
-	  //     $(this).css("color", "gold")
-	  //   }
-	  // })
-	  // }
-
-	// $(".rating li a").hover(
-	// 	function(){
-  //    var starNum = parseInt($(this).parent().attr("class"));
-  //    colorStars(starNum);
-	// }, function(){
-	// 	$(this).css("color", "#586570")
-	// });
-  
-
-</script>

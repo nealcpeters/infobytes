@@ -21,7 +21,7 @@ $(function(){
 	    $(".chapter-list").slideDown(200);
 	  } else if ($(this).data("status") === "shown") {
 	  	$(this).data("status", "hidden")
-	    $(".chapter-list").slideUp(200);
+	    // $(".chapter-list").slideUp(200);
 	  }
 	});
 

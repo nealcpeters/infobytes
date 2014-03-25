@@ -1,17 +1,22 @@
 <div id="sub-chapter-list-<%= @chapter.id %>">
+<ul id="list-chapter-<%= @chapter.id %>" class="sortable-list">
   <% @sub_chapters.each do |sub_chapter| %>
-    <div class="sub-chapter" id="sub-chapter-<%= sub_chapter.id %>">
-      <% if @chapter.creator == current_user %>
-        <h4><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter) %></h4>
-        <%= link_to fa_icon('edit', class: "fa-2x sub-chapter-icon").html_safe, edit_sub_chapter_path(sub_chapter), class: "edit-sub-chapter", data: { "reveal-id" => "modal-popup" } %>
-        <%= link_to fa_icon('trash-o', class: "fa-2x sub-chapter-icon").html_safe, sub_chapter_path(sub_chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-sub-chapter" %>
-        
-
-      <% else %>
-        <h4><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter), class: "sub-chapter-link", data: {"reveal-id" => "modal-popup"} %></h4>
-      <% end %>
-    </div>
+    
+      <li class="ui-state-default", id="sub-chp-<%= sub_chapter.id %>">
+      <div class="sub-chapter" id="sub-chapter-<%= sub_chapter.id %>">
+        <% if @chapter.creator == current_user %>
+          <h4><%= link_to "#{fa_icon('minus', class: "fa-1x drag-bar")} #{sub_chapter.title}".html_safe, sub_chapter_path(sub_chapter) %></h4>
+          <%= link_to fa_icon('edit', class: "fa-2x sub-chapter-icon").html_safe, edit_sub_chapter_path(sub_chapter), class: "edit-sub-chapter", data: { "reveal-id" => "modal-popup" } %>
+          <%= link_to fa_icon('trash-o', class: "fa-2x sub-chapter-icon").html_safe, sub_chapter_path(sub_chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-sub-chapter" %>
+          
+        <% else %>
+          <h4><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter), class: "sub-chapter-link", data: {"reveal-id" => "modal-popup"} %></h4>
+        <% end %>
+      </div>
+      </li>
   <% end %>
+  </ul>
+
 </div>
 
 <% if @chapter.creator == current_user %>
@@ -21,3 +26,54 @@
 <% end %>
 
 
+<script>
+  $(function() {
+ 
+    $( ".sortable-list").sortable({
+      handle: ".drag-bar",
+      placeholder: "list-placeholder",
+      axis: "y",
+      connectWith: ".sortable-list" 
+    });
+    $(".sortable-list").disableSelection();
+
+    $(".sortable-list").on("sortupdate",function(){
+        var lists = []
+        $(".sortable-list").each(function(index, ul){
+           var id = $(this).attr("id").match(/\d+/)[0]
+           var list = new List(id)
+           var children = $(ul).children(".ui-state-default");
+           list.populateList(children);
+           lists.push(list)
+        })
+
+        $.post('/chapters/update_sub_chapters', {data: lists}, function(serverResponse){
+          console.log(serverResponse)
+        })
+      })
+  });
+
+  var List = function(id){
+    this.id = id;
+    var contents = {};
+    this.container = contents;
+
+    var addItem = function(item){
+      contents.push(item);
+    };
+
+    this.populateList = function(list){
+      $(list).each(function(index, li){
+        var liId = $(li).attr("id").match(/\d+/)
+        var item = new Item(index + 1)
+        contents[liId] = item
+      })
+    };
+
+  }
+
+  var Item = function( theOrder){
+    this.number = theOrder;
+  }
+
+</script>

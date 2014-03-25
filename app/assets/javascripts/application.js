@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery_ui_custom
 //= require ace/ace
-//= require ace/mode/mode-ruby.js
 //= require foundation
 //= require turbolinks
 //= require_tree .

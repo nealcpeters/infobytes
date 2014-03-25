@@ -1,7 +1,7 @@
 <div id="editor" style="height: 200px; width: 100%; background-color:#eee"><%= @code_snippet.body %></div>
 
 <script>
-  ace.require("ace/config").set("modePath", 'assets/ace/mode/')
+  ace.require("ace/config").set("basePath", '/assets/ace')
   var editor = ace.edit("editor");
   editor.setTheme("ace/theme/textmate");
   editor.session.setMode("ace/mode/ruby");

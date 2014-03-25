@@ -2,7 +2,7 @@ class CommunitiesController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		@communities = Community.all
+		@communities = Community.all.order('updated_at DESC')
 	end
 
 	def show

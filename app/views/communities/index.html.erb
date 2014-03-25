@@ -1,6 +1,8 @@
+<%= javascript_include_tag 'communities_index.js' %>
+
 <div>
 	<h2>Communities</h2>
-	<%= link_to "Add New Community", new_community_path, class: "sm-btn-community create-community-link", data: { "reveal-id" => "modal-popup" }  %>
+	<%= link_to "Add New Community", new_community_path, class: "sm-btn-community create-community-link", data: {"reveal-id" => "modal-popup"}  %>
 	<% @communities.each do |community| %>
 		<ul id="poodle">
 			<%= link_to community_path(community) do %>

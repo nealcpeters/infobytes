@@ -17,4 +17,5 @@ module TutorialsHelper
 	    (total_count / total_votes.to_f).round
 	  end
   end
+
 end

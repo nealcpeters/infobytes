@@ -39,7 +39,7 @@ $(function(){
   $(document).on("click", ".create-tutorial-link", function(e){
     e.preventDefault();
     var url = $(this).attr("href")
-    console.log(url)
+  
     $.get(url, function(serverResponse, status, request){
       populatePopup(serverResponse);
     })

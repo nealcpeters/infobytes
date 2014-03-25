@@ -10,13 +10,14 @@ feature 'Tutorial Reader' do
       visit "/tutorials/#{@tutorial.id}"
     end
 
-    xscenario "must have tutorial and chapter names" do
+    scenario "must have tutorial and chapter names" do
       expect(page).to have_content(@tutorial.title)
       expect(page).to have_content(@chapter.title)
     end
 
-    # xscenario "must have linking icon next to chapter names that takes shows sub chapters" do
-    #   find(:xpath, "//a[contains(@href, \"chapters/#{@chapter.id.to_s}\")]").click
+    # scenario "must have linking icon next to chapter names that takes shows sub chapters" do
+    #   chapter_create
+    #   find(:xpath, "//a[contains(@href, \"chapters/"+@chapter.id.to_i.to_s+"\")]").first.click
     #   expect(page).to have_content(@sub_chapter.title)
     #   expect(page).to have_content(@tutorial.title)
 

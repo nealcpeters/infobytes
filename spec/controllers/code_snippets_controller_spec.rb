@@ -66,12 +66,12 @@ describe CodeSnippetsController do
       }.to change(CodeSnippet, :count).by(-1)
     end
 
-    it "must destroy a code snippet given proper json params" do
-      json = {id: @code_snippet.id}
-      expect{
-        delete :destroy, json
-      }.to change(CodeSnippet, :count).by(-1)
-    end
+    # it "must destroy a code snippet given proper json params" do
+    #   json = {id: @code_snippet.id}
+    #   expect{
+    #     delete :destroy, json
+    #   }.to change(CodeSnippet, :count).by(-1)
+    # end
   end
 
   describe "create route" do

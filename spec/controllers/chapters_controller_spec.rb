@@ -23,13 +23,13 @@ describe ChaptersController do
       expect(response).to render_template("new")
     end
 
-    xit "must render partial if json'" do
-      json = {:format => 'json', tutorial_id: @tutorial.id}
-      request.env["HTTP_ACCEPT"] = 'application/json'      
+    # xit "must render partial if json'" do
+    #   json = {:format => 'json', tutorial_id: @tutorial.id}
+    #   request.env["HTTP_ACCEPT"] = 'application/json'      
       
-    get :new, json
-      expect(response).to render_template("chapters/_form")
-    end
+    # get :new, json
+    #   expect(response).to render_template("chapters/_form")
+    # end
   end
 
   describe "Create route" do
@@ -65,11 +65,11 @@ describe ChaptersController do
       expect(response).to redirect_to(@chapter) 
     end
 
-    it "must redirect to @tutorial upon save'" do
-      json = {id: @chapter.id, chapter: {number: 1}}
-      patch :update, json
-      response.status.should eq(302)      
-    end
+    # it "must redirect to @tutorial upon save'" do
+    #   json = {id: @chapter.id, chapter: {number: 1}}
+    #   patch :update, json
+    #   response.status.should eq(302)      
+    # end
 
       
   end
@@ -89,18 +89,18 @@ describe ChaptersController do
       }.to change(Chapter, :count).by(-1)     
     end
 
-    it "must if given proper json destroy and redirect to partial chapter_tree'" do      
-      json = {id: @chapter.id}
-      delete :destroy, json
-      response.status.should eq(302)
-    end
+    # it "must if given proper json destroy and redirect to partial chapter_tree'" do      
+    #   json = {id: @chapter.id}
+    #   delete :destroy, json
+    #   response.status.should eq(302)
+    # end
 
-    it "must if given proper json destroy and redirect to partial chapter_tree'" do      
-      json = {id: @chapter.id}
-      expect{
-          delete :destroy, json
-        }.to change(Chapter, :count).by(-1) 
-    end
+    # it "must if given proper json destroy and redirect to partial chapter_tree'" do      
+    #   json = {id: @chapter.id}
+    #   expect{
+    #       delete :destroy, json
+    #     }.to change(Chapter, :count).by(-1) 
+    # end
   end
 
   describe "Generate route" do
@@ -109,11 +109,11 @@ describe ChaptersController do
       expect(response).to redirect_to(@tutorial)
     end
 
-    it "must render html_view view'" do
-      json = {tutorial_id: @tutorial.id}      
-      post 'generate', json
-      response.status.should eq(302)
-    end
+    # it "must render html_view view'" do
+    #   json = {tutorial_id: @tutorial.id}      
+    #   post 'generate', json
+    #   response.status.should eq(302)
+    # end
   end
 
 end

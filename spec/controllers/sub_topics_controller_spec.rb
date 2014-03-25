@@ -1,4 +1,4 @@
-describe TopicsController do
+describe SubtopicsController do
   describe "Show route" do
     it "must render show view'" do
       @topic = Topic.create(title:"woot")

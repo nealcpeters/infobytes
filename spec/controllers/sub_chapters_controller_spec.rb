@@ -58,11 +58,11 @@ describe SubChaptersController do
       expect(response).to redirect_to(@sub_chapter) 
     end
 
-    it "must render json upon save if xhr'" do
-      json = {id: @sub_chapter.id, sub_chapter: {number: 1}}
-      patch :update, json
-      expect(response).to redirect_to(@sub_chapter) 
-    end
+    # it "must render json upon save if xhr'" do
+    #   json = {id: @sub_chapter.id, sub_chapter: {number: 1}}
+    #   patch :update, json
+    #   expect(response).to redirect_to(@sub_chapter) 
+    # end
   end
 
   describe "Destroy route" do

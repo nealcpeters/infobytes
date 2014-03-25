@@ -7,6 +7,9 @@ class TutorialsController < ApplicationController
     @chapter = Chapter.new
     @author = @tutorial.user
     @chapters = @tutorial.chapters.order(:number)
+    if @tutorial.community_id 
+      @community = Community.find(@tutorial.community_id)
+    end
   end
 
   def new
@@ -78,6 +81,10 @@ class TutorialsController < ApplicationController
   def search 
     @search_content = params[:search_data]
     @tutorials = Tutorial.where("title ILIKE ? OR description ILIKE ?", "%#{@search_content}%", "%#{@search_content}%")
+  end
+
+  def add_community
+
   end
 
   protected

@@ -6,7 +6,8 @@ InfoBytes::Application.routes.draw do
   match "/users/:id", to: "users#show", via: :get, as: "user"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
   match '/about', to: "home#about", via: :get, as: "about"
-  match "search", to: "tutorials#search", via: :post, as: "search"
+  match "/search", to: "tutorials#search", via: :post, as: "search"
+  match "/add_community/:id", to: "tutorials#add_community", via: :post, as: "add_community"
 
   get '/topics', to: "topics#index", as: "topics"
   get '/topics/:id', to: "topics#show", as: "topic"
@@ -24,6 +25,7 @@ InfoBytes::Application.routes.draw do
     member do
       get :pdf_view
       get :html_view
+      post :add_community
     end
 
     resources :chapters, shallow: true do 

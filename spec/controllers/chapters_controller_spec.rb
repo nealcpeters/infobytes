@@ -40,7 +40,7 @@ describe ChaptersController do
   end
 
   describe "Edit route" do
-    xit "must render edit view if not AJAX'" do
+    it "must render edit view if not AJAX'" do
       get :edit, id: @chapter.id
       expect(response).to render_template("edit")
     end

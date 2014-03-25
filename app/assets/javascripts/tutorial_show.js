@@ -69,10 +69,13 @@ $(function(){
   $(document).on("click", "#chapter-list .sub-cpt-list",  function(e){
     e.preventDefault();
     var link = this;
+    console.log(link)
 
     if ($(this).attr('class').match("add-list") !== null){
       bring_list(link);
+      console.log("bring list")
     } else {
+      console.log("take list off")
       take_list_off(link);
     }
   })
@@ -82,6 +85,7 @@ $(function(){
     var url = $(link).attr("href")
     var id = getId(url);
 
+    console.log(url)
     $.get(url, function(serverResponse, status, request){
       $("#cpt-" + id).html(serverResponse).slideDown();
     }).done(function(){
@@ -136,8 +140,13 @@ $(function(){
           </a>\
         </div>\
       </div>\
-      <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "' style='display: none;'></div>");
-
+      <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "'>\
+      <div id='sub-chapter-list-" + chapter.id + "'></div>\
+        <a class='add-sub-chapter' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/sub_chapters/new'>\
+          Add Sub-section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>\
+        </a>\
+      </div>");
+    console.log("appending chapter")
      removePopup();
   };
 

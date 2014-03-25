@@ -376,4 +376,34 @@ $(function(){
       removePopup();
     })
   }
+
+   /********************************
+  * addming community to tutorial form
+  *********************************/
+
+  var addCommunity = function(url, data){
+    console.log("madison is perfect in the add community")
+    $.ajax({
+      url: url,
+      data: data,
+      method: "PATCH", 
+      success: function(serverResponse, status, request){
+        console.log(serverResponse)
+
+       
+          $('#tutorial-community-add').replaceWith('<p>Community:  ' + serverResponse.name + '</p>')
+    
+        }
+      })
+    }
+
+  $(document).on('submit', "#tutorial-community-add", function(e){
+    e.preventDefault();
+      
+      
+      var url = $(this).attr("action");
+      var data = $(this).serialize()
+      addCommunity(url, data);
+
+    })
 })

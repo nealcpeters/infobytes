@@ -8,6 +8,7 @@
 <input type="hidden" id="input_value" name="code_snippet[body]" value="">
 <input type="submit" value="Submit" onclick="storeInfo()" class="button">
 
+<%= javascript_include_tag 'ace/mode-ruby.js'%>
 <script>
 	var editor = ace.edit("editor");
   editor.setTheme("ace/theme/textmate");
@@ -20,6 +21,8 @@
     maxLines: 25,
     minLines: 4.75,
   });
+
+
   
   updateLanguage = function() {  
     var newLanguage = document.getElementById('language').value

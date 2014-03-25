@@ -52,6 +52,9 @@ RSpec.configure do |config|
   # Inserted later for capybara and DatabaseCleaner
   config.include Capybara::DSL
 
+  config.include FactoryGirl::Syntax::Methods
+
+
   config.mock_with :rspec
 
   config.before(:suite) do

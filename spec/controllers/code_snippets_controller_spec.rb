@@ -7,9 +7,29 @@ describe CodeSnippetsController do
     tutorial_create
     chapter_create
     sub_chapter_create
-    @image = Image.create(image_path_file_name: "test.jpg", image_path_content_type: "image/jpeg", image_path_file_size: 6851)    
-    @content = Content.create(order_number: 1, attachable_id: @image.id, attachable_type: "Image", sub_chapter_id: @sub_chapter.id)
+    @code_snippet = CodeSnippet.create(body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby")
+    @content = Content.create(order_number: 1, attachable_id: @code_snippet.id, attachable_type: "CodeSnippet", sub_chapter_id: @sub_chapter.id)
   end
 
+  describe "new route" do
+    it "should render new code snippet form" do
+      get 'new', :sub_chapter_id => @sub_chapter.id
+      expect(response).to render_template("new")
+    end
+  end
+
+  # describe "edit route" do
+  #   it "should render update code snippet form" do
+  #     post 'edit', :sub_chapter_id => @sub_chapter.id
+  #     expect(response).to render_template("code_snippets/_form_update")
+  #   end
+  # end
+
+  describe "show route" do
+    it "should render show form" do
+      get 'show', id: @code_snippet.id
+      expect(response).to render_template("show")
+    end
+  end
 
 end

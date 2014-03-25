@@ -12,7 +12,7 @@ InfoBytes::Application.routes.draw do
   get '/topics/:id', to: "topics#show", as: "topic"
   get '/subtopics', to: "subtopics#index", as: "subtopics"
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
-
+  post '/tutorials/:tutorial_id/generate_chapter', to: "chapters#generate", as: "generate_chapter"
   resources :communities do
     member do
       post :create_user_membership
@@ -35,6 +35,7 @@ InfoBytes::Application.routes.draw do
       end
     end
   end
+
 
   match "/users/ajax/sign_in", to: "users#sign_in", via: :get
   match "/users/ajax/sign_up", to: "users#sign_up", via: :get

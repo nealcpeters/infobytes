@@ -8,7 +8,7 @@
 	  <div class="table-of-contents">
       <h2 class="toc">Table of Contents:</h2>
 	    <% @chapters.each_with_index do |chapter, index| %>
-        <h2><%= link_to chapter.title, "#Section_#{under_score(chapter.title)}" %></h2>
+        <h2><%= link_to "Section #{chapter.number}: #{chapter.title}", "#Section_#{chapter.number.to_s}" %></h2>
         <div class="row">
         	<div class="small-11 small-offset-1">
         		<% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, sub_index| %>
@@ -25,7 +25,7 @@
       <ul class="chapter-list">	
     	  <li><%= link_to "Close #{fa_icon('arrow-circle-up')}".html_safe, "#", id: "close-toc" %></li>
       	<% @chapters.each do |chapter| %>
-          <li><%= link_to chapter.title, "#Section_#{under_score(chapter.title)}", class: "sidebar-link" %>
+          <li><%= link_to chapter.title, "#Section_#{chapter.number.to_s}", class: "sidebar-link" %>
             <ul class="sub-chapter-list">
             	<% chapter.sub_chapters.order(:number).each do |sub_chapter| %>
                 <li><%= link_to sub_chapter.title, "#Sub_Section_#{under_score(sub_chapter.title)}", class: "sidebar-link" %></li>
@@ -42,7 +42,7 @@
 
 	  <div class="tutorial-body">
       <% @chapters.each_with_index do |chapter, index| %>
-	      <h3 class="section-title" id="Section_<%= under_score(chapter.title) %>"><%= chapter.title %></h3>
+	      <h3 class="section-title" id="Section_<%= chapter.number.to_s %>"><%= "Section #{chapter.number}: #{chapter.title}" %></h3>
           <div class="row">
           	<div class="small-10 small-offset-1">
 		          <% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, index| %>

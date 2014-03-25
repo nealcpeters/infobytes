@@ -28,12 +28,13 @@ describe ChaptersController do
     
     it "must redirects if save" do
       post :create, tutorial_id: @tutorial.id, chapter: {title: "tuttut", number: 42} 
-      expect(response).to render_template(nil)
+      expect(response).to redirect_to(@tutorial.chapters.last)
     end
 
-    xit "must render json: @chapter if xhr" do
-      post :create, json: {tutorial_id: @tutorial.id, chapter: {title: "tuttut", number: 42}}
-      expect(response).to render_template(nil)
+    it "must render json: @chapter if xhr" do
+      json = {tutorial_id: @tutorial.id, chapter: {title: "tuttut", number: 42}}
+      post :create, json
+      response.status.should eq(302)
     end
 
     it "must create a chapter if saved" do
@@ -55,6 +56,14 @@ describe ChaptersController do
       patch :update, id: @chapter.id, chapter: {number: 1}
       expect(response).to redirect_to(@chapter) 
     end
+
+    it "must redirect to @tutorial upon save'" do
+      json = {id: @chapter.id, chapter: {number: 1}}
+      patch :update, json
+      response.status.should eq(302)      
+    end
+
+      
   end
 
   describe "Destroy route" do
@@ -71,12 +80,31 @@ describe ChaptersController do
         delete :destroy, id: @chapter.id
       }.to change(Chapter, :count).by(-1)     
     end
+
+    it "must if given proper json destroy and redirect to partial chapter_tree'" do      
+      json = {id: @chapter.id}
+      delete :destroy, json
+      response.status.should eq(302)
+    end
+
+    it "must if given proper json destroy and redirect to partial chapter_tree'" do      
+      json = {id: @chapter.id}
+      expect{
+          delete :destroy, json
+        }.to change(Chapter, :count).by(-1) 
+    end
   end
 
   describe "Generate route" do
     it "must render html_view view'" do
       post 'generate', tutorial_id: @tutorial.id
       expect(response).to redirect_to(@tutorial)
+    end
+
+    it "must render html_view view'" do
+      json = {tutorial_id: @tutorial.id}      
+      post 'generate', json
+      response.status.should eq(302)
     end
   end
 

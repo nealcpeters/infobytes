@@ -98,7 +98,8 @@ describe TutorialsController do
 
   describe "Add Commuity route" do
     it "must redirect to @tutorial if save'" do
-      post :add_community, id: @tutorial.id, tutorial: {id: @tutorial.id}
+      @com = Community.create(name: "a", description: "blah")
+      patch :add_community, id: @tutorial.id, tutorial: {community_id: @com.id}
       expect(response).to redirect_to(@tutorial)
     end
   end

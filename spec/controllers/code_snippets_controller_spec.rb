@@ -18,12 +18,12 @@ describe CodeSnippetsController do
     end
   end
 
-  # describe "edit route" do
-  #   it "should render update code snippet form" do
-  #     post 'edit', :sub_chapter_id => @sub_chapter.id
-  #     expect(response).to render_template("code_snippets/_form_update")
-  #   end
-  # end
+  describe "edit route" do
+    it "should render update code snippet form" do
+      post 'edit', :id => @code_snippet.id
+      expect(response).to render_template("edit")
+    end
+  end
 
   describe "show route" do
     it "should render show form" do

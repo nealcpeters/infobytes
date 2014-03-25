@@ -295,8 +295,11 @@ $(function(){
     if (result){
       var chpUrl = $(this).attr("href")
       var id = getId(chpUrl)
+      $('#cpt-' + id).toggle("fade");
       $('#chapter-' + id).toggle('fade',function(){
         $('#chapter-' + id).remove();
+        $('#cpt-' + id).remove();
+
       });
       $.ajax({
         url: chpUrl,

@@ -24,10 +24,11 @@ describe ChaptersController do
     end
 
     it "must render partial if json'" do
-      request.env['ACCEPT'] = 'application/json'
-      json = {tutorial_id: @tutorial.id}
+      json = {:format => 'xhr', tutorial_id: @tutorial.id}
+      request.env["HTTP_ACCEPT"] = 'application/xhr'      
+      
       get :new, json
-      expect(response).to render_template("_form")
+      response.status.should eq(200)
     end
   end
 

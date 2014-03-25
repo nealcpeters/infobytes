@@ -60,17 +60,17 @@ describe CodeSnippetsController do
     end
   end
 
-  # describe "create route" do
-  #   it "should redirect to sub chapter if saved" do
-  #     post 'create', id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}
-  #     expect(response).to render_template(@subchapter)      
-  #   end
+  describe "create route" do
+    it "should redirect to sub chapter if saved" do
+      post 'create', id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}
+      expect(response).to render_template(@subchapter)      
+    end
     
-  #   it "must redirect to new view if without a save" do
-  #     post 'create', id: @code_snippet.id, code_snippet: {language: "ruby"}
-  #     expect(response).to render_template('new')      
-  #   end
+    it "must redirect to new view if without a save" do
+      post 'create', id: @code_snippet.id, code_snippet: {language: "ruby"}
+      expect(response).to render_template('new')      
+    end
 
-  # end
+  end
 
 end

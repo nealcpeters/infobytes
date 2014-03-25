@@ -17,8 +17,8 @@ class TutorialsController < ApplicationController
   def create
     @tutorial = current_user.tutorials.new(tutorial_params)
     if @tutorial.save
-      @tutorial.chapters.create(title: "Section 1");
-      @tutorial.chapters.first.sub_chapters.create(title: "Sub-section 1")
+      # @tutorial.chapters.create(title: "Section 1");
+      # @tutorial.chapters.first.sub_chapters.create(title: "Sub-section 1")
       flash[:notice]="Your new tutorial has been created!"
       redirect_to @tutorial
     else

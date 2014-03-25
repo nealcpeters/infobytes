@@ -1,4 +1,5 @@
 <div class="row">
+
   <div class="tutorial-header">
   	<h1><%= @tutorial.title %></h1>
   	<p>Description: <%= @tutorial.description %></p>
@@ -8,7 +9,13 @@
       <p class="inline"> Written by: <%= link_to "#{@author.user_name}", user_path(@author), class: "inline" %></p>
     <% end %>
     <%= link_to "View As Single Page", html_view_tutorial_path(@tutorial) %>
-  </div>  
+    <% if @tutorial.community_id %>
+      <p>Community: <%= @community.name %></p>
+    <% else %>
+      <%= render "tutorials/add_community_form" %>
+    <% end %>
+  </div> 
+
   <h2 class="tut-index">Table of Contents:</h2>
   <div class="row">
     <div id="chapter-list" class="small-10 small-offset-1">

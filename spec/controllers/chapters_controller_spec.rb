@@ -22,6 +22,13 @@ describe ChaptersController do
       get :new, tutorial_id: @tutorial.id
       expect(response).to render_template("new")
     end
+
+    it "must render partial if json'" do
+      request.env['ACCEPT'] = 'application/json'
+      json = {tutorial_id: @tutorial.id}
+      get :new, json
+      expect(response).to render_template("_form")
+    end
   end
 
   describe "Create route" do

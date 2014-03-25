@@ -1,8 +1,10 @@
 module ApplicationHelper
   def link_formater(body)
     regex = /(<a.*href\s*=\s*"\s*?(?!http))(.*)(">.*>)/
-    body.gsub(regex, "\\1http://\\2\\3")
-    
+    body.gsub!(regex, "\\1http://\\2\\3")
+    return body
+
+
     # This was our amazing regex to sort out everything but a tags we had created...
     # turns out editable divs do it for us, but in case we have to revert I did not
     # want to loose Alex's masterpieces:

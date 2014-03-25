@@ -3,4 +3,10 @@ class SubChapter < ActiveRecord::Base
   has_many :contents
 
   validates :title, :presence => true
+
+  def update_data(chapter, order)
+    this.chapter_id = chapter
+    this.number = order
+    this.save
+  end
 end

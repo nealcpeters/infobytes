@@ -135,7 +135,7 @@ $(function(){
         </div>\
       </div>\
       <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "'>\
-      <div id='sub-chapter-list-" + chapter.id + "'></div>\
+      <div id='sub-chapter-list-" + chapter.id + "'><ul id='list-chapter-" + chapter.id + "' class='sortable-list'></ul></div>\
         <a class='add-sub-chapter' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/sub_chapters/new'>\
           Add Sub-section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>\
         </a>\
@@ -218,15 +218,17 @@ $(function(){
   //appending subchapter method
   var appendSubchapter = function(subChapter, chapter){
     $("#sub-chapter-list-" + chapter.id).append(
-      "<div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'>\
-        <h4><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h4>\
-        <a class='edit-sub-chapter' data-reveal-id='modal-popup' href='/sub_chapters/" + subChapter.id + "/edit'>\
-          <i class='fa fa-edit fa-2x sub-chapter-icon'></i>\
-        </a>\
-        <a class='delete-sub-chapter' href='/sub_chapters/" + subChapter.id + "'>\
-          <i class='fa fa-trash-o fa-2x sub-chapter-icon'></i>\
-        </a>\
-      </div>"); 
+      "<li class='ui-state-default', id='sub-chp-"+ subChapter.id +"'>\
+        <div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'>\
+          <h4><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h4>\
+          <a class='edit-sub-chapter' data-reveal-id='modal-popup' href='/sub_chapters/" + subChapter.id + "/edit'>\
+            <i class='fa fa-edit fa-2x sub-chapter-icon'></i>\
+          </a>\
+          <a class='delete-sub-chapter' href='/sub_chapters/" + subChapter.id + "'>\
+            <i class='fa fa-trash-o fa-2x sub-chapter-icon'></i>\
+          </a>\
+        </div>\
+      </li>"); 
 
     removePopup();
   }
@@ -374,4 +376,34 @@ $(function(){
       removePopup();
     })
   }
+
+   /********************************
+  * addming community to tutorial form
+  *********************************/
+
+  var addCommunity = function(url, data){
+    console.log("madison is perfect in the add community")
+    $.ajax({
+      url: url,
+      data: data,
+      method: "PATCH", 
+      success: function(serverResponse, status, request){
+        console.log(serverResponse)
+
+       
+          $('#tutorial-community-add').replaceWith('<p>Community:  ' + serverResponse.name + '</p>')
+    
+        }
+      })
+    }
+
+  $(document).on('submit', "#tutorial-community-add", function(e){
+    e.preventDefault();
+      
+      
+      var url = $(this).attr("action");
+      var data = $(this).serialize()
+      addCommunity(url, data);
+
+    })
 })

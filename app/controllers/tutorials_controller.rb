@@ -88,10 +88,14 @@ class TutorialsController < ApplicationController
   def add_community
     @tutorial = Tutorial.find(params[:id])
     @tutorial.update(tutorial_params)
-
+    @community = Community.find(@tutorial.community_id)
     if @tutorial.save
-      flash[:notice] = "Tutorial added to community."
-      redirect_to @tutorial
+      if request.xhr?
+        render json: @community
+        flash[:notice] = "Tutorial added to community."
+      else
+        redirect_to @tutorial
+      end
     end
 
   end

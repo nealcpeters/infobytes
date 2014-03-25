@@ -72,6 +72,22 @@ class ChaptersController < ApplicationController
     end
 	end
 
+  def update_sub_chapters
+    params[:data].length.times do |index|
+      list = params[:data][index.to_s]
+      chapter_id = list[:id]
+      list[:container].each do |id, order|
+        sub_chapter = SubChapter.find(id)
+        sub_chapter.number = order[:number]
+        sub_chapter.chapter_id = chapter_id
+        sub_chapter.save
+        # binding.pry
+      end
+    end
+
+    render json: {"message"=> "great success"} if request.xhr?
+  end
+
   def generate
     @tutorial = Tutorial.find(params[:tutorial_id])
     @chapter = @tutorial.chapters.new(number: @tutorial.chapters.count + 1)

@@ -27,6 +27,7 @@
 
 <script>
   for (var i=1;i<= <%=@count%>;i++){ 
+    ace.require("ace/config").set("basePath", '/assets/ace')
     var editor = ace.edit("editor " + i);
     var language = document.getElementById("editor_language " + i).innerHTML
     editor.setTheme("ace/theme/textmate");

@@ -58,7 +58,13 @@ describe CodeSnippetsController do
         delete :destroy, id: @code_snippet.id
       }.to change(CodeSnippet, :count).by(-1)
     end
+  end
 
+  describe "create route" do
+    it "should redirec tto sub chapter if saved" do
+      post 'update', id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}
+      expect(response).to render_template(@subchapter)      
+    end
   end
 
 end

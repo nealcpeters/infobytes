@@ -36,8 +36,7 @@ $(function(){
           $('form').append("Both name and description are required.")
         }
         else{
-          // var woof = $('#poodle')
-          // console.log(woof)
+       
           $('#communities-list').prepend(
             '<a href= "/communities/' + serverResponse.id + '">\
           <div class ="tutorial-list medium-10 medium-offset columns">\

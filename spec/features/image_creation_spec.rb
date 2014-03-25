@@ -37,15 +37,15 @@ feature 'Image Creation' do
 
     scenario "with no image redirects to image#new view with an error message" do
       click_button "Create Image"
-      expect(page).should have_content 'You must upload an image'
-      expect(page).should have_content 'Image path'
+      expect(page).to have_content 'You must upload an image'
+      expect(page).to have_content 'Image path'
     end
 
     scenario "with a non-image file redirects to image#new view with an error message" do
       attach_file("image[image_path]", File.expand_path('db/seeds.rb'))
       click_button "Create Image"
-      expect(page).should have_content 'This file type is not allowed '
-      expect(page).should have_content 'Image path'
+      expect(page).to have_content 'This file type is not allowed '
+      expect(page).to have_content 'Image path'
     end
 
   end

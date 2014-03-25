@@ -43,6 +43,8 @@ InfoBytes::Application.routes.draw do
   match "/down/:content_id/down", to: "contents#down", via: :get, as: "content_down"
 
   match "/ratings/:tutorial_id/:rating", to: "ratings#update_rating", via: :get, as: "update_rating"
+  match "/ratings/update/:id", to: "ratings#update_rating_ajax", via: :post
+
 
   get "/contents/:content_id/comments", to: "comments#index", as: "content_comments"
   get "/contents/:content_id/comments/new", to: "comments#new", as: "new_comment"

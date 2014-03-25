@@ -1,33 +1,32 @@
 $(function(){
-   /*******************************************************************
+  $(document).foundation(); 
+  /*******************************************************************
   * Helper methods
   ********************************************************************/
-  // Makes border of element red
+
   var invalidInput = function(field){
     $(field).css("border-color", "red")
-  }
+  };
 
   // Appends an x to popup window #modal-popup
   var appendX = function(){
     $("#modal-popup").append("<a class='close-reveal-modal '>&#215;</a>")
-  }
+  };
 
   // Return id from url
   var getId = function(url){
     return url.match(/\d+/)[0]
-  }
+  };
 
   // Removes modal popup of the screen
   var removePopup = function(){
     $("#modal-popup").foundation("reveal", "close");
-  }
+  };
 
   var populatePopup = function(content){
     $("#modal-popup").html(content);
     appendX();
-  }
-
-
+  };
 
   /*****************************************************************
   * Edit paragraph
@@ -158,7 +157,6 @@ $(function(){
 
     var data = $(this).serialize();
     var url = $(this).attr("action");
-    console.log(url)
 
     $.post(url, data, function(serverResponse, status, request){
       appendParagraph(serverResponse.paragraph, serverResponse.content)
@@ -239,7 +237,6 @@ $(function(){
     e.preventDefault();
     var url = $(this).attr("href")
     var contentId = getId(url);
-    console.log(url)
 
     $.get(url, function(serverResponse, status, request){
       $("#content-item-" + contentId + " .comments-container").html(serverResponse). fadeIn()

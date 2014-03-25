@@ -137,7 +137,7 @@ $(function(){
       <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "'>\
       <div id='sub-chapter-list-" + chapter.id + "'><ul id='list-chapter-" + chapter.id + "' class='sortable-list'></ul></div>\
         <a class='add-sub-chapter' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/sub_chapters/new'>\
-          Add Sub-section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>\
+          Add Subsection <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>\
         </a>\
       </div>");
      removePopup();

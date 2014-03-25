@@ -9,7 +9,7 @@ $(function(){
 
   // Appends an x to popup window #modal-popup
   var appendX = function(){
-    $("#modal-popup").append("<a class='close-reveal-modal'>&#215;</a>")
+    $("#modal-popup").append("<a class='close-reveal-modal '>&#215;</a>")
   }
 
   // Return id from url
@@ -233,16 +233,17 @@ $(function(){
 
   /************************************************************
   *  Comments ajax
-  ************************************************************/
+  *************************************************************/
+  
   $(document).on("click", ".bring-comments", function(e){
     e.preventDefault();
     var url = $(this).attr("href")
     var contentId = getId(url);
     console.log(url)
-    console.log($("#content-item-" + contentId + " .comments-container"))
 
     $.get(url, function(serverResponse, status, request){
-      $("#content-item-" + contentId + " .comments-container").html(serverResponse)
+      $("#content-item-" + contentId + " .comments-container").html(serverResponse). fadeIn()
+      $("#content-item-" + contentId + " .comments-container").prepend("<a class='close-comments' href='#" + contentId + "'>&#215;</a>")
     })
   })
 
@@ -257,8 +258,15 @@ $(function(){
       var comment = serverResponse.comment;
       var content = serverResponse.content;
       $("#content-item-" + contentId + " .comments-container").html(serverResponse)
-      // postComment(comment, content, user)
+      $("#content-item-" + contentId + " .comments-container").prepend("<a class='close-comments' href='#" + contentId + "'>&#215;</a>")
+    })
+  })
 
+  $(document).on("click", ".close-comments", function(e){
+    e.preventDefault();
+    id = getId($(this).attr('href'))
+    $("#content-item-" + id + " .comments-container").toggle("fade", function(){
+      $(this).empty();
     })
   })
 

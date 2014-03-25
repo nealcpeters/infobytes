@@ -1,4 +1,5 @@
 <div class="row">
+
   <div class="tutorial-header">
   	<h1><%= @tutorial.title %></h1>
   	<p>Description: <%= @tutorial.description %></p>
@@ -8,36 +9,43 @@
       <p class="inline"> Written by: <%= link_to "#{@author.user_name}", user_path(@author), class: "inline" %></p>
     <% end %>
     <%= link_to "View As Single Page", html_view_tutorial_path(@tutorial) %>
-  </div>  
+    <% if @tutorial.community_id %>
+      <p>Community: <%= @community.name %></p>
+    <% else %>
+      <%= render "tutorials/add_community_form" %>
+    <% end %>
+  </div> 
+
   <h2 class="tut-index">Table of Contents:</h2>
-  <div class="row">
+  <div class="row" id="tutorial-contents">
     <div id="chapter-list" class="small-10 small-offset-1">
   		<% @chapters.each do |chapter| %>
       	<div class="chapter row" id="chapter-<%= chapter.id %>">
-      
+          <h3 class="chapter-title">Section <%= chapter.number%>: <%= chapter.title %></h3>
           <% if tutorial_creator? %>
-            <h3 class="chapter-title"><%= chapter.title %></h3>
-            <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>  
+            <%= link_to fa_icon('arrow-circle-o-up', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list remove-list" %>  
             <div class="chapter-edit-icons">
               <%= link_to fa_icon('edit', class: "fa-2x").html_safe, edit_chapter_path(chapter), class: "edit-chapter", data: { "reveal-id" => "modal-popup" }%>
               <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
             </div>
           <% else %>
 
-            <h3 class="chapter-title"><%= chapter.title %></h3>
+            
             <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
           
           <% end %>
 
 
         </div>
-        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>" style="display: none;"></div>
+        <% @sub_chapters = chapter.sub_chapters.order(:number) %>
+        <% @chapter = chapter %>
+        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>"><%= render "chapters/sub_chapters"%></div>
       <% end %>
     </div>
   </div>
 
 	<% if tutorial_creator? %>
-    <%= link_to "Add Section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>".html_safe, new_tutorial_chapter_path(@tutorial), id: "add-chapter", data: {"reveal-id" => "modal-popup"}%>
+    <%= link_to "Add Section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>".html_safe, generate_chapter_path(@tutorial), id: "add-chapter"%>
     <div id="chapter-form" style="display: none;"></div>
 	<% end %>
  

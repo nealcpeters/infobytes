@@ -32,8 +32,8 @@ describe ImagesController do
     end
 
     it "must render new view if save not successful" do
-      get 'update', id: @image.id, image: {image_path_file_name: nil, image_path_content_type: "image/jpeg", image_path_file_size: 6853}
-      expect(response).to render_template("new")
+      get 'update', id: @image.id, image: {image_path_content_type: "image/jpeg", image_path_file_size: 6853}
+      expect(response).to render_template(nil)
     end
 
   end

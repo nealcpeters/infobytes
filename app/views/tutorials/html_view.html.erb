@@ -25,7 +25,7 @@
       	<% @chapters.each do |chapter| %>
           <li><%= link_to chapter.title, "#Section_#{under_score(chapter.title)}", class: "sidebar-link" %>
             <ul class="sub-chapter-list">
-            	<% chapter.sub_chapters.each do |sub_chapter| %>
+            	<% chapter.sub_chapters.order(:number).each do |sub_chapter| %>
                 <li><%= link_to sub_chapter.title, "#Sub_Section_#{under_score(sub_chapter.title)}", class: "sidebar-link" %></li>
             	<% end %>
             </ul>
@@ -43,11 +43,10 @@
 	      <h3 class="section-title" id="Section_<%= under_score(chapter.title) %>"><%= chapter.title %></h3>
           <div class="row">
           	<div class="small-10 small-offset-1">
-		          <% chapter.sub_chapters.each_with_index do |sub_chapter, index| %>
+		          <% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, index| %>
 				        <h4 class="sub-section-title" id="Sub_Section_<%= under_score(sub_chapter.title) %>"><%= sub_chapter.title %></h4>
 				        <% sub_chapter.contents.each do |content| %>
                   <div class="content-item" id="content-item-<%= content.id %>"> 
-                    <div class="comments-container html-view"></div>
                     <% if content.attachable_type == "Paragraph" %>
                       <div class="paragraph">
                       	<%= content.attachable.body.html_safe %>
@@ -74,6 +73,9 @@
                     <% end %>
                     <div class="comments-links">
                       <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+                    </div>
+                    <div class="small-10">
+                      <div class="comments-container html-view"></div>
                     </div>
                   </div>
 				        <% end %>

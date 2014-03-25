@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20140324215418) do
   create_table "tutorials", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.integer  "rating"
     t.integer  "user_id"
     t.integer  "subtopic_id"
     t.datetime "created_at"

@@ -1,12 +1,12 @@
 describe TutorialsController do
   include Devise::TestHelpers
 
-
   before :each do
     @user = create(:user)
     sign_in @user
     tutorial_create
   end
+
   describe "Show route" do
     it "must render show view" do
       get 'show', :id => @tutorial.id
@@ -33,7 +33,6 @@ describe TutorialsController do
     end
 
     it "must create a tutorial if saved" do
-      tutorial_create
       expect{
         post 'create', tutorial: {id: @tutorial.id, title: "tuttttorial", description: "woohoo"}
       }.to change(Tutorial, :count).by(1) 
@@ -42,7 +41,6 @@ describe TutorialsController do
 
   describe "Edit route" do
     it "must render edit view if not AJAX'" do
-      tutorial_create
       get :edit, id: @tutorial.id
       expect(response).to render_template("edit")
     end
@@ -50,13 +48,11 @@ describe TutorialsController do
 
   describe "Update route" do
     it "must render edit view if it does not save'" do
-      tutorial_create
       patch :update, id: @tutorial.id, tutorial: {id: @tutorial.id, description: nil}
       expect(response).to render_template("edit")
     end
 
     it "must redirect to @tutorial upon save'" do
-      tutorial_create
       patch :update, id: @tutorial.id, tutorial: {id: @tutorial.id, description: "blah"}
       expect(response).to redirect_to(@tutorial) 
     end
@@ -64,7 +60,6 @@ describe TutorialsController do
 
   describe "Destroy route" do
     it "must route to tutorials#destroy'" do
-      tutorial_create
       {delete: "/tutorials/#{@tutorial.id}"}.should route_to(
         action: 'destroy',
         controller: "tutorials",
@@ -73,7 +68,6 @@ describe TutorialsController do
     end
 
     it "must destroy a record given proper params'" do
-      tutorial_create
       expect{
         delete :destroy, id: @tutorial.id
       }.to change(Tutorial, :count).by(-1)     
@@ -82,7 +76,6 @@ describe TutorialsController do
   
   describe "Index route" do
     it "must render index view'" do
-      tutorial_create
       get :index, page: 1
       expect(response).to render_template("index")
     end
@@ -90,7 +83,6 @@ describe TutorialsController do
 
   describe "HTML_view route" do
     it "must render html_view view'" do
-      tutorial_create
       chapter_create
       get 'html_view', id: @tutorial.id
       expect(response).to render_template("html_view")
@@ -99,7 +91,6 @@ describe TutorialsController do
 
   describe "search route" do
     it "must render search view'" do
-      tutorial_create
       get :search, :params => {search_data: @tutorial.title}
       expect(response).to render_template("search")
     end

@@ -16,6 +16,4 @@
 //= require ace/mode/mode-ruby.js
 //= require foundation
 //= require turbolinks
-//= require home_page
-//= require sub_chapter_show
-//= require tutorial_show
+//= require_tree .

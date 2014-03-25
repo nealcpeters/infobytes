@@ -58,12 +58,15 @@ class ChaptersController < ApplicationController
 
 	def destroy
     @chapter = Chapter.find(params[:id])
-    @tutorial = @chapter.tutorial
     flash[:notice] = "Chapter Removed"
     @chapter.destroy
-
+    @chapter.tutorial.update_chapter_order
+    @tutorial = Tutorial.find(@chapter.tutorial_id)
+    
+    puts @tutorial.chapter_ids
+    @chapters = @tutorial.chapters.order(:number)
     if request.xhr?
-      render json: {result: "success", chapter: @chapter} 
+      render partial: "tutorials/chapter_tree"
     else
       redirect_to @tutorial
     end

@@ -22,16 +22,13 @@
   		<% @chapters.each do |chapter| %>
       	<div class="chapter row" id="chapter-<%= chapter.id %>">
           <h3 class="chapter-title">Section <%= chapter.number%>: <%= chapter.title %></h3>
-          <% if tutorial_creator? %>
             <%= link_to fa_icon('arrow-circle-o-up', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list remove-list" %>  
+          <% if tutorial_creator? %>
             <div class="chapter-edit-icons">
               <%= link_to fa_icon('edit', class: "fa-2x").html_safe, edit_chapter_path(chapter), class: "edit-chapter", data: { "reveal-id" => "modal-popup" }%>
               <%= link_to '<i class="fa fa-trash-o fa-2x del-chapter"></i>'.html_safe, chapter_path(chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-chapter delete" %> 
             </div>
-          <% else %>
-
-            
-            <%= link_to fa_icon('arrow-circle-o-down', class: "fa-2x").html_safe, chapter_path(chapter), class: "sub-cpt-list add-list" %>
+         
           
           <% end %>
 
@@ -39,7 +36,8 @@
         </div>
         <% @sub_chapters = chapter.sub_chapters.order(:number) %>
         <% @chapter = chapter %>
-        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>"><%= render "chapters/sub_chapters"%></div>
+        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>"><%= render "chapters/sub_chapters"%>
+        </div>
       <% end %>
     </div>
   </div>

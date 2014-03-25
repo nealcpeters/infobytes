@@ -4,10 +4,6 @@ module TutorialsHelper
     user_signed_in? && current_user == Tutorial.find(params[:id]).user
   end
 
-  def chapter_creator?
-    tutorial_creator?
-  end
-
   def under_score(title)
     title.gsub(" ", "_")
   end
@@ -21,4 +17,5 @@ module TutorialsHelper
 	    (total_count / total_votes.to_f).round
 	  end
   end
+
 end

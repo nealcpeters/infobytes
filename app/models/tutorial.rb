@@ -12,5 +12,12 @@ class Tutorial < ActiveRecord::Base
   	find(:all, :conditions => ['title LIKE ? OR description LIKE ?', search_condition, search_condition])
 	end
 
+  def update_chapter_order
+    self.chapters.order(:number).each_with_index do |chap, index|
+      chap.number = index + 1
+      chap.save
+    end
+  end
 
+  
 end

@@ -34,7 +34,7 @@ $(function(){
         var description = serverResponse.description
         // var woof = $('#poodle')
         // console.log(woof)
-        $('#poodle').prepend(
+        $('#communities-list').prepend(
           '<a href= "/communities/' + serverResponse.id + '">\
         <div class ="tutorial-list medium-10 medium-offset columns">\
               <li>\
@@ -50,16 +50,15 @@ $(function(){
   $(document).on("click", ".create-community-link", function(e){
       e.preventDefault();
       var url = $(this).attr("href");
-      console.log(url);
       $.get(url, function(serverResponse, status, request){
         populatePopup(serverResponse);
         appendX();
       })
     })
 
-  $(document).on('submit', "#modal-popup #new_community", function(e){
+  $(document).on('submit', "#community-add", function(e){
     e.preventDefault();
-      console.log("poodles")
+      console.log("hello world")
       
       var url = $(this).attr("action");
       var data = $(this).serialize()

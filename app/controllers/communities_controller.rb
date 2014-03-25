@@ -12,14 +12,19 @@ class CommunitiesController < ApplicationController
 
 	def new
 		@community = Community.new
+		render partial: "communities/community_form" if request.xhr?
 	end
 
 	def create
-
 		@community = Community.new(community_params)
 		if @community.save
-			flash[:notice]="Your community has been created"
-			redirect_to @community
+
+			if request.xhr?
+				render json: @community
+			else
+				flash[:notice]="Your community has been created"
+				redirect_to communities_path
+			end
 		else
 			@errors = @community.errors.messages
 			render "new"

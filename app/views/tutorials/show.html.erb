@@ -12,7 +12,9 @@
     <% if @tutorial.community_id %>
       <p>Community: <%= @community.name %></p>
     <% else %>
-      <%= render "tutorials/add_community_form" %>
+      <% if current_user.communities.empty? == false %>
+        <%= render "tutorials/add_community_form" %>
+      <% end %>
     <% end %>
   </div> 
 

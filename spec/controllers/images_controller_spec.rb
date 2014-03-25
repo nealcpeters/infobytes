@@ -17,4 +17,11 @@ describe ImagesController do
       expect(response).to render_template("new")
     end
   end
+
+  describe "edit route" do
+    it "must render edit route" do
+      get 'edit', :id => @image.id
+      expect(response).to render_template("edit")
+    end
+  end
 end

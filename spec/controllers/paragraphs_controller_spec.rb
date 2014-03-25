@@ -28,7 +28,7 @@ describe ParagraphsController do
   describe "update route" do
   	it "must redirect to sub chapter if creation successful" do
   		get 'update', id: @paragraph.id, paragraph: {body: "test paragraph"}
-  		expect(response).to render_template('update')
+  		expect(response).to render_template(@subchapter)
   	end
   end
 

@@ -1,3 +1,9 @@
+// CODE REVIEW
+// Good javascript overall
+//
+// Why are these 'helper' functions repeated all over the other files?
+//
+
 $(function(){
 
   var invalidInput = function(field){

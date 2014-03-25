@@ -32,17 +32,21 @@ $(function(){
       success: function(serverResponse, status, request){
         var name = serverResponse.name
         var description = serverResponse.description
-        // var woof = $('#poodle')
-        // console.log(woof)
-        $('#communities-list').prepend(
-          '<a href= "/communities/' + serverResponse.id + '">\
-        <div class ="tutorial-list medium-10 medium-offset columns">\
-              <li>\
-                <p class="tut-title">' + name + '</p>\
-                <p class="tut-description">' + description + '</p>\
-              </li>\
-            </a>')
-        removePopup();
+        if (serverResponse.no) {
+          $('form').append("Both name and description are required.")
+        }
+        else{
+       
+          $('#communities-list').prepend(
+            '<a href= "/communities/' + serverResponse.id + '">\
+          <div class ="tutorial-list medium-10 medium-offset columns">\
+                <li>\
+                  <p class="tut-title">' + name + '</p>\
+                  <p class="tut-description">' + description + '</p>\
+                </li>\
+              </a>')
+          removePopup();
+        }
         }
       })
     }

@@ -27,9 +27,13 @@ class CommunitiesController < ApplicationController
 			end
 		else
 			# it makes it into here, but still appends the unsaved object instead of displaying form with errors
-
-			@errors = @community.errors.messages
-			render "new"
+			if request.xhr?
+				x = {no: "no"}
+				render json: x
+			else
+				@errors = @community.errors.messages
+				render "new"
+			end
 		end
 	end
 

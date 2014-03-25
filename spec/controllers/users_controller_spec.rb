@@ -20,6 +20,13 @@ describe UsersController do
     end
   end
 
+  describe "Sign up" do
+  	it "must render sign up" do
+  		get 'sign_up'
+  		expect(response).to render_template("devise/registrations/_form_new")
+  	end
+  end
+
   # describe "Create route" do
   #   it "must render new view if without a save'" do
   #     post :create, tutorial: {id: @tutorial.id, description: @tutorial.description, user_id: @user.id}

@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require ace/ace
-//= require ace/theme-textmate.js
-//= require ace/mode-ruby.js
+//= require ace/mode/mode-ruby.js
 //= require foundation
 //= require turbolinks
 //= require_tree .

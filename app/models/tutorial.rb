@@ -19,5 +19,5 @@ class Tutorial < ActiveRecord::Base
     end
   end
 
-
+  
 end

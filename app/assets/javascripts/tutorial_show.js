@@ -315,8 +315,10 @@ $(function(){
       $.ajax({
         url: chpUrl,
         type: "DELETE",
-        success: "great:success"
-      }, "json")
+        success: function(serverResponse){
+          $("#chapter-list").html(serverResponse)
+        }
+      })
     }     
   })
 

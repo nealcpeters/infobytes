@@ -31,6 +31,13 @@ describe CodeSnippetsController do
       expect(response).to render_template(@subchapter)
     end
 
+    it "must redirect to sub chapter if saved and json" do
+      json = {id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}}
+      post 'update', json  
+      expect(response).to render_template(@subchapter)
+    end
+
+
     it "must render new view if save not successful" do
       post 'update', id: @code_snippet.id, code_snippet: {language: "ruby"}
       expect(response).to render_template(nil)

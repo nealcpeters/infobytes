@@ -1,6 +1,6 @@
 <div class="welcome-banner">
   <div>
-    <h1 class="tagline">Information for the technological age.</h1>	
+    <h1 class="tagline">Documenting the information age.</h1>	
     <h3 class="site-description">Experience more.  Contribute to an expanding knowledge-base.</h3>
     <%= form_for :search, url: search_path , method: :post, html: {role: "search"} do |f| %>
     <div class="form-group">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="large-4 columns">
-  		<%= link_to "#{fa_icon('globe', class: "fa-5x")}<h4>Communities</h4><p>Organized tutorials by and for communities.</p>".html_safe, communities_path %>
+  		<%= link_to "#{fa_icon('globe', class: "fa-5x")}<h4>Communities</h4><p>Stay up to date with your communities as they add new content.</p>".html_safe, communities_path %>
     </div>
   </div>
 </div>

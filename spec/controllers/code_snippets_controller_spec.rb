@@ -31,6 +31,13 @@ describe CodeSnippetsController do
       expect(response).to render_template(@subchapter)
     end
 
+    it "must redirect to sub chapter if saved and json" do
+      json = {id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}}
+      post 'update', json  
+      expect(response).to render_template(@subchapter)
+    end
+
+
     it "must render new view if save not successful" do
       post 'update', id: @code_snippet.id, code_snippet: {language: "ruby"}
       expect(response).to render_template(nil)
@@ -58,6 +65,13 @@ describe CodeSnippetsController do
         delete :destroy, id: @code_snippet.id
       }.to change(CodeSnippet, :count).by(-1)
     end
+
+    # it "must destroy a code snippet given proper json params" do
+    #   json = {id: @code_snippet.id}
+    #   expect{
+    #     delete :destroy, json
+    #   }.to change(CodeSnippet, :count).by(-1)
+    # end
   end
 
   describe "create route" do

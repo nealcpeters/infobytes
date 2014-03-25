@@ -47,7 +47,6 @@
 				        <h4 class="sub-section-title" id="Sub_Section_<%= under_score(sub_chapter.title) %>"><%= sub_chapter.title %></h4>
 				        <% sub_chapter.contents.each do |content| %>
                   <div class="content-item" id="content-item-<%= content.id %>"> 
-                    <div class="comments-container html-view"></div>
                     <% if content.attachable_type == "Paragraph" %>
                       <div class="paragraph">
                       	<%= content.attachable.body.html_safe %>
@@ -74,6 +73,9 @@
                     <% end %>
                     <div class="comments-links">
                       <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+                    </div>
+                    <div class="small-10">
+                      <div class="comments-container html-view"></div>
                     </div>
                   </div>
 				        <% end %>

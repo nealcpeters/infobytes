@@ -58,22 +58,34 @@
   }
 }
 
+#new_comment {
+    #comment_body{
+    height: 80px;
+    width: 100%;
+  }
+    margin: 0;
+}
+
 .comments-container {
-  position: absolute;
-  left: -300px;
-  background: #eee;
-  width: 300px;
   word-wrap:break-word;
   max-height: 600px;
-  overflow-x: scroll;
+  overflow-y: scroll; 
+  background: #eee;
   .comment-div {
     padding: .5em;
     border-bottom: 1px solid #666;
   }
 }
+//   position: absolute;
+//   left: -300px;
+//   width: 300px;
+//   word-wrap:break-word;
+//   max-height: 600px;
+//   overflow-x: scroll;
+// }
 
-.html-view {
-  left: 50px;
+// .html-view {
+//   left: 50px;
 
 
-}
+// }

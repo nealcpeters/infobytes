@@ -1,6 +1,6 @@
 <% @contents.each do |content| %>
   <div class="content-item" id="content-item-<%= content.id %>"> 
-    <div class="comments-container"></div>
+    
     <% if content.attachable_type == "Paragraph" %>
       <div id="paragraph-<%= content.attachable_id %>">
         <p><%= raw(content.attachable.body) %></p>
@@ -46,6 +46,9 @@
     <% end %>
     <div class="comments-links">
       <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+    </div>
+    <div class="small-6 small-offset-3 comlumns">
+      <div class="comments-container"></div>
     </div>
   </div>
 <% end %>

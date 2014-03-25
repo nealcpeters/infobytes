@@ -89,10 +89,17 @@ describe TutorialsController do
     end
   end
 
-  describe "search route" do
+  describe "Search route" do
     it "must render search view'" do
       get :search, :params => {search_data: @tutorial.title}
       expect(response).to render_template("search")
+    end
+  end
+
+  describe "Add Commuity route" do
+    it "must redirect to @tutorial if save'" do
+      post :add_community, id: @tutorial.id, tutorial: {id: @tutorial.id}
+      expect(response).to redirect_to(@tutorial)
     end
   end
 

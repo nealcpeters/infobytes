@@ -376,7 +376,7 @@ $(function(){
   }
 
    /********************************
-  * Editing Tutorial Link
+  * addming community to tutorial form
   *********************************/
 
   var addCommunity = function(url, data){

@@ -49,4 +49,29 @@ describe ImagesController do
       expect(response).to render_template("new")
     end
   end
+
+  describe "show route" do
+    it "must render show route" do
+      get :show, id: @image.id
+      expect(response).to render_template("show")
+    end
+  end
+
+  describe "destroy route" do
+    it "must route to destroy" do
+      {delete: "/images/#{@image.id}"}.should route_to(
+        action: 'destroy',
+        controller: 'images',
+        id: (@image.id.to_s)
+        )
+    end
+  end
+
+
+
+
+
+
+
+
 end

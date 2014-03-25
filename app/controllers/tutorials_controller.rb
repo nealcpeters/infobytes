@@ -62,18 +62,6 @@ class TutorialsController < ApplicationController
     @tutorials = Tutorial.paginate(page: params[:page], per_page: 10)
   end
 
-  def pdf_view
-    @tutorial = Tutorial.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = TutorialPdf.new(@tutorial)
-        send_data pdf.render, filename: "#{@tutorial.title}.pdf", type: "application/pdf"
-      end
-    end
-  end
-
   def html_view
     @tutorial = Tutorial.find(params[:id])
     @author = @tutorial.user

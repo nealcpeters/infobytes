@@ -7,6 +7,9 @@ class TutorialsController < ApplicationController
     @chapter = Chapter.new
     @author = @tutorial.user
     @chapters = @tutorial.chapters.order(:number)
+    if @tutorial.community_id 
+      @community = Community.find(@tutorial.community_id)
+    end
   end
 
   def new
@@ -82,10 +85,21 @@ class TutorialsController < ApplicationController
     @tutorials = Tutorial.where("title ILIKE ? OR description ILIKE ?", "%#{@search_content}%", "%#{@search_content}%")
   end
 
+  def add_community
+    @tutorial = Tutorial.find(params[:id])
+    @tutorial.update(tutorial_params)
+
+    if @tutorial.save
+      flash[:notice] = "Tutorial added to community."
+      redirect_to @tutorial
+    end
+
+  end
+
   protected
   
   def tutorial_params
-    params.require(:tutorial).permit(:title, :description)
+    params.require(:tutorial).permit(:title, :description, :community_id)
   end
 
   def authenticate_tutorial_owner

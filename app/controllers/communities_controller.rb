@@ -2,7 +2,7 @@ class CommunitiesController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		@communities = Community.all
+		@communities = Community.all.order('updated_at DESC')
 	end
 
 	def show
@@ -12,17 +12,28 @@ class CommunitiesController < ApplicationController
 
 	def new
 		@community = Community.new
+		render partial: "communities/community_form" if request.xhr?
 	end
 
 	def create
-
 		@community = Community.new(community_params)
+		current_user.communities << @community
 		if @community.save
-			flash[:notice]="Your community has been created"
-			redirect_to @community
+			if request.xhr?
+				render json: @community
+			else
+				flash[:notice]="Your community has been created"
+				redirect_to communities_path
+			end
 		else
-			@errors = @community.errors.messages
-			render "new"
+			# it makes it into here, but still appends the unsaved object instead of displaying form with errors
+			if request.xhr?
+				x = {no: "no"}
+				render json: x
+			else
+				@errors = @community.errors.messages
+				render "new"
+			end
 		end
 	end
 

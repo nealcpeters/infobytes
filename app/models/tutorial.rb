@@ -6,12 +6,7 @@ class Tutorial < ActiveRecord::Base
   has_many :ratings
 
   validates :title, :description, :user_id, presence: true
-
-  def self.search(search)
-  	search_condition = "%" + search + "%"
-  	find(:all, :conditions => ['title LIKE ? OR description LIKE ?', search_condition, search_condition])
-	end
-
+  
   def update_chapter_order
     self.chapters.order(:number).each_with_index do |chap, index|
       chap.number = index + 1
@@ -19,5 +14,4 @@ class Tutorial < ActiveRecord::Base
     end
   end
 
-  
 end

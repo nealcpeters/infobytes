@@ -1,19 +1,22 @@
+
 <div>
 	<h2>Communities</h2>
-	<%= link_to "Add New Community", new_community_path, class: "sm-btn-community" %>
+	<%= link_to "Add New Community", new_community_path, class: "sm-btn-community create-community-link", data: {"reveal-id" => "modal-popup"}  %>
 	<% @communities.each do |community| %>
-		<%= link_to community_path(community) do %>
-			<div class ="tutorial-list medium-10 medium-offset columns">
-				<li> 
-					<p class="tut-title">
-						<%= community.name %> 
-					</p>
-					<p class="tut-description">
-						<%= community.description %>
-					</p>
-				</li>
-			</div>
-		<% end %>	
+		<ul id="communities-list">
+			<%= link_to community_path(community) do %>
+				<div class ="tutorial-list medium-10 medium-offset columns">
+						<li> 
+							<p class="tut-title">
+								<%= community.name %> 
+							</p>
+							<p class="tut-description">
+								<%= community.description %>
+							</p>
+						</li>
+				</div>
+			<% end %>
+		</ul>	
 	<% end %>
 
 </div>

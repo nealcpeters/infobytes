@@ -41,6 +41,12 @@ describe CodeSnippetsController do
         )
     end
 
+    it "must destroy a code snippet given proper params" do
+      expect{
+        delete :destroy, id: @code_snippet.id
+      }.to change(CodeSnippet, :count).by(-1)
+    end
+
   end
 
 end

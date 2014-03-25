@@ -32,7 +32,7 @@ describe ChaptersController do
     end
 
     it "must render json: @chapter if xhr" do
-      json = {tutorial_id: @tutorial.id, chapter: {title: "tuttut", number: 42}}
+      json = {tutorial_id: @tutorial.id, chapter: {title: "blah", number: 42} }
       post :create, json
       response.status.should eq(302)
     end

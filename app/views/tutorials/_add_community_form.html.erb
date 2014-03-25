@@ -1,5 +1,5 @@
 <%= form_for @tutorial, url: add_community_tutorial_path do |f|%>
 	<%= f.label "Add tutorial to community:" %>
-    <%= f.collection_select :community_id, Community.all, :id, :name, {:include_blank => true} %><br>
+    <%= f.collection_select :community_id, current_user.communities, :id, :name, {:include_blank => true} %><br>
     <%= f.submit "Add Community Tag", class: "button" %>
 <% end %>

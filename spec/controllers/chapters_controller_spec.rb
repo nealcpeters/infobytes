@@ -31,6 +31,11 @@ describe ChaptersController do
       expect(response).to render_template(nil)
     end
 
+    xit "must render json: @chapter if xhr" do
+      post :create, json: {tutorial_id: @tutorial.id, chapter: {title: "tuttut", number: 42}}
+      expect(response).to render_template(nil)
+    end
+
     it "must create a chapter if saved" do
       expect{
       post :create, tutorial_id: @tutorial.id, chapter: {title: "tuttut", number: 42} 

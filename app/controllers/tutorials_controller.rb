@@ -20,6 +20,8 @@ class TutorialsController < ApplicationController
   def create
     @tutorial = current_user.tutorials.new(tutorial_params)
     if @tutorial.save
+      @tutorial.chapters.create(title: "Section 1");
+      @tutorial.chapters.first.sub_chapters.create(title: "Sub-section 1")
       flash[:notice]="Your new tutorial has been created!"
       redirect_to @tutorial
     else
@@ -57,7 +59,7 @@ class TutorialsController < ApplicationController
   end
 
   def index
-    @tutorials = Tutorial.all
+    @tutorials = Tutorial.paginate(page: params[:page], per_page: 10)
   end
 
   def pdf_view
@@ -75,7 +77,7 @@ class TutorialsController < ApplicationController
   def html_view
     @tutorial = Tutorial.find(params[:id])
     @author = @tutorial.user
-    @chapters = @tutorial.chapters
+    @chapters = @tutorial.chapters.order(:number)
   end
 
   def search 

@@ -37,13 +37,14 @@ gem 'devise'
 
 gem 'thread_safe', '0.2.0'
 
+gem 'will_paginate', '~> 3.0'
+
 gem 'prawn'
 
 gem 'aws-sdk'
 
 gem "paperclip", "~> 4.1"
 
-gem 'coveralls', require: false
 
 group :development, :test do
   gem 'pry'
@@ -53,6 +54,8 @@ group :development, :test do
   gem 'jasmine'
   gem 'database_cleaner'
   gem 'faker'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'coveralls', require: false
 end
 
 group :doc do
@@ -67,7 +70,6 @@ end
 
 gem 'ace-rails-ap'
 
-gem "factory_girl_rails", "~> 4.0"
 
 group :test do
   gem 'shoulda-matchers'

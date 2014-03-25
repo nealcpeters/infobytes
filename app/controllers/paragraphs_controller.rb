@@ -1,4 +1,6 @@
 class ParagraphsController < ApplicationController
+  include ApplicationHelper
+
   before_filter :authenticate_paragraph_owner_create, only: [:new, :create]
   before_filter :authenticate_paragraph_owner_update, only: [:edit, :update, :destroy]
   
@@ -66,6 +68,7 @@ class ParagraphsController < ApplicationController
   protected
 
   def paragraph_params
+    params[:paragraph][:body] = link_formater(params[:paragraph][:body])
     params.require(:paragraph).permit(:body)
   end
 

@@ -158,6 +158,7 @@ $(function(){
 
     var data = $(this).serialize();
     var url = $(this).attr("action");
+    console.log(url)
 
     $.post(url, data, function(serverResponse, status, request){
       appendParagraph(serverResponse.paragraph, serverResponse.content)

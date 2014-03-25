@@ -86,13 +86,20 @@ class TutorialsController < ApplicationController
   end
 
   def add_community
+    @tutorial = Tutorial.find(params[:id])
+    @tutorial.update(tutorial_params)
+
+    if @tutorial.save
+      flash[:notice] = "Tutorial added to community."
+      redirect_to @tutorial
+    end
 
   end
 
   protected
   
   def tutorial_params
-    params.require(:tutorial).permit(:title, :description)
+    params.require(:tutorial).permit(:title, :description, :community_id)
   end
 
   def authenticate_tutorial_owner

@@ -26,6 +26,10 @@ class CommunitiesController < ApplicationController
 		end
 	end
 
+	def edit
+
+	end
+
 	def create_user_membership
 		current_user.communities << Community.find(params[:id])
 		redirect_to communities_path(params[:id])

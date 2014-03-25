@@ -13,6 +13,7 @@ InfoBytes::Application.routes.draw do
   get '/subtopics', to: "subtopics#index", as: "subtopics"
   get '/subtopics/:id', to: "subtopics#show", as: "subtopic"
   post '/tutorials/:tutorial_id/generate_chapter', to: "chapters#generate", as: "generate_chapter"
+  post '/chapters/update_sub_chapters', to: "chapters#update_sub_chapters", as: "update_subchapters"
   resources :communities do
     member do
       post :create_user_membership

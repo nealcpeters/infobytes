@@ -3,17 +3,21 @@
   <div class="tutorial-header">
   	<h1><%= @tutorial.title %></h1>
   	<p>Description: <%= @tutorial.description %></p>
+    
     <% if tutorial_creator? %>
       <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "modal-popup"} %>
     <% else %>
       <p class="inline"> Written by: <%= link_to "#{@author.user_name}", user_path(@author), class: "inline" %></p>
     <% end %>
+
     <%= link_to "View As Single Page", html_view_tutorial_path(@tutorial) %>
+
     <% if @tutorial.community_id %>
       <p>Community: <%= @community.name %></p>
     <% else %>
       <%= render "tutorials/add_community_form" %>
     <% end %>
+
   </div> 
 
   <h2 class="tut-index">Table of Contents:</h2>
@@ -32,7 +36,7 @@
 
 <% if tutorial_creator? %>
   <script>
-    $(".delete").removeAttr("data-confirm").removeAttr("data-method")
+    $(".delete").removeAttr("data-confirm").removeAttr("data-method")   
   </script>
 <% end %>
 

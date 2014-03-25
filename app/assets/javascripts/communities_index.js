@@ -56,8 +56,9 @@ $(function(){
       })
     })
 
-  $(document).on('submit', "#modal-popup #new_community", function(e){
+  $(document).on('submit', "#community-add", function(e){
     e.preventDefault();
+      console.log("hello world")
       
       var url = $(this).attr("action");
       var data = $(this).serialize()

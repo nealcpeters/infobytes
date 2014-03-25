@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="small-6 small-offset-3 columns">
-		<%= form_for @community do |f|%>
+		<%= form_for @community, :html => {:id => "community-add"} do |f|%>
 			<% if @errors %>
 				<% @errors.each do |error| %>
 					<p><%= error %></p>

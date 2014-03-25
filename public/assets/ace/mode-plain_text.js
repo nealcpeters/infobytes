@@ -28,64 +28,28 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-define(function(require, exports, module) {
-"use strict";
+define('ace/mode/plain_text', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text', 'ace/tokenizer', 'ace/mode/text_highlight_rules', 'ace/mode/behaviour'], function(require, exports, module) {
+
 
 var oop = require("../lib/oop");
 var TextMode = require("./text").Mode;
 var Tokenizer = require("../tokenizer").Tokenizer;
-var RubyHighlightRules = require("./ruby_highlight_rules").RubyHighlightRules;
-var MatchingBraceOutdent = require("./matching_brace_outdent").MatchingBraceOutdent;
-var Range = require("../range").Range;
-var FoldMode = require("./folding/coffee").FoldMode;
+var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
+var Behaviour = require("./behaviour").Behaviour;
 
 var Mode = function() {
-    this.HighlightRules = RubyHighlightRules;
-    this.$outdent = new MatchingBraceOutdent();
-    this.foldingRules = new FoldMode();
+    this.HighlightRules = TextHighlightRules;
+    this.$behaviour = new Behaviour();
 };
+
 oop.inherits(Mode, TextMode);
 
 (function() {
-
-
-    this.lineCommentStart = "#";
-
+    this.type = "text";
     this.getNextLineIndent = function(state, line, tab) {
-        var indent = this.$getIndent(line);
-
-        var tokenizedLine = this.getTokenizer().getLineTokens(line, state);
-        var tokens = tokenizedLine.tokens;
-
-        if (tokens.length && tokens[tokens.length-1].type == "comment") {
-            return indent;
-        }
-
-        if (state == "start") {
-            var match = line.match(/^.*[\{\(\[]\s*$/);
-            var startingClassOrMethod = line.match(/^\s*(class|def|module)\s.*$/);
-            var startingDoBlock = line.match(/.*do(\s*|\s+\|.*\|\s*)$/);
-            var startingConditional = line.match(/^\s*(if|else)\s*/)
-            if (match || startingClassOrMethod || startingDoBlock || startingConditional) {
-                indent += tab;
-            }
-        }
-
-        return indent;
+        return '';
     };
-
-    this.checkOutdent = function(state, line, input) {
-        return /^\s+end$/.test(line + input) || /^\s+}$/.test(line + input) || /^\s+else$/.test(line + input);
-    };
-
-    this.autoOutdent = function(state, doc, row) {
-        var indent = this.$getIndent(doc.getLine(row));
-        var tab = doc.getTabString();
-        if (indent.slice(-tab.length) == tab)
-            doc.remove(new Range(row, indent.length-tab.length, row, indent.length));
-    };
-
-    this.$id = "ace/mode/ruby";
+    this.$id = "ace/mode/plain_text";
 }).call(Mode.prototype);
 
 exports.Mode = Mode;

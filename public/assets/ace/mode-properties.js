@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010, Ajax.org B.V.
  * All rights reserved.
- *
+ * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *     * Redistributions of source code must retain the above copyright
@@ -14,7 +14,7 @@
  *     * Neither the name of Ajax.org B.V. nor the
  *       names of its contributors may be used to endorse or promote products
  *       derived from this software without specific prior written permission.
- *
+ * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -28,65 +28,73 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-define(function(require, exports, module) {
-"use strict";
+define('ace/mode/properties', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text', 'ace/tokenizer', 'ace/mode/properties_highlight_rules'], function(require, exports, module) {
+
 
 var oop = require("../lib/oop");
 var TextMode = require("./text").Mode;
 var Tokenizer = require("../tokenizer").Tokenizer;
-var RubyHighlightRules = require("./ruby_highlight_rules").RubyHighlightRules;
-var MatchingBraceOutdent = require("./matching_brace_outdent").MatchingBraceOutdent;
-var Range = require("../range").Range;
-var FoldMode = require("./folding/coffee").FoldMode;
+var PropertiesHighlightRules = require("./properties_highlight_rules").PropertiesHighlightRules;
 
 var Mode = function() {
-    this.HighlightRules = RubyHighlightRules;
-    this.$outdent = new MatchingBraceOutdent();
-    this.foldingRules = new FoldMode();
+    this.HighlightRules = PropertiesHighlightRules;
 };
 oop.inherits(Mode, TextMode);
 
-(function() {
-
-
-    this.lineCommentStart = "#";
-
-    this.getNextLineIndent = function(state, line, tab) {
-        var indent = this.$getIndent(line);
-
-        var tokenizedLine = this.getTokenizer().getLineTokens(line, state);
-        var tokens = tokenizedLine.tokens;
-
-        if (tokens.length && tokens[tokens.length-1].type == "comment") {
-            return indent;
-        }
-
-        if (state == "start") {
-            var match = line.match(/^.*[\{\(\[]\s*$/);
-            var startingClassOrMethod = line.match(/^\s*(class|def|module)\s.*$/);
-            var startingDoBlock = line.match(/.*do(\s*|\s+\|.*\|\s*)$/);
-            var startingConditional = line.match(/^\s*(if|else)\s*/)
-            if (match || startingClassOrMethod || startingDoBlock || startingConditional) {
-                indent += tab;
-            }
-        }
-
-        return indent;
-    };
-
-    this.checkOutdent = function(state, line, input) {
-        return /^\s+end$/.test(line + input) || /^\s+}$/.test(line + input) || /^\s+else$/.test(line + input);
-    };
-
-    this.autoOutdent = function(state, doc, row) {
-        var indent = this.$getIndent(doc.getLine(row));
-        var tab = doc.getTabString();
-        if (indent.slice(-tab.length) == tab)
-            doc.remove(new Range(row, indent.length-tab.length, row, indent.length));
-    };
-
-    this.$id = "ace/mode/ruby";
-}).call(Mode.prototype);
-
 exports.Mode = Mode;
 });
+
+define('ace/mode/properties_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
+
+
+var oop = require("../lib/oop");
+var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
+
+var PropertiesHighlightRules = function() {
+
+    var escapeRe = /\\u[0-9a-fA-F]{4}|\\/;
+
+    this.$rules = {
+        "start" : [
+            {
+                token : "comment",
+                regex : /[!#].*$/
+            }, {
+                token : "keyword",
+                regex : /[=:]$/
+            }, {
+                token : "keyword",
+                regex : /[=:]/,
+                next  : "value"
+            }, {
+                token : "constant.language.escape",
+                regex : escapeRe
+            }, {
+                defaultToken: "variable"
+            }
+        ],
+        "value" : [
+            {
+                regex : /\\$/,
+                token : "string",
+                next : "value"
+            }, {
+                regex : /$/,
+                token : "string",
+                next : "start"
+            }, {
+                token : "constant.language.escape",
+                regex : escapeRe
+            }, {
+                defaultToken: "string"
+            }
+        ]
+    };
+
+};
+
+oop.inherits(PropertiesHighlightRules, TextHighlightRules);
+
+exports.PropertiesHighlightRules = PropertiesHighlightRules;
+});
+

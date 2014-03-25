@@ -32,4 +32,15 @@ describe CodeSnippetsController do
     end
   end
 
+  describe "destroy route" do
+    it "must route to destroy" do
+      {delete: "/code_snippets/#{@code_snippet.id}"}.should route_to(
+        action: 'destroy',
+        controller: "code_snippets",
+        id: (@code_snippet.id.to_s)
+        )
+    end
+
+  end
+
 end

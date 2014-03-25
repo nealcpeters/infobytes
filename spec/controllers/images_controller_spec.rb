@@ -65,5 +65,12 @@ describe ImagesController do
         id: (@image.id.to_s)
         )
     end
+
+    it "must destroy an image given proper params" do
+      expect{
+        delete :destroy, id: @image.id
+      }.to change(Image, :count).by(-1)
+    end
+
   end
 end

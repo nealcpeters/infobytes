@@ -39,7 +39,11 @@
         </div>
         <% @sub_chapters = chapter.sub_chapters.order(:number) %>
         <% @chapter = chapter %>
-        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>"><%= render "chapters/sub_chapters"%></div>
+        <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>"><%= render "chapters/sub_chapters"%>
+        <% if tutorial_creator? %>
+          <%= link_to "Add Sub-section #{fa_icon('plus-square', class: 'fa-2x', id: 'fa-plus-square')}".html_safe, new_chapter_sub_chapter_path(@chapter), class: "add-sub-chapter", data: {"reveal-id" => "modal-popup"} %>
+        <% end %>
+        </div>
       <% end %>
     </div>
   </div>

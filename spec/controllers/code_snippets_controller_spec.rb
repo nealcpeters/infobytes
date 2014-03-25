@@ -31,10 +31,10 @@ describe CodeSnippetsController do
       expect(response).to render_template(@subchapter)
     end
 
-    # it "must render new view if save not successful" do
-    #   post 'update', id: @image.id, image: {image_path_content_type: "image/jpeg", image_path_file_size: 6853}
-    #   expect(response).to render_template(nil)
-    # end
+    it "must render new view if save not successful" do
+      post 'update', id: @code_snippet.id, code_snippet: {language: "ruby"}
+      expect(response).to render_template(nil)
+    end
   end
 
   describe "show route" do

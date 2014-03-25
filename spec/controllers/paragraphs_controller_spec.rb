@@ -13,7 +13,7 @@ describe ParagraphsController do
 
   describe "new route" do
   	it "must render new view" do
-  		get 'new'
+  		get 'new', sub_chapter_id: @sub_chapter.id
   		expect(response).to render_template("new")
   	end
   end

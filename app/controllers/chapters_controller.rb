@@ -61,6 +61,7 @@ class ChaptersController < ApplicationController
     @tutorial = @chapter.tutorial
     flash[:notice] = "Chapter Removed"
     @chapter.destroy
+    @tutorial.update_chapter_order
 
     if request.xhr?
       render json: {result: "success", chapter: @chapter} 

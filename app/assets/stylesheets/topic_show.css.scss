@@ -1,0 +1,25 @@
+
+
+.topic-show{  
+
+  
+  // .rating {
+  .sub-topic-list{
+    width: 95%;
+    border-bottom: 1px solid #e8e8e8;
+    li {
+      display: inline;
+      padding: 2em auto;
+    }
+    &:hover {
+    background-color: #e8e8e8;
+    padding: 2em auto;
+      a {
+        color:black;
+        &:hover {
+          color: gold;
+        }
+    }
+    }
+  }
+}

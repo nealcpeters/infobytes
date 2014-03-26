@@ -14,12 +14,12 @@ class ChaptersController < ApplicationController
     @chapter = @tutorial.chapters.new(chapter_params.merge(number: @tutorial.chapters.count + 1))
     
     if @chapter.save
-     
-      if request.xhr?
-        render json: @chapter
-      else
-        flash[:notice] = "Chapter #{@chapter.number}: #{@chapter.title} added."
-        redirect_to @chapter
+      respond_to do |format|
+        format.json { render :json => @chapter }
+        format.html {
+          flash[:notice] = "Chapter #{@chapter.number}: #{@chapter.title} added."
+          redirect_to @chapter  
+          }
       end
     else
       @errors = @chapter.errors.messages

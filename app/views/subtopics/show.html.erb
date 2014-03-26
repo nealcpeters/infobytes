@@ -1,7 +1,7 @@
 <%= javascript_include_tag "rating" %>
 
 <h1><%= @subtopic.title %></h1>	
-<% @subtopic.tutorials.each do |tutorial| %>
+<% @tutorials.each do |tutorial| %>
   <%= link_to tutorial_path(tutorial) do %>
 	  <div class="tutorial-list medium-10 medium-offset columns">
       <h2 class="tut-title"><%= tutorial.title %></h2>
@@ -63,5 +63,5 @@
   <% end %>
 <% end %>
 
-
+<%= will_paginate @tutorials %>
 

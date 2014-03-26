@@ -2,7 +2,7 @@ $(function(){
 	$(window).scroll(function() {
 	  var $bar = $("#marker")
 	  var window_offset = $bar.offset().top - $(this).scrollTop();
-	  
+
 	  if (window_offset < 0) {
 
 	  	$("#toc-bar").slideDown(200);

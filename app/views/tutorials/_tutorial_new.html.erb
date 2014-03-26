@@ -7,15 +7,48 @@
 		<% end %>
 
 		<%= form_for @tutorial do |f|%>
-		  
+		  <div id="js-errors"><p></p></div>
+
 		  <div><%= f.label :title %><br>
 		  <%= f.text_field :title, autofocus: true %></div>
 
-		  <div><%= f.label :description%><br>  
+		  <div><%= f.label :description %><br>  
 		  <%= f.text_area :description, rows: 10 %></div>
+
+		  <div><%= f.label :topic %><br>
+      <%= f.collection_select(:subtopic_id, @subtopics, :id, :title, prompt: "Select a subtopic.") %></div>
 
 		  <div><%= f.submit class: "button" %></div>
 
 		<% end %>
 	</div>
 </div>
+
+<script>
+  $("#new_tutorial").on("submit", function(e){
+    e.preventDefault()
+
+    var title = $("#tutorial_title").val();
+    var desc = $("#tutorial_description").val();
+    console.log(title)
+    console.log(desc)
+
+    if (title != "" && desc != "") {
+      $(this).unbind('submit').submit()
+      console.log("submit")
+    } 
+    else if (title === "" && desc === "") {
+      $("#tutorial_title").css("border-color", "red");
+      $("#tutorial_description").css("border-color", "red");
+      $("#js-errors p").html("Requires Title and Description");
+
+    } else if (title === "") {
+      $("#tutorial_title").css("border-color", "red");
+      $("#js-errors p").html("Requires Title");
+
+    } else if (desc === ""){
+      $("#tutorial_description").css("border-color", "red");
+      $("#js-errors p").html("Requires Description");
+    }
+  })  
+</script>

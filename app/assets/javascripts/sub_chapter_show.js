@@ -215,7 +215,7 @@ $(function(){
   $(document).on('click', "#content-body .delete-content", function(e){
     e.preventDefault();
     var url = $(this).attr("href");
-    var parentDiv = $(this).parent().parent().parent()
+    var contentElement = $(this).closest(".ui-state-default");
     var result = window.confirm("Are you sure you want to delete this part?")
     if (result){
       $.ajax({
@@ -223,7 +223,7 @@ $(function(){
         type: "DELETE",
         success: "great:success"
       }, "json").done(function(){
-        $(parentDiv).toggle("fade", function(){ $(parentDiv).remove() })
+        $(contentElement).toggle("fade", function(){ $(contentElement).remove() })
       })
     }
   })

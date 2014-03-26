@@ -15,5 +15,8 @@
 //= require jquery_ui_custom
 //= require ace/ace
 //= require foundation
+//= require communities_index
+//= require home_page
+//= require sub_chapter_show
+//= require tutorial_show
 //= require turbolinks
-//= require_tree .

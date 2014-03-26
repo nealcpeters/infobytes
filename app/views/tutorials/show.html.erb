@@ -32,14 +32,11 @@
 	<% if tutorial_creator? %>
     <%= link_to "Add Section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>".html_safe, generate_chapter_path(@tutorial), id: "add-chapter"%>
     <div id="chapter-form" style="display: none;"></div>
-	<% end %>
- 
+	<% end %> 
 </div>
 
 <% if tutorial_creator? %>
-  <script>
-    $(".delete").removeAttr("data-confirm").removeAttr("data-method")   
-  </script>
+  <%= javascript_include_tag :strip_delete %>
 <% end %>
 
 

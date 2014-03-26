@@ -84,6 +84,9 @@ class TutorialsController < ApplicationController
       else
         redirect_to @tutorial
       end
+
+      respond_to do |format|
+
     end
 
   end

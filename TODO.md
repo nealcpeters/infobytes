@@ -4,7 +4,7 @@
 - overall styling                                     []
 - actionmailer ~                                      [amara]
 - page titles ~                                       [amara]
-- delete tutorial link                                [alex]
+
 
 
 

@@ -69,6 +69,7 @@ InfoBytes::Application.configure do
       ace_new.js
       ace_read.js
       strip_delete.js
+      communities_index.js
     )
 
   # Ignore bad email addresses and do not raise email delivery errors.

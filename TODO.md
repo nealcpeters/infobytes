@@ -3,3 +3,4 @@
 - overall styling                                     []
 - actionmailer ~                                      [amara]
 - page titles ~                                       [amara]
+- profile needs some foundation divs

@@ -108,24 +108,27 @@ $(function(){
   ** ***************************************/
 
   var appendParagraph = function(paragraph, content){
-    $("#content-body").append(
-      "<div class='content-item' id='content-item-" + content.id + "'>\
-        <div id='paragraph-" + paragraph.id + "'>\
-          <div class='paragraph-container'>" + paragraph.body + "</div>\
-        </div>\
-        <div class='edit-links'>\
-          <div>\
-            <a class='edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'>\
-              <i class='fa fa-edit fa-2x'></i><br>edit\
-            </a>\
+    $("#content-body .sortable-contents").append(
+      "<li class='ui-state-default' id='" + content.id +"'>\
+        <i class='fa fa-minus fa-2x drag-content'></i>\
+        <div class='content-item' id='content-item-" + content.id + "'>\
+          <div id='paragraph-" + paragraph.id + "'>\
+            <div class='paragraph-container'>" + paragraph.body + "</div>\
           </div>\
-          <div>\
-          <a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'>\
-            <i class='fa fa-trash-o fa-2x'></i><br>delete\
-            </a>\
+          <div class='edit-links'>\
+            <div>\
+              <a class='edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'>\
+                <i class='fa fa-edit fa-2x'></i><br>edit\
+              </a>\
+            </div>\
+            <div>\
+            <a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'>\
+              <i class='fa fa-trash-o fa-2x'></i><br>delete\
+              </a>\
+            </div>\
           </div>\
         </div>\
-      </div>")
+      </li>")
 
   }
 
@@ -148,7 +151,8 @@ $(function(){
         editor.session.setMode('ace/mode/" + snippet.language + "');\
         editor.getSession().setUseWrapMode(true);\
         editor.setReadOnly(true);\
-        editor.setOptions({maxLines: 40 });\
+        editor.setOptions({maxLines: 25,\
+            minLines: 4,});\
       <\/script>"
   )}
 
@@ -172,7 +176,10 @@ $(function(){
     var url = $(this).attr("action");
 
     $.post(url, data, function(serverResponse, status, request){
-      $("#content-body").append("<div class='content-item' id='content-item-" + serverResponse.content.id + "'></div>")
+      $(".sortable-contents").append(
+        "<li class='ui-state-default' id='" + serverResponse.content.id +"'>\
+        <i class='fa fa-minus fa-2x drag-content'></i>\
+        <div class='content-item' id='content-item-" + serverResponse.content.id + "'></div></li>")
       appendSnippet(serverResponse.snippet, serverResponse.content)
 
       $("#modal-popup").foundation("reveal", "close");
@@ -256,6 +263,10 @@ $(function(){
       var content = serverResponse.content;
       $("#content-item-" + contentId + " .comments-container").html(serverResponse)
       $("#content-item-" + contentId + " .comments-container").prepend("<a class='close-comments' href='#" + contentId + "'>&#215;</a>")
+      $("#content-item-" + contentId + " div.comments-links").removeClass("invisible");
+      var count = $("#content-item-" + contentId + " div.comments-links a").html().match(/\d+/)[0]
+      var string = (parseInt(count) + 1) + " <i class='fa fa-comments'></i>"
+      $("#content-item-" + contentId + " div.comments-links a").html(string)
     })
   })
 

@@ -68,6 +68,7 @@ InfoBytes::Application.configure do
       sortable_contents.js
       ace_new.js
       ace_read.js
+      strip_delete.js
     )
 
   # Ignore bad email addresses and do not raise email delivery errors.

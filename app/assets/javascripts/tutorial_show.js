@@ -97,8 +97,6 @@ $(function(){
     $(link).removeClass("remove-list").addClass('add-list')
   }
 
-
-
   /******************************************************************
   * When logged in as Creator
   *******************************************************************
@@ -108,40 +106,17 @@ $(function(){
 
   $(document).on("click", '#add-chapter', function(e){
     e.preventDefault();
+
     var url = $(this).attr("href");
     $.post(url, function(serverResponse, status, request){
-      appendChapter(serverResponse)
+      $("#chapter-list").html(serverResponse)
     })
   });
   
   /*******************************************************************
   * Append new chapter to the list
   ********************************************************************/
-
-  var appendChapter = function(chapter){
-    $("#chapter-list").append(
-      "<div class='chapter row' id='chapter-" + chapter.id + "'>\
-        <h3 class='chapter-title'>Section "+ chapter.number+":</h3> \
-        <a class='sub-cpt-list remove-list' href='/chapters/" + chapter.id + "'>\
-          <i class='fa fa-arrow-circle-o-up fa-2x'></i>\
-        </a>\
-        <div class='chapter-edit-icons'>\
-          <a class='edit-chapter' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/edit'>\
-            <i class='fa fa-edit fa-2x'></i>\
-          </a>\
-          <a class='delete-chapter delete' href='/chapters/" + chapter.id + "' rel='nofollow'>\
-            <i class='del-chapter fa fa-trash-o fa-2x'></i>\
-          </a>\
-        </div>\
-      </div>\
-      <div class='small-11 small-offset-1' id='cpt-"+ chapter.id + "'>\
-      <div id='sub-chapter-list-" + chapter.id + "'><ul id='list-chapter-" + chapter.id + "' class='sortable-list'></ul></div>\
-        <a class='add-sub-chapter' data-reveal-id='modal-popup' href='/chapters/" + chapter.id + "/sub_chapters/new'>\
-          Add Sub-section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>\
-        </a>\
-      </div>");
-     removePopup();
-  };
+  
 
   $(document).on("submit", "#modal-popup #new_chapter", function(e){
     e.preventDefault();
@@ -217,10 +192,12 @@ $(function(){
 
   //appending subchapter method
   var appendSubchapter = function(subChapter, chapter){
-    $("#sub-chapter-list-" + chapter.id).append(
+    $("#list-chapter-" + chapter.id).append(
       "<li class='ui-state-default', id='sub-chp-"+ subChapter.id +"'>\
         <div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'>\
-          <h4><a href='/sub_chapters/" + subChapter.id + "'>" + subChapter.title + "</a></h4>\
+          <h4><a href='/sub_chapters/" + subChapter.id + "'>\
+            <i class='fa fa-minus fa-1x drag-bar'></i> " + subChapter.title + "</a>\
+          </h4>\
           <a class='edit-sub-chapter' data-reveal-id='modal-popup' href='/sub_chapters/" + subChapter.id + "/edit'>\
             <i class='fa fa-edit fa-2x sub-chapter-icon'></i>\
           </a>\
@@ -231,6 +208,16 @@ $(function(){
       </li>"); 
 
     removePopup();
+    setSortable();
+  }
+
+  var setSortable = function(){
+    $( ".sortable-list").sortable({
+      handle: ".drag-bar",
+      placeholder: "list-placeholder",
+      axis: "y",
+      connectWith: ".sortable-list" 
+    });
   }
 
   // process data and append subchapter

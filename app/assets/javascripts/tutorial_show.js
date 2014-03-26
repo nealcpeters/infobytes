@@ -197,7 +197,7 @@ $(function(){
       "<li class='ui-state-default', id='sub-chp-"+ subChapter.id +"'>\
         <div class='sub-chapter' id='sub-chapter-" + subChapter.id + "'>\
           <h4><a href='/sub_chapters/" + subChapter.id + "'>\
-            <i class='fa fa-minus fa-1x drag-bar'></i> " + subChapter.title + "</a>\
+            <i class='fa fa-minus fa-1x drag-bar'></i> " + subChapter.title + " </a>\
           </h4>\
           <a class='edit-sub-chapter' data-reveal-id='modal-popup' href='/sub_chapters/" + subChapter.id + "/edit'>\
             <i class='fa fa-edit fa-2x sub-chapter-icon'></i>\
@@ -269,7 +269,7 @@ $(function(){
   var updateSubChapter = function(url, data){
     var id = getId(url); 
     $.post(url, data, function(serverResponse, status, request){
-      $("#sub-chapter-" + id + " h4 a").text(serverResponse.title)
+      $("#sub-chapter-" + id + " h4 a").html("<i class='fa fa-minus fa-1x drag-bar'></i> " + serverResponse.title + " ")
     }).done(function(){
       removePopup();
     })

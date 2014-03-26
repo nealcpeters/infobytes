@@ -30,6 +30,9 @@
       display: inline-block;
       margin-left: 2em;
     }
+    .invisible {
+      display: table;
+    }
   }
 }
 .sub-chapter {
@@ -47,7 +50,8 @@
 }
 
 .comments-links {
-  display: none;
+  display: inline-block;
+  float: right;
   background-color: #555;
   border-radius: 3px;
   a {
@@ -77,6 +81,13 @@
   }
 }
 
+.paragraph-container{
+  display: block;
+  clear: both;
+  div{
+    // line-height: 22px;
+  }
+}
 
 .close-comments {
   color: #575757;
@@ -84,16 +95,17 @@
   float: right;
   padding-right: 1em;
 }
-//   position: absolute;
-//   left: -300px;
-//   width: 300px;
-//   word-wrap:break-word;
-//   max-height: 600px;
-//   overflow-x: scroll;
-// }
 
-// .html-view {
-//   left: 50px;
+.invisible {
+  display: none;
+}
 
 
-// }
+.edit-links {
+  display: table;
+  right: 0;
+  div {
+    margin: 0 0.5em;
+    display: inline-table;
+  }
+}

@@ -23,6 +23,12 @@ describe SubChaptersController do
       get :new, chapter_id: @chapter.id
       expect(response).to render_template("new")
     end
+
+    it "must catch a non-logged in user'" do
+      sign_out @user
+      get :new, chapter_id: @chapter.id
+      expect(response).to redirect_to("/")
+    end
   end
 
   describe "Create route" do
@@ -61,6 +67,12 @@ describe SubChaptersController do
       get :edit, id: @sub_chapter.id
       expect(response).to render_template("edit")
     end
+
+    it "must catch a non-logged in user'" do
+      sign_out @user
+      get :edit, id: @sub_chapter.id
+      expect(response).to redirect_to("/")
+    end
   end
 
   describe "Update route" do
@@ -86,12 +98,10 @@ describe SubChaptersController do
   end
 
   describe "Destroy route" do
-    it "must route to sub_chapter#destroy'" do
-      {delete: "/sub_chapters/#{@sub_chapter.id}"}.should route_to(
-        action: 'destroy',
-        controller: "sub_chapters",
-        id: (@sub_chapter.id.to_s)
-      )
+    it "must destroy a sub_chapter given proper params'" do
+      expect{
+        delete :destroy, id: @sub_chapter.id
+      }.to change(SubChapter, :count).by(-1)     
     end
 
     # xit "must destroy a record given proper json params'" do

@@ -33,6 +33,10 @@
 
 }
 
+.tut-description {
+  color:black
+}
+
 .chapter > * {
   display: inline-table;
 }
@@ -49,13 +53,13 @@
 
 .tutorial-list:hover{
   background-color: #e8e8e8;
-  padding: 2em auto;
+  // padding: 50px auto;
 }
   
 .tutorial-list {  
-  width: 100%;
+  width: 90%;
   border-bottom: 1px solid #e8e8e8;
-  
+  margin-left: 3em;
   .rating {
 
     li {
@@ -99,18 +103,4 @@
 }
 
 
-// sortable
-.drag-bar:hover{
-  cursor:ns-resize;
-}
-
-.sortable-list {
-  padding:10px 
-}
-
-
-.list-placeholder{ 
-  height: 2.7em; 
-  line-height: 2.7em; 
-}
 

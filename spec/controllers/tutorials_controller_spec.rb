@@ -12,6 +12,7 @@ describe TutorialsController do
       get 'show', :id => @tutorial.id
       expect(response).to render_template("show")
     end
+
   end
 
   describe "New route" do
@@ -49,6 +50,12 @@ describe TutorialsController do
     it "must render edit view if not AJAX'" do
       get :edit, id: @tutorial.id
       expect(response).to render_template("edit")
+    end
+
+    it "must render edit view if not AJAX'" do
+      sign_out @user
+      get :edit, id: @tutorial.id
+      expect(response).to redirect_to("/")
     end
   end
 

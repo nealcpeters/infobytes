@@ -39,7 +39,7 @@ class CommunitiesController < ApplicationController
 
 	def create_user_membership
 		current_user.communities << Community.find(params[:id])
-		redirect_to communities_path(params[:id])
+		redirect_to community_path(params[:id])
 	end
 
 	def delete_user_membership

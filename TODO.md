@@ -16,3 +16,4 @@
 - 
 - add tags to existing articles in database
 
+- toc nav shows code snippet line numbers

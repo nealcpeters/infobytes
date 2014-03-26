@@ -6,16 +6,15 @@
   * Initializing the Paragraph
   ***************************************************/
   
- 
-
-
   paragraphInitialize = function() {
     display = document.getElementById('href-display');
     adder = document.getElementById('href-adder');
     link = document.getElementById('link');
     linkText = document.getElementById('linkText');
     editableDiv = document.getElementById('editable-div');
-    hideInputs();
+    if (display){
+      hideInputs();
+    }
   };
 
 

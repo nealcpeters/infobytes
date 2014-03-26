@@ -134,9 +134,7 @@ $(function(){
 
   var appendSnippet = function(snippet, content){
     $("#content-item-" + content.id).html(
-      "<li class='ui-state-default' id='" + content.id +"'>\
-        <i class='fa fa-minus fa-2x drag-content'></i>\
-      <div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
+      "<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
       <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
       <div class='edit-links'>\
         <div>\
@@ -153,7 +151,8 @@ $(function(){
         editor.session.setMode('ace/mode/" + snippet.language + "');\
         editor.getSession().setUseWrapMode(true);\
         editor.setReadOnly(true);\
-        editor.setOptions({maxLines: 40 });\
+        editor.setOptions({maxLines: 25,\
+            minLines: 4,});\
       <\/script>"
   )}
 
@@ -177,7 +176,10 @@ $(function(){
     var url = $(this).attr("action");
 
     $.post(url, data, function(serverResponse, status, request){
-      $("#content-body").append("<div class='content-item' id='content-item-" + serverResponse.content.id + "'></div>")
+      $(".sortable-contents").append(
+        "<li class='ui-state-default' id='" + serverResponse.content.id +"'>\
+        <i class='fa fa-minus fa-2x drag-content'></i>\
+        <div class='content-item' id='content-item-" + serverResponse.content.id + "'></div></li>")
       appendSnippet(serverResponse.snippet, serverResponse.content)
 
       $("#modal-popup").foundation("reveal", "close");

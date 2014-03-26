@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, only: [:new, :create, :edit, :delete]
 
 	def index
 		@communities = Community.all.order('updated_at DESC')

@@ -1,9 +1,9 @@
 
 <div class="row one-page-view">
-  <div class="small-10 small-offset-1">
-    <h1><%= @tutorial.title %></h1>
-    <p><%= link_to "written by: #{@author.user_name}", user_path(@author) %></p>
-
+	<div class="small-12 columns">
+		<h1><%= @tutorial.title %></h1>
+		<p><%= link_to "written by: #{@author.user_name}", user_path(@author) %></p>
+    
     <div class="table-of-contents">
       <h2 class="toc">Table of Contents:</h2>
       <% @chapters.each_with_index do |chapter, index| %>
@@ -74,11 +74,18 @@
                         <%= image_tag content.attachable.image_path.url(:original) %>
                       </div>
                     <% end %>
-                    <div class="comments-links">
-                      <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
-                    </div>
-                    <div class="small-10">
-                      <div class="comments-container html-view"></div>
+                    <% content_count = content.comments.count %>
+                    <% if content_count == 0 %>
+                      <div class="comments-links invisible">
+                          <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+                      </div>
+                    <% else %>
+                      <div class="comments-links">
+                        <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+                      </div>
+                    <% end %>
+                    <div class="small-6 small-offset-3 comlumns">
+                      <div class="comments-container"></div>
                     </div>
                   </div>
                 <% end %>

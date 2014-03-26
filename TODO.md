@@ -11,4 +11,12 @@
 - can't upload images on infobyt.es, says install imagemagick
 - 
 - TOC nav does not work on infobyt.es
+- 
+- only view communities if signed in?
+- 
+- add tags to existing articles in database
 
+- toc nav shows code snippet line numbers
+- can't comment on one liners
+- 
+- position of back button on tutorials

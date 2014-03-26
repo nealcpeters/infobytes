@@ -57,7 +57,7 @@ $(function(){
       success: function(serverResponse, status, request){
         var id = serverResponse.id
         var body = serverResponse.body
-        $('#paragraph-' + id ).replaceWith("<div id='paragraph-" + id+ "'<p>" + body + "</p></div>");
+        $('#paragraph-' + id ).replaceWith("<div id='paragraph-" + id+ "'class='paragraph-container'>" + body + "</div></div>");
         removePopup();
       }
     })
@@ -111,7 +111,7 @@ $(function(){
     $("#content-body").append(
       "<div class='content-item' id='content-item-" + content.id + "'>\
         <div id='paragraph-" + paragraph.id + "'>\
-          <p>" + paragraph.body + "</p>\
+          <div class='paragraph-container'>" + paragraph.body + "</div>\
         </div>\
         <div class='edit-links'>\
           <div>\

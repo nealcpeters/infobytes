@@ -6,8 +6,9 @@
   * Initializing the Paragraph
   ***************************************************/
   
-  // Called by <script> tag inside html
  
+
+
   paragraphInitialize = function() {
     display = document.getElementById('href-display');
     adder = document.getElementById('href-adder');
@@ -16,7 +17,8 @@
     editableDiv = document.getElementById('editable-div');
     hideInputs();
   };
-  
+
+
   /***************************************************
   * Needed Variables
   ***************************************************/
@@ -97,5 +99,11 @@
   grabInput = function() {
      document.getElementById('paragraph_body').value = editableDiv.innerHTML;
    };
+
+  /***************************************************
+  * Initializing the Form and Div Upon Load
+  ***************************************************/
+  
+  paragraphInitialize();
 
 

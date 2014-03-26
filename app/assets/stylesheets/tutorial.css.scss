@@ -100,6 +100,13 @@
 
 
 // sortable
+.drag-bar:hover{
+  cursor:ns-resize;
+}
+
+.sortable-list {
+  padding:10px 
+}
 
 
 .list-placeholder{ 

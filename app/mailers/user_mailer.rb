@@ -2,10 +2,14 @@ class UserMailer < ActionMailer::Base
   default from: "infobytes.tutorials@gmail.com"
 
   def new_tutorial_email(tutorial, community)
-    @tutorial_name = tutorial.name
+  	@tutorial = tutorial
+    @tutorial_name = @tutorial.title
+    @tutorial_id = @tutorial.id
     @community_name = community.name
-    @users = community.users.collect do { |user| user.email }
-    mail(to: @users, subject: 'New Tutorial in Community #{@community_name}')
+    @subject_line = 'New Tutorial Added in Community ' + community.name.capitalize
+    @users = community.users.collect { |user| user.email }
+    
+    mail(to: @users, subject: @subject_line)
   end
 
 end

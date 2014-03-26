@@ -77,18 +77,34 @@ class TutorialsController < ApplicationController
     @tutorial = Tutorial.find(params[:id])
     @tutorial.update(tutorial_params)
     @community = Community.find(@tutorial.community_id)
+
     if @tutorial.save
+      @email = UserMailer.new_tutorial_email(@tutorial, @community)
+      p @email
+      p @email
+      p @email
+      p @email
+      UserMailer.new_tutorial_email(@tutorial, @community).deliver
       if request.xhr?
         render json: @community
         flash[:notice] = "Tutorial added to community."
       else
         redirect_to @tutorial
       end
-
-      respond_to do |format|
-        UserMailer.new_tutorial_email(@tutorial, @community).deliver
-
     end
+
+#     respond_to do |format|
+#       if @tutorial.save
+#         # Tell the UserMailer to send a welcome Email after save
+#         UserMailer.new_tutorial_email(@tutorial, @community).deliver
+#  
+#         format.html { redirect_to(@tutorial, notice: 'Tutorial was successfully updated.') }
+#         format.json { render json: @user, status: :created, location: @user }
+#       else
+#         format.html { render action: 'new' }
+#         format.json { render json: @user.errors, status: :unprocessable_entity }
+#       end
+#     end
 
   end
 

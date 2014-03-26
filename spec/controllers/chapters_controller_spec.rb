@@ -27,7 +27,7 @@ describe ChaptersController do
     #   json = {:format => 'json', tutorial_id: @tutorial.id}
     #   request.env["HTTP_ACCEPT"] = 'application/json'      
       
-    # get :new, json
+    #   get :new, json
     #   expect(response).to render_template("chapters/_form")
     # end
   end

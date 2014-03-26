@@ -53,13 +53,13 @@
 
 .tutorial-list:hover{
   background-color: #e8e8e8;
-  padding: 2em auto;
+  // padding: 50px auto;
 }
   
 .tutorial-list {  
-  width: 100%;
+  width: 90%;
   border-bottom: 1px solid #e8e8e8;
-  
+  margin-left: 3em;
   .rating {
 
     li {

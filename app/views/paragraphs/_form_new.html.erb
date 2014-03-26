@@ -20,7 +20,7 @@
       <div><p>Body:</p><br>
         <input type="hidden" name="paragraph[body]" value="" id="paragraph_body">
       </div>
-      <div contenteditable="true" id="editable-div" class="editable"></div>
+      <div contenteditable="true" id="editable-div" class="editable paragraph-container"></div>
 
       <div><%= f.submit :onclick => "grabInput()", class: "button" %></div>
 
@@ -31,6 +31,4 @@
 
 <a class="close-reveal-modal">&#215;</a>
 
-<script>
-  paragraphInitialize()
-</script>
+<%= javascript_include_tag :paragraph_form %>

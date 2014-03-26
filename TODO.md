@@ -2,8 +2,14 @@
 - line spacing for the tutorial paragraphs
 - inline icons for edit options
 - new codeblocks min should be set to 1
-- syntax highlighting defaults to ruby on edit page
+- syntax highlighting defaults to ruby on edit page ?
 - delete on edit page no ajax
 - sometimes on code block create, ace is not loaded
 - default ace to text ?
 - css for comments balloon?
+- foundation rows added to index pages
+- scroll bug
+- pdf-kit
+- custom 404 page
+- background jobs
+- overall styling

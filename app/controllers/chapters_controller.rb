@@ -76,12 +76,13 @@ class ChaptersController < ApplicationController
     params[:data].length.times do |index|
       list = params[:data][index.to_s]
       chapter_id = list[:id]
-      list[:container].each do |id, order|
-        sub_chapter = SubChapter.find(id)
-        sub_chapter.number = order[:number]
-        sub_chapter.chapter_id = chapter_id
-        sub_chapter.save
-        # binding.pry
+      if list[:container]
+        list[:container].each do |id, order|
+          sub_chapter = SubChapter.find(id)
+          sub_chapter.number = order[:number]
+          sub_chapter.chapter_id = chapter_id
+          sub_chapter.save
+        end
       end
     end
 
@@ -93,7 +94,8 @@ class ChaptersController < ApplicationController
     @chapter = @tutorial.chapters.new(number: @tutorial.chapters.count + 1)
     @chapter.save
     if request.xhr?
-      render json: @chapter
+      @chapters = @tutorial.chapters
+      render partial: "tutorials/chapter_tree"
     else
       redirect_to @tutorial
     end

@@ -7,8 +7,12 @@
 			<%= link_to community_path(community) do %>
 				<div class ="tutorial-list medium-10 medium-offset columns">
 						<li> 
-							<p class="tut-title">
+							<p class="tut-title"> 
 								<%= community.name %> 
+							</p>
+							<p class="number-members">
+							(members:  <%=community.users.count%>)
+							<p>
 							</p>
 							<p class="tut-description">
 								<%= community.description %>

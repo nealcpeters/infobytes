@@ -18,9 +18,7 @@ $(function() {
            lists.push(list)
         })
 
-        $.post('/chapters/update_sub_chapters', {data: lists}, function(serverResponse){
-          console.log(serverResponse)
-        })
+        $.post('/chapters/update_sub_chapters', {data: lists}, function(serverResponse){})
       })
   });
 

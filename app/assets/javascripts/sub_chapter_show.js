@@ -263,6 +263,10 @@ $(function(){
       var content = serverResponse.content;
       $("#content-item-" + contentId + " .comments-container").html(serverResponse)
       $("#content-item-" + contentId + " .comments-container").prepend("<a class='close-comments' href='#" + contentId + "'>&#215;</a>")
+      $("#content-item-" + contentId + " div.comments-links").removeClass("invisible");
+      var count = $("#content-item-" + contentId + " div.comments-links a").html().match(/\d+/)[0]
+      var string = (parseInt(count) + 1) + " <i class='fa fa-comments'></i>"
+      $("#content-item-" + contentId + " div.comments-links a").html(string)
     })
   })
 

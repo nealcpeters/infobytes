@@ -30,9 +30,6 @@
       display: inline-block;
       margin-left: 2em;
     }
-    .invisible {
-      display: table;
-    }
   }
 }
 .sub-chapter {
@@ -51,7 +48,7 @@
 
 .comments-links {
   display: inline-block;
-  float: right;
+  float: left;
   background-color: #555;
   border-radius: 3px;
   a {
@@ -109,3 +106,4 @@
     display: inline-table;
   }
 }
+

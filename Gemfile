@@ -39,8 +39,6 @@ gem 'thread_safe', '0.2.0'
 
 gem 'will_paginate', '~> 3.0'
 
-gem 'prawn'
-
 gem 'aws-sdk'
 
 gem "paperclip", "~> 4.1"

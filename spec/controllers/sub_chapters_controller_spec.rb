@@ -57,6 +57,12 @@ describe SubChaptersController do
       patch :update, id: @sub_chapter.id, sub_chapter: {number: 1}
       expect(response).to redirect_to(@sub_chapter) 
     end
+
+    # it "must render json upon save if xhr'" do
+    #   json = {id: @sub_chapter.id, sub_chapter: {number: 1}}
+    #   patch :update, json
+    #   expect(response).to redirect_to(@sub_chapter) 
+    # end
   end
 
   describe "Destroy route" do
@@ -68,9 +74,10 @@ describe SubChaptersController do
       )
     end
 
-    it "must destroy a record given proper params'" do
+    it "must destroy a record given proper json params'" do
+      json = {id: @sub_chapter.id}
       expect{
-        delete :destroy, id: @sub_chapter.id
+        delete :destroy, json
       }.to change(SubChapter, :count).by(-1)     
     end
   end

@@ -1,0 +1,1 @@
+$(function(){$(".delete").removeAttr("data-confirm").removeAttr("data-method")});

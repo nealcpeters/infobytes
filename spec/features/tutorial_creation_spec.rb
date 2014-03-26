@@ -16,12 +16,12 @@ feature 'Tutorial Creation' do
   end
 
   context "for a logged user" do
-    scenario "the form must direct to must direct to page with created fields present" do
-      visit "/tutorials/new"
-      fill_in 'tutorial[description]', with: "ghijk"
-      click_button "Create Tutorial"
-      expect(page).to have_content("can't be blank")
-    end
+    # xscenario "the form must direct to must direct to page with created fields present" do
+    #   visit "/tutorials/new"
+    #   fill_in 'tutorial[description]', with: "ghijk"
+    #   click_button "Create Tutorial"
+    #   expect(page).to have_content("can't be blank")
+    # end
     
     before :each do
       visit "/tutorials/new"

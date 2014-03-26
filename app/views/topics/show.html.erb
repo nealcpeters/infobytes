@@ -1,16 +1,18 @@
-<div>
-	<% @subtopics.each do |subtopic| %>
-		<%= link_to subtopic_path(subtopic) do %>
-			<div class="tutorial-list medium-10 medium-offset columns">
-				<li>
-					<p class="tut-title">
-						<%= subtopic.title %>
-					<p class="tut-description">
-						<%= subtopic.description %>
-					</p>
-				</li>
-			</div>
-		<% end %>
-	<% end %>		
-	<%= will_paginate @subtopics %>
+<div class="row topic-show">
+	<div class="small-5 small-offset-1 medium-7 medium-offset-1 large-9 large-offset-0 columns">		
+		<% @subtopics.each do |subtopic| %>
+			<%= link_to subtopic_path(subtopic) do %>	
+					<div class="sub-topic-list">
+						<li>
+							<p class="tut-title">
+								<%= subtopic.title %>
+							<p class="tut-description">
+								<%= subtopic.description %>
+							</p>
+						</li>
+					</div>
+			<% end %>
+		<% end %>		
+		<%= will_paginate @subtopics %>
+	</div>
 </div>

@@ -7,7 +7,9 @@
     <h1><%= @sub_chapter.title %></h1>
 
     <div id="content-body">
-      <%= render "sub_chapters/content_body" %>
+      <ul class="sortable-contents">
+        <%= render "sub_chapters/content_body" %>
+      </ul>
     </div>
     
     <% if sub_chapter_owner?(@sub_chapter) %>
@@ -26,6 +28,6 @@
 <script>
   $(document).foundation();
   $(".delete-content").removeAttr("data-confirm").removeAttr("data-method")
-
 </script>
+<%= javascript_include_tag :sortable_contents %>
 

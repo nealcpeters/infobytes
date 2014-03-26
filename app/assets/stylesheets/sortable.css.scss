@@ -1,0 +1,23 @@
+.drag-bar:hover, .drag-content:hover {
+  cursor:ns-resize;
+}
+
+.sortable-list {
+  padding:10px 
+}
+
+
+.list-placeholder{ 
+  height: 2.7em; 
+  line-height: 2.7em; 
+}
+
+.content-placeholder {
+  height: 7em; 
+  line-height: 7em; 
+}
+
+i.drag-content{
+  color:  #ac5a09;
+  float: right;
+}

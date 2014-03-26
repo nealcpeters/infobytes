@@ -1,5 +1,5 @@
 $(function(){
-  console.log("loaded")
+  $(document).foundation();
   $(".sortable-contents").sortable({
     // handle: ".drag-content",
     placeholder: "content-placeholder",
@@ -18,4 +18,5 @@ $(function(){
     $.post(url, {data: container}, function(serverResponse){}) 
   })
 
+  $(".delete-content").removeAttr("data-confirm").removeAttr("data-method")
 })

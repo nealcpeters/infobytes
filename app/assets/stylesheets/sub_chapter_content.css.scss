@@ -79,6 +79,8 @@
 }
 
 .paragraph-container{
+  display: block;
+  clear: both;
   div{
     line-height: 19px;
   }

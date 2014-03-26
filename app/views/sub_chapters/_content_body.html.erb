@@ -3,7 +3,7 @@
     
     <% if content.attachable_type == "Paragraph" %>
       <div id="paragraph-<%= content.attachable_id %>">
-        <p><%= raw(content.attachable.body) %></p>
+        <div class="paragraph-container"><%= raw(content.attachable.body) %></div>
       </div>
       
       <% if sub_chapter_owner?(@sub_chapter) %>

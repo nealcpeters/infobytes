@@ -21,3 +21,15 @@ i.drag-content{
   color:  #ac5a09;
   float: left;
 }
+
+
+// 
+.delete-tutorial {
+  background-color: #B72C0C;
+  display: inline-block;
+  float: right;
+  margin-right: 5%;
+  &:hover{
+    background-color: red;
+  }
+}

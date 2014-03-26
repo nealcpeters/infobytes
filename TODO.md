@@ -5,6 +5,6 @@
 - actionmailer ~                                      [amara]
 - page titles ~                                       [amara]
 - delete tutorial link                                [alex]
-- edit tutorial link                                  [alex]
-- fix ajax for new content item                       [alex]
-- update comment count                                [alex]
+
+
+

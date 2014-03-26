@@ -1,5 +1,6 @@
 <%= javascript_include_tag "rating" %>
 
+<br>
 <div>
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>
@@ -62,5 +63,7 @@
 			</div>
 		<% end %>
 	<% end %>
+	<br>
+	<br>
 	<%= will_paginate @tutorials %>
 </div>	

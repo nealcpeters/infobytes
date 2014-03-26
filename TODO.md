@@ -1,16 +1,14 @@
-- links need to have target="_blank" tag in add text  [eric]
-- line spacing for the tutorial paragraphs            [eric]
-- foundation rows added to index pages                [neal]
 - scroll bug                                          [matt]
 - pdf-kit                                             [neal]
-- custom 404 page                                     [neal]
-- background jobs                                     [matt]
 - overall styling                                     []
 - actionmailer ~                                      [amara]
 - page titles ~                                       [amara]
-- redirect to infobyt.es                              [neal]
-- delete tutorial link                                [alex]
-- edit tutorial link                                  [alex]
-- style "Edit title link"                             [matt]
-- fix ajax for new content item                       [alex]
-- update comment count                                [alex]
+
+- profile needs some foundation divs
+
+- scroll all the way down on home page, hit create tutorial, ajax form pops up on bottom
+- 
+- can't upload images on infobyt.es, says install imagemagick
+- 
+- TOC nav does not work on infobyt.es
+

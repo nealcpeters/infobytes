@@ -1,6 +1,9 @@
 <% if (current_user && current_user.id == @user.id) %>
+	
 	<h1 class="user-profile">Hi, <%= "#{@user.user_name}" %>! </h1>
-	<h2 class="user-profile">Manage your tutorials:</h2>
+	<div class="medium-10 medium-offset-1 columns">
+		<h2 class="user-profile">Manage your tutorials:</h2>
+	</div>
 	<div>
 		<% @tutorials.each do |tutorial| %>
 			<%= link_to tutorial_path(tutorial) do %>
@@ -17,7 +20,9 @@
 			<% end %>
 		<% end %>
 	</div>	
-	<h2 class="user-profile">Manage your community memberships:</h2>
+	<div class="user-profile medium-10 medium-offset-1 columns">
+		<h2 id="community-header">Manage your community memberships:</h2>
+	</div>
 	<div>
 		<% @user.communities.each do |community| %>
 			<%= link_to community_path(community) do %>

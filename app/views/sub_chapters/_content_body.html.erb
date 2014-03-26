@@ -14,6 +14,7 @@
         </div>
         
         <% if sub_chapter_owner?(@sub_chapter) %>
+          <br>
           <div class="edit-links">
             <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_paragraph_path(content.attachable), class: "edit-paragraph",  data: { "reveal-id" => "modal-popup" } %></div>
             <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, paragraph_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this paragraph?"} %></div>
@@ -52,9 +53,16 @@
           </div>
         <% end %>
       <% end %>
-      <div class="comments-links">
-        <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
-      </div>
+      <% content_count = content.comments.count %>
+      <% if content_count == 0 %>
+        <div class="comments-links invisible">
+            <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+        </div>
+      <% else %>
+        <div class="comments-links">
+          <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+        </div>
+      <% end %>
       <div class="small-6 small-offset-3 comlumns">
         <div class="comments-container"></div>
       </div>

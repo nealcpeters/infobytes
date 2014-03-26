@@ -14,6 +14,7 @@ class TutorialsController < ApplicationController
 
   def new
     @tutorial = Tutorial.new
+    @subtopics = Subtopic.all
     render partial: "tutorials/tutorial_new" if request.xhr?
   end
 
@@ -32,6 +33,7 @@ class TutorialsController < ApplicationController
 
   def edit
     @tutorial = Tutorial.find(params[:id])
+    @subtopics = Subtopic.all
     render partial: "tutorials/tutorial_edit" if request.xhr?
   end
 
@@ -77,7 +79,10 @@ class TutorialsController < ApplicationController
     @tutorial = Tutorial.find(params[:id])
     @tutorial.update(tutorial_params)
     @community = Community.find(@tutorial.community_id)
+
     if @tutorial.save
+      @email = UserMailer.new_tutorial_email(@tutorial, @community)
+      UserMailer.new_tutorial_email(@tutorial, @community).deliver
       if request.xhr?
         render json: @community
         flash[:notice] = "Tutorial added to community."
@@ -86,12 +91,25 @@ class TutorialsController < ApplicationController
       end
     end
 
+#     respond_to do |format|
+#       if @tutorial.save
+#         # Tell the UserMailer to send a welcome Email after save
+#         UserMailer.new_tutorial_email(@tutorial, @community).deliver
+#  
+#         format.html { redirect_to(@tutorial, notice: 'Tutorial was successfully updated.') }
+#         format.json { render json: @user, status: :created, location: @user }
+#       else
+#         format.html { render action: 'new' }
+#         format.json { render json: @user.errors, status: :unprocessable_entity }
+#       end
+#     end
+
   end
 
   protected
   
   def tutorial_params
-    params.require(:tutorial).permit(:title, :description, :community_id)
+    params.require(:tutorial).permit(:title, :description, :community_id, :subtopic_id)
   end
 
   def authenticate_tutorial_owner

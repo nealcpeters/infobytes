@@ -96,6 +96,7 @@
   ***************************************************/
 
   grabInput = function() {
+     document.getElementById('paragraph_body').value
      document.getElementById('paragraph_body').value = editableDiv.innerHTML;
    };
 

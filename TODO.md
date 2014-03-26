@@ -3,4 +3,3 @@
 - overall styling                                     []
 - actionmailer ~                                      [amara]
 - page titles ~                                       [amara]
-git 

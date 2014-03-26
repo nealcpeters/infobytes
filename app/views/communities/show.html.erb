@@ -1,5 +1,6 @@
 <div>
-	<h2><%= @community.name %> Community Tutorials</h2>
+	<div class="view-header medium-10 medium-offset columns">
+		<h2><%= @community.name %> Community Tutorials</h2>
      <% if current_user.community_ids.include?((params[:id]).to_i) %>
      	<p>
      		<%= "You are a member of this community" %>
@@ -8,6 +9,7 @@
      <% else %>
 	     <%= link_to "Join Community", create_user_membership_community_path, class: "button", :method => :post %><br>
 	 <% end %>
+	</div>
       
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>

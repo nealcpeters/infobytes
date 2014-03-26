@@ -11,7 +11,7 @@
 
   </div>
   <% @sub_chapters = chapter.sub_chapters.order(:number) %>
-
+  <% @chapter = chapter %>
   <div class="small-11 small-offset-1" id="cpt-<%= chapter.id %>">
     <%= render "chapters/sub_chapters"%>
   </div>

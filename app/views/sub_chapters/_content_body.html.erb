@@ -1,55 +1,67 @@
+
 <% @contents.each do |content| %>
-  <div class="content-item" id="content-item-<%= content.id %>"> 
-    
-    <% if content.attachable_type == "Paragraph" %>
-      <div id="paragraph-<%= content.attachable_id %>">
-        <div class="paragraph-container"><%= raw(content.attachable.body) %></div>
+
+  <% if sub_chapter_owner?(@sub_chapter) %>
+    <li class="ui-state-default" id="<%= content.id %>">
+      <%= fa_icon('minus', class: "fa-2x drag-content") %>
+  <% end %>
+
+    <div class="content-item" id="content-item-<%= content.id %>"> 
+      
+      <% if content.attachable_type == "Paragraph" %>
+        <div id="paragraph-<%= content.attachable_id %>">
+          <div class="paragraph-container"><%= raw(content.attachable.body) %></div>
+        </div>
+        
+        <% if sub_chapter_owner?(@sub_chapter) %>
+          <div class="edit-links">
+            <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_paragraph_path(content.attachable), class: "edit-paragraph",  data: { "reveal-id" => "modal-popup" } %></div>
+            <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, paragraph_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this paragraph?"} %></div>
+          </div>
+        <% end %>
+
+      <% elsif content.attachable_type == "CodeSnippet" %>
+        <div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
+        
+        <script>
+          ace.require("ace/config").set("basePath", '/assets/ace')
+          var editor = ace.edit("editor-<%= content.id %>");
+          editor.setTheme("ace/theme/textmate");
+          editor.session.setMode("ace/mode/" + "<%= content.attachable.language %>");
+          editor.getSession().setUseWrapMode(true);
+          editor.setReadOnly(true)
+          editor.setOptions({
+            maxLines: 25,
+            minLines: 4.75,
+          });
+        </script>
+
+        <% if sub_chapter_owner?(@sub_chapter) %>
+          <div class="edit-links">
+            <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_code_snippet_path(content.attachable), class: "edit-snippet" ,   data: { "reveal-id" => "modal-popup" }%></div>
+            <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, code_snippet_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this code snippet?"} %></div>
+          </div>
+        <% end %>
+      <% elsif content.attachable_type == "Image" %>
+        <div class="image-container" id="image-<%= content.attachable_id %>"><%= image_tag content.attachable.image_path.url(:original) %></div>
+        
+        <% if sub_chapter_owner?(@sub_chapter) %>
+          <div class="edit-links">
+            <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_image_path(content.attachable), class: "edit-image" %></div>
+            <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, image_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this image?"} %></div>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="comments-links">
+        <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
       </div>
-      
-      <% if sub_chapter_owner?(@sub_chapter) %>
-        <div class="edit-links">
-          <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_paragraph_path(content.attachable), class: "edit-paragraph",  data: { "reveal-id" => "modal-popup" } %></div>
-          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, paragraph_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this paragraph?"} %></div>
-        </div>
-      <% end %>
-
-    <% elsif content.attachable_type == "CodeSnippet" %>
-      <div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
-      
-      <script>
-        ace.require("ace/config").set("basePath", '/assets/ace')
-        var editor = ace.edit("editor-<%= content.id %>");
-        editor.setTheme("ace/theme/textmate");
-        editor.session.setMode("ace/mode/" + "<%= content.attachable.language %>");
-        editor.getSession().setUseWrapMode(true);
-        editor.setReadOnly(true)
-        editor.setOptions({
-          maxLines: 25,
-          minLines: 4.75,
-        });
-      </script>
-
-      <% if sub_chapter_owner?(@sub_chapter) %>
-        <div class="edit-links">
-          <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_code_snippet_path(content.attachable), class: "edit-snippet" ,   data: { "reveal-id" => "modal-popup" }%></div>
-          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, code_snippet_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this code snippet?"} %></div>
-        </div>
-      <% end %>
-    <% elsif content.attachable_type == "Image" %>
-      <div class="image-container" id="image-<%= content.attachable_id %>"><%= image_tag content.attachable.image_path.url(:original) %></div>
-      
-      <% if sub_chapter_owner?(@sub_chapter) %>
-        <div class="edit-links">
-          <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_image_path(content.attachable), class: "edit-image" %></div>
-          <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, image_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this image?"} %></div>
-        </div>
-      <% end %>
-    <% end %>
-    <div class="comments-links">
-      <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>
+      <div class="small-6 small-offset-3 comlumns">
+        <div class="comments-container"></div>
+      </div>
     </div>
-    <div class="small-6 small-offset-3 comlumns">
-      <div class="comments-container"></div>
-    </div>
-  </div>
+  <% if sub_chapter_owner?(@sub_chapter) %>
+    </li>
+  <% end %>
 <% end %>
+
+

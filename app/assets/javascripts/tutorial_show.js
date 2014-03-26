@@ -376,9 +376,7 @@ $(function(){
       data: data,
       method: "PATCH", 
       success: function(serverResponse, status, request){
-        console.log(serverResponse)
-
-       
+        
           $('#tutorial-community-add').replaceWith('<p>Community:  ' + serverResponse.name + '</p>')
     
         }
@@ -387,7 +385,6 @@ $(function(){
 
   $(document).on('submit', "#tutorial-community-add", function(e){
     e.preventDefault();
-      
       
       var url = $(this).attr("action");
       var data = $(this).serialize()

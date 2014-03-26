@@ -80,10 +80,6 @@ class TutorialsController < ApplicationController
 
     if @tutorial.save
       @email = UserMailer.new_tutorial_email(@tutorial, @community)
-      p @email
-      p @email
-      p @email
-      p @email
       UserMailer.new_tutorial_email(@tutorial, @community).deliver
       if request.xhr?
         render json: @community

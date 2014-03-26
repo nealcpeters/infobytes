@@ -1,0 +1,9 @@
+- links need to have target="_blank" tag in add text 
+- line spacing for the tutorial paragraphs
+- inline icons for edit options
+- new codeblocks min should be set to 1
+- syntax highlighting defaults to ruby on edit page
+- delete on edit page no ajax
+- sometimes on code block create, ace is not loaded
+- default ace to text ?
+- css for comments balloon?

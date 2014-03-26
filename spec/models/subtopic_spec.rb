@@ -18,4 +18,18 @@ describe Subtopic do
     	}.to change(Subtopic, :count).by(0)
     end
    end
+
+  # context "#update_data alters the sub chapter" do
+  #   it "it creates a valid tutorial" do
+  #     user_create
+  #     tutorial_create
+  #     tutorial_create
+  #     chapter_create 
+  #     sub_chapter_create
+
+  #     @sub_chapter.update_data(1 , 1)
+  #     expect(@sub_chapter.chapter_id == 1).to be true
+  #   end
+  # end
+
 end

@@ -27,7 +27,7 @@ describe ChaptersController do
     #   json = {:format => 'json', tutorial_id: @tutorial.id}
     #   request.env["HTTP_ACCEPT"] = 'application/json'      
       
-    # get :new, json
+    #   get :new, json
     #   expect(response).to render_template("chapters/_form")
     # end
   end
@@ -113,6 +113,15 @@ describe ChaptersController do
     #   json = {tutorial_id: @tutorial.id}      
     #   post 'generate', json
     #   response.status.should eq(302)
+    # end
+  end
+
+  describe "Update_sub_chapters route updates the subchapters" do
+    # xit "must render html_view view'" do
+    #   @chapter.sub_chapters << sub_chapter_create << sub_chapter_create
+    #   first = @chapter.sub_chapters[0]
+    #   post 'update_sub_chapters', data: { container: {first.id: 1, first.order: 1}}
+    #   expect(response).to redirect_to(@tutorial)
     # end
   end
 

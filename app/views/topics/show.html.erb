@@ -1,11 +1,11 @@
-<div class="view-header medium-10 medium-offset columns">
+<div class="view-header medium-11 medium-offset columns">
 		<h2>Subtopics</hd>
 </div>
-<div class="row topic-show">
-	<div class="medium-10 medium-offset columns">		
+<div class="topic-show">
+	<div >		
 		<% @subtopics.each do |subtopic| %>
 			<%= link_to subtopic_path(subtopic) do %>	
-					<div class="sub-topic-list">
+					<div class="tutorial-list medium-10 medium-offset columns">
 						<li>
 							<p class="tut-title">
 								<%= subtopic.title %>

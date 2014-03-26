@@ -23,6 +23,13 @@ describe ChaptersController do
       expect(response).to render_template("new")
     end
 
+
+    it "must catch a non-logged in user" do
+      sign_out @user
+      get :new, tutorial_id: @tutorial.id
+      expect(response).to redirect_to("/")
+    end
+
     # xit "must render partial if json'" do
     #   json = {:format => 'json', tutorial_id: @tutorial.id}
     #   request.env["HTTP_ACCEPT"] = 'application/json'      
@@ -53,9 +60,15 @@ describe ChaptersController do
   end
 
   describe "Edit route" do
-    it "must render edit view if not AJAX'" do
+    it "must render edit view if not AJAX" do
       get :edit, id: @chapter.id
       expect(response).to render_template("edit")
+    end
+
+    it "must catch a non-logged in user" do
+      sign_out @user
+      get :edit, id: @chapter.id
+      expect(response).to redirect_to("/")
     end
   end
 

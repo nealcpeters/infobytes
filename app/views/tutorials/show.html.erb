@@ -33,8 +33,8 @@
 	<% if tutorial_creator? %>
     <%= link_to "Add Section <i class='fa fa-plus-square fa-2x' id='fa-plus-square'></i>".html_safe, generate_chapter_path(@tutorial), id: "add-chapter"%>
     <div id="chapter-form" style="display: none;"></div>
-	<% end %> 
-  <%= link_to 'Delete this tutorial', tutorial_path(@tutorial), method: :delete, data: { confirm: "Are you sure you want to delete this tutorial?"}, class: "delete-tutorial button"%>  
+    <%= link_to 'Delete this tutorial', tutorial_path(@tutorial), method: :delete, data: { confirm: "Are you sure you want to delete this tutorial?"}, class: "delete-tutorial button"%>  
+  <% end %> 
 </div>
 
 <% if tutorial_creator? %>

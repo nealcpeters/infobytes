@@ -1,78 +1,77 @@
-<%= javascript_include_tag "custom_side_bar" %>
 
 <div class="row one-page-view">
-	<div class="small-10 small-offset-1">
-		<h1><%= @tutorial.title %></h1>
-		<p><%= link_to "written by: #{@author.user_name}", user_path(@author) %></p>
+  <div class="small-10 small-offset-1">
+    <h1><%= @tutorial.title %></h1>
+    <p><%= link_to "written by: #{@author.user_name}", user_path(@author) %></p>
 
-	  <div class="table-of-contents">
+    <div class="table-of-contents">
       <h2 class="toc">Table of Contents:</h2>
-	    <% @chapters.each_with_index do |chapter, index| %>
+      <% @chapters.each_with_index do |chapter, index| %>
         <h2><%= link_to "Section #{chapter.number}: #{chapter.title}", "#Section_#{chapter.number.to_s}" %></h2>
         <div class="row">
-        	<div class="small-11 small-offset-1">
-        		<% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, sub_index| %>
-        	    <h4><%= link_to "- #{sub_chapter.title}", "#Sub_Section_#{under_score(sub_chapter.title)}" %></h4>
+          <div class="small-11 small-offset-1">
+            <% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, sub_index| %>
+              <h4><%= link_to "- #{sub_chapter.title}", "#Sub_Section_#{under_score(sub_chapter.title)}" %></h4>
             <% end %>
-        	</div>
+          </div>
         </div>
-    	<% end %>
-	  </div>
+      <% end %>
+    </div>
 
 
     <div id="marker"></div>
     <div class="side-bar-toc">
-      <ul class="chapter-list">	
-    	  <li><%= link_to "Close #{fa_icon('arrow-circle-up')}".html_safe, "#", id: "close-toc" %></li>
-      	<% @chapters.each do |chapter| %>
+      <ul class="chapter-list"> 
+        <li><%= link_to "Close #{fa_icon('arrow-circle-up')}".html_safe, "#", id: "close-toc" %></li>
+        <% @chapters.each do |chapter| %>
           <li><%= link_to chapter.title, "#Section_#{chapter.number.to_s}", class: "sidebar-link" %>
             <ul class="sub-chapter-list">
-            	<% chapter.sub_chapters.order(:number).each do |sub_chapter| %>
+              <% chapter.sub_chapters.order(:number).each do |sub_chapter| %>
                 <li><%= link_to sub_chapter.title, "#Sub_Section_#{under_score(sub_chapter.title)}", class: "sidebar-link" %></li>
-            	<% end %>
+              <% end %>
             </ul>
           </li>
-      	<% end %>
+        <% end %>
       </ul>
-	  </div>
+    </div>
 
     <div id="toc-bar">
-    	<li id="toc-fixed-bar"><%= link_to "TOC #{fa_icon('bars', class: "fa-2x")}".html_safe, "#", id: "toc-link", data: {status: "hidden"} %></li>
-		</div>
+      <li id="toc-fixed-bar"><%= link_to "TOC #{fa_icon('bars', class: "fa-2x")}".html_safe, "#", id: "toc-link", data: {status: "hidden"} %></li>
+    </div>
 
-	  <div class="tutorial-body">
+    <div class="tutorial-body">
       <% @chapters.each_with_index do |chapter, index| %>
-	      <h3 class="section-title" id="Section_<%= chapter.number.to_s %>"><%= "Section #{chapter.number}: #{chapter.title}" %></h3>
+        <h3 class="section-title" id="Section_<%= chapter.number.to_s %>"><%= "Section #{chapter.number}: #{chapter.title}" %></h3>
           <div class="row">
-          	<div class="small-10 small-offset-1">
-		          <% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, index| %>
-				        <h4 class="sub-section-title" id="Sub_Section_<%= under_score(sub_chapter.title) %>"><%= sub_chapter.title %></h4>
-				        <% sub_chapter.contents.order(:order_number).each do |content| %>
+            <div class="small-10 small-offset-1">
+              <% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, index| %>
+                <h4 class="sub-section-title" id="Sub_Section_<%= under_score(sub_chapter.title) %>"><%= sub_chapter.title %></h4>
+                <% sub_chapter.contents.order(:order_number).each do |content| %>
                   <div class="content-item" id="content-item-<%= content.id %>"> 
                     <% if content.attachable_type == "Paragraph" %>
                       <div class="paragraph">
-                      	<%= content.attachable.body.html_safe %>
+                        <%= content.attachable.body.html_safe %>
                       </div>
                     <% elsif content.attachable_type == "CodeSnippet" %>
-  	      						<div class="code-snippet">	
-  	      							<div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
-  								      
-  								      <script>
-                          ace.require("ace/config").set("basePath", '/assets/ace') 
-  								        var editor = ace.edit("editor-<%= content.id %>");
-  								        editor.setTheme("ace/theme/textmate");
-  								        editor.session.setMode("ace/mode/" + "<%= content.attachable.language %>");
-  								        editor.getSession().setUseWrapMode(true);
-  								        editor.setReadOnly(true)
-  								        editor.setOptions({
-  								          maxLines: 30
-  								          });
-  								      </script>
+                      <div class="code-snippet">  
+                        <div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
                         
-  								    </div>
+                        <script>
+                          ace.require("ace/config").set("basePath", '/assets/ace') 
+                          var editor = ace.edit("editor-<%= content.id %>");
+                          editor.setTheme("ace/theme/textmate");
+                          editor.session.setMode("ace/mode/" + "<%= content.attachable.language %>");
+                          editor.getSession().setUseWrapMode(true);
+                          editor.setReadOnly(true)
+                          editor.setOptions({
+                            maxLines: 30
+                            });
+                        </script>
+                        
+                      </div>
                     <% else %>
                       <div class="image">
-                      	<%= image_tag content.attachable.image_path.url(:original) %>
+                        <%= image_tag content.attachable.image_path.url(:original) %>
                       </div>
                     <% end %>
                     <div class="comments-links">
@@ -82,11 +81,12 @@
                       <div class="comments-container html-view"></div>
                     </div>
                   </div>
-				        <% end %>
-				      <% end %>
-						</div>
-					</div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
       <% end %> 
-	  </div>
-	</div>
+    </div>
+  </div>
 </div>
+<%= javascript_include_tag "custom_side_bar" %>

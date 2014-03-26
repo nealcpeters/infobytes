@@ -3,3 +3,12 @@
 - overall styling                                     []
 - actionmailer ~                                      [amara]
 - page titles ~                                       [amara]
+
+- profile needs some foundation divs
+
+- scroll all the way down on home page, hit create tutorial, ajax form pops up on bottom
+- 
+- can't upload images on infobyt.es, says install imagemagick
+- 
+- TOC nav does not work on infobyt.es
+

@@ -115,6 +115,7 @@ $(function(){
           <div id='paragraph-" + paragraph.id + "'>\
             <div class='paragraph-container'>" + paragraph.body + "</div>\
           </div>\
+          <br>\
           <div class='edit-links'>\
             <div>\
               <a class='edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'>\

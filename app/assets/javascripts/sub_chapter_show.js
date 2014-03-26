@@ -108,30 +108,35 @@ $(function(){
   ** ***************************************/
 
   var appendParagraph = function(paragraph, content){
-    $("#content-body").append(
-      "<div class='content-item' id='content-item-" + content.id + "'>\
-        <div id='paragraph-" + paragraph.id + "'>\
-          <div class='paragraph-container'>" + paragraph.body + "</div>\
-        </div>\
-        <div class='edit-links'>\
-          <div>\
-            <a class='edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'>\
-              <i class='fa fa-edit fa-2x'></i><br>edit\
-            </a>\
+    $("#content-body .sortable-contents").append(
+      "<li class='ui-state-default' id='" + content.id +"'>\
+        <i class='fa fa-minus fa-2x drag-content'></i>\
+        <div class='content-item' id='content-item-" + content.id + "'>\
+          <div id='paragraph-" + paragraph.id + "'>\
+            <div class='paragraph-container'>" + paragraph.body + "</div>\
           </div>\
-          <div>\
-          <a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'>\
-            <i class='fa fa-trash-o fa-2x'></i><br>delete\
-            </a>\
+          <div class='edit-links'>\
+            <div>\
+              <a class='edit-paragraph' data-reveal-id='modal-popup' href='/paragraphs/" + paragraph.id + "/edit'>\
+                <i class='fa fa-edit fa-2x'></i><br>edit\
+              </a>\
+            </div>\
+            <div>\
+            <a data-confirm='Are you sure you want to remove this paragraph?' data-method='delete' href='/paragraphs/" + paragraph.id + "' rel='nofollow'>\
+              <i class='fa fa-trash-o fa-2x'></i><br>delete\
+              </a>\
+            </div>\
           </div>\
         </div>\
-      </div>")
+      </li>")
 
   }
 
   var appendSnippet = function(snippet, content){
     $("#content-item-" + content.id).html(
-      "<div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
+      "<li class='ui-state-default' id='" + content.id +"'>\
+        <i class='fa fa-minus fa-2x drag-content'></i>\
+      <div id='editor-" + snippet.id + "' style='height: 200px; width: 100%; background-color:#eee'>" + snippet.body + "</div>\
       <input type='hidden' id ='editor_language-" + snippet.id + "' value='" + snippet.language + "'>\
       <div class='edit-links'>\
         <div>\

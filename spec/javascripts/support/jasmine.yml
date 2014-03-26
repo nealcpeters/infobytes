@@ -53,6 +53,11 @@ helpers:
 spec_files:
   - '**/*[sS]pec.js'
 
+src_dir: 
+src_files:
+ # - "/app/assets/javascripts/jquery_ui_custom.js"
+ # - "/app/assets/javascripts/sortable_contents.js"
+ 
 # src_dir
 #
 # Source directory path. Your src_files must be returned relative to this path. Will use root if left blank.

@@ -1,13 +1,16 @@
 
 <% @contents.each do |content| %>
+
   <% if sub_chapter_owner?(@sub_chapter) %>
     <li class="ui-state-default" id="<%= content.id %>">
       <%= fa_icon('minus', class: "fa-2x drag-content") %>
   <% end %>
+
     <div class="content-item" id="content-item-<%= content.id %>"> 
+      
       <% if content.attachable_type == "Paragraph" %>
         <div id="paragraph-<%= content.attachable_id %>">
-          <p><%= raw(content.attachable.body) %></p>
+          <div class="paragraph-container"><%= raw(content.attachable.body) %></div>
         </div>
         
         <% if sub_chapter_owner?(@sub_chapter) %>

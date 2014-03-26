@@ -23,7 +23,7 @@ class SubChaptersController < ApplicationController
       end
 
     else
-      @errors = @subchapter.errors.messages
+      @errors = @sub_chapter.errors.messages
       render 'new'
     end
   end
@@ -54,7 +54,7 @@ class SubChaptersController < ApplicationController
         redirect_to @sub_chapter
       end
     else
-      @errors = @subchapter.errors.messages
+      @errors = @sub_chapter.errors.messages
       render 'edit'
     end
   end

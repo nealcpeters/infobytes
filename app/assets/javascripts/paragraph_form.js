@@ -6,8 +6,9 @@
   * Initializing the Paragraph
   ***************************************************/
   
-  // Called by <script> tag inside html
  
+
+
   paragraphInitialize = function() {
     display = document.getElementById('href-display');
     adder = document.getElementById('href-adder');
@@ -16,7 +17,8 @@
     editableDiv = document.getElementById('editable-div');
     hideInputs();
   };
-  
+
+
   /***************************************************
   * Needed Variables
   ***************************************************/
@@ -61,7 +63,7 @@
   addAnchorTag = function() {
     if (document.getElementsByClassName("storageHTMLForAnchorTag").length > 0){
       var span = document.getElementsByClassName("storageHTMLForAnchorTag")[0];
-      span.innerHTML="<a href='" + link.value + "'>" + linkText.value +"</a>";
+      span.innerHTML="<a href='" + link.value + "' target='_blank'>" + linkText.value +"</a>";
 
       var spans = document.getElementsByClassName("storageHTMLForAnchorTag");
       while(spans.length) {
@@ -74,7 +76,7 @@
     }
     else{
       // If user cursor was not previously in the editable div, it simply appends at the end
-      editableDiv.innerHTML += ("<a href='" + link.value + "'>" + linkText.value +"</a>");
+      editableDiv.innerHTML += ("<a href='" + link.value + " target='_blank'>" + linkText.value + "</a>");
     }
     hideInputs();
   };
@@ -97,5 +99,11 @@
   grabInput = function() {
      document.getElementById('paragraph_body').value = editableDiv.innerHTML;
    };
+
+  /***************************************************
+  * Initializing the Form and Div Upon Load
+  ***************************************************/
+  
+  paragraphInitialize();
 
 

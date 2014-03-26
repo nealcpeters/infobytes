@@ -47,7 +47,8 @@
 }
 
 .comments-links {
-  display: none;
+  display: inline-block;
+  float: right;
   background-color: #555;
   border-radius: 3px;
   a {

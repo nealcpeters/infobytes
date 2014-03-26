@@ -14,6 +14,7 @@ class TutorialsController < ApplicationController
 
   def new
     @tutorial = Tutorial.new
+    @subtopics = Subtopic.all
     render partial: "tutorials/tutorial_new" if request.xhr?
   end
 
@@ -32,6 +33,7 @@ class TutorialsController < ApplicationController
 
   def edit
     @tutorial = Tutorial.find(params[:id])
+    @subtopics = Subtopic.all
     render partial: "tutorials/tutorial_edit" if request.xhr?
   end
 
@@ -91,7 +93,7 @@ class TutorialsController < ApplicationController
   protected
   
   def tutorial_params
-    params.require(:tutorial).permit(:title, :description, :community_id)
+    params.require(:tutorial).permit(:title, :description, :community_id, :subtopic_id)
   end
 
   def authenticate_tutorial_owner

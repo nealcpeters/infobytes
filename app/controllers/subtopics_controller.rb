@@ -1,6 +1,6 @@
 class SubtopicsController < ApplicationController
 	def show
-		@tutorials = Tutorial.where(subtopic_id: params[:id])
+		@subtopic = Subtopic.find(params[:id])
 	end
 	
 end

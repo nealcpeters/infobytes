@@ -84,16 +84,12 @@
   float: right;
   padding-right: 1em;
 }
-//   position: absolute;
-//   left: -300px;
-//   width: 300px;
-//   word-wrap:break-word;
-//   max-height: 600px;
-//   overflow-x: scroll;
-// }
 
-// .html-view {
-//   left: 50px;
-
-
-// }
+.edit-links {
+  display: table;
+  right: 0;
+  div {
+    margin: 0 0.5em;
+    display: inline-table;
+  }
+}

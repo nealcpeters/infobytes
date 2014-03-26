@@ -43,7 +43,6 @@ gem 'aws-sdk'
 
 gem "paperclip", "~> 4.1"
 
-
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'

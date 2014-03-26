@@ -86,6 +86,7 @@ class TutorialsController < ApplicationController
       end
 
       respond_to do |format|
+        UserMailer.new_tutorial_email(@tutorial, @community).deliver
 
     end
 

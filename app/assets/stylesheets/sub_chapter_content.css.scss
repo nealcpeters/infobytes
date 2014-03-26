@@ -30,6 +30,9 @@
       display: inline-block;
       margin-left: 2em;
     }
+    .invisible {
+      display: table;
+    }
   }
 }
 .sub-chapter {
@@ -92,6 +95,11 @@
   float: right;
   padding-right: 1em;
 }
+
+.invisible {
+  display: none;
+}
+
 
 .edit-links {
   display: table;

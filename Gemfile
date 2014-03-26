@@ -43,6 +43,8 @@ gem 'aws-sdk'
 
 gem "paperclip", "~> 4.1"
 
+gem 'sidekiq'
+
 
 group :development, :test do
   gem 'pry'

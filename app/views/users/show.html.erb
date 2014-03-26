@@ -29,12 +29,10 @@
 				<%= link_to community_path(community) do %>
 					<div class="tutorial-list medium-10 medium-offset columns">
 						<li>
-							<p class="tut-title">
+							<div class="tut-title">
 								<%= community.name %>
-							</p>
-							<p>
-								<%= link_to "Delete Membership", delete_user_membership_community_path(community), :method => :post %>
-							</p>
+							</div>
+								<%= link_to "Delete Membership", delete_user_membership_community_path(community), class: "button delete-tutorial delete-community-link", data: { confirm: "Are you sure you want to delete your membership to this community?"},  :method => :post %>
 						</li>
 					</div>
 				<% end %>
@@ -69,4 +67,6 @@
 <script type="text/javascript">
 	$(document).foundation();
 </script>
+
+<%= javascript_include_tag :users_show %>
 

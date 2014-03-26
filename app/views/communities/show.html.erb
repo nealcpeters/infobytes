@@ -5,7 +5,7 @@
      	<p>
      		<%= "You are a member of this community" %>
      	</p>
-     	<%= link_to "Create Community Tutorial", new_tutorial_path, class: "sm-btn-community" %>
+     	<%= link_to "Create Community Tutorial", new_tutorial_path, class: "button" %>
      <% else %>
 	     <%= link_to "Join Community", create_user_membership_community_path, class: "button", :method => :post %><br>
 	 <% end %>

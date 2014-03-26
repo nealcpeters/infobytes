@@ -17,7 +17,7 @@ $(function() {
            list.populateList(children);
            lists.push(list)
         })
-
+        console.log({data:lists})
         $.post('/chapters/update_sub_chapters', {data: lists}, function(serverResponse){})
       })
   });

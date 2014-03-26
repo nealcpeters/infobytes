@@ -116,4 +116,11 @@ describe ChaptersController do
     # end
   end
 
+  describe "Update_sub_chapters route updates the subchapters" do
+    it "must render html_view view'" do
+      post 'update_sub_chapters', data: {list:{id: 1}, container: {{id: 1, order: 1}, {id:2, order: 2}}}
+      expect(response).to redirect_to(@tutorial)
+    end
+  end
+
 end

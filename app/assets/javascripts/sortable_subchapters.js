@@ -18,9 +18,7 @@ $(function() {
            lists.push(list)
         })
 
-        $.post('/chapters/update_sub_chapters', {data: lists}, function(serverResponse){
-          console.log(serverResponse)
-        })
+        $.post('/chapters/update_sub_chapters', {data: lists}, function(serverResponse){})
       })
   });
 
@@ -29,16 +27,12 @@ $(function() {
     var contents = {};
     this.container = contents;
 
-    var addItem = function(item){
-      contents.push(item);
-    };
-
     this.populateList = function(list){
       $(list).each(function(index, li){
         var liId = $(li).attr("id").match(/\d+/)
-        var item = new Item(index + 1)
-        contents[liId] = item
-      })
+        var item = new Item(index + 1);
+        contents[liId] = item;
+      });
     };
 
   }

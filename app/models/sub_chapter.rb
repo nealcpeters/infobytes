@@ -5,8 +5,8 @@ class SubChapter < ActiveRecord::Base
   validates :title, :presence => true
 
   def update_data(chapter, order)
-    this.chapter_id = chapter
-    this.number = order
-    this.save
+    self.chapter_id = chapter
+    self.number = order
+    self.save
   end
 end

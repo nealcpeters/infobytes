@@ -16,6 +16,12 @@ describe CodeSnippetsController do
       get 'new', :sub_chapter_id => @sub_chapter.id
       expect(response).to render_template("new")
     end
+
+    it "must catch a non-logged in user" do
+      sign_out @user
+      get 'new', :sub_chapter_id => @sub_chapter.id
+      expect(response).to redirect_to("/")
+    end
   end
 
   describe "edit route" do
@@ -31,11 +37,18 @@ describe CodeSnippetsController do
       expect(response).to render_template(@subchapter)
     end
 
-    it "must redirect to sub chapter if saved and json" do
-      json = {id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}}
-      post 'update', json  
-      expect(response).to render_template(@subchapter)
+
+    it "must catch a non-logged in user" do
+      sign_out @user
+      post 'update', id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}
+      expect(response).to redirect_to("/")
     end
+
+    # xit "must redirect to sub chapter if saved and json" do
+    #   json = {id: @code_snippet.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}}
+    #   post 'update', json  
+    #   expect(response).to render_template(@subchapter)
+    # end
 
 
     it "must render new view if save not successful" do
@@ -79,6 +92,7 @@ describe CodeSnippetsController do
       post 'create', sub_chapter_id: @sub_chapter.id, code_snippet: {body: "def show\r\n  puts \"hi\"\r\nend", language: "ruby"}
       expect(response).to render_template(@subchapter)      
     end
+
     
     # it "must redirect to new view if without a save" do
     #   post 'create', sub_chapter_id: @subchapter.id, code_snippet: {language: "ruby"}

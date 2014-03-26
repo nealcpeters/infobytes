@@ -16,6 +16,12 @@ describe ParagraphsController do
   		get 'new', sub_chapter_id: @sub_chapter.id
   		expect(response).to render_template("new")
   	end
+
+    it "must catch a non-logged in user" do
+      sign_out @user
+      get 'new', sub_chapter_id: @sub_chapter.id
+      expect(response).to redirect_to("/")
+    end    
   end
 
   describe "edit route" do
@@ -35,6 +41,12 @@ describe ParagraphsController do
       post 'update', id: @paragraph.id, paragraph: {body: 1}
       expect(response).to render_template(nil)
     end
+
+    it "must catch a non-logged in user" do
+      sign_out @user
+      post 'update', id: @paragraph.id, paragraph: {body: "test paragraph"}
+      expect(response).to redirect_to("/")
+    end    
   end
 
   describe "create route" do

@@ -79,9 +79,7 @@ class ChaptersController < ApplicationController
       if list[:container]
         list[:container].each do |id, order|
           sub_chapter = SubChapter.find(id)
-          sub_chapter.number = order[:number]
-          sub_chapter.chapter_id = chapter_id
-          sub_chapter.save
+          sub_chapter.update_data(chapter_id, order[:number])
         end
       end
     end

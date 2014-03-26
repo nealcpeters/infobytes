@@ -57,7 +57,7 @@ $(function(){
       success: function(serverResponse, status, request){
         var id = serverResponse.id
         var body = serverResponse.body
-        $('#paragraph-' + id ).replaceWith("<div id='paragraph-" + id+ "'<p>" + body + "</p></div>");
+        $('#paragraph-' + id ).replaceWith("<div id='paragraph-" + id+ "'class='paragraph-container'>" + body + "</div></div>");
         removePopup();
       }
     })
@@ -111,7 +111,7 @@ $(function(){
     $("#content-body").append(
       "<div class='content-item' id='content-item-" + content.id + "'>\
         <div id='paragraph-" + paragraph.id + "'>\
-          <p>" + paragraph.body + "</p>\
+          <div class='paragraph-container'>" + paragraph.body + "</div>\
         </div>\
         <div class='edit-links'>\
           <div>\
@@ -215,7 +215,7 @@ $(function(){
   $(document).on('click', "#content-body .delete-content", function(e){
     e.preventDefault();
     var url = $(this).attr("href");
-    var parentDiv = $(this).parent().parent().parent()
+    var contentElement = $(this).closest(".ui-state-default");
     var result = window.confirm("Are you sure you want to delete this part?")
     if (result){
       $.ajax({
@@ -223,7 +223,7 @@ $(function(){
         type: "DELETE",
         success: "great:success"
       }, "json").done(function(){
-        $(parentDiv).toggle("fade", function(){ $(parentDiv).remove() })
+        $(contentElement).toggle("fade", function(){ $(contentElement).remove() })
       })
     }
   })

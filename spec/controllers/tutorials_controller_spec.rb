@@ -12,6 +12,7 @@ describe TutorialsController do
       get 'show', :id => @tutorial.id
       expect(response).to render_template("show")
     end
+
   end
 
   describe "New route" do
@@ -32,10 +33,16 @@ describe TutorialsController do
       expect(response).to render_template(nil)
     end
 
-    it "must create a tutorial if saved" do
+    it "must save a tutorial if proper params" do
       expect{
         post 'create', tutorial: {id: @tutorial.id, title: "tuttttorial", description: "woohoo"}
       }.to change(Tutorial, :count).by(1) 
+    end
+
+    it "must not sae a tutorial if saved" do
+      expect{
+        post 'create', tutorial: {id: @tutorial.id, description: "woohoo"}
+      }.to change(Tutorial, :count).by(0) 
     end
   end
 
@@ -43,6 +50,12 @@ describe TutorialsController do
     it "must render edit view if not AJAX'" do
       get :edit, id: @tutorial.id
       expect(response).to render_template("edit")
+    end
+
+    it "must render edit view if not AJAX'" do
+      sign_out @user
+      get :edit, id: @tutorial.id
+      expect(response).to redirect_to("/")
     end
   end
 

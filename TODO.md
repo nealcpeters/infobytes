@@ -4,3 +4,7 @@
 - add tags to existing articles in database
 - toc nav shows code snippet line numbers
 - can't comment on one liners
+- redirecting on 404
+- list styling
+- line spacing on full page view
+- testing to green

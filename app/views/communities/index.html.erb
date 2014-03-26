@@ -1,8 +1,9 @@
 
-<div>
-	<div class="view-header medium-10 medium-offset columns">
-		<h2>Communities</h2>
-	<%= link_to "Add New Community", new_community_path, class: "button create-community-link", data: {"reveal-id" => "modal-popup"}  %>
+	<div class="communities-header view-header medium-10 medium-offset columns">
+		<h2>Communities
+			<%= link_to "Add New Community", new_community_path, class: "button create-community-link", data: {"reveal-id" => "modal-popup"}  %>
+		</h2>
+			
 	</div>
 	<% @communities.each do |community| %>
 		<ul id="communities-list">
@@ -25,6 +26,6 @@
 		</ul>
 	<% end %>
 
-</div>
+
 
 <%= javascript_include_tag :communities_index %>

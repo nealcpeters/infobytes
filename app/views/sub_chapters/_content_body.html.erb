@@ -14,6 +14,7 @@
         </div>
         
         <% if sub_chapter_owner?(@sub_chapter) %>
+          <br>
           <div class="edit-links">
             <div><%= link_to "#{fa_icon('edit', class: "fa-2x")}<br>edit".html_safe, edit_paragraph_path(content.attachable), class: "edit-paragraph",  data: { "reveal-id" => "modal-popup" } %></div>
             <div><%= link_to "#{fa_icon('trash-o', class: "fa-2x")}<br>delete".html_safe, paragraph_path(content.attachable), class: "delete-content", method: :delete, data: {confirm: "Are you sure you want to remove this paragraph?"} %></div>

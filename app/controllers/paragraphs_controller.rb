@@ -20,7 +20,6 @@ class ParagraphsController < ApplicationController
     @paragraph = Paragraph.find(params[:id])
     @paragraph.update(paragraph_params)
     @sub_chapter = @paragraph.content.sub_chapter
-    
     if @paragraph.save
 
       if request.xhr?
@@ -38,6 +37,7 @@ class ParagraphsController < ApplicationController
   def create
     @sub_chapter = SubChapter.find(params[:sub_chapter_id])
     @paragraph = Paragraph.new(paragraph_params)
+    "<div><br></div>"
 
     if @paragraph.save
       Content.create(sub_chapter_id: params[:sub_chapter_id], order_number: (@sub_chapter.contents.count + 1),attachable_id: @paragraph.id, attachable_type: "Paragraph")

@@ -27,7 +27,7 @@
 		<div>
 			<% @user.communities.each do |community| %>
 				<%= link_to community_path(community) do %>
-					<div class="tutorial-list medium-10 medium-offset columns">
+					<div class="tutorial-list medium-10 medium-offset columns communities-item">
 						<li id="community-<%= community.id %>">
 							<div class="tut-title">
 								<%= community.name %>

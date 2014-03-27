@@ -1,7 +1,7 @@
 <div class="welcome-banner">
   <div>
     <h1 class="tagline">How to hack it</h1>	
-    <h3 class="site-description">Experience more.  Contribute to an expanding knowledge-base.</h3>
+    <h3 class="site-description">Experience more.  Contribute to an expanding knowledge base.</h3>
     <%= form_for :search, url: search_path , method: :post, html: {role: "search"} do |f| %>
     <div class="form-group">
       <%= f.search_field :search, name: "search_data",  placeholder: "Search our community", class: "form-control" %>

@@ -4,7 +4,7 @@
       <%= devise_error_messages! %>
       <div class="row">
         <div class="small-12 medium-6 columns">
-          <div><%= f.label :user_name, "* Username:" %><br>
+          <div><%= f.label :user_name, "* Username" %><br>
             <%= f.text_field :user_name%>
           </div>
         </div>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="small-12 medium-6 columns">
-          <div><%= f.label :password_confirmation, "* Password Confirmation" %><br />
+          <div><%= f.label :password_confirmation, "* Confirm Password" %><br />
             <%= f.password_field :password_confirmation, autocomplete: "off" %>
           </div>
         </div>

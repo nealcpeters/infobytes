@@ -34,7 +34,7 @@ $(function(){
     var url = $(this).attr("href");
 
     $.get(url, function(serverResponse, status, request){
-      $("#modal-popup").html(serverResponse);
+      $("#modal-popup-read").html(serverResponse);
       appendX()
     });
   });

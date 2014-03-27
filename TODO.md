@@ -1,16 +1,4 @@
 - scroll bug                                          [matt]
 - overall styling                                     []
-- page titles ~                                       [amara]
 - add tags to existing articles in database
-- toc nav shows code snippet line numbers
-- can't comment on one liners
-- redirecting on 404
-- list styling
-- line spacing on full page view
-- testing to green
-- delete button showing up on production
-- add community on any tutorial
-- communities error when not logged in
-- password confirmation box is uneven
-- subtopic view on popup is narrow
-- error on community show when not logged in
+- redirect to 404 if invalid url

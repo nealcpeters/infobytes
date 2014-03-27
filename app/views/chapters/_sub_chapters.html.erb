@@ -11,7 +11,7 @@
             <%= link_to fa_icon('trash-o', class: "fa-2x sub-chapter-icon").html_safe, sub_chapter_path(sub_chapter), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-sub-chapter delete" %>
             
           <% else %>
-            <h4><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter), class: "sub-chapter-link", data: {"reveal-id" => "modal-popup"} %></h4>
+            <h4><%= link_to sub_chapter.title, sub_chapter_path(sub_chapter), class: "sub-chapter-link", data: {"reveal-id" => "modal-popup-read"} %></h4>
           <% end %>
         </div>
       </li>

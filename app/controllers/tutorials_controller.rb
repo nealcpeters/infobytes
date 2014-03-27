@@ -75,6 +75,17 @@ class TutorialsController < ApplicationController
     @tutorials = Tutorial.where("title ILIKE ? OR description ILIKE ?", "%#{@search_content}%", "%#{@search_content}%")
   end
 
+  def toggle_status
+    @tutorial = Tutorial.find(params[:id])
+    @tutorial.status = !(@tutorial.status)
+    @tutorial.save
+    if request.xhr?
+      render json: {status: "great success"}
+    else
+      redirect_to @tutorial
+    end
+  end
+
   def add_community
     @tutorial = Tutorial.find(params[:id])
     @tutorial.update(tutorial_params)

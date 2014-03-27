@@ -1,68 +1,80 @@
-<% if (current_user && current_user.id == @user.id) %>
-	
-	<h1 class="user-profile">Hi, <%= "#{@user.user_name}" %>! </h1>
-	<div class="medium-10 medium-offset-1 columns">
-		<h2 class="user-profile">Manage your tutorials:</h2>
+<%# if (current_user && current_user.id == @user.id) %>
+<div class="profile-wrapper">	
+	<div class="small-12 profile-wrapper columns">
+		<div class="profile-block small-12 columns">
+
+			<div class="image-name small-12 medium-2 columns">
+				<p class="username"><%= @user.user_name %></p>
+				<%= image_tag @user.gravatar_url(rating: "G", size: 180) %>
+			</div>
+
+			<div class="profile-desc small-12 medium-5 columns">
+				<p><%= @user.fullname %></p>
+				<p><%= @user.description %></p>
+			</div>
+      
+      <% if (current_user && current_user.id == @user.id) %>
+				<div class="update-info small-12 medium-5 columns">
+					<h2>Update Your Information</h2>
+					<%= form_for :user, url: update_information_path(@user.id) do |f| %>  
+		        <%= f.text_field :first_name %>
+
+		        <%= f.text_field :last_name %>
+
+		        <%= f.text_area :description, rows: 6 %>
+
+		        <%= f.submit "Update Information", class: "button" %>
+					<% end %>
+				</div>
+			<% end %>
+
+		</div>
 	</div>
-	<div>
+
+	<div class="small-12 columns">
+		<h2 class="user-profile"><%= @user.user_name %>'s tutorials:</h2>
+	  <div class="small-11">
+			<hr>
+	  </div>
 		<% @tutorials.each do |tutorial| %>
-			<%= link_to tutorial_path(tutorial) do %>
-				<div class="tutorial-list medium-10 medium-offset columns">
-					<li>
-						<p class="tut-title">
-							<%= tutorial.title %>
-						</p>
-						<p class="tut-description">
-							<%= tutorial.description %>
-						</p>
-					</li>
-				</div>
-			<% end %>
-		<% end %>
-	</div>	
-	<% if @user.communities.empty? == false %>
-		<div class="user-profile medium-10 medium-offset-1 columns">
-			<h2 id="community-header">Manage your community memberships:</h2>
-		</div>
-		<div>
-			<% @user.communities.each do |community| %>
-				<%= link_to community_path(community) do %>
-					<div class="tutorial-list medium-10 medium-offset columns">
-						<li id="community-<%= community.id %>">
-							<div class="tut-title">
-								<%= community.name %>
-							</div>
-								<%= link_to "Delete Membership", delete_user_membership_community_path(community), class: "button delete-tutorial delete-community-link", id: "community-community.id", data: { confirm: "Are you sure you want to delete your membership to this community?"},  :method => :post %>
-						</li>
-					</div>
+			<div class="hover-gray small-11">
+				<%= link_to tutorial_path(tutorial) do %>
+		      <h3><%= tutorial.title %></h3>
+			    <p class="tut-description">
+						<%= tutorial.description %>
+					</p>	
+					<p class="author-date"><%= authorship(tutorial) %></p>
 				<% end %>
-			<% end %>
-		</div>
-	<% else %>
-		<div class="user-profile medium-10 medium-offset-1 columns">
-			<h3>You are not currently a member of any communities</h3>
-			<%= link_to "Join a Community Now!", communities_path, class: "button" %>
-		</div>
-	<% end %>
-<% else %>
-	<h1 class="user-profile"><%= "#{@user.user_name}" %>'s Tutorials</h1>
-	<div>
-		<% @tutorials.each do |tutorial| %>
-			<%= link_to tutorial_path(tutorial) do %>
-				<div class="tutorial-list medium-10 medium-offset columns">
-					<li>
-						<p class="tut-title">
-							<%= tutorial.title %>
-						</p>
-						<p class="tut-description">
-							<%= tutorial.description %>
-						</p>
-					</li>
-				</div>
-			<% end %>
+			</div>
 		<% end %>
-	</div>	
-<% end %>
+
+		<% if @user.communities.empty? == false %>
+			<div class="user-profile medium-10 medium-offset-1 columns">
+				<h2 id="community-header">Manage your community memberships:</h2>
+			</div>
+			<div>
+				<% @user.communities.each do |community| %>
+					<%= link_to community_path(community) do %>
+						<div class="tutorial-list medium-10 medium-offset columns">
+							<li id="community-<%= community.id %>">
+								<div class="tut-title">
+									<%= community.name %>
+								</div>
+									<%= link_to "Delete Membership", delete_user_membership_community_path(community), class: "button delete-tutorial delete-community-link", id: "community-community.id", data: { confirm: "Are you sure you want to delete your membership to this community?"},  :method => :post %>
+							</li>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		<% else %>
+			<div class="user-profile">
+				<h3>You are not currently a member of any communities</h3>
+				<%= link_to "Join a Community Now!", communities_path, class: "button" %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
 
 <script type="text/javascript">
 	$(document).foundation();

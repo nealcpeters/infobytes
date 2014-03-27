@@ -4,6 +4,7 @@ InfoBytes::Application.routes.draw do
 
   root to: "home#index"
   match "/users/:id", to: "users#show", via: :get, as: "user"
+  match "/users/information/:id", to: "users#update_information", via: :post, as: "update_information"
   match '/pdf', to: "home#pdf", via: :get, as: "pdf"
   match '/about', to: "home#about", via: :get, as: "about"
   match "/search", to: "tutorials#search", via: :post, as: "search"
@@ -46,6 +47,7 @@ InfoBytes::Application.routes.draw do
   match "/users/ajax/sign_up", to: "users#sign_up", via: :get
   match "/up/:content_id/up", to: "contents#up", via: :get, as: "content_up"
   match "/down/:content_id/down", to: "contents#down", via: :get, as: "content_down"
+
 
   match "/ratings/:tutorial_id/:rating", to: "ratings#update_rating", via: :get, as: "update_rating"
   match "/ratings/update/:id", to: "ratings#update_rating_ajax", via: :post

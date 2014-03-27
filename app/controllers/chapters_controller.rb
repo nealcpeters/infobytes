@@ -84,8 +84,11 @@ class ChaptersController < ApplicationController
       end
     end
 
-    render json: {"message"=> "great success"} if request.xhr?
-    redirect_to "/"
+    if request.xhr?
+      render json: {"message"=> "great success"} 
+    else
+      redirect_to "/"
+    end
   end
 
   def generate

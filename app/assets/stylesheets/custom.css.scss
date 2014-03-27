@@ -187,10 +187,38 @@ li {
 
 .view-header {
   margin-left: 3em;
+  border-bottom: 3px solid black;
+  margin-bottom: 1em;
+  height: 4.0em;
 }
 
 .delete-membership {
   display: inline-block;
 }
 
+.create-community-link {
+  display: inline-block;
+  float: right;
+
+}
+
+.all-tutorials-link {
+  display: inline-block;
+  float: right;
+}
+
+.community-header {
+  float:left;
+}
+
+#communities-list {
+  padding-top: 2em;
+}
+
+#already-member {
+  line-height: 3em;
+}
+#tut-list-community-show {
+  margin-top: 1em;
+}
 

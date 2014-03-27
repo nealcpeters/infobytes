@@ -15,10 +15,18 @@
 	}
 }
 
-
 .hover-gray {
 	padding-left: 1em;
 	&:hover {
 		background-color: #E8E8E8;
 	}
+}
+
+hr {
+  display: block; 
+  height: 1px;
+  border: 0; 
+  border-top: 2px solid black;
+  margin: 1em 0; 
+  padding: 0;
 }

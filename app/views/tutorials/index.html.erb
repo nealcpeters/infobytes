@@ -1,6 +1,9 @@
 <%= javascript_include_tag "rating" %>
 
 <br>
+<div class="view-header medium-10 medium-offset columns">
+	<h2>Tutorials</h2>
+</div>
 <div>
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>

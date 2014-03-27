@@ -1,19 +1,21 @@
 <div>
-	<div class="view-header medium-10 medium-offset columns">
-		<h2><%= @community.name %> Community Tutorials</h2>
-     <% if current_user.community_ids.include?((params[:id]).to_i) %>
-     	<p>
-     		<%= "You are a member of this community" %>
-     	</p>
-     	<%= link_to "Create Community Tutorial", new_tutorial_path, class: "button" %>
-     <% else %>
-	     <%= link_to "Join Community", create_user_membership_community_path, class: "button", :method => :post %><br>
-	 <% end %>
+	<div class="view-header communities-header medium-11 medium-offset columns">
+		<h2><%= @community.name %> Community Tutorials
+	    	<% if current_user.community_ids.include?((params[:id]).to_i) %>
+		     	<%= link_to "Create Community Tutorial", new_tutorial_path, class: "create-community-link button" %>
+		     	<p id="already-member">
+		     		<%= "You are a member of this community." %>
+		     	</p>
+     	
+		     <% else %>
+			     <%= link_to "Join Community", create_user_membership_community_path, class: "button create-community-link", :method => :post %><br>
+			 <% end %>
+	 	</h2>
 	</div>
       
 	<% @tutorials.each do |tutorial| %>
 		<%= link_to tutorial_path(tutorial) do %>
-			<div class ="tutorial-list medium-10 medium-offset columns">
+			<div class =" tutorial-list medium-10 medium-offset columns" id="tut-list-community-show">
 				<li> 
 					<p class="tut-title">
 						<%= tutorial.title %> 

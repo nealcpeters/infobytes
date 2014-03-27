@@ -47,13 +47,12 @@
               <% chapter.sub_chapters.order(:number).each_with_index do |sub_chapter, index| %>
                 <h4 class="sub-section-title" id="Sub_Section_<%= under_score(sub_chapter.title) %>"><%= sub_chapter.title %></h4>
                 <% sub_chapter.contents.order(:order_number).each do |content| %>
-                  <div class="content-item" id="content-item-<%= content.id %>"> 
+                  <div class="content-item " id="content-item-<%= content.id %>"> 
                     <% if content.attachable_type == "Paragraph" %>
                       <div class="paragraph">
                         <%= content.attachable.body.html_safe %>
                       </div>
                     <% elsif content.attachable_type == "CodeSnippet" %>
-                      <div class="code-snippet">  
                         <div id="editor-<%= content.id %>" style="height: 200px; width: 100%; background-color:#eee"><%= content.attachable.body %></div>
                         
                         <script>
@@ -64,11 +63,11 @@
                           editor.getSession().setUseWrapMode(true);
                           editor.setReadOnly(true)
                           editor.setOptions({
-                            maxLines: 30
+                            maxLines: 25,
+                            minLines: 4,
                             });
                         </script>
                         
-                      </div>
                     <% else %>
                       <div class="image">
                         <%= image_tag content.attachable.image_path.url(:original) %>

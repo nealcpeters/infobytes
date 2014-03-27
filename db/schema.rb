@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20140327134109) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "community_id"
+    t.boolean  "status",       default: false
   end
 
   add_index "tutorials", ["subtopic_id"], name: "index_tutorials_on_subtopic_id", using: :btree

@@ -108,6 +108,24 @@
   }
 }
 
+.tutorial-status {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.complete-tutorial {
+  color: #138C1C;
+}
+
+.incomplete-tutorial {
+  color: #B72C0C;
+}
+
+
+a#tutorial-status-link {
+  display: inline;
+}
+
 
 
 

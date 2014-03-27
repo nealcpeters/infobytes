@@ -1,12 +1,4 @@
 - scroll bug                                          [matt]
 - overall styling                                     []
-- page titles ~                                       [amara]
 - add tags to existing articles in database
-- toc nav shows code snippet line numbers
-- redirecting on 404
-- list styling
-- line spacing on full page view
-- add community on any tutorial
-- communities error when not logged in
-- subtopic view on popup is narrow
-- error on community show when not logged in
+- redirect to 404 if invalid url

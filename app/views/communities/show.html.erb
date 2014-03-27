@@ -1,13 +1,13 @@
 <div>
 	<div class="view-header communities-header medium-11 medium-offset columns">
 		<h2><%= @community.name %> Community Tutorials
-	    	<% if current_user.community_ids.include?((params[:id]).to_i) %>
+	    	<% if current_user && current_user.community_ids.include?((params[:id]).to_i) %>
 		     	<%= link_to "Create Community Tutorial", new_tutorial_path, class: "create-community-link button" %>
 		     	<p id="already-member">
 		     		<%= "You are a member of this community." %>
 		     	</p>
      	
-		     <% else %>
+		     <% elsif %>
 			     <%= link_to "Join Community", create_user_membership_community_path, class: "button create-community-link", :method => :post %><br>
 			 <% end %>
 	 	</h2>

@@ -1,5 +1,8 @@
-<%= link_to "All Tutorials", tutorials_path, class: "button" %>
-<h1>Results</h1>
+
+<div class="view-header medium-10 medium-offset columns">
+	<h1>Results
+		<%= link_to "All Tutorials", tutorials_path, class: "button all-tutorials-link" %></h1>
+</div>
 <% if @tutorials.empty? %>
 	<h1>No tutorials found for :"<%= @search_content %>"</h1>
 <% else %>

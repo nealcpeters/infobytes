@@ -44,7 +44,11 @@ class CommunitiesController < ApplicationController
 
 	def delete_user_membership
 		current_user.communities.destroy(params[:id])
+		if request.xhr?
+
+		else
 		redirect_to user_path(current_user)
+	end
 
 	end
 

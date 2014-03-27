@@ -28,11 +28,11 @@
 			<% @user.communities.each do |community| %>
 				<%= link_to community_path(community) do %>
 					<div class="tutorial-list medium-10 medium-offset columns">
-						<li>
+						<li id="community-<%= community.id %>">
 							<div class="tut-title">
 								<%= community.name %>
 							</div>
-								<%= link_to "Delete Membership", delete_user_membership_community_path(community), class: "button delete-tutorial delete-community-link", data: { confirm: "Are you sure you want to delete your membership to this community?"},  :method => :post %>
+								<%= link_to "Delete Membership", delete_user_membership_community_path(community), class: "button delete-tutorial delete-community-link", id: "community-community.id", data: { confirm: "Are you sure you want to delete your membership to this community?"},  :method => :post %>
 						</li>
 					</div>
 				<% end %>
@@ -66,15 +66,28 @@
 
 <script type="text/javascript">
 	$(document).foundation();
-	$(document).on('click', ".delete-community-link", function(e){
-      e.preventDefault();
-      console.log("hello world");
-      
-      // var url = $(this).attr("action");
-      // var data = $(this).serialize()
-      // createCommunity(url, data);
+	
+// In progress javascript.......... 
+	// $(".delete-community-link").removeAttr("data-confirm")
+	// console.log($(".delete-community-link"))
+    $(function(){
 
-    });
+		$(".tutorial-list").on('click', ".delete-community-link", function(e){
+	      e.preventDefault();
+	      var this = $(this)
+	      console.log(this)
+	     
+	      // var url = $(this).attr("href");
+	      // console.log(this)
+	      // console.log(url)
+	      // var result = window.confirm("Are you sure you want to delete your membership to this community?")
+		     // if (result){
+		     // 	console.log("yes")
+		     // }
+
+	    });
+    	
+    })
 </script>
 
 

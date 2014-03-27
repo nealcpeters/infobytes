@@ -56,6 +56,7 @@
 				<h2 id="community-header">Manage your community memberships:</h2>
 			</div>
 			<div>
+			<% if (current_user && current_user.id == @user.id) %>
 				<% @user.communities.each do |community| %>
 					<%= link_to community_path(community) do %>
 						<div class="tutorial-list medium-12 columns communities-item">
@@ -68,6 +69,7 @@
 						</div>
 					<% end %>
 				<% end %>
+			<% end %>
 			</div>
 		<% else %>
 			<% if (current_user && current_user.id == @user.id) %>

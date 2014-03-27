@@ -16,7 +16,7 @@
     <% if @tutorial.community_id %>
       <p>Community: <%= @community.name %></p>
     <% else %>
-      <% if current_user == @tutorial.user_id && current_user.communities.empty? == false %>
+      <% if tutorial_creator? && !current_user.communities.empty? %>
         <%= render "tutorials/add_community_form" %>
       <% end %>
     <% end %>

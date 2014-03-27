@@ -20,10 +20,11 @@
 				<div class="update-info small-12 medium-5 columns">
 					<h2>Update Your Information</h2>
 					<%= form_for :user, url: update_information_path(@user.id) do |f| %>  
+		        <%= f.label :first_name, "First Name" %>
 		        <%= f.text_field :first_name %>
-
+		        <%= f.label :last_name, "Last Name" %>
 		        <%= f.text_field :last_name %>
-
+            <%= f.label :description %>
 		        <%= f.text_area :description, rows: 6 %>
 
 		        <%= f.submit "Update Information", class: "button" %>
@@ -37,7 +38,7 @@
 	<div class="small-12 columns">
 		<h2 class="user-profile"><%= @user.user_name %>'s tutorials:</h2>
 	  <div class="small-11">
-			<hr>
+			<hr class="divider">
 	  </div>
 		<% @tutorials.each do |tutorial| %>
 			<div class="hover-gray small-11">
@@ -51,29 +52,33 @@
 			</div>
 		<% end %>
 
-		<% if @user.communities.empty? == false %>
-			<div class="user-profile medium-10 medium-offset-1 columns">
-				<h2 id="community-header">Manage your community memberships:</h2>
-			</div>
-			<div>
-				<% @user.communities.each do |community| %>
-					<%= link_to community_path(community) do %>
-						<div class="tutorial-list medium-10 medium-offset columns communities-item">
-							<li id="community-<%= community.id %>">
-								<div class="tut-title">
-									<%= community.name %>
-								</div>
-									<%= link_to "Delete Membership", delete_user_membership_community_path(community), class: "button delete-tutorial delete-community-link", id: "community-community.id", data: { confirm: "Are you sure you want to delete your membership to this community?"},  :method => :post %>
-							</li>
-						</div>
+		<% if (current_user && current_user.id == @user.id) %>
+			<% if @user.communities.empty? == false %>
+				<div class="user-profile">
+					<h2 id="community-header">Manage your community memberships:</h2>
+				</div>
+				<div>
+					<% @user.communities.each do |community| %>
+						<%= link_to community_path(community) do %>
+							<div class="tutorial-list medium-12 columns communities-item">
+								<li id="community-<%= community.id %>">
+									<div class="tut-title">
+										<%= community.name %>
+									</div>
+										<%= link_to "Delete Membership", delete_user_membership_community_path(community), class: "button delete-tutorial delete-community-link", id: "community-community.id", data: { confirm: "Are you sure you want to delete your membership to this community?"},  :method => :post %>
+								</li>
+							</div>
+						<% end %>
 					<% end %>
-				<% end %>
-			</div>
-		<% else %>
-			<div class="user-profile">
-				<h3>You are not currently a member of any communities</h3>
-				<%= link_to "Join a Community Now!", communities_path, class: "button" %>
-			</div>
+				</div>
+			<% else %>
+				<% if (current_user && current_user.id == @user.id) %>
+					<div class="user-profile">
+						<h3>You are not currently a member of any communities</h3>
+						<%= link_to "Join a Community Now!", communities_path, class: "button" %>
+					</div>
+				<% end %> 
+			<% end %>
 		<% end %>
 	</div>
 </div>

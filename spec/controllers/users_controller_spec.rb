@@ -26,4 +26,11 @@ describe UsersController do
   		expect(response).to render_template("devise/registrations/_form_new")
   	end
   end
+
+  describe "Update Information" do
+    it "must update the user record" do
+      post 'update_information', id: @user.id, user: {user_name: "bob"}
+      expect(response).to redirect_to(@user)
+    end
+  end
 end  

@@ -391,4 +391,26 @@ $(function(){
       addCommunity(url, data);
 
   })
+
+  /********************************
+  * Toggle tutorial status
+  *********************************/
+
+  $(document).on("click", "#tutorial-status-link", function(e){
+    e.preventDefault();
+    var url = $(this).attr("href");
+    var linkClass = $(this).attr("class");
+    var linkTag = this;
+
+    $.get(url).done(function(){
+      if (linkClass.match(/incomplete/)){
+        $(linkTag).attr("class", "complete-tutorial").text("Completed");
+      } else {
+        $(linkTag).attr("class", "incomplete-tutorial").text("In Progress");
+      };
+    });
+  })
+
 })
+
+

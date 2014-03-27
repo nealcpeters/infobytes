@@ -4,7 +4,15 @@
     
   	<h1><%= @tutorial.title %></h1>
   	<p>Description: <%= @tutorial.description %></p>
-    
+
+    <p>This tutorial is marked as 
+      <% if tutorial_creator? %>
+        <span class="tutorial-status <%= @tutorial.status ? 'complete-tutorial' : 'incomplete-tutorial' %>"><%= link_to (@tutorial.status ? "Completed" : "In Progress"),"/tutorials/#{@tutorial.id}/toggle_status", class: (@tutorial.status ? 'complete-tutorial' : 'incomplete-tutorial'), id: "tutorial-status-link" %><span>
+      <% else %>
+        <span class="tutorial-status <%= @tutorial.status ? 'complete-tutorial' : 'incomplete-tutorial' %>"><%= @tutorial.status ? "Completed" : "In Progress" %><span>
+      <% end %>
+    </p>
+
     <% if tutorial_creator? %>
       <%= link_to "Edit Title & Description", edit_tutorial_path(@tutorial), id: "edit-tutorial-header", data: {"reveal-id" => "modal-popup"} %>
     <% else %>

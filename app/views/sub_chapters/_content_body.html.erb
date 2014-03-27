@@ -5,9 +5,9 @@
     <li class="ui-state-default" id="<%= content.id %>">
       <%= fa_icon('minus', class: "fa-2x drag-content") %>
   <% end %>
-    
+
     <div class="content-item" id="content-item-<%= content.id %>"> 
-      <% content_count = content.comments.count %>
+      
       <% if content.attachable_type == "Paragraph" %>
         <div id="paragraph-<%= content.attachable_id %>">
           <div class="paragraph-container"><%= raw(content.attachable.body) %></div>
@@ -53,7 +53,7 @@
           </div>
         <% end %>
       <% end %>
-      
+      <% content_count = content.comments.count %>
       <% if content_count == 0 %>
         <div class="comments-links invisible">
             <%= link_to "#{content.comments.count} #{fa_icon('comments')}".html_safe, content_comments_path(content), class: "bring-comments" %>

@@ -218,3 +218,13 @@ li {
   margin-top: 1em;
 }
 
+.delete-community-link{
+  visibility: hidden;
+}
+
+.communities-item:hover{
+  .delete-community-link{
+    visibility: visible;
+  }
+}
+

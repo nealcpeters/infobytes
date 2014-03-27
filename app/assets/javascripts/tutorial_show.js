@@ -35,7 +35,7 @@ $(function(){
 
     $.get(url, function(serverResponse, status, request){
       $("#modal-popup-read").html(serverResponse);
-      appendX()
+      $("#modal-popup-read").append("<a class='close-reveal-modal'>&#215;</a>")
     });
   });
 

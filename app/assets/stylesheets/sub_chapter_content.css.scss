@@ -25,11 +25,16 @@
 
 .content-item {
   margin: 3em auto;
+  // overflow: scroll;
   &:hover {
     .comments-links {
       display: inline-block;
-      margin-left: 2em;
     }
+  }
+  .ace_content{
+      // &:hover {
+       // display: none; 
+    // }    
   }
 }
 .sub-chapter {

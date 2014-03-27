@@ -63,7 +63,7 @@
       max-width: 100%;
       overflow-y: scroll;
       height: 100%;
-      z-index: 2 !important;
+      z-index: 5 !important;
       min-width: 10em;
 
       li {
@@ -127,6 +127,9 @@
         margin: 1em auto;
     }
   }
+}
+.full-view-code {
+  div{top: 0;}
 }
 
 

@@ -8,6 +8,9 @@ InfoBytes::Application.routes.draw do
   match '/about', to: "home#about", via: :get, as: "about"
   match "/search", to: "tutorials#search", via: :post, as: "search"
 
+  get '/tutorials/:id/toggle_status', to: "tutorials#toggle_status", as: "toggle_status"
+
+
   get '/topics', to: "topics#index", as: "topics"
   get '/topics/:id', to: "topics#show", as: "topic"
   get '/subtopics', to: "subtopics#index", as: "subtopics"
@@ -15,6 +18,7 @@ InfoBytes::Application.routes.draw do
   post '/tutorials/:tutorial_id/generate_chapter', to: "chapters#generate", as: "generate_chapter"
   post '/chapters/update_sub_chapters', to: "chapters#update_sub_chapters", as: "update_subchapters"
   post '/contents/update_order', to: "contents#update_order", as: "update_orde"
+
   resources :communities do
     member do
       post :create_user_membership

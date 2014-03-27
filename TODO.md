@@ -11,3 +11,6 @@
 - delete button showing up on production
 - add community on any tutorial
 - communities error when not logged in
+- password confirmation box is uneven
+- subtopic view on popup is narrow
+- error on community show when not logged in

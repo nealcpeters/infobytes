@@ -109,12 +109,11 @@ describe TutorialsController do
     end
   end
 
-  # describe "Add Commuity route" do
-  #   it "must catch a bad tutorial'" do
-  #     @com = Community.create(name: "a", description: "blah")
-  #     patch :add_community, id: @tutorial.id, tutorial: {title: nil, community_id: @com.id}
-  #     expect(response).to redirect_to(@tutorial)
-  #   end
-  # end
+  describe "Toggle status route" do
+    it "will redirect to @tutorial" do
+      get :toggle_status, id: @tutorial.id
+      expect(response).to redirect_to(@tutorial)
+    end
+  end
 
-end
+end 

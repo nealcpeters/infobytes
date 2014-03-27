@@ -11,3 +11,4 @@
 - delete button showing up on production
 - add community on any tutorial
 - communities error when not logged in
+- password confirmation box is uneven

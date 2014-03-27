@@ -130,12 +130,12 @@ describe ChaptersController do
   end
 
   describe "Update_sub_chapters route updates the subchapters" do
-    # xit "must render html_view view'" do
-    #   @chapter.sub_chapters << sub_chapter_create << sub_chapter_create
-    #   first = @chapter.sub_chapters[0]
-    #   post 'update_sub_chapters', data: { container: {first.id: 1, first.order: 1}}
-    #   expect(response).to redirect_to(@tutorial)
-    # end
+    it "must update orders'" do
+      sub_chapter_create      
+      @second = SubChapter.create(title:"blah")
+      post 'update_sub_chapters', data: {"0"=>{"id"=> @sub_chapter.id, "container"=>{@sub_chapter.id=>{"number"=>"2"}, @second.id=>{"number"=>"1"}}, "populateList"=>"undefined"}}
+      expect(response).to redirect_to("/")
+    end
   end
 
 end

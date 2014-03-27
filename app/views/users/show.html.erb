@@ -6,6 +6,9 @@
 			<div class="image-name small-12 medium-2 columns">
 				<p class="username"><%= @user.user_name %></p>
 				<%= image_tag @user.gravatar_url(rating: "G", size: 180) %>
+        <% if (current_user && current_user.id == @user.id) %>
+				  <%= link_to "Update Gravatar", "https://en.gravatar.com/site/signup/", target: "_blank" %>
+				<% end %>
 			</div>
 
 			<div class="profile-desc small-12 medium-5 columns">

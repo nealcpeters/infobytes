@@ -52,13 +52,13 @@
 		<% end %>
 
 		<% if @user.communities.empty? == false %>
-			<div class="user-profile medium-10 medium-offset-1 columns">
+			<div class="user-profile">
 				<h2 id="community-header">Manage your community memberships:</h2>
 			</div>
 			<div>
 				<% @user.communities.each do |community| %>
 					<%= link_to community_path(community) do %>
-						<div class="tutorial-list medium-10 medium-offset columns communities-item">
+						<div class="tutorial-list medium-12 columns communities-item">
 							<li id="community-<%= community.id %>">
 								<div class="tut-title">
 									<%= community.name %>
@@ -70,10 +70,12 @@
 				<% end %>
 			</div>
 		<% else %>
-			<div class="user-profile">
-				<h3>You are not currently a member of any communities</h3>
-				<%= link_to "Join a Community Now!", communities_path, class: "button" %>
-			</div>
+			<% if (current_user && current_user.id == @user.id) %>
+				<div class="user-profile">
+					<h3>You are not currently a member of any communities</h3>
+					<%= link_to "Join a Community Now!", communities_path, class: "button" %>
+				</div>
+			<% end %> 
 		<% end %>
 	</div>
 </div>

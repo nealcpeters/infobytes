@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324215418) do
+ActiveRecord::Schema.define(version: 20140327134109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20140324215418) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "community_id"
+    t.boolean  "status",       default: false
   end
 
   add_index "tutorials", ["subtopic_id"], name: "index_tutorials_on_subtopic_id", using: :btree
@@ -142,6 +143,7 @@ ActiveRecord::Schema.define(version: 20140324215418) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description",            default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

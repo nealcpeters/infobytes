@@ -45,6 +45,8 @@ gem "paperclip", "~> 4.1"
 
 gem 'sidekiq'
 
+gem 'gravtastic'
+
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'

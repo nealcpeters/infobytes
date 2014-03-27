@@ -82,10 +82,6 @@ li {
   background-color: #313131;
 }
 
-.user-profile {
-  text-align: center;
-}
-
 #community-header {
   margin-top: 2em; 
 }
@@ -220,5 +216,15 @@ li {
 }
 #tut-list-community-show {
   margin-top: 1em;
+}
+
+.delete-community-link{
+  visibility: hidden;
+}
+
+.communities-item:hover{
+  .delete-community-link{
+    visibility: visible;
+  }
 }
 

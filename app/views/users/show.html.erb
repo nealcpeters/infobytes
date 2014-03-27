@@ -20,10 +20,11 @@
 				<div class="update-info small-12 medium-5 columns">
 					<h2>Update Your Information</h2>
 					<%= form_for :user, url: update_information_path(@user.id) do |f| %>  
+		        <%= f.label :first_name, "First Name" %>
 		        <%= f.text_field :first_name %>
-
+		        <%= f.label :last_name, "Last Name" %>
 		        <%= f.text_field :last_name %>
-
+            <%= f.label :description %>
 		        <%= f.text_area :description, rows: 6 %>
 
 		        <%= f.submit "Update Information", class: "button" %>

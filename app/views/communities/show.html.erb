@@ -8,7 +8,9 @@
 		     	</p>
      	
 		     <% elsif %>
-			     <%= link_to "Join Community", create_user_membership_community_path, class: "button create-community-link", :method => :post %><br>
+		       <% if user_signed_in? %>
+				     <%= link_to "Join Community", create_user_membership_community_path, class: "button create-community-link", :method => :post %><br>
+			     <% end %>
 			 <% end %>
 	 	</h2>
 	</div>

@@ -77,7 +77,11 @@ class TutorialsController < ApplicationController
 
   def toggle_status
     @tutorial = Tutorial.find(params[:id])
+    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    # puts @tutorial.status
     @tutorial.status = !(@tutorial.status)
+    # puts "\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    # puts @tutorial.status
     @tutorial.save
     if request.xhr?
       render json: {status: "great success"}

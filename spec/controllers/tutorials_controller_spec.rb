@@ -111,7 +111,7 @@ describe TutorialsController do
 
   describe "Toggle status route" do
     it "will redirect to @tutorial" do
-      get :toggle_status, id: @tutorial.id
+g      get :toggle_status, id: @tutorial.id
       expect(response).to redirect_to(@tutorial)
     end
   end

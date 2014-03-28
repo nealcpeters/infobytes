@@ -359,18 +359,17 @@ $(function(){
   var updateTutorial = function(url, data){
     $.post(url, data, function(serverResponse, status, request){
       $(".tutorial-header h1").text(serverResponse.title);
-      $(".tutorial-header p").text("Description: " + serverResponse.description)
+      $(".tutorial-header p.tutorial-description").text("Description: " + serverResponse.description)
     }, "json").done(function(){
       removePopup();
     })
   }
 
   /********************************
-  * addming community to tutorial form
+  * adding community to tutorial form
   *********************************/
 
   var addCommunity = function(url, data){
-    console.log("madison is perfect in the add community")
     $.ajax({
       url: url,
       data: data,

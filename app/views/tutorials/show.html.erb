@@ -3,9 +3,9 @@
   <div class="tutorial-header">
     
   	<h1><%= @tutorial.title %></h1>
-  	<p>Description: <%= @tutorial.description %></p>
+  	<p class="tutorial-description">Description: <%= @tutorial.description %></p>
 
-    <p>This tutorial is marked as 
+    <p class="tutorial-status">This tutorial is marked as 
       <% if tutorial_creator? %>
         <span class="tutorial-status <%= @tutorial.status ? 'complete-tutorial' : 'incomplete-tutorial' %>"><%= link_to (@tutorial.status ? "Completed" : "In Progress"),"/tutorials/#{@tutorial.id}/toggle_status", class: (@tutorial.status ? 'complete-tutorial' : 'incomplete-tutorial'), id: "tutorial-status-link" %><span>
       <% else %>

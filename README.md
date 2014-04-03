@@ -4,6 +4,8 @@ A [Dev Bootcamp](http://www.devbootcamp.com) final project.
 
 infobytes is inspired by those who have benefited from online instruction on technical subjects and wished for a more uniform and concentrated platform for tutorial creation and consumption.  This is a combined effort to use the tools we learned at Dev Bootcamp in order to give back to fledgling coders and those interested in technology.
 
+![infobytes](http://i.imgur.com/iehgP3o.png)
+
 Created by:
 
 * Alex Codreanu - [alexcodreanu86@gmail.com](mailto:alexcodreanu86@gmail.com)
